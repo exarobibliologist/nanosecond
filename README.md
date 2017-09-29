@@ -10,7 +10,7 @@ Open a Terminal and type
 <blockquote><code>cd</code></blockquote>
 <blockquote><code>mkdir ~/GIT/</code></blockquote>
 <blockquote><code>cd ~/GIT</code></blockquote>
-<blockquote><code>git clone https://github.com/cypher-neo/nanosecond</code></blockquote>
+<blockquote><code>git clone https://github.com/exarobibliologist/nanosecond</code></blockquote>
 
 Then navigate into the created folder like so:
 <blockquote><code>cd ~/GIT/nanosecond</code></blockquote>
