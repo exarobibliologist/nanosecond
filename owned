@@ -1,0 +1,48 @@
+#! /bin/bash
+
+#########################COPYRIGHT NOTICE################################
+#Copyright (C) 2013 cypher-neo (github.com/cypher-neo)                  #
+#                                                                       #
+#This program is free software; you can redistribute it and/or          #
+#modify it under the terms of the GNU General Public License            #
+#as published by the Free Software Foundation; either version 2         #
+#of the License, or (at your option) any later version.                 #
+#                                                                       #
+#This program is distributed in the hope that it will be useful,        #
+#but WITHOUT ANY WARRANTY; without even the implied warranty of         #
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          #
+#GNU General Public License for more details.                           #
+#                                                                       #
+#You should have received a copy of the GNU General Public License      #
+#along with this program; if not, write to the                          #
+#Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,       #
+#Boston, MA  02110-1301, USA.#                                          #
+#########################################################################
+
+function owned()
+{
+if [ -f $1 ]
+ 	then
+		select ownchoice in "Own the file" "Change File Access Permissions"
+			do
+				case "$ownchoice" in
+					"Own the file")
+						echo -e "Target= $1\nIf this is not correct, end this process now. No changes will be made."
+						pressanykey
+						sudo chown -R -H $iamme:$iamme $(echo -e $1)
+				return
+				;;
+					"Change File Access Permissions")
+						echo -e "-------------------------------------------------------------------------------------------------\n|       Owner                   |       Group                   |       Others                  |\n|(R)ead, (W)rite, (E)xecute     |(R)ead, (W)rite, (E)xecute     |(R)ead, (W)rite, (E)xecute     |\n-------------------------------------------------------------------------------------------------\n\n000 = 0 (Completely locked)\n001 = 1 (Execute only)\n010 = 2 (Write only)\n011 = 3 (Write and execute)\n100 = 4 (Read only)\n101 = 5 (Read and execute)\n110 = 6 (Read and write)\n111 = 7 (Full access)"
+						echo -e "Enter permissions number desired."
+						read permnum
+						pressanykey
+						sudo chmod -R $permnum $(echo -e $1)
+				return
+				;;
+			esac
+		done
+	else
+		echo -e "Please input valid file name after command, like this: owned <filename>"
+	fi
+}

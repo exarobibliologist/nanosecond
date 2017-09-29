@@ -1,0 +1,312 @@
+#!/bin/bash
+
+#########################COPYRIGHT NOTICE################################
+#Copyright (C) 2013 Sean Murphy (github.com/cypher-neo)                 #
+#                                                                       #
+#This program is free software; you can redistribute it and/or          #
+#modify it under the terms of the GNU General Public License            #
+#as published by the Free Software Foundation; either version 2         #
+#of the License, or (at your option) any later version.                 #
+#                                                                       #
+#This program is distributed in the hope that it will be useful,        #
+#but WITHOUT ANY WARRANTY; without even the implied warranty of         #
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          #
+#GNU General Public License for more details.                           #
+#                                                                       #
+#You should have received a copy of the GNU General Public License      #
+#along with this program; if not, write to the                          #
+#Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,       #
+#Boston, MA  02110-1301, USA.#                                          #
+#########################################################################
+
+function InstallWhenNotExist()
+{
+#if ! dpkg -l | grep -q $1; then sudo aptitude install -P $1; fi
+sudo aptitude install -P $1
+}
+
+function InstallAllWhenNotExist()
+{
+#if ! dpkg -l | grep -q $1; then sudo aptitude install -Pr $1; fi
+sudo aptitude install -Pr $1
+}
+
+function installstuff()
+{
+echo -e "It is recommended you install all the PPA's first, before adding additional programs to your system.\n\n\"Ubuntu PPA\" will work in Ubuntu and Ubuntu-based respins.\n\"Debian PPA\" is designed for pure-Debian systems and distros that use Debian repositories as their base.\n\n"
+select installmenuchoice in "Ubuntu PPA" "Debian PPA" "Continue"
+	do
+		case "$installmenuchoice" in
+			"Ubuntu PPA")
+				echo "PPA CHECK - checking for missing repos."
+				pressanykey
+				clear
+				if ! ls /etc/apt/sources.list.d | grep -iq "getdeb"
+					then
+						echo "Adding GetDeb PPA"
+						wget -q -O - http://archive.getdeb.net/getdeb-archive.key | sudo apt-key add -
+						sudo sh -c 'echo "deb http://archive.getdeb.net/ubuntu zesty-getdeb apps" >> /etc/apt/sources.list.d/getdeb.list'
+						sudo sh -c 'echo "deb http://archive.getdeb.net/ubuntu zesty-getdeb games" >> /etc/apt/sources.list.d/getdeb.list'
+				fi
+				pressanykey
+				clear
+				if ! ls /etc/apt/sources.list.d | grep -iq "crawl"
+					then
+						echo "Adding Dungeon Crawl Stone Soup PPA"
+						sudo sh -c 'echo "deb https://crawl.develz.org/debian crawl 0.19 0.20" >> /etc/apt/sources.list.d/crawl.list'
+						wget https://crawl.develz.org/debian/pubkey -O - | sudo apt-key add -
+				fi
+				sudo aptitude update
+				installstuff
+			return
+			;;
+			"Debian PPA")
+				echo -e "I strongly reccomend you edit your sources list at /etc/apt/sources.list to add \"contrib non-free\" to your deb and deb-src sources before running this script.\n"
+				pressanykey
+				echo "PPA CHECK - checking for missing repos."
+					if ! ls /etc/apt/sources.list.d | grep -iq "getdeb"
+						then
+							echo "Adding GetDeb PPA"
+							wget -q -O - http://archive.getdeb.net/getdeb-archive.key | sudo apt-key add -
+							sudo sh -c 'echo "deb http://archive.getdeb.net/ubuntu zesty-getdeb apps" >> /etc/apt/sources.list.d/getdeb.list'
+							sudo sh -c 'echo "deb http://archive.getdeb.net/ubuntu zesty-getdeb games" >> /etc/apt/sources.list.d/getdeb.list'
+						else
+							echo "GetDeb PPA is already there."
+					fi
+					if ! ls /etc/apt/sources.list.d | grep -iq "crawl"
+						then
+							echo "Adding Dungeon Crawl Stone Soup PPA"
+							sudo sh -c 'echo "deb https://crawl.develz.org/debian crawl 0.19" >> /etc/apt/sources.list.d/crawl.list'
+							wget https://crawl.develz.org/debian/pubkey -O - | sudo apt-key add -
+						else
+							echo "Dungeon Crawl Stone Soup PPA already there."
+					fi
+				sudo aptitude update
+				installstuff
+			return
+			;;
+			"Continue")
+				keepinstallingmorestuff
+			return
+			;;
+		esac
+	done
+}
+
+function keepinstallingmorestuff()
+{
+clear
+echo -e "Options:\n"
+echo -e "Compressed Files - gzip p7zip tar unrar"
+echo -e "Conky - conky-all"
+echo -e "Desktop - suckless-tools x-tile"
+echo -e "Documents - libreoffice kate"
+echo -e "Drive Management - smartmontools apper"
+echo -e "File Browsers - curl spacefm gmtp mtp-tools mtpfs"
+echo -e "Fluxbox Setup - Installs required files for my personal Fluxbox setup"
+echo -e "Font Managers - font-manager gucharmap figlet"
+echo -e "Fonts - lots of nice fonts"
+echo -e "Fortunes - Can install fortune files that you can use in various programs"
+echo -e "Games - crawl dosbox zangband"
+echo -e "Internet - amule konversation ktorrent torbrowser-launcher deluge htop mtr namebench strace"
+echo -e "Media - flac lame moc smplayer vlc"
+echo -e "Pictures - inkscape luminance-hdr gimp ufraw"
+echo -e "Security - clamtk"
+echo -e "Terminal - konsole terminator"
+echo -e "Virtualbox - non-free version of virtualbox"
+echo -e "X Screensavers - xscreensaver xscreensaver-data xscreensaver-data-extra xscreensaver-screensaver-bsod xscreensaver-gl xscreensaver-gl-extra rss-glx"
+echo -e "What do you wish to install?\n\n"
+select installmenuchoice in "Compressed Files" "Conky" "Desktop" "Documents" "Drive Management" "File Browsers" "Fluxbox Setup" "Font Managers" "Fonts" "Fortunes" "Games" "Internet" "Media" "Pictures" "Security" "Terminal" "Virtualbox" "X Screensavers" "Exit"
+	do
+		case "$installmenuchoice" in
+			"Compressed Files")
+			        InstallWhenNotExist gzip
+                                InstallWhenNotExist p7zip-full
+                                InstallWhenNotExist tar
+                                InstallWhenNotExist unrar-free
+                                InstallWhenNotExist unzip
+				clear
+				keepinstallingmorestuff
+			return
+			;;
+			"Conky")
+				InstallAllWhenNotExist conky-all
+				clear
+				keepinstallingmorestuff
+			return
+			;;
+			"Desktop")
+				InstallWhenNotExist suckless-tools
+				InstallWhenNotExist x-tile
+				clear
+				keepinstallingmorestuff
+			return
+			;;
+			"Documents")
+				InstallWhenNotExist kate
+				InstallWhenNotExist libreoffice
+				clear
+				keepinstallingmorestuff
+				return
+			;;
+			"Drive Management")
+				InstallWhenNotExist smartmontools
+				InstallWhenNotExist apper
+				clear
+				keepinstallingmorestuff
+			return
+			;;
+			"File Browsers")
+				InstallWhenNotExist curl
+                                InstallWhenNotExist spacefm
+                                InstallWhenNotExist gmtp
+                                InstallWhenNotExist mtp-tools
+                                InstallWhenNotExist mtpfs
+				clear
+				keepinstallingmorestuff
+			return
+			;;
+			"Fluxbox Setup")
+				InstallAllWhenNotExist conky-all
+				InstallWhenNotExist compton
+				InstallWhenNotExist fluxbox
+				InstallWhenNotExist suckless-tools
+				InstallWhenNotExist terminator
+				clear
+				keepinstallingmorestuff
+				return
+			;;
+			"Font Managers")
+				InstallWhenNotExist figlet
+				InstallWhenNotExist font-manager
+				InstallWhenNotExist gucharmap
+				clear
+				keepinstallingmorestuff
+			return
+			;;
+			"Fonts")
+				InstallWhenNotExist fonts-arkpandora
+				InstallWhenNotExist fonts-averia-gwf
+				InstallWhenNotExist fonts-averia-sans-gwf
+				InstallWhenNotExist fonts-averia-serif-gwf
+				InstallWhenNotExist fonts-cabin
+				InstallWhenNotExist fonts-cabinsketch
+				InstallWhenNotExist fonts-cantarell
+				InstallWhenNotExist fonts-dejavu
+				InstallWhenNotExist fonts-dejavu-core
+				InstallWhenNotExist fonts-dejavu-extra
+				InstallWhenNotExist fonts-droid
+				InstallWhenNotExist fonts-dosis
+				InstallWhenNotExist fonts-georgewilliams
+				InstallWhenNotExist fonts-junicode
+				InstallWhenNotExist fonts-jura
+				InstallWhenNotExist fonts-lato
+				InstallWhenNotExist fonts-linex
+				InstallWhenNotExist fonts-liberation
+				InstallWhenNotExist fonts-lobster
+				InstallWhenNotExist fonts-lobstertwo
+				InstallWhenNotExist fonts-sil-abyssinica
+				InstallWhenNotExist fonts-noto
+				InstallWhenNotExist fonts-play
+				InstallWhenNotExist ttf-mscorefonts-installer
+				InstallWhenNotExist fonts-roboto
+				InstallWhenNotExist fonts-wine
+				clear
+				keepinstallingmorestuff
+			return
+			;;
+			"Fortunes")
+				InstallWhenNotExist fortunes
+				InstallWhenNotExist fortune-mod
+				InstallWhenNotExist fortunes-spam
+				clear
+				keepinstallingmorestuff
+			return
+			;;
+			"Games")
+				InstallAllWhenNotExist crawl
+				InstallWhenNotExist dosbox
+				InstallWhenNotExist zangband
+				clear
+				keepinstallingmorestuff
+			return
+			;;
+			"Internet")
+				InstallWhenNotExist amule
+				InstallWhenNotExist chromium
+				InstallWhenNotExist konversation
+				InstallWhenNotExist ktorrent
+				InstallWhenNotExist deluge
+				InstallWhenNotExist htop
+				InstallWhenNotExist mtr
+				InstallWhenNotExist namebench
+				InstallWhenNotExist torbrowser-launcher
+				InstallWhenNotExist strace
+				clear
+				keepinstallingmorestuff
+			return
+			;;
+			"Media")
+				InstallWhenNotExist flac
+				InstallWhenNotExist lame
+				InstallWhenNotExist moc
+				InstallWhenNotExist smplayer
+				InstallWhenNotExist vlc
+				clear
+				keepinstallingmorestuff
+			return
+			;;
+			"Pictures")
+				InstallWhenNotExist inkscape
+				InstallWhenNotExist luminance-hdr
+				InstallWhenNotExist gimp
+				InstallWhenNotExist gimp-data-extras
+				InstallWhenNotExist gimp-gap
+				InstallWhenNotExist gimp-lensfun
+				InstallWhenNotExist gimp-ufraw
+				InstallWhenNotExist gimp-texturiz
+				InstallWhenNotExist gwenview
+				InstallWhenNotExist ufraw
+				InstallWhenNotExist ufraw-batch
+				clear
+				keepinstallingmorestuff
+			return
+			;;
+			"Security")
+				InstallWhenNotExist clamtk
+				clear
+				keepinstallingmorestuff
+			return
+			;;
+			"Terminal")
+				InstallWhenNotExist konsole
+				InstallWhenNotExist terminator
+				clear
+				keepinstallingmorestuff
+			return
+			;;
+			"Virtualbox")
+				InstallAllWhenNotExist virtualbox-nonfree
+				clear
+				keepinstallingmorestuff
+			return
+			;;
+			"X Screensavers")
+				InstallWhenNotExist xscreensaver
+				InstallWhenNotExist xscreensaver-data
+				InstallWhenNotExist xscreensaver-data-extra
+				InstallWhenNotExist xscreensaver-screensaver-bsod
+				InstallWhenNotExist xscreensaver-gl
+				InstallWhenNotExist xscreensaver-gl-extra
+				InstallWhenNotExist rss-glx
+				clear
+				keepinstallingmorestuff
+				return
+			;;
+			"Exit")
+				exit 2
+				return
+			;;
+		esac
+	done
+}

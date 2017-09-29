@@ -1,0 +1,36 @@
+#! /bin/bash
+
+#########################COPYRIGHT NOTICE################################
+#Copyright (C) 2013 cypher-neo (github.com/cypher-neo)			#
+#									#
+#This program is free software; you can redistribute it and/or		#
+#modify it under the terms of the GNU General Public License		#
+#as published by the Free Software Foundation; either version 3		#
+#of the License, or (at your option) any later version.			#
+#									#
+#This program is distributed in the hope that it will be useful,	#
+#but WITHOUT ANY WARRANTY; without even the implied warranty of		#
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the		#
+#GNU General Public License for more details.				#
+#									#
+#You should have received a copy of the GNU General Public License	#
+#along with this program; if not, write to the				#
+#Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,	#
+#Boston, MA  02110-1301, USA.#						#
+#########################################################################
+
+cp ~/.bashrc ~/.bashrc.bkup
+sudo echo ". ~/GIT/nanosecond/bashrc" >> ~/.bashrc
+
+sudo apt-get update
+
+if ! dpkg -l | grep -q aptitude; then sudo apt-get install aptitude; else echo "aptitude already installed. Skipping."; fi
+if ! dpkg -l | grep -q apt-transport-https; then sudo apt-get install apt-transport-https; else echo "apt-transport-https already installed. Skipping."; fi
+if ! dpkg -l | grep -q apt; then sudo apt-get install apt; else echo "apt already installed. Skipping."; fi
+if ! dpkg -l | grep -q concalc; then sudo apt-get install concalc; else echo "concalc already installed. Skipping."; fi
+if ! dpkg -l | grep -q curl; then sudo apt-get install curl; else echo "curl already installed. Skipping."; fi
+if ! dpkg -l | grep -q dirmngr; then sudo apt-get install dirmngr; else echo "dirmngr already installed. Skipping."; fi
+if ! dpkg -l | grep -q inxi; then sudo apt-get install inxi; else echo "inxi already installed. Skipping."; fi
+if ! dpkg -l | grep -q wget; then sudo apt-get install wget; else echo "wget already installed. Skipping."; fi
+
+sudo inxi -U

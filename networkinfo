@@ -1,0 +1,58 @@
+#!/bin/bash
+
+#########################COPYRIGHT NOTICE################################
+#Copyright (C) 2013 cypher-neo (github.com/cypher-neo)                  #
+#                                                                       #
+#This program is free software; you can redistribute it and/or          #
+#modify it under the terms of the GNU General Public License            #
+#as published by the Free Software Foundation; either version 2         #
+#of the License, or (at your option) any later version.                 #
+#                                                                       #
+#This program is distributed in the hope that it will be useful,        #
+#but WITHOUT ANY WARRANTY; without even the implied warranty of         #
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          #
+#GNU General Public License for more details.                           #
+#                                                                       #
+#You should have received a copy of the GNU General Public License      #
+#along with this program; if not, write to the                          #
+#Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,       #
+#Boston, MA  02110-1301, USA.#                                          #
+#########################################################################
+
+function networkinfo()
+{
+clear
+	select webchoice in "Network Interface" "IP's and Subnets" "MAC Address" "MTR Google Report" "MTR Google Continuous" "Quit Without Selecting Anything"
+		do
+			case "$webchoice" in
+				"Network Interface")
+					clear
+					netstat -rn
+				return
+				;;
+				"IP's and Subnets")
+					clear
+					/sbin/ifconfig
+				return
+				;;
+				"MAC Address")
+					clear
+					ip addr show
+				return
+				;;
+				"MTR Google Report")
+					clear
+					mtr --curses -r -c 25 -o "SRDL BA JM" www.google.com
+				return
+				;;
+				"MTR Google Continuous")
+					clear
+					mtr --curses -o "SRDL BA JM" www.google.com
+				return
+				;;
+				"Quit Without Selecting Anything")
+				return
+				;;
+			esac
+		done
+}

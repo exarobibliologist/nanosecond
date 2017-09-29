@@ -1,0 +1,75 @@
+#!/bin/bash
+
+function zangmath()
+{
+clear
+echo "Level"
+read level
+echo "Gold or Charges"
+read au
+echo "Multiple? Default=1"
+read mult
+clear
+select mathchoice in "Add to Item" "Add to Exp"
+do
+	case $mathchoice in
+		"Add to Item")
+			echo "Current Item PVAL"
+			read pval
+			echo "Current Item Armor"
+			read ringarmor
+			echo "Current Item To Hit"
+			read ringhit
+			echo "Current Item Damage"
+			read ringdam
+			clear
+			echo "Item Charges"
+				if [ $mult == 1 ]
+					then
+						charges=$(concalc "($au^(1/(52-$level)))/3")
+						clear
+					else
+						charges=$(concalc "(($au^(1/(52-$level)))*$mult)/3")
+						clear
+				fi
+			echo "Add to PVAL?"
+			read pvaladd
+			echo "Add to Armor"
+			read armoradd
+			echo "Add to Hit"
+			read hitadd
+			echo "Add to Damage"
+			read damadd
+			clear
+				if [ $mult == 1 ]
+					then
+					echo "Using $au you increase the stats to:"
+					else
+					echo "Using $mult charges of $au you increase the stats to:"
+				fi
+			echo "+PVAL"
+			concalc "$pvaladd + $pval"
+			echo "Armor"
+			concalc "$charges + $ringarmor + $armoradd"
+			echo "To Hit"
+			concalc "$charges + $ringhit + $hitadd"
+			echo "To Damage"
+			concalc "$charges + $ringdam + $damadd"
+		return
+		;;
+		"Add to Exp")
+			echo "Input Current Experience"
+			read exp
+				if [ $mult == 1 ]
+				        then
+						echo "Using $au you increase your XP to:"
+				                concalc "$exp*($au^(1/(52-$level)))"
+				        else
+						echo "Using $mult charges of $au you increase your XP to:"
+				                concalc "$exp*(($au^(1/(52-$level)))^$mult)"
+				fi
+		return
+		;;
+	esac
+done
+}

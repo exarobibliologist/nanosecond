@@ -1,0 +1,19 @@
+#!/bin/bash
+
+function catgrapple()
+{
+mapfile -t lines < <(awk -v "search=$2" '$0 ~ search { print NR }' "$1")
+while read -r i
+do
+terminator -x nano "+$i" "$1" & done < <(awk -v "search=$2" '$0 ~ search { print NR }' "$1")
+}
+
+#Proper usage: catgrep [FILE] [SEARCH TERM]
+
+function catgrep()
+{
+file=$1
+search=$2
+linecat=$(cat -n $file | grep $search | column -t | expand | awk '{print $1; exit}')
+nano +$linecat $file
+}

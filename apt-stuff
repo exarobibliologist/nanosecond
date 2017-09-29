@@ -1,0 +1,123 @@
+#! /bin/bash/
+
+#########################COPYRIGHT NOTICE################################
+#Copyright (C) 2013 cypher-neo (github.com/cypher-neo)			#
+#									#
+#This program is free software; you can redistribute it and/or		#
+#modify it under the terms of the GNU General Public License		#
+#as published by the Free Software Foundation; either version 3		#
+#of the License, or (at your option) any later version.			#
+#									#
+#This program is distributed in the hope that it will be useful,	#
+#but WITHOUT ANY WARRANTY; without even the implied warranty of		#
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the		#
+#GNU General Public License for more details.				#
+#									#
+#You should have received a copy of the GNU General Public License	#
+#along with this program; if not, write to the				#
+#Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,	#
+#Boston, MA  02110-1301, USA.#						#
+#########################################################################
+
+function apt-stuff()
+{
+clear
+select aptmenuchoice in "APT Policy" "Edit APT Preferences" "Add Keys" "APT History"
+do
+	case "$aptmenuchoice" in
+	"APT Policy")
+		echo "This is the current apt-cache policy"
+		apt-cache policy
+		return
+	;;
+	"Edit APT Preferences")
+		echo "Editing APT Preferences can lead to system instability. Be careful out there!"
+		sudo nano /etc/apt/preferences
+		return
+	;;
+	"Add Keys")
+		echo "This script MUST be run as root in order to work. You will be prompted for your password later."
+		echo -n "Would you like to add an 8-digit key or a keyfile"
+		        select keymenuchoice in "8-digit-key" "Keyfile"
+		                do
+					case "$keymenuchoice" in
+						"8-digit key")
+							echo -n "Enter the pub key please: "
+							read key
+		                            		echo -n "Enter the keyserver url please"
+							read keyserver
+							sudo apt-key adv --keyserver $keyserver --recv-keys $key
+        	        	        return
+						;;
+						"Keyfile")
+							echo -n "Enter the URL to the keyfile please: "
+							read url
+							wget $url -O- | sudo apt-key add -
+					return
+						;;
+					esac
+				done
+		return
+        ;;
+	"APT History")
+		select aptmenuchoice in "Installed Programs" "Upgraded Programs" "Removed Programs"
+		do
+			case "$aptmenuchoice" in
+			"Installed Programs")
+			echo "Do you want to see every program you've ever installed, or just the last few?"
+				select installmenuchoice in all limited
+				do
+					case "$installmenuchoice" in
+					"all")
+						cat /var/log/dpkg.log | grep ' installed'
+						return
+					;;
+					"limited")
+						echo "Enter how many lines you wish to see of the INSTALL log:"
+						read limitnumber
+						cat /var/log/dpkg.log | grep ' installed' | tail -n $limitnumber
+						return
+					;;
+					esac
+				done
+				;;
+			"Upgraded Programs")
+			echo "Do you want to see every program upgraded, or just the last few?"
+				select upgrademenuchoice in all limited
+				do
+					case "$upgrademenuchoice" in
+					"all")
+						cat /var/log/dpkg.log | grep ' upgrade'
+						return
+						;;
+					"limited")
+						echo "Enter how many lines you wish to see of the UPGRADE log:"
+						read limitnumber
+						cat /var/log/dpkg.log | grep ' upgrade' | tail -n $limitnumber
+						return
+						;;
+					esac
+				done
+				;;
+			"Removed Programs")
+			echo "Do you want to see every program removed, or just the last few?"
+				select removemenuchoice in all limited
+				do
+					case "$removemenuchoice" in
+					"all")
+						cat /var/log/dpkg.log | grep ' remove'
+						return
+						;;
+					"limited")
+						echo "Enter how many lines you wish to see of the REMOVAL log:"
+						read limitnumber
+						cat /var/log/dpkg.log | grep ' remove' | tail -n $limitnumber
+						return
+						;;
+					esac
+				done
+			esac
+		done
+	esac
+done
+}

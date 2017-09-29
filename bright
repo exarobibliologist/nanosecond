@@ -1,0 +1,52 @@
+#!/bin/bash
+
+## This is just a little hack I wrote to dim the screen brightness  when the function keys responsible for screen dimming don't work.
+function bright()
+{
+echo -e "Brightness Controller"
+select brightcontrolchoice in "10" "20" "30" "40" "50" "60" "70" "80" "90" "Full"
+	do
+		case "$brightcontrolchoice" in
+			"10")
+				xrandr --output eDP1 --brightness 0.1
+				return
+				;;
+			"20")
+				xrandr --output eDP1 --brightness 0.2
+				return
+				;;
+			"30")
+				xrandr --output eDP1 --brightness 0.3
+				return
+				;;
+			"40")
+				xrandr --output eDP1 --brightness 0.4
+				return
+				;;
+			"50")
+				xrandr --output eDP1 --brightness 0.5
+				return
+				;;
+			"60")
+				xrandr --output eDP1 --brightness 0.6
+				return
+				;;
+			"70")
+				xrandr --output eDP1 --brightness 0.7
+				return
+				;;
+			"80")
+				xrandr --output eDP1 --brightness 0.8
+				return
+				;;
+			"90")
+				xrandr --output eDP1 --brightness 0.9
+				return
+				;;
+			"Full")
+				xrandr --output eDP1 --brightness 1.0
+				return
+				;;
+			esac
+	done
+}

@@ -1,0 +1,76 @@
+#! /bin/bash
+
+#########################COPYRIGHT NOTICE################################
+#Copyright (C) 2013 cypher-neo (github.com/cypher-neo)                  #
+#                                                                       #
+#This program is free software; you can redistribute it and/or          #
+#modify it under the terms of the GNU General Public License            #
+#as published by the Free Software Foundation; either version 2         #
+#of the License, or (at your option) any later version.                 #
+#                                                                       #
+#This program is distributed in the hope that it will be useful,        #
+#but WITHOUT ANY WARRANTY; without even the implied warranty of         #
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          #
+#GNU General Public License for more details.                           #
+#                                                                       #
+#You should have received a copy of the GNU General Public License      #
+#along with this program; if not, write to the                          #
+#Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,       #
+#Boston, MA  02110-1301, USA.#                                          #
+#########################################################################
+
+function makewalls()
+{
+clear
+echo "What kind of tiles will you make?"
+select wallchoice in "small" "medium" "large" "full" "random"
+do
+case "$wallchoice" in
+	"small")
+		for i in {1..5}
+			do
+				randname=$(< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-8};echo)
+				echo "Making $randname.png"
+				xstarfish -s small -o $randname.png
+			done
+	return
+	;;
+	"medium")
+                for i in {1..5}
+                        do
+                                randname=$(< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-8};echo)
+                                echo "Making $randname.png"
+                                xstarfish -s medium -o $randname.png
+                        done
+        return
+        ;;
+	"large")
+		for i in {1..5}
+			do
+				randname=$(< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-8};echo)
+				echo "Making $randname.png"
+				xstarfish -s large -o $randname.png
+			done
+	return
+	;;
+	"full")
+		for i in {1..5}
+			do
+                                randname=$(< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-8};echo)
+                                echo "Making $randname.png"
+                                xstarfish -s full -o $randname.png
+                        done
+        return 
+        ;;
+	"random")
+                for i in {1..5}
+                        do
+                                randname=$(< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-8};echo)
+                                echo "Making $randname.png"
+                                xstarfish -s random -o $randname.png
+                        done
+        return 
+        ;;
+esac
+done
+}

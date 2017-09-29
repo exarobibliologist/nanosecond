@@ -1,0 +1,71 @@
+#!/bin/bash
+
+#########################COPYRIGHT NOTICE################################
+#Copyright (C) 2013 cypher-neo (github.com/cypher-neo)			#
+#									#
+#This program is free software; you can redistribute it and/or		#
+#modify it under the terms of the GNU General Public License		#
+#as published by the Free Software Foundation; either version 2		#
+#of the License, or (at your option) any later version.			#
+#									#
+#This program is distributed in the hope that it will be useful,	#
+#but WITHOUT ANY WARRANTY; without even the implied warranty of		#
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the		#
+#GNU General Public License for more details.				#
+#									#
+#You should have received a copy of the GNU General Public License	#
+#along with this program; if not, write to the				#
+#Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,	#
+#Boston, MA  02110-1301, USA.#						#
+#########################################################################
+
+#########################################################################################################
+#              			The Modified Julian RealTime Clock					#
+# Modified Julian Date can be read about at http://en.wikipedia.org/wiki/Julian_day			#
+#													#
+# I first became fascinated with Modified Julian Time Date while writing a novella that can be read at	#
+# http://fav.me/d4srzzh.					                                        #
+#													#
+# This realtime clock converts the current date to Modified JD and displays both in realtime.		#
+# When I removed the sleep function, it confirmed accurate down to the nanosecond			#
+#########################################################################################################
+
+function juliantime()
+{
+t=1
+	while [ -n "$t" ] 
+    		do
+    			todayis=$(date +"%F")
+    			let julian=(`date +%s -d $todayis`-`date +%s -d 1968-05-24`)/86400+40000
+    			hourtime=$(date +"%H")
+    			minutetime=$(date +"%M")
+    			secondtime=$(date +"%S.%N" | head -c10)
+			juliantime=$(concalc "$hourtime/24 + $minutetime/1440 + $secondtime/86400 + $julian")
+    			clear
+    			echo "Standard Gregorian Date"
+			echo "$todayis  $hourtime : $minutetime : $secondtime"
+			echo "Modified Julian"
+			echo "$juliantime"
+    			sleep 0.01
+			t=1 # This creates an infinite loop. Ctrl-Z to abort, or just Alt-F4 to close the entire Terminal window
+    done
+}
+#!/bin/bash
+
+function juliantime2()
+{
+t=1
+	while [ -n "$t" ] 
+    		do
+    			todayis=$(date +"%F")
+    			let julian=(`date +%s -d $todayis`-`date +%s -d 1968-05-24`)/86400+40000
+    			hourtime=$(date +"%H")
+    			minutetime=$(date +"%M")
+    			secondtime=$(date +"%S.%N" | head -c10)
+    			juliantime=$(echo "scale=9; ($hourtime / 24) + ($minutetime / 1440) + ($secondtime / 86400)" | bc -l)
+    			clear
+    			echo -e "Standard Gregorian Date\n${BRed}$todayis${Color_Off} ${BRed}$hourtime${Color_Off}:${BRed}$minutetime${Color_Off}:${BRed}$secondtime${Color_Off}\n\nModified Julian\n${BBlue}$julian$juliantime${Color_Off}"
+    			sleep 0.001
+			t=1 # This creates an infinite loop. Ctrl-Z to abort, or just Alt-F4 to close the entire Terminal window
+    done
+}

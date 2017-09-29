@@ -1,0 +1,101 @@
+#! /bin/bash/
+
+#########################COPYRIGHT NOTICE################################
+#Copyright (C) 2013 cypher-neo (github.com/cypher-neo)			#
+#									#
+#This program is free software; you can redistribute it and/or		#
+#modify it under the terms of the GNU General Public License		#
+#as published by the Free Software Foundation; either version 2		#
+#of the License, or (at your option) any later version.			#
+#									#
+#This program is distributed in the hope that it will be useful,	#
+#but WITHOUT ANY WARRANTY; without even the implied warranty of		#
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the		#
+#GNU General Public License for more details.				#
+#									#
+#You should have received a copy of the GNU General Public License	#
+#along with this program; if not, write to the				#
+#Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,	#
+#Boston, MA  02110-1301, USA.#						#
+#########################################################################
+
+########################
+# Restart/Refresh BASH #
+########################
+
+function rebash()
+{
+#select rebashchoice in "Reset Source" "Update" "Upgrade" "Clean"
+select rebashchoice in "Reset Source" "Update" "Upgrade"
+do
+	case "$rebashchoice" in
+		"Reset Source")
+			clear
+			source ~/.bashrc || return
+		return
+		;;
+		"Update")
+			sudo aptitude update || return
+			clear
+			source ~/.bashrc || return
+		return
+		;;
+		"Upgrade")
+			select upgradechoice in "Safe-Upgrade" "Full-Upgrade"
+				do
+					case "$upgradechoice" in
+						"Safe-Upgrade")
+							select safechoice in "Simulate" "Execute Safe-Upgrade"
+								do
+									case "$safechoice" in
+										"Simulate")
+											sudo aptitude safe-upgrade -s || return
+											clear
+											source ~/.bashrc || return
+										return
+										;;
+										"Execute Safe-Upgrade")
+											sudo aptitude safe-upgrade || return
+											clear
+											source ~/.bashrc || return
+										return
+										;;
+									esac
+								done
+							return
+							;;
+						"Full-Upgrade")
+							select safechoice in "Simulate" "Execute Full-Upgrade"
+								do
+									case "$safechoice" in
+										"Simulate")
+											sudo aptitude full-upgrade -s || return
+											clear
+											source ~/.bashrc || return
+										return
+										;;
+										"Execute Full-Upgrade")
+											sudo aptitude full-upgrade || return
+											clear
+											source ~/.bashrc || return
+										return
+										;;
+									esac
+								done
+						return
+						;;
+					esac
+				done
+		return
+		;;
+#		"Clean")
+#			sudo aptitude clean || return
+#			sudo aptitude autoclean || return
+#			sudo apt-get autoremove || return
+#			clear
+#			source ~/.bashrc || return
+#		return
+#		;;
+	esac
+done
+}

@@ -1,0 +1,17 @@
+#!/bin/bash
+#########################
+# Some Alias Defintions #
+#########################
+alias changewall='feh --bg-fill -rz'
+
+alias less='more -spd'
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+alias grep='grep --colour=always'
+
+alias bc='bc -l'
+
+alias startmouse='synclient TouchpadOff=0'

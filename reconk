@@ -1,0 +1,15 @@
+#! /bin/bash
+
+function reconk-black()
+{
+killall conky
+conky -c ~/GIT/conked-out/conkyrc-flux1-black &
+conky -c ~/GIT/conked-out/conkyrc-flux2-black
+}
+
+function reconk-white()
+{
+killall conky
+conky -c ~/GIT/conked-out/conkyrc-flux1-white &
+conky -c ~/GIT/conked-out/conkyrc-flux2-white
+}

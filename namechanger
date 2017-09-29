@@ -1,0 +1,65 @@
+#! /bin/bash
+
+#########################COPYRIGHT NOTICE################################
+#Copyright (C) 2013 cypher-neo (github.com/cypher-neo)                  #
+#                                                                       #
+#This program is free software; you can redistribute it and/or          #
+#modify it under the terms of the GNU General Public License            #
+#as published by the Free Software Foundation; either version 2         #
+#of the License, or (at your option) any later version.                 #
+#                                                                       #
+#This program is distributed in the hope that it will be useful,        #
+#but WITHOUT ANY WARRANTY; without even the implied warranty of         #
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          #
+#GNU General Public License for more details.                           #
+#                                                                       #
+#You should have received a copy of the GNU General Public License      #
+#along with this program; if not, write to the                          #
+#Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,       #
+#Boston, MA  02110-1301, USA.#                                          #
+#########################################################################
+function namechanger()
+{
+select namechangechoice in "Strip Useless Characters" "Rename Files SHA256" "Rename Files MD5" "Continue" "Exit"
+	do
+		case "$namechangechoice" in
+			"Strip Useless Characters")
+				find -name "*-*" -type f | rename 's/\-/_/g'
+				## Let's take out the parentheses
+				find -name "*(*" -type f | rename 's/\(/-/g'
+				find -name "*)*" -type f | rename 's/\)/-/g'
+				## And let's take out ampersands
+				find -name "*&*" -type f | rename 's/\&/_and_/g'
+				find -name "*%*" -type f | rename 's/\%/_/g'
+				## I don't know why Windows loves captializing all filename extensions.
+				find -name "*JPG*" -type f | rename 's/JPG/jpg/g'
+				find -name "*WAV*" -type f | rename 's/WAV/wav/g'
+				find -name "*PNG*" -type f | rename 's/PNG/png/g'
+				find -name "*GIF*" -type f | rename 's/GIF/gif/g'
+				##Finally strip spaces and those underscores we used
+				find -name "* *" -type f | rename 's/ /_/g'
+				find -name "*_*" -type f | rename 's/_//g'
+				namechanger
+			return
+			;;
+			"Rename Files SHA256")
+				sha256sum *.{mp3,flac,jpg,png,gif,jpeg} | sed -e 's/\([^ ]*\) \(.*\(\..*\)\)$/mv -v \2 \1\3/' | sh
+				namechanger
+			return
+			;;
+			"Rename Files MD5")
+				md5sum *.{mp3,flac,jpg,png,gif,jpeg} | sed -e 's/\([^ ]*\) \(.*\(\..*\)\)$/mv -v \2 \1\3/' | sh
+				namechanger
+			return
+			;;
+			"Continue")
+				namechanger
+			return
+			;;
+			"Exit")
+				exit 1
+			return
+			;;
+		esac
+	done
+}
