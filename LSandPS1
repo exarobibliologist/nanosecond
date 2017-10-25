@@ -5,7 +5,7 @@ LS_COLORS='di=97;40:ln=35;40:so=32;40:pi=33;40:ex=31;40:fi=38;05;154:bd=34;46:cd
 export LS_COLORS
 
 if [ "$color_prompt" = yes ]; then
-	PS1="${debian_chroot:+($debian_chroot)}\n\[$Color161\]╓╥─ \[$Color226\]\u\[$Color255\]@\[$Color226\]\h\ \[$Color255\]in \[$Color226\]\w\ \[$Color_Off\]\n\[$Color161\]╙╨─ \[$Color161\]\$\[$Color_Off\] "
+	PS1="${debian_chroot:+($debian_chroot)}\n\[$Color166\]╓╥─ \[$Color240\]\u\[$Color196\]@\[$Color240\]\h\ \[$Color196\]in \[$Color240\]\w\ \[$Color_Off\]\n\[$Color166\]╙╨─ \[$Color166\]\$\[$Color_Off\] "
 else
 	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
