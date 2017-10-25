@@ -1,8 +1,7 @@
 #!/bin/bash
 
 #########################COPYRIGHT NOTICE################################
-#Copyright (C) 2013 Sean Murphy (github.com/cypher-neo)                 #
-#                                                                       #
+#									#
 #This program is free software; you can redistribute it and/or          #
 #modify it under the terms of the GNU General Public License            #
 #as published by the Free Software Foundation; either version 2         #
@@ -21,14 +20,14 @@
 
 function InstallWhenNotExist()
 {
-#if ! dpkg -l | grep -q $1; then sudo aptitude install -P $1; fi
-sudo aptitude install -P $1
+if ! dpkg -l | grep -wq $1; then sudo aptitude install -P $1; fi
+#sudo aptitude install -P $1
 }
 
 function InstallAllWhenNotExist()
 {
-#if ! dpkg -l | grep -q $1; then sudo aptitude install -Pr $1; fi
-sudo aptitude install -Pr $1
+if ! dpkg -l | grep -wq $1; then sudo aptitude install -Pr $1; fi
+#sudo aptitude install -Pr $1
 }
 
 function installstuff()
@@ -108,15 +107,17 @@ echo -e "Font Managers - font-manager gucharmap figlet"
 echo -e "Fonts - lots of nice fonts"
 echo -e "Fortunes - Can install fortune files that you can use in various programs"
 echo -e "Games - crawl dosbox zangband"
-echo -e "Internet - amule konversation ktorrent torbrowser-launcher deluge htop mtr namebench strace"
+echo -e "Internet - chromium htop mtr namebench netselect-apt strace torbrowser-launcher"
+echo -e "IRC - hexchat konversation pidgin"
 echo -e "Media - flac lame moc smplayer vlc"
 echo -e "Pictures - inkscape luminance-hdr gimp ufraw"
 echo -e "Security - clamtk"
 echo -e "Terminal - konsole terminator"
+echo -e "Torrents - amule deluge ktorrent"
 echo -e "Virtualbox - non-free version of virtualbox"
 echo -e "X Screensavers - xscreensaver xscreensaver-data xscreensaver-data-extra xscreensaver-screensaver-bsod xscreensaver-gl xscreensaver-gl-extra rss-glx"
 echo -e "What do you wish to install?\n\n"
-select installmenuchoice in "Compressed Files" "Conky" "Desktop" "Documents" "Drive Management" "File Browsers" "Fluxbox Setup" "Font Managers" "Fonts" "Fortunes" "Games" "Internet" "Media" "Pictures" "Security" "Terminal" "Virtualbox" "X Screensavers" "Exit"
+select installmenuchoice in "Compressed Files" "Conky" "Desktop" "Documents" "Drive Management" "File Browsers" "Fluxbox Setup" "Font Managers" "Fonts" "Fortunes" "Games" "Internet" "IRC" "Media" "Pictures" "Security" "Terminal" "Torrents" "Virtualbox" "X Screensavers" "Exit"
 	do
 		case "$installmenuchoice" in
 			"Compressed Files")
@@ -147,7 +148,7 @@ select installmenuchoice in "Compressed Files" "Conky" "Desktop" "Documents" "Dr
 				InstallWhenNotExist libreoffice
 				clear
 				keepinstallingmorestuff
-				return
+			return
 			;;
 			"Drive Management")
 				InstallWhenNotExist smartmontools
@@ -190,7 +191,6 @@ select installmenuchoice in "Compressed Files" "Conky" "Desktop" "Documents" "Dr
 				InstallWhenNotExist fonts-averia-sans-gwf
 				InstallWhenNotExist fonts-averia-serif-gwf
 				InstallWhenNotExist fonts-cabin
-				InstallWhenNotExist fonts-cabinsketch
 				InstallWhenNotExist fonts-cantarell
 				InstallWhenNotExist fonts-dejavu
 				InstallWhenNotExist fonts-dejavu-core
@@ -232,16 +232,21 @@ select installmenuchoice in "Compressed Files" "Conky" "Desktop" "Documents" "Dr
 			return
 			;;
 			"Internet")
-				InstallWhenNotExist amule
 				InstallWhenNotExist chromium
-				InstallWhenNotExist konversation
-				InstallWhenNotExist ktorrent
-				InstallWhenNotExist deluge
 				InstallWhenNotExist htop
 				InstallWhenNotExist mtr
 				InstallWhenNotExist namebench
-				InstallWhenNotExist torbrowser-launcher
+				InstallWhenNotExist netselect-apt
 				InstallWhenNotExist strace
+				InstallWhenNotExist torbrowser-launcher
+				clear
+				keepinstallingmorestuff
+			return
+			;;
+			"IRC")
+				InstallWhenNotExist hexchat
+				InstallWhenNotExist konversation
+				InstallWhenNotExist pidgin
 				clear
 				keepinstallingmorestuff
 			return
@@ -281,6 +286,14 @@ select installmenuchoice in "Compressed Files" "Conky" "Desktop" "Documents" "Dr
 			"Terminal")
 				InstallWhenNotExist konsole
 				InstallWhenNotExist terminator
+				clear
+				keepinstallingmorestuff
+			return
+			;;
+			"Torrents")
+				InstallWhenNotExist amule
+				InstallWhenNotExist deluge
+				InstallWhenNotExist ktorrent
 				clear
 				keepinstallingmorestuff
 			return
