@@ -317,7 +317,6 @@ select installmenuchoice in "Compressed Files" "Conky" "Desktop" "Documents" "Dr
 				return
 			;;
 			"Exit")
-				exit 2
 				return
 			;;
 		esac
