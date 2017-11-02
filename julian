@@ -30,7 +30,7 @@
 # When I removed the sleep function, it confirmed accurate down to the nanosecond			#
 #########################################################################################################
 
-function juliantime()
+function juliantime2()
 {
 t=1
 	while [ -n "$t" ] 
@@ -52,7 +52,7 @@ t=1
 }
 #!/bin/bash
 
-function juliantime2()
+function juliantime()
 {
 t=1
 	while [ -n "$t" ] 
