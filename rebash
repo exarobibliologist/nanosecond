@@ -36,8 +36,6 @@ do
 		;;
 		"Update")
 			sudo aptitude update || return
-			clear
-			source ~/.bashrc || return
 		return
 		;;
 		"Upgrade")
@@ -50,14 +48,10 @@ do
 									case "$safechoice" in
 										"Simulate")
 											sudo aptitude safe-upgrade -s || return
-											clear
-											source ~/.bashrc || return
 										return
 										;;
 										"Execute Safe-Upgrade")
 											sudo aptitude safe-upgrade || return
-											clear
-											source ~/.bashrc || return
 										return
 										;;
 									esac
@@ -70,14 +64,10 @@ do
 									case "$safechoice" in
 										"Simulate")
 											sudo aptitude full-upgrade -s || return
-											clear
-											source ~/.bashrc || return
 										return
 										;;
 										"Execute Full-Upgrade")
 											sudo aptitude full-upgrade || return
-											clear
-											source ~/.bashrc || return
 										return
 										;;
 									esac
