@@ -20,13 +20,13 @@
 
 function InstallWhenNotExist()
 {
-if ! dpkg -l | grep -wq $1; then sudo aptitude install -P $1; fi
+if ! dpkg -l | grep -wq $1; then sudo aptitude install -P $1; else echo $1 "is installed"; fi
 #sudo aptitude install -P $1
 }
 
 function InstallAllWhenNotExist()
 {
-if ! dpkg -l | grep -wq $1; then sudo aptitude install -Pr $1; fi
+if ! dpkg -l | grep -wq $1; then sudo aptitude install -Pr $1; else echo $1 "is installed"; fi
 #sudo aptitude install -Pr $1
 }
 
@@ -75,7 +75,7 @@ select installmenuchoice in "Ubuntu PPA" "Debian PPA" "Continue"
 					if ! ls /etc/apt/sources.list.d | grep -iq "crawl"
 						then
 							echo "Adding Dungeon Crawl Stone Soup PPA"
-							sudo sh -c 'echo "deb https://crawl.develz.org/debian crawl 0.19" >> /etc/apt/sources.list.d/crawl.list'
+							sudo sh -c 'echo "deb https://crawl.develz.org/debian crawl 0.19 0.20" >> /etc/apt/sources.list.d/crawl.list'
 							wget https://crawl.develz.org/debian/pubkey -O - | sudo apt-key add -
 						else
 							echo "Dungeon Crawl Stone Soup PPA already there."
@@ -126,12 +126,14 @@ select installmenuchoice in "Compressed Files" "Conky" "Desktop" "Documents" "Dr
                                 InstallWhenNotExist tar
                                 InstallWhenNotExist unrar-free
                                 InstallWhenNotExist unzip
+				pressanykey
 				clear
 				keepinstallingmorestuff
 			return
 			;;
 			"Conky")
 				InstallAllWhenNotExist conky-all
+				pressanykey
 				clear
 				keepinstallingmorestuff
 			return
@@ -139,6 +141,7 @@ select installmenuchoice in "Compressed Files" "Conky" "Desktop" "Documents" "Dr
 			"Desktop")
 				InstallWhenNotExist suckless-tools
 				InstallWhenNotExist x-tile
+				pressanykey
 				clear
 				keepinstallingmorestuff
 			return
@@ -146,6 +149,7 @@ select installmenuchoice in "Compressed Files" "Conky" "Desktop" "Documents" "Dr
 			"Documents")
 				InstallWhenNotExist kate
 				InstallWhenNotExist libreoffice
+				pressanykey
 				clear
 				keepinstallingmorestuff
 			return
@@ -153,6 +157,7 @@ select installmenuchoice in "Compressed Files" "Conky" "Desktop" "Documents" "Dr
 			"Drive Management")
 				InstallWhenNotExist smartmontools
 				InstallWhenNotExist apper
+				pressanykey
 				clear
 				keepinstallingmorestuff
 			return
@@ -163,6 +168,7 @@ select installmenuchoice in "Compressed Files" "Conky" "Desktop" "Documents" "Dr
                                 InstallWhenNotExist gmtp
                                 InstallWhenNotExist mtp-tools
                                 InstallWhenNotExist mtpfs
+				pressanykey
 				clear
 				keepinstallingmorestuff
 			return
@@ -173,6 +179,7 @@ select installmenuchoice in "Compressed Files" "Conky" "Desktop" "Documents" "Dr
 				InstallWhenNotExist fluxbox
 				InstallWhenNotExist suckless-tools
 				InstallWhenNotExist terminator
+				pressanykey
 				clear
 				keepinstallingmorestuff
 				return
@@ -181,6 +188,7 @@ select installmenuchoice in "Compressed Files" "Conky" "Desktop" "Documents" "Dr
 				InstallWhenNotExist figlet
 				InstallWhenNotExist font-manager
 				InstallWhenNotExist gucharmap
+				pressanykey
 				clear
 				keepinstallingmorestuff
 			return
@@ -211,6 +219,7 @@ select installmenuchoice in "Compressed Files" "Conky" "Desktop" "Documents" "Dr
 				InstallWhenNotExist ttf-mscorefonts-installer
 				InstallWhenNotExist fonts-roboto
 				InstallWhenNotExist fonts-wine
+				pressanykey
 				clear
 				keepinstallingmorestuff
 			return
@@ -219,6 +228,7 @@ select installmenuchoice in "Compressed Files" "Conky" "Desktop" "Documents" "Dr
 				InstallWhenNotExist fortunes
 				InstallWhenNotExist fortune-mod
 				InstallWhenNotExist fortunes-spam
+				pressanykey
 				clear
 				keepinstallingmorestuff
 			return
@@ -227,18 +237,20 @@ select installmenuchoice in "Compressed Files" "Conky" "Desktop" "Documents" "Dr
 				InstallAllWhenNotExist crawl
 				InstallWhenNotExist dosbox
 				InstallWhenNotExist zangband
+				pressanykey
 				clear
 				keepinstallingmorestuff
 			return
 			;;
 			"Internet")
-				InstallWhenNotExist chromium
-				InstallWhenNotExist htop
-				InstallWhenNotExist mtr
-				InstallWhenNotExist namebench
-				InstallWhenNotExist netselect-apt
-				InstallWhenNotExist strace
-				InstallWhenNotExist torbrowser-launcher
+				InstallWhenNotExist chromium || echo "chromium is installed"
+				InstallWhenNotExist htop || echo "htop is installed"
+				InstallWhenNotExist mtr || echo "mtr is installed"
+				InstallWhenNotExist namebench || echo "namebench is installed"
+				InstallWhenNotExist netselect-apt || echo "netselect-apt is installed"
+				InstallWhenNotExist strace || echo "strace is installed"
+				InstallWhenNotExist torbrowser-launcher echo "torbrowser-launcher is installed"
+				pressanykey
 				clear
 				keepinstallingmorestuff
 			return
@@ -247,6 +259,7 @@ select installmenuchoice in "Compressed Files" "Conky" "Desktop" "Documents" "Dr
 				InstallWhenNotExist hexchat
 				InstallWhenNotExist konversation
 				InstallWhenNotExist pidgin
+				pressanykey
 				clear
 				keepinstallingmorestuff
 			return
@@ -257,6 +270,7 @@ select installmenuchoice in "Compressed Files" "Conky" "Desktop" "Documents" "Dr
 				InstallWhenNotExist moc
 				InstallWhenNotExist smplayer
 				InstallWhenNotExist vlc
+				pressanykey
 				clear
 				keepinstallingmorestuff
 			return
@@ -273,12 +287,14 @@ select installmenuchoice in "Compressed Files" "Conky" "Desktop" "Documents" "Dr
 				InstallWhenNotExist gwenview
 				InstallWhenNotExist ufraw
 				InstallWhenNotExist ufraw-batch
+				pressanykey
 				clear
 				keepinstallingmorestuff
 			return
 			;;
 			"Security")
 				InstallWhenNotExist clamtk
+				pressanykey
 				clear
 				keepinstallingmorestuff
 			return
@@ -286,6 +302,7 @@ select installmenuchoice in "Compressed Files" "Conky" "Desktop" "Documents" "Dr
 			"Terminal")
 				InstallWhenNotExist konsole
 				InstallWhenNotExist terminator
+				pressanykey
 				clear
 				keepinstallingmorestuff
 			return
@@ -294,12 +311,14 @@ select installmenuchoice in "Compressed Files" "Conky" "Desktop" "Documents" "Dr
 				InstallWhenNotExist amule
 				InstallWhenNotExist deluge
 				InstallWhenNotExist ktorrent
+				pressanykey
 				clear
 				keepinstallingmorestuff
 			return
 			;;
 			"Virtualbox")
 				InstallAllWhenNotExist virtualbox-nonfree
+				pressanykey
 				clear
 				keepinstallingmorestuff
 			return
@@ -312,6 +331,7 @@ select installmenuchoice in "Compressed Files" "Conky" "Desktop" "Documents" "Dr
 				InstallWhenNotExist xscreensaver-gl
 				InstallWhenNotExist xscreensaver-gl-extra
 				InstallWhenNotExist rss-glx
+				pressanykey
 				clear
 				keepinstallingmorestuff
 				return
