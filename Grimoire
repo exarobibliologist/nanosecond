@@ -256,6 +256,16 @@ However, this package is only included on Linux Mint distros. If you're not usin
 It probably won't install because of missing packages, so...
 	sudo apt-get install -f
 
+__     ___     _                
+\ \   / (_) __| | ___  ___  ___ 
+ \ \ / /| |/ _` |/ _ \/ _ \/ __|
+  \ V / | | (_| |  __/ (_) \__ \
+   \_/  |_|\__,_|\___|\___/|___/
+-------------------------------------------------------------------
+Convert avi to mp4
+Install mencoder
+	mencoder input.avi -o output.mp4 -oac copy -ovc lavc vcodec=mpeg1video -of mpeg
+
  ___                                 
 |_ _|_ __ ___   __ _  __ _  ___  ___ 
  | || '_ ` _ \ / _` |/ _` |/ _ \/ __|
