@@ -43,12 +43,12 @@ select namechangechoice in "Strip Useless Characters" "Rename Files SHA256" "Ren
 			return
 			;;
 			"Rename Files SHA256")
-				sha256sum *.{mp3,flac,jpg,png,gif,jpeg} | sed -e 's/\([^ ]*\) \(.*\(\..*\)\)$/mv -v \2 \1\3/' | sh
+				sha256sum *.{mp3,mkv,flac,jpg,png,gif,jpeg} | sed -e 's/\([^ ]*\) \(.*\(\..*\)\)$/mv -v \2 \1\3/' | sh
 				namechanger
 			return
 			;;
 			"Rename Files MD5")
-				md5sum *.{mp3,flac,jpg,png,gif,jpeg} | sed -e 's/\([^ ]*\) \(.*\(\..*\)\)$/mv -v \2 \1\3/' | sh
+				md5sum *.{mp3,mkv,flac,jpg,png,gif,jpeg} | sed -e 's/\([^ ]*\) \(.*\(\..*\)\)$/mv -v \2 \1\3/' | sh
 				namechanger
 			return
 			;;
