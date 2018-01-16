@@ -24,6 +24,12 @@ if ! dpkg -l | grep -wq $1; then sudo aptitude install -P $1; else echo $1 "is i
 #sudo aptitude install -P $1
 }
 
+function ForceInstallWhenNotExist()
+{
+if ! dpkg -l | grep -wq $1; then sudo aptitude install -Py $1; else echo $1 "is installed"; fi
+#sudo aptitude install -P $1
+}
+
 function InstallAllWhenNotExist()
 {
 if ! dpkg -l | grep -wq $1; then sudo aptitude install -Pr $1; else echo $1 "is installed"; fi
@@ -32,6 +38,7 @@ if ! dpkg -l | grep -wq $1; then sudo aptitude install -Pr $1; else echo $1 "is 
 
 function installstuff()
 {
+ForceInstallWhenNotExist konsole
 echo -e "It is recommended you install all the PPA's first, before adding additional programs to your system.\n\n\"Ubuntu PPA\" will work in Ubuntu and Ubuntu-based respins.\n\"Debian PPA\" is designed for pure-Debian systems and distros that use Debian repositories as their base.\n\n"
 select installmenuchoice in "Ubuntu PPA" "Debian PPA" "Continue"
 	do
@@ -46,6 +53,8 @@ select installmenuchoice in "Ubuntu PPA" "Debian PPA" "Continue"
 						wget -q -O - http://archive.getdeb.net/getdeb-archive.key | sudo apt-key add -
 						sudo sh -c 'echo "deb http://archive.getdeb.net/ubuntu zesty-getdeb apps" >> /etc/apt/sources.list.d/getdeb.list'
 						sudo sh -c 'echo "deb http://archive.getdeb.net/ubuntu zesty-getdeb games" >> /etc/apt/sources.list.d/getdeb.list'
+						sudo sh -c 'echo "deb http://archive.getdeb.net/ubuntu yakkety-getdeb apps" >> /etc/apt/sources.list.d/getdeb.list'
+						sudo sh -c 'echo "deb http://archive.getdeb.net/ubuntu yakkety-getdeb games" >> /etc/apt/sources.list.d/getdeb.list'
 				fi
 				pressanykey
 				clear
@@ -69,6 +78,8 @@ select installmenuchoice in "Ubuntu PPA" "Debian PPA" "Continue"
 							wget -q -O - http://archive.getdeb.net/getdeb-archive.key | sudo apt-key add -
 							sudo sh -c 'echo "deb http://archive.getdeb.net/ubuntu zesty-getdeb apps" >> /etc/apt/sources.list.d/getdeb.list'
 							sudo sh -c 'echo "deb http://archive.getdeb.net/ubuntu zesty-getdeb games" >> /etc/apt/sources.list.d/getdeb.list'
+							sudo sh -c 'echo "deb http://archive.getdeb.net/ubuntu yakkety-getdeb apps" >> /etc/apt/sources.list.d/getdeb.list'
+							sudo sh -c 'echo "deb http://archive.getdeb.net/ubuntu yakkety-getdeb games" >> /etc/apt/sources.list.d/getdeb.list'
 						else
 							echo "GetDeb PPA is already there."
 					fi
