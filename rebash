@@ -19,14 +19,9 @@
 #Boston, MA  02110-1301, USA.#						#
 #########################################################################
 
-########################
-# Restart/Refresh BASH #
-########################
-
 function rebash()
 {
-#select rebashchoice in "Reset Source" "Update" "Upgrade" "Clean"
-select rebashchoice in "Reset Source" "Update" "Upgrade"
+select rebashchoice in "Reset Source" "Update" "Upgrade" "Select Best Source"
 do
 	case "$rebashchoice" in
 		"Reset Source")
@@ -78,14 +73,10 @@ do
 				done
 		return
 		;;
-#		"Clean")
-#			sudo aptitude clean || return
-#			sudo aptitude autoclean || return
-#			sudo apt-get autoremove || return
-#			clear
-#			source ~/.bashrc || return
-#		return
-#		;;
+		"Select Best Source")
+			sudo netselect-apt
+		return
+		;;
 	esac
 done
 }
