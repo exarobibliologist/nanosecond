@@ -74,7 +74,7 @@ do
 		return
 		;;
 		"Select Best Source")
-			sudo netselect-apt
+			sudo netselect-apt -sn
 		return
 		;;
 	esac
