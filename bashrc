@@ -77,7 +77,6 @@ fi
 . ~/GIT/nanosecond/apt-stuff
 . ~/GIT/nanosecond/autoinstaller
 . ~/GIT/nanosecond/builder
-. ~/GIT/nanosecond/bull
 . ~/GIT/nanosecond/catgrapple
 . ~/GIT/nanosecond/checkmail
 . ~/GIT/nanosecond/colorize
