@@ -95,9 +95,16 @@ Debian KDE Plasma 5 missing window decorations
  \____|_| \_\\___/|____/ 
 -------------------------------------------------------------------
 Installing grub-customizer on Debian
+Step 1:	Install these packages
+	sudo aptitude cmake g++ libgtkmm-3.0-dev gettext libssl-dev libarchive-dev hwinfo
+
+Step 2:	Download the Sources
 	wget https://launchpad.net/grub-customizer/5.0/5.0.6/+download/grub-customizer_5.0.6.tar.gz
+
 	tar zxvf grub-customizer_5.0.6.tar.gz
-	ls grub-customizer-5.0.6/
+	cd grub-customizer-5.0.6/
+
+Step 3: Compile the Sources
 	cmake .&& make -j8
 	sudo make install
 
