@@ -74,6 +74,7 @@ do
 		return
 		;;
 		"Select Best Source")
+			cd ~/GIT
 			sudo netselect-apt -sn
 		return
 		;;
