@@ -36,12 +36,11 @@ do
 		return
 	;;
 	"Add Keys")
-		echo "This script MUST be run as root in order to work. You will be prompted for your password later."
-		echo -n "Would you like to add an 8-digit key or a keyfile"
-		        select keymenuchoice in "8-digit-key" "Keyfile"
+		echo "This script MUST be run as root in order to work. You will be prompted for your password later. Would you like to add an 8-digit key or a keyfile"
+		        select keymenuchoice in "8 Digit Key" "Keyfile"
 		                do
 					case "$keymenuchoice" in
-						"8-digit key")
+						"8 Digit Key")
 							echo -n "Enter the pub key please: "
 							read key
 		                            		echo -n "Enter the keyserver url please"
