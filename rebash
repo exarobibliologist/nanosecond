@@ -74,7 +74,14 @@ do
 		return
 		;;
 		"Select Best Source")
-			cd ~/GIT
+			cd ~/GIT/nanosecond
+			if ls "sources.list"
+				then
+					echo "Removing old sources"
+					rm sources.list
+				else
+					echo "old sources.list not found"
+				fi
 			sudo netselect-apt -sn
 		return
 		;;
