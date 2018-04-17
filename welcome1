@@ -37,54 +37,58 @@ ontime=$(uptime | sed 's/^[^u]*up  *\([^,]*\),.*/\1/')
 #The Welcome Array - With included quotes from The Roguelet's ABC and some pickup lines#
 #Some random quotes and a pickup line						       #
 ########################################################################################
-declare -a RANDARRAYONE=("Don't hit the keys so hard! It hurts!" "Think honk if you're a telepath." "Of all the things I've ever lost, I miss my mind the most." "I am not the Lorax. I speak only for myself." "I will acknowledge rewards for they are my due; yet I will welcome obstacles for they are my challenge." "If you want me to fall for you $username, you better give me something worth tripping for.")
-randline1=${RANDARRAYONE[RANDOM % ${#RANDARRAYONE[*]}]}
+#declare -a RANDARRAYONE=("Don't hit the keys so hard! It hurts!" "Think honk if you're a telepath." "Of all the things I've ever lost, I miss my mind the most." "I am not the Lorax. I speak only for myself." "I will acknowledge rewards for they are my due; yet I will welcome obstacles for they are my challenge." "If you want me to fall for you $username, you better give me something worth tripping for.")
+#randline1=${RANDARRAYONE[RANDOM % ${#RANDARRAYONE[*]}]}
 
 #####################################
 #Some quotes from The Roguelet's ABC#
 #####################################
-declare -a RANDARRAYTWO=("Flitter flutter in the air, How I wonder why you're there? Chasing bats is not much fun - The worst is when you're killed by one." "See that funny little man, Try and catch him if you can. Quickly now! That's too slow - Where did all your money go?" "Think again before you try, to impale a floating eye. If you miss it with your sword, You may soon be very bored." "If a 'goblin (hob) waylays you, slice him up before he slays you. Nothing makes you look a slob, Like running from a hob'lin (gob)" "One big monster, he called troll. He don't rock and he don't roll, Drink no wine and smoke no stogies; He just love to eat them roguies.")
-randline2=${RANDARRAYTWO[RANDOM % ${#RANDARRAYTWO[*]}]}
+#declare -a RANDARRAYTWO=("Flitter flutter in the air, How I wonder why you're there? Chasing bats is not much fun - The worst is when you're killed by one." "See that funny little man, Try and catch him if you can. Quickly now! That's too slow - Where did all your money go?" "Think again before you try, to impale a floating eye. If you miss it with your sword, You may soon be very bored." "If a 'goblin (hob) waylays you, slice him up before he slays you. Nothing makes you look a slob, Like running from a hob'lin (gob)" "One big monster, he called troll. He don't rock and he don't roll, Drink no wine and smoke no stogies; He just love to eat them roguies.")
+#randline2=${RANDARRAYTWO[RANDOM % ${#RANDARRAYTWO[*]}]}
 
 #####################################################################################
 #Some Perlisms from "Epigrams in Programming", by Alan J. Perlis of Yale University.#
 #####################################################################################
-declare -a RANDARRAYTHREE=("One man's constant is another man's variable." "Everything should be built top-down, except the first time." "If a listener nods his head when you're explaining your program, wake him up." "A language that doesn't affect the way you think about programming, is not worth knowing." "To understand a program you must become both the machine and the program." "Simplicity does not precede complexity, but follows it." "There are two ways to write error-free programs; only the third one works." "In software systems, it is often the early bird that MAKES the worm." "The best book on programming for the layman is Alice in Wonderland; but that's because it's the best book on anything for the layman." "Fools ignore complexity. Pragmatists suffer it. Some can avoid it. Geniuses remove it." "When we write programs that LEARN, it turns out that we do and they don't." "If your computer speaks English, it was probably made in Japan." "Don't have good ideas if you aren't willing to be responsible for them." "Dealing with failure is easy: Work hard to improve. Success is also easy to handle: You've solved the wrong problem. Work hard to improve.")
-randline3=${RANDARRAYTHREE[RANDOM % ${#RANDARRAYTHREE[*]}]}
+#declare -a RANDARRAYTHREE=("One man's constant is another man's variable." "Everything should be built top-down, except the first time." "If a listener nods his head when you're explaining your program, wake him up." "A language that doesn't affect the way you think about programming, is not worth knowing." "To understand a program you must become both the machine and the program." "Simplicity does not precede complexity, but follows it." "There are two ways to write error-free programs; only the third one works." "In software systems, it is often the early bird that MAKES the worm." "The best book on programming for the layman is Alice in Wonderland; but that's because it's the best book on anything for the layman." "Fools ignore complexity. Pragmatists suffer it. Some can avoid it. Geniuses remove it." "When we write programs that LEARN, it turns out that we do and they don't." "If your computer speaks English, it was probably made in Japan." "Don't have good ideas if you aren't willing to be responsible for them." "Dealing with failure is easy: Work hard to improve. Success is also easy to handle: You've solved the wrong problem. Work hard to improve.")
+#randline3=${RANDARRAYTHREE[RANDOM % ${#RANDARRAYTHREE[*]}]}
 
 
-hour=$(date +"%H")
-declare -a EARLYARRAY=("Have you gotten a life yet $username?" "Its really VERY late!" "Got insomnia $username?" "Why are you waking me up $username?" "Getting an early start on the day?" "Do you realize what time it is $username?" "You probably shouldn't be drinking coffee at this time of the day $username.")
-declare -a MORNARRAY=("Whatever food, news, or images you internalize in the morning, will define the energy and perspective of your day. Choose wisely $username." "Good morning $username!" "Have a great morning $username!" "This is the beginning of a fine day." "Have you had your coffee yet this morning?" "Have a great day!")
-declare -a LUNCHARRAY=("It's lunchtime!" "Are you going to eat something or just keeping typing?" "I hope you remembered to bring a lunch today." "Go have a cup of coffee $username and then get back to work refreshed.")
-declare -a AFTERARRAY=("Good afternoon $username!" "This looks like a great afternoon!" "Now that you've had a byte to eat, stop pounding on my keys so hard." "Welcome back, $username." "Have you had your afternoon cup of coffee yet $username?")
-declare -a EVEARRAY=("Good evening $username!" "How did your day go today?" "I hope you are feeling well this evening." "Did you have a good day today $username?")
-declare -a RANDARRAY=("$randline1" "$randline2" "$randline3")
+#hour=$(date +"%H")
+#declare -a EARLYARRAY=("Have you gotten a life yet $username?" "Its really VERY late!" "Got insomnia $username?" "Why are you waking me up $username?" "Getting an early start on the day?" "Do you realize what time it is $username?" "You probably shouldn't be drinking coffee at this time of the day $username.")
+#declare -a MORNARRAY=("Whatever food, news, or images you internalize in the morning, will define the energy and perspective of your day. Choose wisely $username." "Good morning $username!" "Have a great morning $username!" "This is the beginning of a fine day." "Have you had your coffee yet this morning?" "Have a great day!")
+#declare -a LUNCHARRAY=("It's lunchtime!" "Are you going to eat something or just keeping typing?" "I hope you remembered to bring a lunch today." "Go have a cup of coffee $username and then get back to work refreshed.")
+#declare -a AFTERARRAY=("Good afternoon $username!" "This looks like a great afternoon!" "Now that you've had a byte to eat, stop pounding on my keys so hard." "Welcome back, $username." "Have you had your afternoon cup of coffee yet $username?")
+#declare -a EVEARRAY=("Good evening $username!" "How did your day go today?" "I hope you are feeling well this evening." "Did you have a good day today $username?")
+#declare -a RANDARRAY=("$randline1" "$randline2" "$randline3")
 
-if [ $hour -ge 0 -a $hour -lt 7 ]; then
-welcomeline=${EARLYARRAY[RANDOM % ${#EARLYARRAY[*]}]}
-elif [ $hour -ge 7 -a $hour -lt 12 ]; then
-welcomeline=${MORNARRAY[RANDOM % ${#MORNARRAY[*]}]}
-elif [ $hour -ge 12 -a $hour -lt 13 ]; then
-welcomeline=${LUNCHARRAY[RANDOM % ${#LUNCHARRAY[*]}]}
-elif [ $hour -ge 13 -a $hour -lt 18 ]; then
-welcomeline=${AFTERARRAY[RANDOM % ${#AFTERARRAY[*]}]}
-elif [ $hour -ge 18 -a $hour -lt 22 ]; then
-welcomeline=${EVEARRAY[RANDOM % ${#EVEARRAY[*]}]}
-else
-welcomeline=${RANDARRAY[RANDOM % ${#RANDARRAY[*]}]}
-fi
+#if [ $hour -ge 0 -a $hour -lt 7 ]; then
+#welcomeline=${EARLYARRAY[RANDOM % ${#EARLYARRAY[*]}]}
+#elif [ $hour -ge 7 -a $hour -lt 12 ]; then
+#welcomeline=${MORNARRAY[RANDOM % ${#MORNARRAY[*]}]}
+#elif [ $hour -ge 12 -a $hour -lt 13 ]; then
+#welcomeline=${LUNCHARRAY[RANDOM % ${#LUNCHARRAY[*]}]}
+#elif [ $hour -ge 13 -a $hour -lt 18 ]; then
+#welcomeline=${AFTERARRAY[RANDOM % ${#AFTERARRAY[*]}]}
+#elif [ $hour -ge 18 -a $hour -lt 22 ]; then
+#welcomeline=${EVEARRAY[RANDOM % ${#EVEARRAY[*]}]}
+#else
+#welcomeline=${RANDARRAY[RANDOM % ${#RANDARRAY[*]}]}
+#fi
 
 ###########################################################
 # You could add a Tasklist to your BASH prompt like this! #
 ###########################################################
 #taskline="${Color201}Task List${Color_Off}\n$(cat -n $HOME/BASH/Tasklist)"
 
-#fortuneline="${Color201}Random Fortune Cookie${Color_Off}\n$(fortune)"
+fortuneline="${Color201}Random Fortune Cookie${Color_Off}\n$(fortune)"
 
 #Welcome
+
 #screenfetch
-echo -e "$welcomeline"
+
+#echo -e "$welcomeline"
+
+#echo -e "Uptime = $ontime"
 
 ## List number of available updates
 #aptcount=$(aptitude search "~U" | wc -l)
@@ -102,4 +106,6 @@ echo -e "$welcomeline"
 
 #Fortune
 #echo -e "\n$fortuneline"
+#or
+echo -e "$fortuneline"
 }
