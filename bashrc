@@ -1,3 +1,18 @@
+####COPYRIGHT NOTICE#####COPYRIGHT NOTICE#####COPYRIGHT NOTICE#####COPYRIGHT NOTICE#####COPYRIGHT NOTICE#####COPYRIGHT NOTICE####
+#Copyright (C) 2018 exarobibliologst (github.com/exarobibliologist)								#
+#																#
+#This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License	#
+#as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.		#
+#																#
+#This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of	#
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.			#
+#																#
+#You should have received a copy of the GNU General Public License along with this program; if not, write to the		#
+#Free Software Foundation, Inc.													#
+#51 Franklin Street, Fifth Floor,												#
+#Boston, MA  02110-1301, USA.													#
+#################################################################################################################################
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -24,17 +39,6 @@ HISTFILESIZE=2000
 # Defaults Section
 LinuxVersion=$(inxi -S)
 iamme=$(whoami)
-case $LinuxVersion in
-	*"Debian"*)
-		myeditor=nano
-		;;
-	*"KDE"*)
-		myeditor=kate
-		;;
-	*"XFCE"*)
-		myeditor=mousepad
-		;;
-esac
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -68,25 +72,18 @@ fi
 # Sourced Scripts #
 ###################
 . ~/GIT/nanosecond/aliases
-. ~/GIT/nanosecond/apt-depends
-. ~/GIT/nanosecond/apt-key-test
-. ~/GIT/nanosecond/apt-policy
-. ~/GIT/nanosecond/apt-rdepends
 . ~/GIT/nanosecond/apt-search
 . ~/GIT/nanosecond/apt-show
 . ~/GIT/nanosecond/apt-stuff
-. ~/GIT/nanosecond/autoinstaller
-. ~/GIT/nanosecond/builder
 . ~/GIT/nanosecond/catgrapple
-. ~/GIT/nanosecond/checkmail
 . ~/GIT/nanosecond/colorize
-. ~/GIT/nanosecond/createpass
 . ~/GIT/nanosecond/ducolor
 . ~/GIT/nanosecond/encoder
 . ~/GIT/nanosecond/extract
 . ~/GIT/nanosecond/fixmouse
 . ~/GIT/nanosecond/forcefsck
 . ~/GIT/nanosecond/installstuff
+. ~/GIT/nanosecond/jansinstallstuff
 . ~/GIT/nanosecond/julian
 . ~/GIT/nanosecond/lamer
 . ~/GIT/nanosecond/lsabcd
@@ -105,7 +102,6 @@ fi
 . ~/GIT/nanosecond/toplag
 . ~/GIT/nanosecond/unlockdpkg
 . ~/GIT/nanosecond/wallchange
-. ~/GIT/nanosecond/webterm
 . ~/GIT/nanosecond/welcome1
 . ~/GIT/nanosecond/zangmath
 
