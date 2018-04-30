@@ -1,6 +1,0 @@
-#! /bin/bash
-
-function checkmail()
-{
-if dpkg -l | grep -q google-chrome; then google-chrome gmail.com &>/dev/null; else firefox gmail.com &> /dev/null; fi
-}
