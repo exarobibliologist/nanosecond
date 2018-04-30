@@ -1,15 +1,25 @@
 #!/bin/bash
 
+####COPYRIGHT NOTICE#####COPYRIGHT NOTICE#####COPYRIGHT NOTICE#####COPYRIGHT NOTICE#####COPYRIGHT NOTICE#####COPYRIGHT NOTICE####
+#Copyright (C) 2018 exarobibliologst (github.com/exarobibliologist)                                                             #
+#                                                                                                                               #
+#This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License      #
+#as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.          #
+#                                                                                                                               #
+#This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of #
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.                     #
+#                                                                                                                               #
+#You should have received a copy of the GNU General Public License along with this program; if not, write to the                #
+#Free Software Foundation, Inc.                                                                                                 #
+#51 Franklin Street, Fifth Floor,                                                                                               #
+#Boston, MA  02110-1301, USA.                                                                                                   #
+#################################################################################################################################
+
 ###################################
 # LOOK! IT'S A RAINBOW OF COLORS! #
 ###################################
 Color_Off='\e[0m'       # Text Reset
-SSAlertRed01='\e[47;05;41m'
-SSAlertRed02='\e[41;05;07m'
 
-## To figure out which color is which, open a new Terminal and type
-## for c in {000..255}; do echo -e "\e[38;05;${c}m Color${c}\e[0m"; done
-## or type "color_rainbow" in the Terminal
 Color000='\e[38;05;0m'
 Color001='\e[38;05;1m'
 Color002='\e[38;05;2m'
