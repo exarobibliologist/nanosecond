@@ -1,22 +1,19 @@
 #!/bin/bash
 
-#########################COPYRIGHT NOTICE################################
-#									#
-#This program is free software; you can redistribute it and/or          #
-#modify it under the terms of the GNU General Public License            #
-#as published by the Free Software Foundation; either version 2         #
-#of the License, or (at your option) any later version.                 #
-#                                                                       #
-#This program is distributed in the hope that it will be useful,        #
-#but WITHOUT ANY WARRANTY; without even the implied warranty of         #
-#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          #
-#GNU General Public License for more details.                           #
-#                                                                       #
-#You should have received a copy of the GNU General Public License      #
-#along with this program; if not, write to the                          #
-#Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,       #
-#Boston, MA  02110-1301, USA.#                                          #
-#########################################################################
+####COPYRIGHT NOTICE#####COPYRIGHT NOTICE#####COPYRIGHT NOTICE#####COPYRIGHT NOTICE#####COPYRIGHT NOTICE#####COPYRIGHT NOTICE####
+#Copyright (C) 2018 exarobibliologst (github.com/exarobibliologist)                                                             #
+#                                                                                                                               #
+#This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License      #
+#as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.          #
+#                                                                                                                               #
+#This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of #
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.                     #
+#                                                                                                                               #
+#You should have received a copy of the GNU General Public License along with this program; if not, write to the                #
+#Free Software Foundation, Inc.                                                                                                 #
+#51 Franklin Street, Fifth Floor,                                                                                               #
+#Boston, MA  02110-1301, USA.                                                                                                   #
+#################################################################################################################################
 
 function InstallWhenNotExist()
 {
@@ -109,7 +106,6 @@ clear
 echo -e "Options:\n"
 echo -e "Compressed Files - gzip p7zip tar unrar"
 echo -e "Conky - conky-all"
-echo -e "Desktop - suckless-tools x-tile"
 echo -e "Documents - libreoffice kate"
 echo -e "Drive Management - smartmontools apper"
 echo -e "File Browsers - curl spacefm gmtp mtp-tools mtpfs"
@@ -122,13 +118,12 @@ echo -e "Internet - chromium htop mtr namebench netselect-apt strace torbrowser-
 echo -e "IRC - hexchat konversation pidgin"
 echo -e "Media - flac lame moc smplayer vlc"
 echo -e "Pictures - inkscape luminance-hdr gimp ufraw"
-echo -e "Security - clamtk"
 echo -e "Terminal - konsole terminator"
 echo -e "Torrents - amule deluge ktorrent"
 echo -e "Virtualbox - non-free version of virtualbox"
 echo -e "X Screensavers - xscreensaver xscreensaver-data xscreensaver-data-extra xscreensaver-screensaver-bsod xscreensaver-gl xscreensaver-gl-extra rss-glx"
 echo -e "What do you wish to install?\n\n"
-select installmenuchoice in "Compressed Files" "Conky" "Desktop" "Documents" "Drive Management" "File Browsers" "Fluxbox Setup" "Font Managers" "Fonts" "Fortunes" "Games" "Internet" "IRC" "Media" "Pictures" "Security" "Terminal" "Torrents" "Virtualbox" "X Screensavers" "Exit"
+select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Management" "File Browsers" "Fluxbox Setup" "Font Managers" "Fonts" "Fortunes" "Games" "Internet" "IRC" "Media" "Pictures" "Terminal" "Torrents" "Virtualbox" "X Screensavers" "Exit"
 	do
 		case "$installmenuchoice" in
 			"Compressed Files")
@@ -144,14 +139,6 @@ select installmenuchoice in "Compressed Files" "Conky" "Desktop" "Documents" "Dr
 			;;
 			"Conky")
 				InstallAllWhenNotExist conky-all
-				pressanykey
-				clear
-				keepinstallingmorestuff
-			return
-			;;
-			"Desktop")
-				InstallWhenNotExist suckless-tools
-				InstallWhenNotExist x-tile
 				pressanykey
 				clear
 				keepinstallingmorestuff
@@ -174,11 +161,9 @@ select installmenuchoice in "Compressed Files" "Conky" "Desktop" "Documents" "Dr
 			return
 			;;
 			"File Browsers")
-				InstallWhenNotExist curl
+				InstallWhenNotExist dolphin
+				InstallWhenNotExist dolphin4
                                 InstallWhenNotExist spacefm
-                                InstallWhenNotExist gmtp
-                                InstallWhenNotExist mtp-tools
-                                InstallWhenNotExist mtpfs
 				pressanykey
 				clear
 				keepinstallingmorestuff
@@ -193,7 +178,7 @@ select installmenuchoice in "Compressed Files" "Conky" "Desktop" "Documents" "Dr
 				pressanykey
 				clear
 				keepinstallingmorestuff
-				return
+			return
 			;;
 			"Font Managers")
 				InstallWhenNotExist figlet
@@ -254,13 +239,13 @@ select installmenuchoice in "Compressed Files" "Conky" "Desktop" "Documents" "Dr
 			return
 			;;
 			"Internet")
-				InstallWhenNotExist chromium || echo "chromium is installed"
-				InstallWhenNotExist htop || echo "htop is installed"
-				InstallWhenNotExist mtr || echo "mtr is installed"
-				InstallWhenNotExist namebench || echo "namebench is installed"
-				InstallWhenNotExist netselect-apt || echo "netselect-apt is installed"
-				InstallWhenNotExist strace || echo "strace is installed"
-				InstallWhenNotExist torbrowser-launcher echo "torbrowser-launcher is installed"
+				InstallWhenNotExist chromium
+				InstallWhenNotExist htop
+				InstallWhenNotExist mtr
+				InstallWhenNotExist namebench
+				InstallWhenNotExist netselect-apt
+				InstallWhenNotExist strace
+				InstallWhenNotExist torbrowser-launcher
 				pressanykey
 				clear
 				keepinstallingmorestuff
@@ -298,13 +283,6 @@ select installmenuchoice in "Compressed Files" "Conky" "Desktop" "Documents" "Dr
 				InstallWhenNotExist gwenview
 				InstallWhenNotExist ufraw
 				InstallWhenNotExist ufraw-batch
-				pressanykey
-				clear
-				keepinstallingmorestuff
-			return
-			;;
-			"Security")
-				InstallWhenNotExist clamtk
 				pressanykey
 				clear
 				keepinstallingmorestuff
