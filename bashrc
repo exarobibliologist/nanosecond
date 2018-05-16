@@ -87,7 +87,6 @@ fi
 . ~/GIT/nanosecond/julian
 . ~/GIT/nanosecond/lamer
 . ~/GIT/nanosecond/lsabcd
-. ~/GIT/nanosecond/makewalls
 . ~/GIT/nanosecond/namechanger
 . ~/GIT/nanosecond/networkinfo
 . ~/GIT/nanosecond/owned
