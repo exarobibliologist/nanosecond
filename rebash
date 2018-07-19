@@ -70,7 +70,7 @@ do
 		return
 		;;
 		"Select Best Source")
-			cd ~/GIT/nanosecond
+			cd ~/GIT
 			if ls "sources.list"
 				then
 					echo "Removing old sources"
