@@ -83,7 +83,6 @@ fi
 . ~/GIT/nanosecond/fixmouse
 . ~/GIT/nanosecond/forcefsck
 . ~/GIT/nanosecond/installstuff
-. ~/GIT/nanosecond/jansinstallstuff
 . ~/GIT/nanosecond/julian
 . ~/GIT/nanosecond/lamer
 . ~/GIT/nanosecond/lsabcd
