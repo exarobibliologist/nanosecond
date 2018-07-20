@@ -108,14 +108,14 @@ echo -e "Compressed Files - gzip p7zip tar unrar"
 echo -e "Conky - conky-all"
 echo -e "Documents - libreoffice kate"
 echo -e "Drive Management - smartmontools apper"
-echo -e "File Browsers - curl spacefm gmtp mtp-tools mtpfs"
+echo -e "File Browsers - dolphin dolphin4 spacefm"
 echo -e "Fluxbox Setup - Installs required files for my personal Fluxbox setup"
 echo -e "Font Managers - font-manager gucharmap figlet"
 echo -e "Fonts - lots of nice fonts"
 echo -e "Fortunes - Can install fortune files that you can use in various programs"
 echo -e "Games - crawl dosbox zangband"
-echo -e "Internet - chromium htop mtr namebench netselect-apt strace torbrowser-launcher"
-echo -e "IRC - hexchat konversation pidgin"
+echo -e "Internet - chromium firefox htop mtr namebench netselect-apt strace torbrowser-launcher"
+echo -e "IRC - hexchat konversation"
 echo -e "Media - flac lame moc smplayer vlc"
 echo -e "Pictures - inkscape luminance-hdr gimp ufraw"
 echo -e "Terminal - konsole terminator"
@@ -254,7 +254,6 @@ select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Manage
 			"IRC")
 				InstallWhenNotExist hexchat
 				InstallWhenNotExist konversation
-				InstallWhenNotExist pidgin
 				pressanykey
 				clear
 				keepinstallingmorestuff
