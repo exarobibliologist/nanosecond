@@ -18,6 +18,7 @@
 cp ~/.bashrc ~/.bashrc.bkup
 sudo echo ". ~/GIT/nanosecond/bashrc" >> ~/.bashrc
 
+cp ~/GIT/nanosecond/default.bashrc /usr/share/nano/default.bashrc
 sudo apt-get update
 
 if ! dpkg -l | grep -q aptitude; then sudo apt-get install aptitude; else echo "aptitude already installed. Skipping."; fi
