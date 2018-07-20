@@ -1,0 +1,18 @@
+## A default syntax, which is used
+## for files that do not match any other syntax.
+
+syntax "default"
+comment "#"
+
+# Comments.
+color brightred "(^|[[:space:]])#.*$"
+color brightblue "(^|[[:space:]])##.*$"
+color brightgreen "(^|[[:space:]])###.*$"
+
+color ,red " +	+"
+
+# Strings.
+#color brightyellow ""(\\.|[^"])*"" "'(\\.|[^'])*'"
+
+# Nano's name, including version.
+color brightred "(GNU )?nano [1-9]\.[0-9]\.[^[:space:][:punct:]]+"
