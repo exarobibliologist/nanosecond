@@ -71,7 +71,9 @@ ontime=$(uptime | sed 's/^[^u]*up  *\([^,]*\),.*/\1/')
 
 fortuneline="${Color201}Random Fortune Cookie${Color_Off}\n$(fortune)"
 
-#Welcome
+###########
+# Welcome #
+###########
 
 #screenfetch
 
@@ -80,21 +82,21 @@ fortuneline="${Color201}Random Fortune Cookie${Color_Off}\n$(fortune)"
 #echo -e "Uptime = $ontime"
 
 ## List number of available updates
-#aptcount=$(aptitude search "~U" | wc -l)
+aptcount=$(aptitude search "~U" | wc -l)
 
 #List updates available
-#if [ "$aptcount" = "0" ] # if there are no updates available
-#        then
-#                echo -e "There are no known upgrades available for your system."
-#elif [ "$aptcount" = "1" ] # if there is 1 update only
-#        then
-#                echo -e "There is ${Color208}1 known upgrade${Color_Off} available for your system."
-#else [ "$aptcount" != "1" ] # there is more than 1 update
-#                echo -e "There are ${Color196}$aptcount known upgrades${Color_Off} available for your system."
-#fi
+if [ "$aptcount" = "0" ] # if there are no updates available
+        then
+                echo -e "There are no known upgrades available for your system."
+elif [ "$aptcount" = "1" ] # if there is 1 update only
+        then
+                echo -e "There is ${Color208}1 known upgrade${Color_Off} available for your system."
+else [ "$aptcount" != "1" ] # there is more than 1 update
+                echo -e "There are ${Color196}$aptcount known upgrades${Color_Off} available for your system."
+fi
 
 #Fortune
 #echo -e "\n$fortuneline"
 #or
-echo -e "$fortuneline"
+#echo -e "$fortuneline"
 }
