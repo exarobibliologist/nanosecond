@@ -507,7 +507,8 @@ It will remove the package from the cache and install any other packages held be
 ##  |       |    __/ |   |      |    __/|   _|  -__|   _||  -__|   _|  -__|     |  __|  -__|__ --|
 ##  |___|___|___|    |___|      |___|   |__| |_____|__|  |_____|__| |_____|__|__|____|_____|_____|
 ##                                                                                                
-How To Use APT Preferences
+
+##	How To Use APT Preferences
 The APT preferences file /etc/apt/preferences and the fragment files in the /etc/apt/preferences.d/ folder can be used to control which versions of packages will be selected for installation.
 Several versions of a package may be available for installation when the sources.list(5) file contains references to more than one distribution (for example, stable and testing). APT assigns a priority to each version that is available. Subject to dependency constraints, apt-get selects the version with the highest priority for installation. The APT preferences override the priorities that APT assigns to package versions by default, thus giving the user control over which one is selected for installation.
 Several instances of the same version of a package may be available when the sources.list(5) file contains references to more than one source. In this case apt-get downloads the instance listed earliest in the sources.list(5) file. The APT preferences do not affect the choice of instance, only the choice of version.
@@ -788,17 +789,15 @@ FILES
 ##  /__/   |_____||____|____/__/   |___._|   __||____/__/   |_____|_____|_____|__| |____|_____|_____|__|__|__||_____||____|
 ##                                       |__|                                                                              
 DESCRIPTION
-	The source list /etc/apt/sources.list is designed to support any number of active sources and a variety of source media. The file lists one source per line, with the most
-	preferred source listed first. The information available from the configured sources is acquired by apt-get update (or by an equivalent command from another APT front-end).
+	The source list /etc/apt/sources.list is designed to support any number of active sources and a variety of source media. The file lists one source per line, with the most preferred source listed first. The information available from the configured
+	sources is acquired by apt-get update (or by an equivalent command from another APT front-end).
 
-	Each line specifying a source starts with type (e.g.  deb-src) followed by options and arguments for this type. Individual entries cannot be continued onto a following line.
-	Empty lines are ignored, and a # character anywhere on a line marks the remainder of that line as a comment.
+	Each line specifying a source starts with type (e.g.  deb-src) followed by options and arguments for this type. Individual entries cannot be continued onto a following line. Empty lines are ignored, and a hash (#) character anywhere on a line
+	marks the remainder of that line as a comment.
 
 SOURCES.LIST.D
-	The /etc/apt/sources.list.d directory provides a way to add sources.list entries in separate files. The format is the same as for the regular sources.list file.
-	File names need to end with .list and may only contain letters (a-z and A-Z), digits (0-9), underscore (_), hyphen (-) and period (.) characters.
-	Otherwise APT will print a notice that it has ignored a file, unless that file matches a pattern in the Dir::Ignore-Files-Silently configuration list - in which case it will be
-	silently ignored.
+	The /etc/apt/sources.list.d directory provides a way to add sources.list entries in separate files. The format is the same as for the regular sources.list file. File names need to end with .list and may only contain letters (a-z and A-Z), digits (0-9),
+	underscore (_), hyphen (-) and period (.) characters. Otherwise APT will print a notice that it has ignored a file, unless that file matches a pattern in the Dir::Ignore-Files-Silently configuration list - in which case it will be silently ignored.
 
 THE DEB AND DEB-SRC TYPES
 	The deb type references a typical two-level Debian archive, distribution/component. The distribution is generally an archive name like stable or testing or a codename like wheezy or
@@ -844,8 +843,8 @@ to fetch source indexes.
 
        Some examples:
 
-           deb http://ftp.debian.org/debian wheezy main contrib non-free
-           deb http://security.debian.org/ wheezy/updates main contrib non-free
+#	deb http://ftp.debian.org/debian wheezy main contrib non-free
+#	deb http://security.debian.org/ wheezy/updates main contrib non-free
 
 URI SPECIFICATION
        The currently recognized URI types are:
@@ -998,6 +997,15 @@ You can also check IPv4 and IPv6 connectivity using this command
 ###  \____/ \___|\___|\__|_|\___/|_| |_| \____/            \___/_| |_| |_|\__,_|\__, |\___||___( )  \___/|_|\__,_|\___|\___/|___( ) \____/ \___/ \__,_|_| |_|\__,_|
 ###                                                                              __/ |         |/                               |/                                 
 ###                                                                             |___/                                                                              
+
+
+##  ________ _______ _______      __              _______ ______ ______ 
+## |  |  |  |   |   |   _   |    |  |_.-----.    |   |   |   __ \__    |
+## |  |  |  |       |       |    |   _|  _  |    |       |    __/__    |
+## |________|__|_|__|___|___|    |____|_____|    |__|_|__|___|  |______|
+Navigate to the folder that contains the wma files and run the following command to convert them.
+#	for file in *.wma; do ffmpeg -i "${file}"  -acodec libmp3lame -ab 192k "${file/.wma/.mp3}"; done
+MP3 files will be saved to the same (source) directory.
 
 
 ##   _______ ___ ___ _______      __              _______ ______ _____  
