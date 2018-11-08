@@ -196,14 +196,26 @@ select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Manage
 				InstallWhenNotExist fonts-averia-serif-gwf
 				InstallWhenNotExist fonts-cabin
 				InstallWhenNotExist fonts-cantarell
+				InstallWhenNotExist fonts-cardo
+				InstallWhenNotExist fonts-century-catalogue
+				InstallWhenNotExist fonts-comfortaa
 				InstallWhenNotExist fonts-dejavu
 				InstallWhenNotExist fonts-dejavu-core
 				InstallWhenNotExist fonts-dejavu-extra
+				InstallWhenNotExist fonts-dkg-handwriting
+				InstallWhenNotExist fonts-dseg
 				InstallWhenNotExist fonts-droid
 				InstallWhenNotExist fonts-dosis
+				InstallWhenNotExist fonts-ebgaramond
+				InstallWhenNotExist fonts-ebgaramond-extra
 				InstallWhenNotExist fonts-georgewilliams
+				InstallWhenNotExist fonts-glasstty
+				InstallWhenNotExist fonts-gnutypewriter
+				InstallWhenNotExist fonts-go
+				InstallWhenNotExist fonts-hack-ttf
 				InstallWhenNotExist fonts-junicode
 				InstallWhenNotExist fonts-jura
+				InstallWhenNotExist fonts-kristi
 				InstallWhenNotExist fonts-lato
 				InstallWhenNotExist fonts-linex
 				InstallWhenNotExist fonts-liberation
