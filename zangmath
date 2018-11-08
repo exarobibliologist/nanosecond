@@ -26,87 +26,87 @@ select zangmenu in "BONES" "BOOKS/RODS" "STAFF/JEWELERY" "WAND" "OIL FLASKS" "RI
 			"BONES")
 				echo "How many bones?"
 				read gimme
-				concalc -o 2 "15root($gimme*1000000)"
+				concalc "15root($gimme*1000000)"
 				echo -e "\nTOTAL XP ="
 				concalc "$xp + ($gimme*1000000)"
 				echo "OR"
-				concalc -o 2 "$xp * (15root($gimme*1000000))"
+				concalc "$xp * (15root($gimme*1000000))"
 			return
 			;;
 			"BOOKS/RODS")
 				echo "How many books or rods are you converting?"
 				read gimme
-				concalc -o 2 "15root($gimme*100000)"
+				concalc "15root($gimme*100000)"
 				echo -e "\nTOTAL XP ="
 				concalc "$xp + ($gimme*100000)"
 				echo "OR"
-				concalc -o 2 "$xp * (15root($gimme*100000))"
+				concalc "$xp * (15root($gimme*100000))"
 			return
 			;;
 			"STAFF/JEWELERY")
 				echo "How many staff/jewelery charges are you converting?"
 				read gimme
-				concalc -o 2 "15root($gimme*12500)"
+				concalc "15root($gimme*12500)"
 				echo -e "\nTOTAL XP ="
 				concalc "$xp + ($gimme*12500)"
 				echo "OR"
-                                concalc -o 2 "$xp * (15root($gimme*12500))"
+                                concalc "$xp * (15root($gimme*12500))"
 			return
 			;;
 			"WAND")
 				echo "How many wand charges are you converting?"
 				read gimme
-                                concalc -o 2 "15root($gimme*10000)"
+                                concalc "15root($gimme*10000)"
 				echo -e "\nTOTAL XP ="
 				concalc "$xp + ($gimme*10000)"
 				echo "OR"
-                                concalc -o 2 "$xp * (15root($gimme*10000))"
+                                concalc "$xp * (15root($gimme*10000))"
 			return
 			;;
 			"OIL FLASKS")
 				echo "How many flasks of oil are you converting?"
 				read gimme
-                                concalc -o 2 "15root($gimme*7500)"
+                                concalc "15root($gimme*7500)"
 				echo -e "\nTOTAL XP ="
 				concalc "$xp + ($gimme*7500)"
                                 echo "OR"
-                                concalc -o 2 "$xp * (15root($gimme*7500))"
+                                concalc "$xp * (15root($gimme*7500))"
 			return
 			;;
 			"RINGS")
 				echo "How many rings are you converting?"
 				read gimme
-                                concalc -o 2 "15root($gimme*5000)"
+                                concalc "15root($gimme*5000)"
 				echo -e "\nTOTAL XP ="
 				concalc "$xp + ($gimme*5000)"
 				echo "OR"
-                                concalc -o 2 "$xp * (15root($gimme*5000))"
+                                concalc "$xp * (15root($gimme*5000))"
 			return
 			;;
 			"SCROLLS")
 				echo "How many scrolls are you converting?"
 				read gimme
-                                concalc -o 2 "15root($gimme*2500)"
+                                concalc "15root($gimme*2500)"
 				echo -e "\nTOTAL XP ="
 				concalc "$xp + ($gimme*2500)"
 				echo "OR"
-                                concalc -o 2 "$xp * 15root($gimme*2500))"
+                                concalc "$xp * 15root($gimme*2500))"
 			return
 			;;
 			"FOOD/POTIONS")
 				echo "How much food/potions are you converting?"
 				read gimme
-                                concalc -o 2 "15root($gimme*1000)"
+                                concalc "15root($gimme*1000)"
 				echo -e "\nTOTAL XP ="
 				concalc "$xp + ($gimme*1000)"
 				echo "OR"
-                                concalc -o 2 "$xp * (15root($gimme*1000))"
+                                concalc "$xp * (15root($gimme*1000))"
 			return
 			;;
 			"LIGHT/MONEY")
 				echo "How many turns of light / money are you converting?"
 				read gimme
-                                concalc -o 2 "15root($gimme)"
+                                concalc "15root($gimme)"
 				echo "TOTAL XP ="
 				concalc "$xp + $gimme"
 				echo "OR"
