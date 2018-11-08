@@ -225,8 +225,7 @@ After editing things, run the command
 
 This makes GRUB automatically combines the settings from the /etc/default/grub, the scripts from the /etc/grub.d/, and creates a /boot/grub/grub.cfg file that’s read at boot.
 
-WARNING!! MAY KILL KITTENS!!
-It is possible to edit the file in /boot/grub/grub.cfg
+WARNING!! MAY KILL KITTENS!! - It is possible to edit the file in /boot/grub/grub.cfg
 
 
 ##   ______                                          __                    _______  ______  _______  ______ 
