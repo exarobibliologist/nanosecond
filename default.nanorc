@@ -8,6 +8,7 @@ comment "#"
 color brightred "(^|[[:space:]])#.*$"
 color brightblue "(^|[[:space:]])##.*$"
 color brightgreen "(^|[[:space:]])###.*$"
+color brightyellow "(^|[[:space:]])####.*$"
 
 color ,red " +	+"
 
