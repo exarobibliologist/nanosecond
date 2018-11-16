@@ -25,11 +25,11 @@
 
 function juliantime2()
 {
+    			todayis=$(date +"%F")
+    			let julian=(`date +%s -d $todayis`-`date +%s -d 1968-05-24`)/86400+40000
 t=1
 	while [ -n "$t" ] 
     		do
-    			todayis=$(date +"%F")
-    			let julian=(`date +%s -d $todayis`-`date +%s -d 1968-05-24`)/86400+40000
     			hourtime=$(date +"%H")
     			minutetime=$(date +"%M")
     			secondtime=$(date +"%S.%N" | head -c10)
@@ -43,15 +43,14 @@ t=1
 			t=1 # This creates an infinite loop. Ctrl-Z to abort, or just Alt-F4 to close the entire Terminal window
     done
 }
-#!/bin/bash
 
 function juliantime()
 {
+    			todayis=$(date +"%F")
+    			let julian=(`date +%s -d $todayis`-`date +%s -d 1968-05-24`)/86400+40000
 t=1
 	while [ -n "$t" ] 
     		do
-    			todayis=$(date +"%F")
-    			let julian=(`date +%s -d $todayis`-`date +%s -d 1968-05-24`)/86400+40000
     			hourtime=$(date +"%H")
     			minutetime=$(date +"%M")
     			secondtime=$(date +"%S.%N" | head -c10)
