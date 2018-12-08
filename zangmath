@@ -20,19 +20,9 @@ function zangmath()
 echo -e "What's the Current XP?\n"
 read xp
 
-select zangmenu in "BONES" "BOOKS/RODS" "STAFF/JEWELERY" "WAND" "OIL FLASKS" "RINGS" "SCROLLS" "FOOD/POTIONS" "LIGHT/MONEY"
+select zangmenu in "BOOKS/RODS" "STAFF/JEWELERY" "WAND" "OIL FLASKS" "RINGS" "SCROLLS" "FOOD/POTIONS" "LIGHT/MONEY"
 	do
 		case "$zangmenu" in
-			"BONES")
-				echo "How many bones?"
-				read gimme
-				concalc "15root($gimme*1000000)"
-				echo -e "\nTOTAL XP ="
-				concalc "$xp + ($gimme*1000000)"
-				echo "OR"
-				concalc "$xp * (15root($gimme*1000000))"
-			return
-			;;
 			"BOOKS/RODS")
 				echo "How many books or rods are you converting?"
 				read gimme
