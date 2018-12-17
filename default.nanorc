@@ -1,5 +1,6 @@
 ## A default syntax, which is used
 ## for files that do not match any other syntax.
+## Place this file in /etc/nanorc
 
 syntax "default"
 comment "#"
