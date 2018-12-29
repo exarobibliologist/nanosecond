@@ -36,50 +36,15 @@ if ! dpkg -l | grep -wq $1; then sudo aptitude install -Pr $1; else echo $1 "is 
 function installstuff()
 {
 ForceInstallWhenNotExist konsole
-echo -e "It is recommended you install all the PPA's first, before adding additional programs to your system.\n\n\"Ubuntu PPA\" will work in Ubuntu and Ubuntu-based respins.\n\"Debian PPA\" is designed for pure-Debian systems and distros that use Debian repositories as their base.\n\n"
-select installmenuchoice in "Ubuntu PPA" "Debian PPA" "Continue"
+ForceInstallWhenNotExist chromium
+		echo -e "${Color001}I strongly reccomend you edit your sources list at /etc/apt/sources.list to add \"contrib non-free\" to your deb and deb-src sources before running this script.${Color_Off}\nHave you done that?\n\n"
+		grep -e "contrib" -e "non-free" /etc/apt/sources.list
+select installmenuchoice in "Debian" "Continue Without PPA Checks"
 	do
 		case "$installmenuchoice" in
-			"Ubuntu PPA")
-				echo "PPA CHECK - checking for missing repos."
-				pressanykey
-				clear
-				if ! ls /etc/apt/sources.list.d | grep -iq "getdeb"
-					then
-						echo "Adding GetDeb PPA"
-						wget -q -O - http://archive.getdeb.net/getdeb-archive.key | sudo apt-key add -
-						sudo sh -c 'echo "deb http://archive.getdeb.net/ubuntu zesty-getdeb apps" >> /etc/apt/sources.list.d/getdeb.list'
-						sudo sh -c 'echo "deb http://archive.getdeb.net/ubuntu zesty-getdeb games" >> /etc/apt/sources.list.d/getdeb.list'
-						sudo sh -c 'echo "deb http://archive.getdeb.net/ubuntu yakkety-getdeb apps" >> /etc/apt/sources.list.d/getdeb.list'
-						sudo sh -c 'echo "deb http://archive.getdeb.net/ubuntu yakkety-getdeb games" >> /etc/apt/sources.list.d/getdeb.list'
-				fi
-				pressanykey
-				clear
-				if ! ls /etc/apt/sources.list.d | grep -iq "crawl"
-					then
-						echo "Adding Dungeon Crawl Stone Soup PPA"
-						sudo sh -c 'echo "deb https://crawl.develz.org/debian crawl 0.19 0.20" >> /etc/apt/sources.list.d/crawl.list'
-						wget https://crawl.develz.org/debian/pubkey -O - | sudo apt-key add -
-				fi
+			"Debian")
 				sudo aptitude update
-				installstuff
-			return
-			;;
-			"Debian PPA")
-				echo -e "I strongly reccomend you edit your sources list at /etc/apt/sources.list to add \"contrib non-free\" to your deb and deb-src sources before running this script.\n"
-				pressanykey
 				echo "PPA CHECK - checking for missing repos."
-					if ! ls /etc/apt/sources.list.d | grep -iq "getdeb"
-						then
-							echo "Adding GetDeb PPA"
-							wget -q -O - http://archive.getdeb.net/getdeb-archive.key | sudo apt-key add -
-							sudo sh -c 'echo "deb http://archive.getdeb.net/ubuntu zesty-getdeb apps" >> /etc/apt/sources.list.d/getdeb.list'
-							sudo sh -c 'echo "deb http://archive.getdeb.net/ubuntu zesty-getdeb games" >> /etc/apt/sources.list.d/getdeb.list'
-							sudo sh -c 'echo "deb http://archive.getdeb.net/ubuntu yakkety-getdeb apps" >> /etc/apt/sources.list.d/getdeb.list'
-							sudo sh -c 'echo "deb http://archive.getdeb.net/ubuntu yakkety-getdeb games" >> /etc/apt/sources.list.d/getdeb.list'
-						else
-							echo "GetDeb PPA is already there."
-					fi
 					if ! ls /etc/apt/sources.list.d | grep -iq "crawl"
 						then
 							echo "Adding Dungeon Crawl Stone Soup PPA"
@@ -88,11 +53,17 @@ select installmenuchoice in "Ubuntu PPA" "Debian PPA" "Continue"
 						else
 							echo "Dungeon Crawl Stone Soup PPA already there."
 					fi
+				pressanykey
+					echo -e "Checking for FlatPak"
+					InstallWhenNotExist flatpak
+					InstallWhenNotExist gnome-software-plugin-flatpak
+					flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+				pressanykey
 				sudo aptitude update
 				installstuff
 			return
 			;;
-			"Continue")
+			"Continue Without PPA Checks")
 				keepinstallingmorestuff
 			return
 			;;
