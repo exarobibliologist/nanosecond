@@ -256,6 +256,14 @@ Now reboot the computer. You should see a GRUB menu pop up when the reboot is do
 ###                                                                                 
 ###                                                                                 
 
+##   _ __   __ _ _ __   ___  _ __ ___ 
+##  | '_ \ / _` | '_ \ / _ \| '__/ __|
+##  | | | | (_| | | | | (_) | | | (__ 
+##  |_| |_|\__,_|_| |_|\___/|_|  \___|
+##                                    
+To create custom edits of nano preferences, make a copy of the default.nanorc and rename the existing file so that you don't lose it
+The file is in /etc/nanorc
+Make the edits, and put the file back in /etc/nanorc/default.nanorc
 
 ##   _______  __                _______  ______  _______  ______      _______                              __ 
 ##  |_     _||  |--..-----.    |     __||   __ \|    ___||   __ \    |   |   |.---.-..-----..--.--..---.-.|  |
