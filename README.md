@@ -1,8 +1,15 @@
 nanosecond
 ==========
-This is a collection of my BASH scripts and programming work-in-progress.
+This is a collection of my BASH scripts, and time saving scripts.
+
+<h2>THIS IS ONLY FOR DEBIAN!!</h2>
+
+<b>This will overwrite your sources.list with a modified version that includes extra sources (for testing, unstable, and experimental).</b>
+<b>This will add a preferences file to /etc/apt/preferences.d/ to control and limit the extra sources.</b>
+
+To run these scripts you will need Moderate to Expert level Debian Linux understanding. If you are uncomfortable with this type of Debian setup, DO NOT CONTINUE!
+
 To install these scripts, follow the directions below. You will need git installed beforehand, in order to fetch and use all the files.
-THIS WILL NOT OVERWRITE YOUR BASH! This only adds my BASH programs to augment your current BASH.
 
 <blockquote><code>sudo apt-get install git-all</code></blockquote>
 
