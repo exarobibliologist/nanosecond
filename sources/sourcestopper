@@ -1,0 +1,37 @@
+Package: *
+Pin: release o=testing
+Pin-Priority: -10
+
+Package: *
+Pin: release a=testing
+Pin-Priority: -10
+
+Package: *
+Pin: release n=testing
+Pin-Priority: -10
+
+
+Package: *
+Pin: release o=unstable
+Pin-Priority: -10
+
+Package: *
+Pin: release a=unstable
+Pin-Priority: -10
+
+Package: *
+Pin: release n=unstable
+Pin-Priority: -10
+
+
+Package: *
+Pin: release o=experimental
+Pin-Priority: -10
+
+Package: *
+Pin: release a=experimental
+Pin-Priority: -10
+
+Package: *
+Pin: release n=experimental
+Pin-Priority: -10

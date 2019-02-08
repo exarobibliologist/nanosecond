@@ -35,10 +35,14 @@ if ! dpkg -l | grep -wq $1; then sudo aptitude install -Pr $1; else echo $1 "is 
 
 function installstuff()
 {
+sudo cp ~/GIT/nanosecond/sources/sources.list /etc/apt/
+sudo cp ~/GIT/nanosecond/sourcestopper /etc/apt/preferences.d/
+sudo aptitude update
 ForceInstallWhenNotExist konsole
 ForceInstallWhenNotExist chromium
-		echo -e "${Color001}I strongly reccomend you edit your sources list at /etc/apt/sources.list to add \"contrib non-free\" to your deb and deb-src sources before running this script.${Color_Off}\nHave you done that?\n\n"
-		grep -e "contrib" -e "non-free" /etc/apt/sources.list
+	clear
+grep -e "stable" -e "testing" -e "unstable" -e "contrib" -e "non-free" /etc/apt/sources.list
+	pressanykey
 select installmenuchoice in "Debian" "Continue Without PPA Checks"
 	do
 		case "$installmenuchoice" in
@@ -48,7 +52,7 @@ select installmenuchoice in "Debian" "Continue Without PPA Checks"
 					if ! ls /etc/apt/sources.list.d | grep -iq "crawl"
 						then
 							echo "Adding Dungeon Crawl Stone Soup PPA"
-							sudo sh -c 'echo "deb https://crawl.develz.org/debian crawl 0.19 0.20" >> /etc/apt/sources.list.d/crawl.list'
+							sudo sh -c 'echo "deb https://crawl.develz.org/debian crawl 0.22" >> /etc/apt/sources.list.d/crawl.list'
 							wget https://crawl.develz.org/debian/pubkey -O - | sudo apt-key add -
 						else
 							echo "Dungeon Crawl Stone Soup PPA already there."
@@ -143,9 +147,15 @@ select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Manage
 			"Fluxbox Setup")
 				InstallAllWhenNotExist conky-all
 				InstallWhenNotExist compton
+				InstallWhenNotExist deluge
 				InstallWhenNotExist fluxbox
+				InstallWhenNotExist hexchat
+				InstallWhenNotExist hpanel
+				InstallWhenNotExist network-manager-gnome
 				InstallWhenNotExist suckless-tools
+				InstallWhenNotExist spacefm
 				InstallWhenNotExist terminator
+				InstallWhenNotExist xfce4-power-manager
 				pressanykey
 				clear
 				keepinstallingmorestuff
