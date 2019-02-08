@@ -35,9 +35,6 @@ if ! dpkg -l | grep -wq $1; then sudo aptitude install -Pr $1; else echo $1 "is 
 
 function installstuff()
 {
-sudo cp ~/GIT/nanosecond/sources/sources.list /etc/apt/
-sudo cp ~/GIT/nanosecond/sourcestopper /etc/apt/preferences.d/
-sudo aptitude update
 ForceInstallWhenNotExist konsole
 ForceInstallWhenNotExist chromium
 	clear

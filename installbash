@@ -17,6 +17,8 @@
 
 cp ~/.bashrc ~/.bashrc.bkup
 sudo echo ". ~/GIT/nanosecond/bashrc" >> ~/.bashrc
+sudo cp ~/GIT/nanosecond/sources/sources.list /etc/apt/
+sudo cp ~/GIT/nanosecond/sourcestopper /etc/apt/preferences.d/
 
 sudo cp ~/GIT/nanosecond/default.nanorc /usr/share/nano/default.nanorc
 sudo apt-get update
@@ -29,5 +31,3 @@ if ! dpkg -l | grep -q curl; then sudo apt-get install curl; else echo "curl alr
 if ! dpkg -l | grep -q dirmngr; then sudo apt-get install dirmngr; else echo "dirmngr already installed. Skipping."; fi
 if ! dpkg -l | grep -q inxi; then sudo apt-get install inxi; else echo "inxi already installed. Skipping."; fi
 if ! dpkg -l | grep -q wget; then sudo apt-get install wget; else echo "wget already installed. Skipping."; fi
-
-sudo inxi -U
