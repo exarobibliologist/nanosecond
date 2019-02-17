@@ -18,6 +18,5 @@
 function reconk()
 {
 killall conky
-#conky -c ~/GIT/conked-out/conkyrc-flux1-black &
-conky -c ~/GIT/conked-out/conkyrc-black
+conky -c ~/GIT/nanosecond/fluxbox-conky
 }
