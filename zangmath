@@ -20,11 +20,11 @@ function zangmath()
 echo -e "What's the Current XP?\n"
 read xp
 
-select zangmenu in "BOOKS/RODS" "STAFF/JEWELERY" "WAND" "OIL FLASKS" "RINGS" "SCROLLS" "FOOD/POTIONS" "LIGHT/MONEY"
+select zangmenu in "BOOKS" "RODS/STAFF/WAND/JEWELERY" "WEAPONS" "OIL FLASKS" "RINGS" "SCROLLS" "FOOD/POTIONS" "LIGHT/MONEY"
 	do
 		case "$zangmenu" in
-			"BOOKS/RODS")
-				echo "How many books or rods are you converting?"
+			"BOOKS")
+				echo "How many are you converting?"
 				read gimme
 				concalc "15root($gimme*100000)"
 				echo -e "\nTOTAL XP ="
@@ -33,8 +33,8 @@ select zangmenu in "BOOKS/RODS" "STAFF/JEWELERY" "WAND" "OIL FLASKS" "RINGS" "SC
 				concalc "$xp * (15root($gimme*100000))"
 			return
 			;;
-			"STAFF/JEWELERY")
-				echo "How many staff/jewelery charges are you converting?"
+			"RODS/STAFF/WAND/JEWELERY")
+				echo "How many charges are you converting?"
 				read gimme
 				concalc "15root($gimme*12500)"
 				echo -e "\nTOTAL XP ="
@@ -43,8 +43,8 @@ select zangmenu in "BOOKS/RODS" "STAFF/JEWELERY" "WAND" "OIL FLASKS" "RINGS" "SC
                                 concalc "$xp * (15root($gimme*12500))"
 			return
 			;;
-			"WAND")
-				echo "How many wand charges are you converting?"
+			"WEAPONS")
+				echo "How many weapons are you converting?"
 				read gimme
                                 concalc "15root($gimme*10000)"
 				echo -e "\nTOTAL XP ="
@@ -54,7 +54,7 @@ select zangmenu in "BOOKS/RODS" "STAFF/JEWELERY" "WAND" "OIL FLASKS" "RINGS" "SC
 			return
 			;;
 			"OIL FLASKS")
-				echo "How many flasks of oil are you converting?"
+				echo "How many flasks are you converting?"
 				read gimme
                                 concalc "15root($gimme*7500)"
 				echo -e "\nTOTAL XP ="
@@ -84,7 +84,7 @@ select zangmenu in "BOOKS/RODS" "STAFF/JEWELERY" "WAND" "OIL FLASKS" "RINGS" "SC
 			return
 			;;
 			"FOOD/POTIONS")
-				echo "How much food/potions are you converting?"
+				echo "How much are you converting?"
 				read gimme
                                 concalc "15root($gimme*1000)"
 				echo -e "\nTOTAL XP ="
