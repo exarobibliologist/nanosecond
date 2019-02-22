@@ -100,7 +100,9 @@ fi
 . ~/GIT/nanosecond/toplag
 . ~/GIT/nanosecond/unlockdpkg
 . ~/GIT/nanosecond/wallchange
+. ~/GIT/nanosecond/welcome
 . ~/GIT/nanosecond/welcome1
+. ~/GIT/nanosecond/welcomeontime
 . ~/GIT/nanosecond/zangmath
 
 ## LSandPS1 must be loaded after the other scripts, or PS1 colors will not display correctly.
@@ -114,7 +116,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # The Terminal Greeting #
 #########################
 
-welcome1
+welcome
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
