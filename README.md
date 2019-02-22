@@ -11,16 +11,23 @@ This is a collection of my BASH scripts, and time saving scripts.
 <b>This will also add a preferences file to /etc/apt/preferences.d/</b> This will help to control and limit the extra sources in the sources.list so things stay stable while giving you extra access to packages far beyond stable.
 
 To run these scripts you will need:
-<blockquote><b>Moderate to Expert</b> level Debian Linux knowledge. Don't run these scripts without brains.</blockquote>
-<blockquote><b>Understand BASH scripting</b> (These scripts run everywhere from beginner to expert. Many scripts are extensively layered to produce the unique look I like in the Terminal interface.)</blockquote>
+<blockquote><b>Moderate</b> level Debian Linux knowledge. Don't attempt to run these scripts without brains.</blockquote>
+<blockquote><b>Expert</b> level Linux knowledge when attempting to rewrite and modify these scripts for other Linux operating systems.</blockquote>
+<blockquote><b>Understand BASH scripting.</b> Many scripts are extensively layered to produce the unique look I like in the Terminal interface.</blockquote>
 <blockquote><b>Beginner to Moderate Conky</b> understanding</blockquote>
+<blockquote><b>Be willing to learn and experiment</b></blockquote>
 <blockquote><b>And a sense of humor.</b></blockquote>
 
-Many of the hacks written in this repo defy the Debian Wiki. If you believe that everything in the Debian Wiki is absolute and cannot be violated, this repo IS NOT for you. Walk away now!
+Many of the hacks in this repo defy the Debian Wiki.
+If you believe that everything in the Debian Wiki is absolute and cannot be violated, this repo <b>IS NOT</b> for you. <b>Walk away now!</b>
 
-These scripts will produce a FrankenDebian setup that is incredibly versatile, without sacrificing stability. If you are uncomfortable with this type of Debian setup, this repo IS NOT for you. Walk away now!
+These scripts will produce a FrankenDebian setup that is incredibly versatile, without sacrificing stability.
+If you believe the gurus who claim that FrankenDebian's are BROKEN, this repo <b>IS NOT</b> you! <b>Walk away now!</b>
 
-<b>If you're still here and want to continue...</b>
+These scripts are a learning experience.
+If you are uncomfortable with learning new things, and want to stick with the standard methods of using/customizing Linux, this repo <b>IS NOT</b> for you. <b>Walk away now!</b>
+
+<h3>If you're still here and want to continue...</h3>
 
 To install these scripts, follow the directions below.
 
