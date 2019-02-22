@@ -15,31 +15,19 @@
 #Boston, MA  02110-1301, USA.                                                                                                   #
 #################################################################################################################################
 
-function welcome()
+function welcomeaptcount()
 {
-# who am i?
-username=$(whoami)
+## List number of available updates
+aptcount=$(aptitude search "~U" | wc -l)
 
-###########################################################
-# You could add a Tasklist to your BASH prompt like this! #
-###########################################################
-#taskline="${Color201}Task List${Color_Off}\n$(cat -n $HOME/BASH/Tasklist)"
-
-#fortuneline="${Color201}Random Fortune Cookie${Color_Off}\n$(fortune)"
-
-###########
-# Welcome #
-###########
-
-#screenfetch
-
-welcome1
-echo -e ""
-welcomeontime
-welcomeaptcount
-
-#Fortune
-#echo -e "\n$fortuneline"
-#or
-#echo -e "$fortuneline"
+#List updates available
+if [ "$aptcount" = "0" ] # if there are no updates available
+        then
+                echo -e "There are no known upgrades available for your system."
+elif [ "$aptcount" = "1" ] # if there is 1 update only
+        then
+                echo -e "There is ${Color208}1 known upgrade${Color_Off} available for your system."
+else [ "$aptcount" != "1" ] # there is more than 1 update
+                echo -e "There are ${Color196}$aptcount known upgrades${Color_Off} available for your system."
+fi
 }

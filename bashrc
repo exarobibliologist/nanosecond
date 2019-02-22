@@ -103,6 +103,7 @@ fi
 . ~/GIT/nanosecond/welcome
 . ~/GIT/nanosecond/welcome1
 . ~/GIT/nanosecond/welcomeontime
+. ~/GIT/nanosecond/welcomeaptcount
 . ~/GIT/nanosecond/zangmath
 
 ## LSandPS1 must be loaded after the other scripts, or PS1 colors will not display correctly.
