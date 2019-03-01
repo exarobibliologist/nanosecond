@@ -2,32 +2,42 @@
 
 <h2>This will cause <u>unrecoverable</u> changes to your Debian setup.</h2>
 
-<b>This will overwrite your sources.list with a modified version that includes extra sources (for testing, unstable, and experimental).</b> The sources list is formatted in such a way that you will always be on the fastest Debian server (I use deb.debian.org to select the fastest server to your location), and it will always be up-to-date even after the version names advance..
+<b>You will get a modified sources.list that includes extra sources (for testing, unstable, and experimental).</b>
+The sources use deb.debian.org so that you will always be on the fastest Debian server.
+Generic version names are used to allow rolling release upgrades and updates.
 
-<b>This will also add a preferences file to /etc/apt/preferences.d/</b> This will help to control and limit the extra sources in the sources.list so things stay stable while giving you extra access to packages far beyond stable.
+<b>APT Preferences will also be heavily modified.</b> This will help to control the extra sources so things stay stable while giving you extra access to packages far beyond stable.
 
 To run these scripts you will need:
-<blockquote><b>Moderate</b> level Debian Linux knowledge. Don't attempt to run these scripts without brains.</blockquote>
-<blockquote><b>Expert</b> level Linux knowledge when attempting to rewrite and modify these scripts for other Linux operating systems.</blockquote>
-<blockquote><b>Understand BASH scripting.</b> Many scripts are extensively layered to produce the unique look I like in the Terminal interface.</blockquote>
-<blockquote><b>Beginner to Moderate Conky</b> understanding</blockquote>
+<blockquote><b>Expert</b> level Debian Linux knowledge. Don't attempt to run these scripts without brains.</blockquote>
+<blockquote><b>God-Level</b> knowledge, if attempting to rewrite or modify these scripts for another Linux operating system.</blockquote>
+<blockquote><b>Moderate</b> BASH scripting experience.</b> Many scripts are extensively layered to produce the unique look I like in the Terminal interface.</blockquote>
+<blockquote><b>Beginner to Moderate</b> Conky scripting experience.</blockquote>
 <blockquote><b>Be willing to learn and experiment</b></blockquote>
 <blockquote><b>And a sense of humor.</b></blockquote>
 
-Many of the hacks in this repo defy the Debian Wiki.
+Many of the hacks and scripts in this repo <b>defy the Debian Wiki.</b>
 If you believe that everything in the Debian Wiki is absolute and cannot be violated, this repo <b>IS NOT</b> for you. <b>Walk away now!</b>
 
-These scripts will produce a FrankenDebian setup that is incredibly versatile, without sacrificing stability.
-If you believe the gurus who claim that FrankenDebian's are BROKEN, this repo <b>IS NOT</b> you! <b>Walk away now!</b>
+These scripts will produce a <b>FrankenDebian setup</b> that is incredibly versatile, without sacrificing stability.
+If you do not understand what that is, this repo <b>IS NOT</b> for you! <b>Walk away now!</b>
 
-These scripts are a learning experience.
+Don't expect to get any help from Debian gurus on Freenode. They will ignore you once they realize you are running a FrankenDebian.
+You must be willing to solve all your own problems, with limited or no support.
+If you are unwilling to do this, this repo <b>IS NOT</b> for you! <b>Walk away now!</b>
+
+These scripts are a <b>learning experience.</b>
 If you are uncomfortable with learning new things, and want to stick with the standard methods of using/customizing Linux, this repo <b>IS NOT</b> for you. <b>Walk away now!</b>
 
-<h3>If you're still here and want to continue...</h3>
+<h1>but...</h1>
 
-To install these scripts, follow the directions below.
+<h2>if you're still here...</h2>
 
-You will need <b>git</b> installed beforehand, in order to fetch and use all the files.
+<h3>and want to continue...</h3>
+
+<b>To install these scripts, follow the directions below.</b>
+
+You will need <b>git-all</b> installed beforehand, in order to fetch and use all the files.
 
 <blockquote><code>sudo apt-get install git-all</code></blockquote>
 
@@ -47,6 +57,7 @@ The installer will not overwrite your .bashrc, but will copy a single line to en
 
 After that is complete, close your Terminal and reopen.
 You should see a unique Terminal prompt.
+
 Then type:
 
 <blockquote><code>installstuff</code></blockquote>
