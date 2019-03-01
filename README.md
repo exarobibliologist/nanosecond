@@ -22,9 +22,9 @@ If you believe that everything in the Debian Wiki is absolute and cannot be viol
 These scripts will produce a <b>FrankenDebian setup</b> that is incredibly versatile, without sacrificing stability.
 If you do not understand what that is, this repo <b>IS NOT</b> for you! <b>Walk away now!</b>
 
-Don't expect to get any help from Debian gurus on Freenode. They will ignore you once they realize you are running a FrankenDebian.
-You must be willing to solve all your own problems, with limited or no support.
-If you are unwilling to do this, this repo <b>IS NOT</b> for you! <b>Walk away now!</b>
+<b>Don't expect to get help</b> from Debian gurus on Freenode. Your requests for help will be ignored once they realize you are running a FrankenDebian.
+
+You must be willing to solve all your own problems, with limited or no support. If you are unwilling to do this, this repo <b>IS NOT</b> for you! <b>Walk away now!</b>
 
 These scripts are a <b>learning experience.</b>
 If you are uncomfortable with learning new things, and want to stick with the standard methods of using/customizing Linux, this repo <b>IS NOT</b> for you. <b>Walk away now!</b>
