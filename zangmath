@@ -20,7 +20,7 @@ function zangmath()
 echo -e "What's the Current XP?\n"
 read xp
 
-select zangmenu in "BOOKS" "RODS/STAFF/WAND/JEWELERY" "WEAPONS" "OIL FLASKS" "RINGS" "SCROLLS" "FOOD/POTIONS" "LIGHT/MONEY"
+select zangmenu in "BOOKS" "RODS/STAFF/WAND/JEWELERY" "WEAPONS" "OIL FLASKS" "RINGS" "SCROLLS/TORCHES" "FOOD/POTIONS" "MONEY"
 	do
 		case "$zangmenu" in
 			"BOOKS")
@@ -73,7 +73,7 @@ select zangmenu in "BOOKS" "RODS/STAFF/WAND/JEWELERY" "WEAPONS" "OIL FLASKS" "RI
                                 concalc "$xp * (15root($gimme*5000))"
 			return
 			;;
-			"SCROLLS")
+			"SCROLLS/TORCHES")
 				echo "How many scrolls are you converting?"
 				read gimme
                                 concalc "15root($gimme*2500)"
@@ -93,7 +93,7 @@ select zangmenu in "BOOKS" "RODS/STAFF/WAND/JEWELERY" "WEAPONS" "OIL FLASKS" "RI
                                 concalc "$xp * (15root($gimme*1000))"
 			return
 			;;
-			"LIGHT/MONEY")
+			"MONEY")
 				echo "How many turns of light / money are you converting?"
 				read gimme
                                 concalc "15root($gimme)"
