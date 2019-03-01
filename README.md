@@ -1,5 +1,3 @@
-nanosecond
-==========
 <h1>THIS IS ONLY FOR DEBIAN!!</h1>
 
 <h2>This will cause <u>unrecoverable</u> changes to your Debian setup.</h2>
