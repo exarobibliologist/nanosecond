@@ -44,7 +44,6 @@ username=$(whoami)
 # Welcome Prompt #
 ##################
 welcome1
-echo -e ""
 welcomeontime
 welcomeaptcount
 }
