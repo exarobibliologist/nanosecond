@@ -63,24 +63,14 @@ select zangmenu in "BOOKS" "RODS/STAFF/WAND/JEWELERY" "WEAPONS" "OIL FLASKS" "RI
                                 concalc "$xp * (15root($gimme*7500))"
 			return
 			;;
-			"RINGS")
-				echo "How many rings are you converting?"
+			"SCROLLS/TORCHES")
+				echo "How much are you converting?"
 				read gimme
                                 concalc "15root($gimme*5000)"
 				echo -e "\nTOTAL XP ="
 				concalc "$xp + ($gimme*5000)"
 				echo "OR"
                                 concalc "$xp * (15root($gimme*5000))"
-			return
-			;;
-			"SCROLLS/TORCHES")
-				echo "How many scrolls are you converting?"
-				read gimme
-                                concalc "15root($gimme*2500)"
-				echo -e "\nTOTAL XP ="
-				concalc "$xp + ($gimme*2500)"
-				echo "OR"
-                                concalc "$xp * 15root($gimme*2500))"
 			return
 			;;
 			"FOOD/POTIONS")
