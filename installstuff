@@ -79,7 +79,7 @@ echo -e "Options:\n"
 echo -e "Compressed Files - gzip p7zip tar unrar"
 echo -e "Conky - conky-all"
 echo -e "Documents - libreoffice kate"
-echo -e "Drive Management - smartmontools apper"
+echo -e "Drive Management - smartmontools apper minstick"
 echo -e "File Browsers - dolphin dolphin4 spacefm"
 echo -e "Fluxbox Setup - Installs required files for my personal Fluxbox setup"
 echo -e "Font Managers - font-manager gucharmap figlet"
@@ -127,6 +127,7 @@ select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Manage
 			"Drive Management")
 				InstallWhenNotExist smartmontools
 				InstallWhenNotExist apper
+				chromium http://packages.linuxmint.com/pool/main/m/mintstick/
 				pressanykey
 				clear
 				keepinstallingmorestuff
