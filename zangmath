@@ -20,7 +20,7 @@ function zangmath()
 echo -e "What's the Current XP?\n"
 read xp
 
-select zangmenu in "BOOKS" "RODS/STAFF/WAND/JEWELERY" "WEAPONS" "OIL FLASKS" "RINGS" "SCROLLS/TORCHES" "FOOD/POTIONS" "MONEY"
+select zangmenu in "BOOKS" "RODS/STAFF/WAND/JEWELERY" "WEAPONS" "OIL FLASKS" "SCROLLS/TORCHES" "FOOD/POTIONS" "MONEY"
 	do
 		case "$zangmenu" in
 			"BOOKS")
