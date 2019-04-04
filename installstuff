@@ -40,10 +40,10 @@ ForceInstallWhenNotExist chromium
 	clear
 grep -e "stable" -e "testing" -e "unstable" -e "contrib" -e "non-free" /etc/apt/sources.list
 	pressanykey
-select installmenuchoice in "Debian" "Continue Without PPA Checks"
+select installmenuchoice in "Install Debian Mods" "Continue Without Debian Mods"
 	do
 		case "$installmenuchoice" in
-			"Debian")
+			"Install Debian Mods")
 				sudo aptitude update
 				echo "PPA CHECK - checking for missing repos."
 					if ! ls /etc/apt/sources.list.d | grep -iq "crawl"
@@ -64,7 +64,7 @@ select installmenuchoice in "Debian" "Continue Without PPA Checks"
 				installstuff
 			return
 			;;
-			"Continue Without PPA Checks")
+			"Continue Without Debian Mods")
 				keepinstallingmorestuff
 			return
 			;;
