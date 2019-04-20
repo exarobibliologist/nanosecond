@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+DEFAULT_PKG_MANGR=apt
+DEFAULT_FILE="/<path_to_dir>/default_packages.strings"
+packages=()
+
+
+# Parse flag Options
+while getopts ":f:m:" option; do
+	case ${option} in
+		f )
+			FILE=$OPTARG;
+			echo "File: $FILE"
+			;;
+		m )
+			PKG_MANGR=$OPTARG;
+			echo "Pkg manager: $PKG_MANGR"
+			;;
+		\?) echo "usage: $0 [-f STRINGS_FILE] [-m PACKAGE_MANAGER] [-h HELP]"
+			exit 1
+			;;
+	esac
+done
+
+# Check for user defined values
+file=${FILE:-$DEFAULT_FILE}
+package_manager=${PKG_MANGR:-$DEFAULT_PKG_MANGR}
+# Populate package string array
+while IS_STRING= read -r line;
+do
+packages+=( $line )
+done < "$file"
+
+# Install
+sudo $package_manager update
+sudo $package_manager upgrade
+for package in ${packages[@]}; do
+	sudo $package_manager install -y $package
+done
+sudo $package_manager autoremove
