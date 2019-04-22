@@ -1353,6 +1353,27 @@ After that, we need to feed the flat file into the FSCK command to mark these se
 ###                                                                                                           
 
 
+##   _______             ______                                           __      _______                 __           __ 
+##  |    |  |.-----.    |   __ \.---.-.-----.-----.--.--.--.-----.----.--|  |    |    |  |.-----.-----.--|  |.-----.--|  |
+##  |       ||  _  |    |    __/|  _  |__ --|__ --|  |  |  |  _  |   _|  _  |    |       ||  -__|  -__|  _  ||  -__|  _  |
+##  |__|____||_____|    |___|   |___._|_____|_____|________|_____|__| |_____|    |__|____||_____|_____|_____||_____|_____|
+##                                                                                                                        
+If you'd like to run a user account without needing to be prompted for the password ever again, try this
+First, if your user has sudo privileges, you must enable its NOPASSWD option. Otherwise, sudo will ask for a password even when you don't have one, and won't accept an empty password.
+
+To do so, open the sudoers configuration file
+#	sudo visudo
+add the following line to the file, replacing david with your username:
+#	david ALL=(ALL) NOPASSWD:ALL
+
+Close the editor to apply the changes, and test the effect on sudo in a new terminal.
+
+Second, delete the password for your user by running this command:
+#	sudo passwd -d username
+
+If you ever get prompted for a password, just type enter and it should work. I've tested this answer with LightDM, the lock screen, sudo, gksu
+
+
 ##   _______                                __              ______                                           __        
 ##  |     __|.-----.-----.-----.----.---.-.|  |_.-----.    |   __ \.---.-.-----.-----.--.--.--.-----.----.--|  |.-----.
 ##  |    |  ||  -__|     |  -__|   _|  _  ||   _|  -__|    |    __/|  _  |__ --|__ --|  |  |  |  _  |   _|  _  ||__ --|
