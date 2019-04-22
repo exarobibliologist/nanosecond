@@ -19,6 +19,7 @@
 # Some Alias Defintions #
 #########################
 
+alias dus='du -shc * | sort -hr'
 alias less='more -spd'
 alias lsblk='lsblk && sudo fdisk -l'
 alias rm='rm -i'
