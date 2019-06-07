@@ -2163,6 +2163,18 @@ Hacking and reverse-engineering should not be illegal when used to benefit other
 ###                                                                                                                      
 
 
+##   _______ __     __      _______         __              __             _______ __                _______         __   ___ 
+##  |     __|__|.--|  |    |   |   |.-----.|__|.-----.----.|  |.-----.    |     __|__|.--------.    |     __|.-----.|  |.'  _|
+##  |__     |  ||  _  |    |       ||  -__||  ||  -__|   _| |_||__ --|    |__     |  ||        |    |    |  ||  _  ||  ||   _|
+##  |_______|__||_____|    |__|_|__||_____||__||_____|__|      |_____|    |_______|__||__|__|__|    |_______||_____||__||__|  
+##                                                                                                                            
+During gameplay Press Ctrl + S then type in bombsheep
+
+During gameplay Press Shift + = to get more money
+
+Save the game. Open the save file in a hex editor. You can edit your golfer stats by tweaking the entries at offset 1C18B
+
+
 ##   ______        __                                        _______         __                      ______ 
 ##  |   __ \.----.|__|.-----..----..-----..-----..-----.    |   |   |.---.-.|  |--..-----..----.    |__    |
 ##  |    __/|   _||  ||     ||  __||  -__||__ --||__ --|    |       ||  _  ||    < |  -__||   _|    |    __|
