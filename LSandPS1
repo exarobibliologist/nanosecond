@@ -13,15 +13,15 @@
 #Boston, MA  02110-1301, USA.                                                                                                   #
 #################################################################################################################################
 
-#########################
-# Directory Colors      #
-#########################
+####################
+# Directory Colors #
+####################
 
 LS_COLORS='di=97;40:ln=35;40:so=32;40:pi=33;40:ex=31;40:fi=38;05;60:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:*=38;05;238:*.nanorc=38;05;001:*.md=38;05;002:*.gz=38;05;118:*.deb=38;05;003:*.mp3=38;05;201:*.MP3=38;05;201:*.flac=38;05;202:*.wav=38;05;208:*.WAV=38;05;208:*.midi=38;05;208:*.ogg=38;05;202:*.jpg=38;05;39:*.JPG=38;05;39:*.png=38;05;39:*.gif=38;05;40:*.bmp=38;05;40:*.pdf=38;05;191:*.epub=38;05;191:*.doc=38;05;190:*.txt=38;05;190:*.odt=38;05;183:*.odg=38;05;183:*.torrent=00;38;05;238:*.mp4=38;05;46:*.avi=38;05;46:*.mkv=38;05;48:*.mov=38;05;46';
 export LS_COLORS
 
 if [ "$color_prompt" = yes ]; then
-	PS1="${debian_chroot:+($debian_chroot)}\n\[$Color238\]\u\[$Color255\]@\[$Color238\]\h\\[$Color234\] in \[$Color248\]\w\\[$Color_Off\]\n\[$Color046\]∑\[$Color_Off\] "
+	PS1="${debian_chroot:+($debian_chroot)}\n\[$Color238\]\u\[$Color255\]@\[$Color238\]\h\ at \[$Color248\]\w\\[$Color_Off\]\n\[$Color046\]𝍤 Enter Your Command Here 𝍤 \[$Color_Off\]"
 else
 	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
