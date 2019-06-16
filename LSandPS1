@@ -21,7 +21,7 @@ LS_COLORS='di=97;40:ln=35;40:so=32;40:pi=33;40:ex=31;40:fi=38;05;60:bd=34;46:cd=
 export LS_COLORS
 
 if [ "$color_prompt" = yes ]; then
-	PS1="${debian_chroot:+($debian_chroot)}\n\[$Color238\]\u\[$Color255\]@\[$Color238\]\h\ at \[$Color248\]\w\\[$Color_Off\]\n\[$Color046\]𝍤 Enter Your Command Here 𝍤 \[$Color_Off\]"
+	PS1="${debian_chroot:+($debian_chroot)}\n\[$Color245\]\u\[$Color255\]@\[$Color245\]\h\ at \[$Color250\]\w\\[$Color_Off\]\n\[$Color010\]𝍤 Enter Your Command Here 𝍤 \[$Color_Off\]"
 else
 	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
