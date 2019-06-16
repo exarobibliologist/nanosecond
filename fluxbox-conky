@@ -49,7 +49,8 @@ ${hr 4}
 | Meta+f ${goto 100}= SpaceFM ${goto 200}| Meta+Alt+f ${goto 300}= ROOT SpaceFM ${goto 400}| Ctl+Meta+Alt+f ${goto 500}= Nautilus ${goto 600}| Meta+Alt+u ${goto 700}= Mintstick Format ${goto 800}|
 | Meta+w ${goto 100}= Google Chrome ${goto 200}| Meta+Alt+w ${goto 300}= Firefox ${goto 400}| Ctl+Meta+Alt+w ${goto 500}= Tor Browser ${goto 600}| Meta+d ${goto 700}= Dropbox ${goto 800}|
 ${hr 4}
-| 1. ${top_mem name 1} ${goto 100}= ${top_mem mem 1} ${goto 200}| 5. ${top_mem name 5} ${goto 300}= ${top_mem mem 5} ${goto 400}|
-| 2. ${top_mem name 2} ${goto 100}= ${top_mem mem 2} ${goto 200}| 6. ${top_mem name 6} ${goto 300}= ${top_mem mem 6} ${goto 400}|
-| 3. ${top_mem name 3} ${goto 100}= ${top_mem mem 3} ${goto 200}| 7. ${top_mem name 7} ${goto 300}= ${top_mem mem 7} ${goto 400}|
-| 4. ${top_mem name 4} ${goto 100}= ${top_mem mem 4} ${goto 200}| 8. ${top_mem name 8} ${goto 300}= ${top_mem mem 8} ${goto 400}|
+| 1. ${top_mem name 1} ${goto 100}= ${top_mem mem 1} ${goto 200}| 6. ${top_mem name 6} ${goto 300}= ${top_mem mem 6} ${goto 400}|
+| 2. ${top_mem name 2} ${goto 100}= ${top_mem mem 2} ${goto 200}| 7. ${top_mem name 7} ${goto 300}= ${top_mem mem 7} ${goto 400}|
+| 3. ${top_mem name 3} ${goto 100}= ${top_mem mem 3} ${goto 200}| 8. ${top_mem name 8} ${goto 300}= ${top_mem mem 8} ${goto 400}|
+| 4. ${top_mem name 4} ${goto 100}= ${top_mem mem 4} ${goto 200}| 9. ${top_mem name 9} ${goto 300}= ${top_mem mem 9} ${goto 400}|
+| 5. ${top_mem name 5} ${goto 100}= ${top_mem mem 5} ${goto 200}| 10. ${top_mem name 10} ${goto 300}= ${top_mem mem 10} ${goto 400}|
