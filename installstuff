@@ -17,19 +17,19 @@
 
 function InstallWhenNotExist()
 {
-if ! dpkg -l | grep -wq $1; then sudo aptitude install -P $1; else echo $1 "is installed"; fi
+if ! dpkg -l | grep -wq $1; then echo -e "Working on ${Color196}$1${Color_Off}" && sudo apt install $1; else echo -e $1 "is installed"; fi
 #sudo aptitude install -P $1
 }
 
 function ForceInstallWhenNotExist()
 {
-if ! dpkg -l | grep -wq $1; then sudo aptitude install -Py $1; else echo $1 "is installed"; fi
+if ! dpkg -l | grep -wq $1; then echo -e "Working on ${Color196}$1${Color_Off}" && sudo aptitude install -Py $1; else echo $1 "is installed"; fi
 #sudo aptitude install -P $1
 }
 
 function InstallAllWhenNotExist()
 {
-if ! dpkg -l | grep -wq $1; then sudo aptitude install -Pr $1; else echo $1 "is installed"; fi
+if ! dpkg -l | grep -wq $1; then echo -e "Working on ${Color196}$1${Color_Off}" && sudo aptitude install -Pr $1; else echo $1 "is installed"; fi
 #sudo aptitude install -Pr $1
 }
 
@@ -44,7 +44,7 @@ select installmenuchoice in "Install Debian Mods" "Continue Without Debian Mods"
 	do
 		case "$installmenuchoice" in
 			"Install Debian Mods")
-				sudo aptitude update
+				sudo apt update
 				echo "PPA CHECK - checking for missing repos."
 					if ! ls /etc/apt/sources.list.d | grep -iq "crawl"
 						then
@@ -60,7 +60,7 @@ select installmenuchoice in "Install Debian Mods" "Continue Without Debian Mods"
 					InstallWhenNotExist gnome-software-plugin-flatpak
 					flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 				pressanykey
-				sudo aptitude update
+				sudo apt update
 				installstuff
 			return
 			;;
@@ -86,10 +86,10 @@ echo -e "Font Managers - font-manager gucharmap figlet"
 echo -e "Fonts - lots of nice fonts"
 echo -e "Fortunes - Can install fortune files that you can use in various programs"
 echo -e "Games - crawl dosbox zangband"
-echo -e "Internet - chromium firefox htop mtr namebench netselect-apt strace torbrowser-launcher"
+echo -e "Internet - chromium firefox htop mtr namebench netselect-apt strace Telegram-Desktop torbrowser-launcher"
 echo -e "IRC - hexchat konversation"
 echo -e "Media - flac lame moc smplayer vlc"
-echo -e "Pictures - inkscape luminance-hdr gimp ufraw"
+echo -e "Pictures - inkscape luminance-hdr gimp kde-spectacle ufraw"
 echo -e "Terminal - konsole terminator"
 echo -e "Torrents - amule deluge ktorrent"
 echo -e "Virtualbox - non-free version of virtualbox"
@@ -236,6 +236,7 @@ select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Manage
 				InstallWhenNotExist namebench
 				InstallWhenNotExist netselect-apt
 				InstallWhenNotExist strace
+				flatpak install flathub org.telegram.desktop
 				InstallWhenNotExist torbrowser-launcher
 				pressanykey
 				clear
@@ -271,6 +272,7 @@ select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Manage
 				InstallWhenNotExist gimp-ufraw
 				InstallWhenNotExist gimp-texturiz
 				InstallWhenNotExist gwenview
+				InstallWhenNotExist kde-spectacle
 				InstallWhenNotExist ufraw
 				InstallWhenNotExist ufraw-batch
 				pressanykey
