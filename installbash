@@ -21,13 +21,13 @@ sudo cp ~/GIT/nanosecond/sources/sources.list /etc/apt/
 sudo cp ~/GIT/nanosecond/sourcestopper /etc/apt/preferences.d/
 
 sudo cp ~/GIT/nanosecond/default.nanorc /usr/share/nano/default.nanorc
-sudo apt-get update
+sudo apt update
 
-if ! dpkg -l | grep -q aptitude; then sudo apt-get install aptitude; else echo "aptitude already installed. Skipping."; fi
-if ! dpkg -l | grep -q apt-transport-https; then sudo apt-get install apt-transport-https; else echo "apt-transport-https already installed. Skipping."; fi
-if ! dpkg -l | grep -q apt; then sudo apt-get install apt; else echo "apt already installed. Skipping."; fi
-if ! dpkg -l | grep -q concalc; then sudo apt-get install concalc; else echo "concalc already installed. Skipping."; fi
-if ! dpkg -l | grep -q curl; then sudo apt-get install curl; else echo "curl already installed. Skipping."; fi
-if ! dpkg -l | grep -q dirmngr; then sudo apt-get install dirmngr; else echo "dirmngr already installed. Skipping."; fi
-if ! dpkg -l | grep -q inxi; then sudo apt-get install inxi; else echo "inxi already installed. Skipping."; fi
-if ! dpkg -l | grep -q wget; then sudo apt-get install wget; else echo "wget already installed. Skipping."; fi
+if ! dpkg -l | grep -q aptitude; then sudo apt install aptitude; else echo "aptitude already installed. Skipping."; fi
+if ! dpkg -l | grep -q apt-transport-https; then sudo apt install apt-transport-https; else echo "apt-transport-https already installed. Skipping."; fi
+if ! dpkg -l | grep -q apt; then sudo apt install apt; else echo "apt already installed. Skipping."; fi
+if ! dpkg -l | grep -q concalc; then sudo apt install concalc; else echo "concalc already installed. Skipping."; fi
+if ! dpkg -l | grep -q curl; then sudo apt install curl; else echo "curl already installed. Skipping."; fi
+if ! dpkg -l | grep -q dirmngr; then sudo apt install dirmngr; else echo "dirmngr already installed. Skipping."; fi
+if ! dpkg -l | grep -q inxi; then sudo apt install inxi; else echo "inxi already installed. Skipping."; fi
+if ! dpkg -l | grep -q wget; then sudo apt install wget; else echo "wget already installed. Skipping."; fi
