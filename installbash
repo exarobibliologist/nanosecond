@@ -20,7 +20,7 @@ sudo echo ". ~/GIT/nanosecond/bashrc" >> ~/.bashrc
 sudo cp ~/GIT/nanosecond/sources/sources.list /etc/apt/
 sudo cp ~/GIT/nanosecond/sourcestopper /etc/apt/preferences.d/
 
-sudo cp ~/GIT/nanosecond/default.nanorc /usr/share/nano/default.nanorc
+sudo cp ~/GIT/nanosecond/default.nanorc /usr/share/nano/
 sudo apt update
 
 if ! dpkg -l | grep -q aptitude; then sudo apt install aptitude; else echo "aptitude already installed. Skipping."; fi
