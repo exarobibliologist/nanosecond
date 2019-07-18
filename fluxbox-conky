@@ -38,7 +38,7 @@ max_user_text 99000
 #  Output
 ##############################################
 TEXT
-${font noto mono:size=7}| Alt+Tab ${goto 100}= Next Window ${goto 200}| Alt+Shift+Tab ${goto 300}= Prev Window ${goto 400}| Alt+Mouse3 ${goto 500}= Resize Window ${goto 600}| Alt+Space ${goto 700}= Window Menu ${goto 800}|
+${font noto mono:size=6}| Alt+Tab ${goto 100}= Next Window ${goto 200}| Alt+Shift+Tab ${goto 300}= Prev Window ${goto 400}| Alt+Mouse3 ${goto 500}= Resize Window ${goto 600}| Alt+Space ${goto 700}= Window Menu ${goto 800}|
 | Alt+F2 ${goto 100}= fbrun ${goto 200}| Alt+F3 ${goto 300}= dmenu ${goto 400}| Alt+F5 ${goto 500}= Kill ${goto 600}| Meta+x ${goto 700}= xKill ${goto 800}|
 | Alt+F9 ${goto 100}= Minimize ${goto 200}| Alt+F10 ${goto 300}= Maximize ${goto 400}| Alt+F11 ${goto 500}= Fullscreen ${goto 600}| Meta+c ${goto 700}= Compton ${goto 800}|
 | Meta+l ${goto 100}= Lock Screen ${goto 200}| Meta+Alt+l ${goto 300}= Config Screensaver ${goto 400}| PrtSc ${goto 500}= Spectacle ${goto 600}| Alt+PrtSc ${goto 700}= Scrot ${goto 800}|
