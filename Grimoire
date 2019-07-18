@@ -1005,6 +1005,22 @@ You can also check IPv4 and IPv6 connectivity using this command
 ###                                                                              __/ |         |/                               |/                                 
 ###                                                                             |___/                                                                              
 
+##   ___ ___             __         __                    __ __ 
+##  |   |   .-----.--.--|  |_.--.--|  |--.-----.______.--|  |  |
+##   \     /|  _  |  |  |   _|  |  |  _  |  -__|______|  _  |  |
+##    |___| |_____|_____|____|_____|_____|_____|      |_____|__|
+##                                                              
+Note that distribution packages are often outdated.
+As a rule of thumb, youtube-dl releases at least once a month, and often weekly or even daily. Simply go to https://yt-dl.org to find out the current version.
+
+To manually install the most up-to-date version of youtube-dl
+#	sudo wget https://yt-dl.org/latest/youtube-dl -O /usr/local/bin/youtube-dl
+#	sudo chmod a+x /usr/local/bin/youtube-dl
+#	hash -r
+Then you can use
+#	youtube-dl -U
+to update the manually installed package.
+
 
 ##  ________ _______ _______      __              _______ ______ ______ 
 ## |  |  |  |   |   |   _   |    |  |_.-----.    |   |   |   __ \__    |
