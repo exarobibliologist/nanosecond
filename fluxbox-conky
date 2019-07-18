@@ -44,6 +44,8 @@ ${font noto mono:size=6}| Alt+Tab ${goto 100}= Next Window ${goto 200}| Alt+Shif
 | Meta+l ${goto 100}= Lock Screen ${goto 200}| Meta+Alt+l ${goto 300}= Config Screensaver ${goto 400}| PrtSc ${goto 500}= Spectacle ${goto 600}| Alt+PrtSc ${goto 700}= Scrot ${goto 800}|
 | Ctl+Alt+Del ${goto 100}= Logout ${goto 200}| Meta+Space ${goto 300}= Root Menu ${goto 400}| UPSPEED ${goto 500}= ${upspeed wlp2s0} ${goto 600}| DOWNSPEED ${goto 700}= ${downspeed wlp2s0} ${goto 800}|
 ${hr 4}
+| Ctl+Alt+Up ${goto 100}= Tile Up ${goto 200}| Ctl+Alt+Down ${goto 300}= Tile Down ${goto 400}| Ctl+Alt+Right ${goto 500}= Tile Right ${goto 600}| Ctl+Alt+Left ${goto 700}= Tile Up ${goto 800}|
+${hr 4}
 | Meta+i ${goto 100}= IRC ${goto 200}| Meta+Alt+i ${goto 300}= Telegram ${goto 400}| Meta+e ${goto 500}= Nano ${goto 600}| Meta+t ${goto 700}= Terminator ${goto 800}|
 | Meta+p ${goto 100}= KTorrent ${goto 200}| Meta+m ${goto 300}= SMPlayer ${goto 400}| Meta+Alt+m ${goto 500}= MOCP ${goto 600}| Meta+u ${goto 700}= Mintstick Write ${goto 800}|
 | Meta+f ${goto 100}= SpaceFM ${goto 200}| Meta+Alt+f ${goto 300}= ROOT SpaceFM ${goto 400}| Ctl+Meta+Alt+f ${goto 500}= Nautilus ${goto 600}| Meta+Alt+u ${goto 700}= Mintstick Format ${goto 800}|
