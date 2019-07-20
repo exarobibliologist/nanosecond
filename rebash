@@ -42,7 +42,7 @@ do
 										return
 										;;
 										"Execute Safe-Upgrade")
-											sudo aptitude safe-upgrade || return
+											sudo apt upgrade || return
 										return
 										;;
 									esac
@@ -58,7 +58,7 @@ do
 										return
 										;;
 										"Execute Full-Upgrade")
-											sudo aptitude full-upgrade || return
+											sudo apt full-upgrade || return
 										return
 										;;
 									esac
@@ -78,6 +78,7 @@ do
 				else
 					echo "old sources.list not found"
 				fi
+			echo "Creating new sources list"
 			sudo netselect-apt -sn
 		return
 		;;
