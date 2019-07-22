@@ -17,7 +17,7 @@
 
 function rebash()
 {
-select rebashchoice in "Reset Source" "Update" "Upgrade" "Select Best Source"
+select rebashchoice in "Reset Source" "Update" "List Upgrades" "Upgrade" "Select Best Source"
 do
 	case "$rebashchoice" in
 		"Reset Source")
@@ -29,41 +29,21 @@ do
 			sudo aptitude update || return
 		return
 		;;
+		"List Upgrades")
+			sudo apt list --upgradeable
+		return
+		;;
 		"Upgrade")
 			select upgradechoice in "Safe-Upgrade" "Full-Upgrade"
 				do
 					case "$upgradechoice" in
 						"Safe-Upgrade")
-							select safechoice in "Simulate" "Execute Safe-Upgrade"
-								do
-									case "$safechoice" in
-										"Simulate")
-											sudo aptitude safe-upgrade -s || return
-										return
-										;;
-										"Execute Safe-Upgrade")
-											sudo apt upgrade || return
-										return
-										;;
-									esac
-								done
+							sudo apt upgrade || return
 							return
-							;;
+						;;
 						"Full-Upgrade")
-							select safechoice in "Simulate" "Execute Full-Upgrade"
-								do
-									case "$safechoice" in
-										"Simulate")
-											sudo aptitude full-upgrade -s || return
-										return
-										;;
-										"Execute Full-Upgrade")
-											sudo apt full-upgrade || return
-										return
-										;;
-									esac
-								done
-						return
+							sudo apt full-upgrade || return
+							return
 						;;
 					esac
 				done
