@@ -17,7 +17,7 @@
 
 function rebash()
 {
-select rebashchoice in "Reset Source" "Update" "List Upgrades" "Upgrade" "Select Best Source"
+select rebashchoice in "Reset Source" "Update Sources" "List Upgrades" "List All Upgrades" "Run Upgrade" "NetSelect Best Source"
 do
 	case "$rebashchoice" in
 		"Reset Source")
@@ -25,7 +25,7 @@ do
 			source ~/.bashrc || return
 		return
 		;;
-		"Update")
+		"Update Sources")
 			sudo aptitude update || return
 		return
 		;;
@@ -33,7 +33,11 @@ do
 			sudo apt list --upgradeable
 		return
 		;;
-		"Upgrade")
+		"List All Upgrades")
+			sudo apt list --upgradeable -a
+		return
+		;;
+		"Run Upgrade")
 			select upgradechoice in "Safe-Upgrade" "Full-Upgrade"
 				do
 					case "$upgradechoice" in
@@ -49,7 +53,7 @@ do
 				done
 		return
 		;;
-		"Select Best Source")
+		"NetSelect Best Source")
 			cd ~/GIT
 			if ls "sources.list"
 				then
