@@ -17,30 +17,47 @@
 
 function rebash()
 {
-select rebashchoice in "Reset Source" "Update Sources" "List Upgrades" "List All Upgrades" "Run Upgrade" "NetSelect Best Source"
+select rebashchoice in "Reset BASH" "Update Menu" "Upgrade Menu"
 do
 	case "$rebashchoice" in
-		"Reset Source")
+		"Reset BASH")
 			clear
 			source ~/.bashrc || return
 		return
 		;;
-		"Update Sources")
-			sudo aptitude update || return
-		return
-		;;
-		"List Upgrades")
-			sudo apt list --upgradeable
-		return
-		;;
-		"List All Upgrades")
-			sudo apt list --upgradeable -a
-		return
-		;;
-		"Run Upgrade")
-			select upgradechoice in "Safe-Upgrade" "Full-Upgrade"
+		"Update Menu")
+			select updatechoice in "Update Sources" "NetSelect Best Source"
+				do
+					case "$updatechoice" in
+						"Update Sources")
+							sudo apt update || return
+							return
+						;;
+						"NetSelect Best Source")
+							cd ~/GIT
+							if ls "sources.list"
+								then
+									echo "Removing old sources"
+									rm sources.list
+								else
+									echo "old sources.list not found"
+							fi
+							echo "Creating new sources list"
+							sudo netselect-apt -sn
+							return
+						;;
+					esac
+				done
+			return
+			;;
+		"Upgrade Menu")
+			select upgradechoice in "List Upgrades" "Run Safe-Upgrade" "Run Full-Upgrade"
 				do
 					case "$upgradechoice" in
+						"List Upgrades")
+							sudo apt list --upgradeable -a
+							return
+						;;
 						"Safe-Upgrade")
 							sudo apt upgrade || return
 							return
@@ -51,19 +68,6 @@ do
 						;;
 					esac
 				done
-		return
-		;;
-		"NetSelect Best Source")
-			cd ~/GIT
-			if ls "sources.list"
-				then
-					echo "Removing old sources"
-					rm sources.list
-				else
-					echo "old sources.list not found"
-				fi
-			echo "Creating new sources list"
-			sudo netselect-apt -sn
 		return
 		;;
 	esac
