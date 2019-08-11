@@ -93,9 +93,10 @@ echo -e "Pictures - inkscape luminance-hdr gimp kde-spectacle ufraw"
 echo -e "Terminal - konsole terminator"
 echo -e "Torrents - amule deluge ktorrent"
 echo -e "Virtualbox - non-free version of virtualbox"
+echo -e "WINE - Automates the WINE installation"
 echo -e "X Screensavers - xscreensaver xscreensaver-data xscreensaver-data-extra xscreensaver-screensaver-bsod xscreensaver-gl xscreensaver-gl-extra rss-glx"
 echo -e "What do you wish to install?\n\n"
-select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Management" "File Browsers" "Fluxbox Setup" "Font Managers" "Fonts" "Fortunes" "Games" "Internet" "IRC" "Media" "Pictures" "Terminal" "Torrents" "Virtualbox" "X Screensavers" "Exit"
+select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Management" "File Browsers" "Fluxbox Setup" "Font Managers" "Fonts" "Fortunes" "Games" "Internet" "IRC" "Media" "Pictures" "Terminal" "Torrents" "Virtualbox" "WINE" "X Screensavers" "Exit"
 	do
 		case "$installmenuchoice" in
 			"Compressed Files")
@@ -302,6 +303,14 @@ select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Manage
 				pressanykey
 				clear
 				keepinstallingmorestuff
+			return
+			;;
+			"WINE")
+				sudo dpkg --add-architecture i386
+				wget -qO - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
+				sudo apt-add-repository https://dl.winehq.org/wine-builds/debian/
+				sudo apt update
+				sudo apt install winehq-stable
 			return
 			;;
 			"X Screensavers")
