@@ -55,14 +55,14 @@ do
 				do
 					case "$upgradechoice" in
 						"List Upgrades")
-							sudo apt list --upgradeable -a
+							sudo apt list --upgradeable
 							return
 						;;
-						"Safe-Upgrade")
+						"Run Safe-Upgrade")
 							sudo apt upgrade || return
 							return
 						;;
-						"Full-Upgrade")
+						"Run Full-Upgrade")
 							sudo apt full-upgrade || return
 							return
 						;;
