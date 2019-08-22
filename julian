@@ -23,7 +23,7 @@
 # This realtime clock converts the current date to Modified JD and displays both in realtime.					#
 #################################################################################################################################
 
-function juliantime2()
+function juliantime()
 {
     			todayis=$(date +"%F")
     			let julian=(`date +%s -d $todayis`-`date +%s -d 1968-05-24`)/86400+40000
@@ -44,7 +44,7 @@ t=1
     done
 }
 
-function juliantime()
+function juliantime2()
 {
     			todayis=$(date +"%F")
     			let julian=(`date +%s -d $todayis`-`date +%s -d 1968-05-24`)/86400+40000
