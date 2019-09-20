@@ -43,16 +43,16 @@ select installmenuchoice in "Install Debian Mods" "Continue Without Debian Mods"
 		case "$installmenuchoice" in
 			"Install Debian Mods")
 				sudo apt update
-				echo "PPA CHECK - checking for missing repos."
-					if ! ls /etc/apt/sources.list.d | grep -iq "crawl"
-						then
-							echo "Adding Dungeon Crawl Stone Soup PPA"
-							sudo sh -c 'echo "deb https://crawl.develz.org/debian crawl 0.22" >> /etc/apt/sources.list.d/crawl.list'
-							wget https://crawl.develz.org/debian/pubkey -O - | sudo apt-key add -
-						else
-							echo "Dungeon Crawl Stone Soup PPA already there."
-					fi
-				pressanykey
+##				echo "PPA CHECK - checking for missing repos."
+##					if ! ls /etc/apt/sources.list.d | grep -iq "crawl"
+##						then
+##							echo "Adding Dungeon Crawl Stone Soup PPA"
+##							sudo sh -c 'echo "deb https://crawl.develz.org/debian crawl 0.22" >> /etc/apt/sources.list.d/crawl.list'
+##							wget https://crawl.develz.org/debian/pubkey -O - | sudo apt-key add -
+##						else
+##							echo "Dungeon Crawl Stone Soup PPA already there."
+##					fi
+##				pressanykey
 					echo -e "Checking for FlatPak"
 					InstallWhenNotExist flatpak
 					InstallWhenNotExist gnome-software-plugin-flatpak
@@ -186,6 +186,7 @@ select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Manage
 				InstallWhenNotExist fonts-dosis
 				InstallWhenNotExist fonts-ebgaramond
 				InstallWhenNotExist fonts-ebgaramond-extra
+				InstallWhenNotExist fonts-essays1743
 				InstallWhenNotExist fonts-georgewilliams
 				InstallWhenNotExist fonts-glasstty
 				InstallWhenNotExist fonts-gnutypewriter
@@ -202,9 +203,11 @@ select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Manage
 				InstallWhenNotExist fonts-sil-abyssinica
 				InstallWhenNotExist fonts-noto
 				InstallWhenNotExist fonts-play
-				InstallWhenNotExist ttf-mscorefonts-installer
 				InstallWhenNotExist fonts-roboto
 				InstallWhenNotExist fonts-wine
+				InstallWhenNotExist ttf-aenigma
+				InstallWhenNotExist ttf-engadget
+				InstallWhenNotExist ttf-mscorefonts-installer
 				pressanykey
 				clear
 				keepinstallingmorestuff
@@ -220,7 +223,7 @@ select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Manage
 			return
 			;;
 			"Games")
-				InstallAllWhenNotExist crawl
+				InstallWhenNotExist steam-launcher
 				InstallWhenNotExist dosbox
 				InstallWhenNotExist zangband
 				pressanykey
