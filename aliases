@@ -19,6 +19,7 @@
 # Some Alias Defintions #
 #########################
 
+alias speedtest='python3 ~/GIT/nanosecond/speedtest-cli'
 alias dus='du -shc * | sort -hr'
 alias less='more -spd'
 alias lsblk='lsblk && sudo fdisk -l'
