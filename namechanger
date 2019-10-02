@@ -21,6 +21,7 @@ select namechangechoice in "Strip Useless Characters" "Rename Files SHA256" "Ren
 	do
 		case "$namechangechoice" in
 			"Strip Useless Characters")
+				find -name "*JAG*" -type f | rename 's/\JAG/_/g' #I was watching JAG and wanted to rename the files easily. You can comment this line out later, or change it for your needs.
 				find -name "*-*" -type f | rename 's/\-/_/g'
 				## Let's take out the parentheses
 				find -name "*(*" -type f | rename 's/\(/-/g'
@@ -54,7 +55,7 @@ select namechangechoice in "Strip Useless Characters" "Rename Files SHA256" "Ren
 			return
 			;;
 			"Exit")
-				exit 1
+				exit 0
 			return
 			;;
 		esac
