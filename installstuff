@@ -238,7 +238,7 @@ select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Manage
 				InstallWhenNotExist namebench
 				InstallWhenNotExist netselect-apt
 				InstallWhenNotExist strace
-				flatpak install flathub org.telegram.desktop
+				InstallWhenNotExist telegram-desktop
 				InstallWhenNotExist torbrowser-launcher
 				pressanykey
 				clear
