@@ -312,6 +312,9 @@ select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Manage
 				sudo apt-add-repository https://dl.winehq.org/wine-builds/debian/
 				sudo apt update
 				sudo apt install winehq-stable
+				pressanykey
+				clear
+				keepinstallingmorestuff
 			return
 			;;
 			"X Screensavers")
