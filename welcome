@@ -43,7 +43,7 @@ username=$(whoami)
 ##################
 # Welcome Prompt #
 ##################
-welcome1
-welcomeontime
+#welcome1
+#welcomeontime
 welcomeaptcount
 }

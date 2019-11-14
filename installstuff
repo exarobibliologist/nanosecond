@@ -17,19 +17,19 @@
 
 function InstallWhenNotExist()
 {
-if ! dpkg -l | grep -wq $1; then echo -e "Working on ${Color196}$1${Color_Off}" && sudo apt install $1; else echo -e $1 "is installed"; fi
+if ! dpkg -l | grep -wq $1; then echo -e "Working on ${Color196}$1${Color_Off}" && sudo apt install $1; else echo -e "${Color196}$1${Color_Off} is installed"; fi
 #sudo aptitude install -P $1
 }
 
 function ForceInstallWhenNotExist()
 {
-if ! dpkg -l | grep -wq $1; then echo -e "Working on ${Color196}$1${Color_Off}" && sudo aptitude install -Py $1; else echo $1 "is installed"; fi
+if ! dpkg -l | grep -wq $1; then echo -e "Working on ${Color196}$1${Color_Off}" && sudo aptitude install -Py $1; else echo "${Color196}$1${Color_Off} is installed"; fi
 #sudo aptitude install -P $1
 }
 
 function InstallAllWhenNotExist()
 {
-if ! dpkg -l | grep -wq $1; then echo -e "Working on ${Color196}$1${Color_Off}" && sudo aptitude install -Pr $1; else echo $1 "is installed"; fi
+if ! dpkg -l | grep -wq $1; then echo -e "Working on ${Color196}$1${Color_Off}" && sudo aptitude install -Pr $1; else echo "${Color196}$1${Color_Off} is installed"; fi
 #sudo aptitude install -Pr $1
 }
 

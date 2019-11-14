@@ -279,10 +279,10 @@ Color255='\e[38;05;255m'
 
 function color_rainbow()
 {
-for c in {000..255}; do echo -e "\e[38;05;${c}m Color${c}\e[0m"; done | less
+for i in {000..255}; do echo -e "\e[38;05;${i}m Color${c}\e[0m"; done | less
 }
 
 function color_waterfall()
 {
-while : ; do for c in {000..255}; do echo -e "\e[38;05;${c}m Color${c}\e[0m"; sleep .1 ; done ; done
+while : ; do for i in {000..255}; do echo -e "\e[38;05;${i}m Color${c}\e[0m"; sleep .1 ; done ; done
 }
