@@ -78,8 +78,8 @@ echo -e "Options:\n"
 echo -e "Compressed Files - gzip p7zip tar unrar"
 echo -e "Conky - conky-all"
 echo -e "Documents - libreoffice kate"
-echo -e "Drive Management - smartmontools apper mintstick"
-echo -e "File Browsers - dolphin dolphin4 spacefm"
+echo -e "Drive Management - apper brasero furiusisomount gnome-disk-utility k3b mintstick smartmontools xfburn"
+echo -e "File Browsers - caja dolphin krusader nautilus nemo spacefm"
 echo -e "Fluxbox Setup - Installs required files for my personal Fluxbox setup"
 echo -e "Font Managers - font-manager gucharmap figlet"
 echo -e "Fonts - lots of nice fonts"
@@ -125,18 +125,25 @@ select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Manage
 			return
 			;;
 			"Drive Management")
-				InstallWhenNotExist smartmontools
 				InstallWhenNotExist apper
-				chromium http://packages.linuxmint.com/pool/main/m/mintstick/
-				google-chrome http://packages.linuxmint.com/pool/main/m/mintstick/
+				InstallWhenNotExist brasero
+				InstallWhenNotExist furiusisomount
+				InstallWhenNotExist gnome-disk-utility
+				InstallWhenNotExist k3b
+				firefox http://packages.linuxmint.com/pool/main/m/mintstick/
+				InstallWhenNotExist smartmontools
+				InstallWhenNotExist xfburn
 				pressanykey
 				clear
 				keepinstallingmorestuff
 			return
 			;;
 			"File Browsers")
+				InstallWhenNotExist caja
 				InstallWhenNotExist dolphin
-				InstallWhenNotExist dolphin4
+				InstallWhenNotExist krusader
+				InstallWhenNotExist nautilus
+				InstallWhenNotExist nemo
                                 InstallWhenNotExist spacefm
 				pressanykey
 				clear
