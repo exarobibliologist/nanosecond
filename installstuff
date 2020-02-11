@@ -89,7 +89,7 @@ echo -e "IRC - hexchat konversation"
 echo -e "Media - flac lame moc smplayer vlc"
 echo -e "Pictures - inkscape luminance-hdr gimp kde-spectacle ufraw"
 echo -e "Terminal - konsole terminator"
-echo -e "Torrents - amule deluge ktorrent"
+echo -e "Torrents - amule deluge ktorrent qbittorrent transmission-gtk"
 echo -e "Virtualbox - non-free version of virtualbox"
 echo -e "WINE - Automates the WINE installation"
 echo -e "X Screensavers - xscreensaver xscreensaver-data xscreensaver-data-extra xscreensaver-screensaver-bsod xscreensaver-gl xscreensaver-gl-extra rss-glx"
@@ -127,6 +127,7 @@ select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Manage
 				InstallWhenNotExist smartmontools
 				InstallWhenNotExist apper
 				chromium http://packages.linuxmint.com/pool/main/m/mintstick/
+				google-chrome http://packages.linuxmint.com/pool/main/m/mintstick/
 				pressanykey
 				clear
 				keepinstallingmorestuff
@@ -294,6 +295,8 @@ select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Manage
 				InstallWhenNotExist amule
 				InstallWhenNotExist deluge
 				InstallWhenNotExist ktorrent
+				InstallWhenNotExist qbittorrent
+				InstallWhenNotExist transmission-gtk
 				pressanykey
 				clear
 				keepinstallingmorestuff
