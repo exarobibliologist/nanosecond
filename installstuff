@@ -84,7 +84,7 @@ echo -e "Fluxbox Setup - Installs required files for my personal Fluxbox setup"
 echo -e "Font Managers - font-manager gucharmap figlet"
 echo -e "Fonts - lots of nice fonts"
 echo -e "Fortunes - Can install fortune files that you can use in various programs"
-echo -e "Games - crawl dosbox zangband"
+echo -e "Games - angrydd ardentryst asylum atanks bsdgames dopewars dosbox flare kobodeluxe manaplus steam-launcher zangband"
 echo -e "Internet - chromium firefox htop mtr namebench netselect-apt strace Telegram-Desktop torbrowser-launcher"
 echo -e "IRC - hexchat konversation"
 echo -e "Media - flac lame moc smplayer vlc"
@@ -232,8 +232,18 @@ select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Manage
 			return
 			;;
 			"Games")
-				InstallWhenNotExist steam-launcher
+				InstallWhenNotExist andrydd
+				InstallWhenNotExist ardentryst
+				InstallWhenNotExist asylum
+				InstallWhenNotExist atanks
+				InstallWhenNotExist bsdgames
+				InstallWhenNotExist dopewars
 				InstallWhenNotExist dosbox
+				InstallWhenNotExist flare
+				InstallWhenNotExist flare-game
+				InstallWhenNotExist kobodeluxe
+				InstallWhenNotExist manaplus
+				InstallWhenNotExist steam-launcher
 				InstallWhenNotExist zangband
 				pressanykey
 				clear
