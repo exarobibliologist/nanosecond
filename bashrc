@@ -91,6 +91,7 @@ fi
 . ~/GIT/nanosecond/owned
 . ~/GIT/nanosecond/passwordmaker
 . ~/GIT/nanosecond/pressanykey
+. ~/GIT/nanosecond/progress-bar
 . ~/GIT/nanosecond/psa
 . ~/GIT/nanosecond/rebash
 . ~/GIT/nanosecond/reconk
