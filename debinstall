@@ -1,0 +1,6 @@
+#!/bin/bash
+
+function debinstall() {
+sudo dpkg -i $1
+sudo apt install -f
+}
