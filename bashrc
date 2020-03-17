@@ -77,6 +77,7 @@ fi
 . ~/GIT/nanosecond/apt-stuff
 . ~/GIT/nanosecond/catgrapple
 . ~/GIT/nanosecond/colorize
+. ~/GIT/nanosecond/debinstall
 . ~/GIT/nanosecond/ducolor
 . ~/GIT/nanosecond/encoder
 . ~/GIT/nanosecond/extract
