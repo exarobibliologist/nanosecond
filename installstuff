@@ -343,6 +343,8 @@ select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Manage
 				InstallWhenNotExist xscreensaver-data
 				InstallWhenNotExist xscreensaver-data-extra
 				InstallWhenNotExist xscreensaver-screensaver-bsod
+				InstallWhenNotExist xfishtank
+				InstallWhenNotExist xdaliclock
 				InstallWhenNotExist xscreensaver-gl
 				InstallWhenNotExist xscreensaver-gl-extra
 				InstallWhenNotExist rss-glx
