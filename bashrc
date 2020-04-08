@@ -90,6 +90,7 @@ fi
 . ~/GIT/nanosecond/namechanger
 . ~/GIT/nanosecond/networkinfo
 . ~/GIT/nanosecond/owned
+. ~/GIT/nanosecond/packagelistreinstaller
 . ~/GIT/nanosecond/passwordmaker
 . ~/GIT/nanosecond/pressanykey
 . ~/GIT/nanosecond/progress-bar
