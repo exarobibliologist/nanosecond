@@ -28,6 +28,7 @@ echo "Make a backup list of programs installed, or reinstall from a backup list?
                                                 ;;
                                         "Reinstall Backup")
                                                 cd
+						if grep -q i386 packages_list.txt ; then echo "Found i386. Installing i386 architecture"; sudo dpkg --add-architecture i386 ; fi
                                                 sudo xargs -a packages_list.txt apt install
                                                 return
                                                 ;;
