@@ -94,8 +94,9 @@ echo -e "Torrents - amule deluge ktorrent qbittorrent transmission-gtk"
 echo -e "Virtualbox - non-free version of virtualbox"
 echo -e "WINE - Automates the WINE installation"
 echo -e "X Screensavers - xscreensaver xscreensaver-data xscreensaver-data-extra xscreensaver-screensaver-bsod xscreensaver-gl xscreensaver-gl-extra rss-glx"
+echo -e "Debian Extras - GNOME-Boxes/testing"
 echo -e "What do you wish to install?\n\n"
-select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Management" "File Browsers" "Fluxbox Setup" "Font Managers" "Fonts" "Fortunes" "Games" "Internet" "IRC" "Media" "Pictures" "Terminal" "Torrents" "Virtualbox" "WINE" "X Screensavers" "Exit"
+select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Management" "File Browsers" "Fluxbox Setup" "Font Managers" "Fonts" "Fortunes" "Games" "Internet" "IRC" "Media" "Pictures" "Terminal" "Torrents" "Virtualbox" "WINE" "X Screensavers" "Debian Extras" "Exit"
 	do
 		case "$installmenuchoice" in
 			"Compressed Files")
@@ -348,6 +349,13 @@ select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Manage
 				InstallWhenNotExist xscreensaver-gl
 				InstallWhenNotExist xscreensaver-gl-extra
 				InstallWhenNotExist rss-glx
+				pressanykey
+				clear
+				keepinstallingmorestuff
+				return
+			;;
+			"Debian Extras")
+				sudo apt install gnome-boxes/testing libosinfo-1.0-0/testing libvirt-glib-1.0-0/testing qemu-system-x86
 				pressanykey
 				clear
 				keepinstallingmorestuff
