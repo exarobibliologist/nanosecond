@@ -40,7 +40,7 @@ ${font noto mono:size=6}| Alt+Tab ${goto 100}= Next Window ${goto 200}| Alt+Shif
 | Alt+F2 ${goto 100}= fbrun ${goto 200}| Alt+F3 ${goto 300}= dmenu ${goto 400}| Alt+F5 ${goto 500}= Kill ${goto 600}| Meta+x ${goto 700}= xKill ${goto 800}|
 | Alt+F9 ${goto 100}= Minimize ${goto 200}| Alt+F10 ${goto 300}= Maximize ${goto 400}| Alt+F11 ${goto 500}= Fullscreen ${goto 600}| Meta+c ${goto 700}= Compton ${goto 800}|
 | Meta+l ${goto 100}= Lock Screen ${goto 200}| Meta+Alt+l ${goto 300}= Config Screensaver ${goto 400}| PrtSc ${goto 500}= Spectacle ${goto 600}| Alt+PrtSc ${goto 700}= Scrot ${goto 800}|
-| Ctl+Alt+Del ${goto 100}= Logout ${goto 200}| Meta+Space ${goto 300}= Root Menu ${goto 400}| UPSPEED ${goto 500}= ${upspeed wlp2s0} ${goto 600}| DOWNSPEED ${goto 700}= ${downspeed wlp2s0} ${goto 800}|
+| Ctl+Alt+Del ${goto 100}= Logout ${goto 200}| Meta+Space ${goto 300}= Root Menu ${goto 400}| ${goto 600}| ${goto 800}|
 ${hr 4}
 | Ctl+Alt+Up ${goto 100}= Tile Up ${goto 200}| Ctl+Alt+Down ${goto 300}= Tile Down ${goto 400}| Ctl+Alt+Right ${goto 500}= Tile Right ${goto 600}| Ctl+Alt+Left ${goto 700}= Tile Up ${goto 800}|
 ${hr 4}
@@ -53,7 +53,7 @@ ${hr 4}
 | ${audacious_title 100} ${goto 600}| ${top_mem name 2} ${goto 700}= ${top_mem mem 2} ${goto 800}|
 | ${audacious_bar 6,300} ${goto 600}| ${top_mem name 3} ${goto 700}= ${top_mem mem 3} ${goto 800}|
 ${goto 600}| ${top_mem name 4} ${goto 700}= ${top_mem mem 4} ${goto 800}|
-${goto 600}| ${top_mem name 5} ${goto 700}= ${top_mem mem 5} ${goto 800}|
+| UPSPEED ${goto 100}= ${upspeed wlp2s0} ${goto 200}| DOWNSPEED ${goto 300}= ${downspeed wlp2s0} ${goto 600}| ${top_mem name 5} ${goto 700}= ${top_mem mem 5} ${goto 800}|
 ${goto 600}| ${top_mem name 6} ${goto 700}= ${top_mem mem 6} ${goto 800}|
 ${goto 600}| ${top_mem name 7} ${goto 700}= ${top_mem mem 7} ${goto 800}|
 ${goto 600}| ${top_mem name 8} ${goto 700}= ${top_mem mem 8} ${goto 800}|
