@@ -31,3 +31,4 @@ if ! dpkg -l | grep -q curl; then sudo apt install curl; else echo "curl already
 if ! dpkg -l | grep -q dirmngr; then sudo apt install dirmngr; else echo "dirmngr already installed. Skipping."; fi
 if ! dpkg -l | grep -q inxi; then sudo apt install inxi; else echo "inxi already installed. Skipping."; fi
 if ! dpkg -l | grep -q wget; then sudo apt install wget; else echo "wget already installed. Skipping."; fi
+if ! dpkg -l | grep -q software-properties-common; then sudo apt install software-properties-common; else echo "software-properties-common already installed. Skipping."; fi
