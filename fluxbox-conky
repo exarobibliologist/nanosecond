@@ -19,7 +19,7 @@ maximum_width 801
 draw_shades yes
 draw_outline no
 draw_graph_borders yes
-default_color ffffff
+default_color 99ff33
 default_shade_color 000000
 default_outline_color white
 gap_x 10
@@ -46,7 +46,7 @@ ${hr 4}
 ${hr 4}
 | Meta+i ${goto 100}= IRC ${goto 200}| Meta+Alt+i ${goto 300}= Telegram ${goto 400}| Meta+e ${goto 500}= Nano ${goto 600}| Meta+t ${goto 700}= Terminator ${goto 800}|
 | Meta+p ${goto 100}= KTorrent ${goto 200}| Meta+m ${goto 300}= SMPlayer ${goto 400}| Meta+Alt+m ${goto 500}= MOCP ${goto 600}| Meta+u ${goto 700}= Mintstick Write ${goto 800}|
-| Meta+f ${goto 100}= SpaceFM ${goto 200}| Meta+Alt+f ${goto 300}= ROOT SpaceFM ${goto 400}| Ctl+Meta+Alt+f ${goto 500}= Nautilus ${goto 600}| Meta+Alt+u ${goto 700}= Mintstick Format ${goto 800}|
+| Meta+f ${goto 100}= Thunar ${goto 200}| Meta+Alt+f ${goto 300}= SpaceFM ${goto 400}| Ctl+Meta+Alt+f ${goto 500}= ROOT SpaceFM ${goto 600}| Meta+Alt+u ${goto 700}= Mintstick Format ${goto 800}|
 | Meta+w ${goto 100}= Google Chrome ${goto 200}| Meta+Alt+w ${goto 300}= Firefox ${goto 400}| Ctl+Meta+Alt+w ${goto 500}= Tor Browser ${goto 600}| Meta+d ${goto 700}= Dropbox ${goto 800}|
 ${hr 4}
 | ${audacious_status} ${goto 200}${audacious_position} / ${audacious_length} ${goto 600}| ${top_mem name 1} ${goto 700}= ${top_mem mem 1} ${goto 800}|
