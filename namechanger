@@ -18,48 +18,60 @@
 function namechanger()
 {
 				InstallWhenNotExist rename
-select namechangechoice in "Strip Useless Characters" "Rename Files SHA256" "Rename Files MD5" "Continue" "Exit"
-	do
-		case "$namechangechoice" in
-			"Strip Useless Characters")
-				find -name "*JAG*" -type f | rename 's/JAG/_/g' #I was watching JAG and wanted to rename the files easily. You can comment this line out later, or change it for your needs.
-				find -name "*-*" -type f | rename 's/\-/_/g'
-				## Let's take out the parentheses
-				find -name "*(*" -type f | rename 's/\(/_/g'
-				find -name "*)*" -type f | rename 's/\)/_/g'
-				find -name "*[*" -type f | rename 's/\[/_/g'
-				find -name "*]*" -type f | rename 's/\]/_/g'
-				## And let's take out ampersands
-				find -name "*&*" -type f | rename 's/\&/_and_/g'
-				find -name "*%*" -type f | rename 's/\%/_/g'
-				## I don't know why Windows loves captializing all filename extensions.
-				find -name "*JPG*" -type f | rename 's/JPG/jpg/g'
-				find -name "*WAV*" -type f | rename 's/WAV/wav/g'
-				find -name "*PNG*" -type f | rename 's/PNG/png/g'
-				find -name "*GIF*" -type f | rename 's/GIF/gif/g'
-				##Finally strip spaces and those underscores we used
-				find -name "* *" -type f | rename 's/ /_/g'
-				find -name "*_*" -type f | rename 's/_//g'
-				namechanger
-			return
-			;;
-			"Rename Files SHA256")
-				sha256sum *.{mp3,mkv,flac,jpg,png,gif,jpeg} | sed -e 's/\([^ ]*\) \(.*\(\..*\)\)$/mv -v \2 \1\3/' | sh
-				namechanger
-			return
-			;;
-			"Rename Files MD5")
-				md5sum *.{mp3,mkv,flac,jpg,png,gif,jpeg} | sed -e 's/\([^ ]*\) \(.*\(\..*\)\)$/mv -v \2 \1\3/' | sh
-				namechanger
-			return
-			;;
-			"Continue")
-				namechanger
-			return
-			;;
-			"Exit")
-			return
-			;;
+	select namechangechoice in "Strip Useless Characters" "Rename Files SHA256" "Rename Files MD5" "Rename Random" "Continue" "Exit"
+		do
+			case "$namechangechoice" in
+				"Strip Useless Characters")
+					find -name "*JAG*" -type f | rename 's/JAG/_/g' #I was watching JAG and wanted to rename the files easily. You can comment this line out later, or change it for your needs.
+					find -name "*-*" -type f | rename 's/\-/_/g'
+					## Let's take out the parentheses
+					find -name "*(*" -type f | rename 's/\(/_/g'
+					find -name "*)*" -type f | rename 's/\)/_/g'
+					find -name "*[*" -type f | rename 's/\[/_/g'
+					find -name "*]*" -type f | rename 's/\]/_/g'
+					## And let's take out ampersands
+					find -name "*&*" -type f | rename 's/\&/_and_/g'
+					find -name "*%*" -type f | rename 's/\%/_/g'
+					## I don't know why Windows loves captializing all filename extensions.
+					find -name "*JPG*" -type f | rename 's/JPG/jpg/g'
+					find -name "*WAV*" -type f | rename 's/WAV/wav/g'
+					find -name "*PNG*" -type f | rename 's/PNG/png/g'
+					find -name "*GIF*" -type f | rename 's/GIF/gif/g'
+					##Finally strip spaces and those underscores we used
+					find -name "* *" -type f | rename 's/ /_/g'
+					find -name "*_*" -type f | rename 's/_//g'
+					namechanger
+				return
+				;;
+				"Rename Files SHA256")
+					sha256sum *.{mp3,mkv,flac,jpg,png,gif,jpeg} | sed -e 's/\([^ ]*\) \(.*\(\..*\)\)$/mv -v \2 \1\3/' | sh
+					namechanger
+				return
+				;;
+				"Rename Files MD5")
+					md5sum *.{mp3,mkv,flac,jpg,png,gif,jpeg} | sed -e 's/\([^ ]*\) \(.*\(\..*\)\)$/mv -v \2 \1\3/' | sh
+					namechanger
+				return
+				;;
+				"Rename Random")
+					for img in *.jpg; do
+						newname=$(head /dev/urandom | tr -dc a-z0-9 | head -c 8)
+						mv "$img" "$newname".jpg
+					done
+					for img in *.png; do
+						newname=$(head /dev/urandom | tr -dc a-z0-9 | head -c 8)
+						mv "$img" "$newname".png
+					done
+					namechanger
+				return
+				;;
+				"Continue")
+					namechanger
+				return
+				;;
+				"Exit")
+				return
+				;;
 		esac
 	done
 }
