@@ -36,6 +36,9 @@ shopt -s histappend
 HISTSIZE=1000
 HISTFILESIZE=2000
 
+# Add timestamps to the history function
+export HISTTIMEFORMAT="%d/%m/%y %T "
+
 # Defaults Section
 LinuxVersion=$(inxi -S)
 iamme=$(whoami)
