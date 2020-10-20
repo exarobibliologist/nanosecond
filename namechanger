@@ -58,10 +58,6 @@ function namechanger()
 						newname=$(head /dev/urandom | tr -dc a-z0-9 | head -c 8)
 						mv "$img" "$newname".jpg
 					done
-					for img in *.png; do
-						newname=$(head /dev/urandom | tr -dc a-z0-9 | head -c 8)
-						mv "$img" "$newname".png
-					done
 					namechanger
 				return
 				;;
