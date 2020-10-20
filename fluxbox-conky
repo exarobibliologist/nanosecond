@@ -19,7 +19,7 @@ maximum_width 801
 draw_shades yes
 draw_outline no
 draw_graph_borders yes
-default_color 99ff33
+default_color ffffff
 default_shade_color 000000
 default_outline_color white
 gap_x 10
@@ -53,8 +53,8 @@ ${hr 4}
 | ${audacious_title 100} ${goto 600}| ${top_mem name 2} ${goto 700}= ${top_mem mem 2} ${goto 800}|
 | ${audacious_bar 6,300} ${goto 600}| ${top_mem name 3} ${goto 700}= ${top_mem mem 3} ${goto 800}|
 ${goto 600}| ${top_mem name 4} ${goto 700}= ${top_mem mem 4} ${goto 800}|
-| UPSPEED ${goto 100}= ${upspeed wlp2s0} ${goto 200}| DOWNSPEED ${goto 300}= ${downspeed wlp2s0} ${goto 600}| ${top_mem name 5} ${goto 700}= ${top_mem mem 5} ${goto 800}|
-${goto 600}| ${top_mem name 6} ${goto 700}= ${top_mem mem 6} ${goto 800}|
+| WIRED UP ${goto 100}= ${upspeed enp1s0} ${goto 200}| WIRED DOWN ${goto 300}= ${downspeed enp1s0} ${goto 600}| ${top_mem name 5} ${goto 700}= ${top_mem mem 5} ${goto 800}|
+| WIRELESS UP ${goto 100}= ${upspeed wlp2s0} ${goto 200}| WIRELESS DOWN ${goto 300}= ${downspeed wlp2s0} ${goto 600}| ${top_mem name 6} ${goto 700}= ${top_mem mem 6} ${goto 800}|
 ${goto 600}| ${top_mem name 7} ${goto 700}= ${top_mem mem 7} ${goto 800}|
 ${goto 600}| ${top_mem name 8} ${goto 700}= ${top_mem mem 8} ${goto 800}|
 ${goto 600}| ${top_mem name 9} ${goto 700}= ${top_mem mem 9} ${goto 800}|
