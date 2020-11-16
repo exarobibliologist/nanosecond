@@ -17,6 +17,7 @@
 
 function rebash()
 {
+echo -e "Run Update BEFORE Upgrade"
 select rebashchoice in "Reset BASH" "Update Menu" "Upgrade Menu"
 do
 	case "$rebashchoice" in
