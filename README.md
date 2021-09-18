@@ -1,4 +1,4 @@
-<h1>THIS IS ONLY FOR DEBIAN!!<br><br>Additionally, it will work with the Debian package for WSL (Windows Subsystem for Linux) on Windows 10.</h1>
+<h1>THIS IS ONLY FOR DEBIAN!!<br><br>Additionally, it will work with the Debian package for WSL (Windows Subsystem for Linux) on Windows.</h1>
 
 <h2>This will cause <u>unrecoverable</u> changes to your Debian setup.</h2>
 
