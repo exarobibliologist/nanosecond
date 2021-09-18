@@ -33,7 +33,7 @@ if ! dpkg -l | grep -wq $1; then echo -e "Working on ${Color196}$1${Color_Off}" 
 function installstuff()
 {
 echo -e "Showing you your sources.list. ${Color196}If anything looks off, abort the script immediately and fix it!${Color_Off}\n"
-grep -e "stable" -e "testing" -e "unstable" -e "contrib" -e "non-free" /etc/apt/sources.list
+grep -e "stable" -e "testing" -e "unstable" -e "experimental" -e "contrib" -e "non-free" /etc/apt/sources.list
 	pressanykey
 select installmenuchoice in "Install Debian Mods" "Continue Without Debian Mods"
 	do
