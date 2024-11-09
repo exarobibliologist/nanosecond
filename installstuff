@@ -35,36 +35,7 @@ function installstuff()
 echo -e "Showing you your sources.list. ${Color196}If anything looks off, abort the script immediately and fix it!${Color_Off}\n"
 grep -e "stable" -e "testing" -e "unstable" -e "experimental" -e "contrib" -e "non-free" /etc/apt/sources.list
 	pressanykey
-select installmenuchoice in "Install Debian Mods" "Continue Without Debian Mods"
-	do
-		case "$installmenuchoice" in
-			"Install Debian Mods")
-				sudo apt update
-##				echo "PPA CHECK - checking for missing repos."
-##					if ! ls /etc/apt/sources.list.d | grep -iq "crawl"
-##						then
-##							echo "Adding Dungeon Crawl Stone Soup PPA"
-##							sudo sh -c 'echo "deb https://crawl.develz.org/debian crawl 0.22" >> /etc/apt/sources.list.d/crawl.list'
-##							wget https://crawl.develz.org/debian/pubkey -O - | sudo apt-key add -
-##						else
-##							echo "Dungeon Crawl Stone Soup PPA already there."
-##					fi
-##				pressanykey
-					echo -e "Checking for FlatPak"
-					InstallWhenNotExist flatpak
-					InstallWhenNotExist gnome-software-plugin-flatpak
-					flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-				pressanykey
-				sudo apt update
-				installstuff
-			return
-			;;
-			"Continue Without Debian Mods")
-				keepinstallingmorestuff
-			return
-			;;
-		esac
-	done
+	keepinstallingmorestuff
 }
 
 function keepinstallingmorestuff()
@@ -76,6 +47,7 @@ echo -e "Conky - conky-all"
 echo -e "Documents - libreoffice kate"
 echo -e "Drive Management - apper brasero furiusisomount gnome-disk-utility k3b mintstick smartmontools xfburn"
 echo -e "File Browsers - caja dolphin krusader nautilus nemo spacefm"
+echo -e "FlatPak"
 echo -e "Fluxbox Setup - Installs required files for my personal Fluxbox setup"
 echo -e "Font Managers - font-manager gucharmap figlet"
 echo -e "Fonts - lots of nice fonts"
@@ -92,7 +64,7 @@ echo -e "WINE - Automates the WINE installation"
 echo -e "X Screensavers - xscreensaver xscreensaver-data xscreensaver-data-extra xscreensaver-screensaver-bsod xscreensaver-gl xscreensaver-gl-extra rss-glx"
 echo -e "Debian Extras - GNOME-Boxes/testing"
 echo -e "What do you wish to install?\n\n"
-select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Management" "File Browsers" "Fluxbox Setup" "Font Managers" "Fonts" "Fortunes" "Games" "Internet" "IRC" "Media" "Pictures" "Terminal" "Torrents" "Virtualbox" "WINE" "X Screensavers" "Debian Extras" "Exit"
+select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Management" "File Browsers" "FlatPak" "Fluxbox Setup" "Font Managers" "Fonts" "Fortunes" "Games" "Internet" "IRC" "Media" "Pictures" "Terminal" "Torrents" "Virtualbox" "WINE" "X Screensavers" "Debian Extras" "Exit"
 	do
 		case "$installmenuchoice" in
 			"Compressed Files")
@@ -144,6 +116,16 @@ select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Manage
                                 InstallWhenNotExist spacefm
 				pressanykey
 				clear
+				keepinstallingmorestuff
+			return
+			;;
+			"FlatPak")
+				sudo apt update
+				InstallWhenNotExist flatpak
+				InstallWhenNotExist gnome-software-plugin-flatpak
+				flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+				pressanykey
+				sudo apt update
 				keepinstallingmorestuff
 			return
 			;;
