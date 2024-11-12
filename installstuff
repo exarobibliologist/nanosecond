@@ -34,37 +34,38 @@ function installstuff()
 {
 echo -e "Showing you your sources.list. ${Color196}If anything looks off, abort the script immediately and fix it!${Color_Off}\n"
 grep -e "stable" -e "testing" -e "unstable" -e "experimental" -e "contrib" -e "non-free" /etc/apt/sources.list
-	pressanykey
-	keepinstallingmorestuff
+pressanykey
+keepinstallingmorestuff
 }
 
 function keepinstallingmorestuff()
 {
 clear
 echo -e "Options:\n"
-echo -e "Compressed Files - gzip p7zip tar unrar"
-echo -e "Conky - conky-all"
-echo -e "Documents - libreoffice kate"
-echo -e "Drive Management - apper brasero furiusisomount gnome-disk-utility k3b mintstick smartmontools xfburn"
-echo -e "File Browsers - caja dolphin krusader nautilus nemo spacefm"
-echo -e "FlatPak"
-echo -e "Fluxbox Setup - Installs required files for my personal Fluxbox setup"
-echo -e "Font Managers - font-manager gucharmap figlet"
-echo -e "Fonts - lots of nice fonts"
-echo -e "Fortunes - Can install fortune files that you can use in various programs"
-echo -e "Games - angrydd ardentryst asylum atanks bsdgames dopewars dosbox flare kobodeluxe manaplus steam-launcher zangband"
-echo -e "Internet - chromium firefox htop mtr namebench netselect-apt strace Telegram-Desktop torbrowser-launcher"
-echo -e "IRC - hexchat konversation"
-echo -e "Media - flac lame moc smplayer vlc"
-echo -e "Pictures - inkscape luminance-hdr gimp kde-spectacle ufraw"
-echo -e "Terminal - konsole terminator"
-echo -e "Torrents - amule deluge ktorrent qbittorrent transmission-gtk"
-echo -e "Virtualbox - non-free version of virtualbox"
-echo -e "WINE - Automates the WINE installation"
-echo -e "X Screensavers - xscreensaver xscreensaver-data xscreensaver-data-extra xscreensaver-screensaver-bsod xscreensaver-gl xscreensaver-gl-extra rss-glx"
-echo -e "Debian Extras - GNOME-Boxes/testing"
+echo -e "${Color003}Compressed Files${Color_Off} - gzip p7zip tar unrar"
+echo -e "${Color003}Conky${Color_Off} - conky-all"
+echo -e "${Color003}Documents${Color_Off} - libreoffice kate"
+echo -e "${Color003}Drive Management${Color_Off} - apper brasero furiusisomount gnome-disk-utility k3b mintstick smartmontools xfburn"
+echo -e "${Color003}File Browsers${Color_Off} - caja dolphin krusader nautilus nemo spacefm"
+echo -e "${Color003}FlatPak${Color_Off}"
+echo -e "${Color003}Fluxbox Setup${Color_Off} - Installs required files for my personal Fluxbox setup"
+echo -e "${Color003}Font Managers${Color_Off} - font-manager gucharmap figlet"
+echo -e "${Color003}Fonts${Color_Off} - lots of nice fonts"
+echo -e "${Color003}Fortunes${Color_Off} - Can install fortune files that you can use in various programs"
+echo -e "${Color003}Games${Color_Off} - angrydd ardentryst asylum atanks bsdgames dopewars dosbox flare kobodeluxe manaplus steam-launcher zangband"
+echo -e "${Color003}GNOME Boxes${Color_Off} - ${Color196}Requires FlatPak${Color_Off}"
+echo -e "${Color003}Internet${Color_Off} - chromium firefox htop mtr namebench netselect-apt strace Telegram-Desktop torbrowser-launcher"
+echo -e "${Color003}IRC${Color_Off} - hexchat konversation"
+echo -e "${Color003}Media${Color_Off} - flac lame moc smplayer vlc"
+echo -e "${Color003}Pictures${Color_Off} - inkscape luminance-hdr gimp kde-spectacle ufraw"
+echo -e "${Color003}Terminal${Color_Off} - konsole terminator"
+echo -e "${Color003}Torrents${Color_Off} - amule deluge ktorrent qbittorrent transmission-gtk"
+echo -e "${Color003}Virtualbox${Color_Off} - non-free version of virtualbox"
+echo -e "${Color003}WINE${Color_Off} - Automates the WINE installation"
+echo -e "${Color003}XFCE Desktop${Color_Off}"
+echo -e "${Color003}X Screensavers${Color_Off} - xscreensaver xscreensaver-data xscreensaver-data-extra xscreensaver-screensaver-bsod xscreensaver-gl xscreensaver-gl-extra rss-glx"
 echo -e "What do you wish to install?\n\n"
-select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Management" "File Browsers" "FlatPak" "Fluxbox Setup" "Font Managers" "Fonts" "Fortunes" "Games" "Internet" "IRC" "Media" "Pictures" "Terminal" "Torrents" "Virtualbox" "WINE" "X Screensavers" "Debian Extras" "Exit"
+select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Management" "File Browsers" "FlatPak" "Fluxbox Setup" "Font Managers" "Fonts" "Fortunes" "Games" "GNOME Boxes" "Internet" "IRC" "Media" "Pictures" "Terminal" "Torrents" "Virtualbox" "WINE" "XFCE Desktop" "X Screensavers" "Exit"
 	do
 		case "$installmenuchoice" in
 			"Compressed Files")
@@ -229,6 +230,13 @@ select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Manage
 				keepinstallingmorestuff
 			return
 			;;
+			"GNOME Boxes")
+				flatpak install flathub org.gnome.Boxes
+				pressanykey
+				clear
+				keepinstallingmorestuff
+				return
+			;;
 			"Internet")
 				InstallWhenNotExist chromium
 				InstallWhenNotExist htop
@@ -317,6 +325,12 @@ select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Manage
 				keepinstallingmorestuff
 			return
 			;;
+			"XFCE Desktop")
+				InstallAllWhenNotExist xfce4
+				InstallAllWhenNotExist xfce4-goodies
+				keepinstallingmorestuff
+			return
+			;;
 			"X Screensavers")
 				InstallWhenNotExist xscreensaver
 				InstallWhenNotExist xscreensaver-data
@@ -327,13 +341,6 @@ select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Manage
 				InstallWhenNotExist xscreensaver-gl
 				InstallWhenNotExist xscreensaver-gl-extra
 				InstallWhenNotExist rss-glx
-				pressanykey
-				clear
-				keepinstallingmorestuff
-				return
-			;;
-			"Debian Extras")
-				sudo apt install gnome-boxes/testing libosinfo-1.0-0/testing libvirt-glib-1.0-0/testing qemu-system-x86
 				pressanykey
 				clear
 				keepinstallingmorestuff
