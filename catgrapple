@@ -15,20 +15,18 @@
 #Boston, MA  02110-1301, USA.                                                                                                   #
 #################################################################################################################################
 
+#Proper usage: catgrapple [FILE] [SEARCH TERM]
+
 function catgrapple()
 {
-mapfile -t lines < <(awk -v "search=$2" '$0 ~ search { print NR }' "$1")
-while read -r i
-do
-terminator -x nano "+$i" "$1" & done < <(awk -v "search=$2" '$0 ~ search { print NR }' "$1")
-}
-
-#Proper usage: catgrep [FILE] [SEARCH TERM]
-
-function catgrep()
-{
-file=$1
-search=$2
-linecat=$(cat -n $file | grep $search | column -t | expand | awk '{print $1; exit}')
-nano +$linecat $file
+# Use awk once, storing line numbers in the `lines` array
+	mapfile -t lines < <(awk -v "search=$2" '$0 ~ search { print NR }' "$1")
+# Iterate over the `lines` array, opening each match in nano one at a time
+	for i in "${lines[@]}"
+		do
+# Open the file in nano at the specified line
+		terminator -x nano "+$i" "$1"
+# Prompt to continue to the next match
+		read -p "Press Enter to open the next match..."
+		done
 }
