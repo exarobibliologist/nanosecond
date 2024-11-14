@@ -54,7 +54,7 @@ echo -e "${Color003}Fonts${Color_Off} - lots of nice fonts"
 echo -e "${Color003}Fortunes${Color_Off} - Can install fortune files that you can use in various programs"
 echo -e "${Color003}Games${Color_Off} - angrydd ardentryst asylum atanks bsdgames dopewars dosbox flare kobodeluxe manaplus steam-launcher zangband"
 echo -e "${Color003}Games - ${Color196}Steam${Color_Off}"
-echo -e "${Color003}GNOME Boxes${Color_Off} - ${Color196}Requires FlatPak${Color_Off}"
+echo -e "${Color003}GNOME Boxes${Color_Off}"
 echo -e "${Color003}Internet${Color_Off} - chromium firefox htop mtr namebench netselect-apt strace Telegram-Desktop torbrowser-launcher"
 echo -e "${Color003}IRC${Color_Off} - hexchat konversation"
 echo -e "${Color003}Media${Color_Off} - flac lame moc smplayer vlc"
@@ -243,11 +243,11 @@ select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Manage
 			return
 			;;
 			"GNOME Boxes")
-				flatpak install flathub org.gnome.Boxes
+				InstallAllWhenNotExist gnome-boxes
 				pressanykey
 				clear
 				keepinstallingmorestuff
-				return
+			return
 			;;
 			"Internet")
 				InstallWhenNotExist chromium
