@@ -53,6 +53,7 @@ echo -e "${Color003}Font Managers${Color_Off} - font-manager gucharmap figlet"
 echo -e "${Color003}Fonts${Color_Off} - lots of nice fonts"
 echo -e "${Color003}Fortunes${Color_Off} - Can install fortune files that you can use in various programs"
 echo -e "${Color003}Games${Color_Off} - angrydd ardentryst asylum atanks bsdgames dopewars dosbox flare kobodeluxe manaplus steam-launcher zangband"
+echo -e "${Color003}Games - ${Color196}Steam${Color_Off}"
 echo -e "${Color003}GNOME Boxes${Color_Off} - ${Color196}Requires FlatPak${Color_Off}"
 echo -e "${Color003}Internet${Color_Off} - chromium firefox htop mtr namebench netselect-apt strace Telegram-Desktop torbrowser-launcher"
 echo -e "${Color003}IRC${Color_Off} - hexchat konversation"
@@ -65,7 +66,7 @@ echo -e "${Color003}WINE${Color_Off} - Automates the WINE installation"
 echo -e "${Color003}XFCE Desktop${Color_Off}"
 echo -e "${Color003}X Screensavers${Color_Off} - xscreensaver xscreensaver-data xscreensaver-data-extra xscreensaver-screensaver-bsod xscreensaver-gl xscreensaver-gl-extra rss-glx"
 echo -e "What do you wish to install?\n\n"
-select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Management" "File Browsers" "FlatPak" "Fluxbox Setup" "Font Managers" "Fonts" "Fortunes" "Games" "GNOME Boxes" "Internet" "IRC" "Media" "Pictures" "Terminal" "Torrents" "Virtualbox" "WINE" "XFCE Desktop" "X Screensavers" "Exit"
+select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Management" "File Browsers" "FlatPak" "Fluxbox Setup" "Font Managers" "Fonts" "Fortunes" "Games" "Games Steam" "GNOME Boxes" "Internet" "IRC" "Media" "Pictures" "Terminal" "Torrents" "Virtualbox" "WINE" "XFCE Desktop" "X Screensavers" "Exit"
 	do
 		case "$installmenuchoice" in
 			"Compressed Files")
@@ -212,7 +213,7 @@ select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Manage
 			return
 			;;
 			"Games")
-				InstallWhenNotExist andrydd
+				InstallWhenNotExist angrydd
 				InstallWhenNotExist ardentryst
 				InstallWhenNotExist asylum
 				InstallWhenNotExist atanks
@@ -221,11 +222,22 @@ select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Manage
 				InstallWhenNotExist dosbox
 				InstallWhenNotExist flare
 				InstallWhenNotExist flare-game
+				InstallWhenNotExist ksudoku
+				InstallWhenNotExist meritous
 				InstallWhenNotExist kobodeluxe
 				InstallWhenNotExist manaplus
-				InstallWhenNotExist steam-launcher
+				InstallWhenNotExist runescape
 				InstallWhenNotExist zangband
 				pressanykey
+				clear
+				keepinstallingmorestuff
+			return
+			;;
+			"Games Steam")
+				sudo dpkg --add-architecture i386
+				sudo apt update
+				sudo apt install steam-installer
+				sudo apt install mesa-vulkan-drivers libglx-mesa0:i386 mesa-vulkan-drivers:i386 libgl1-mesa-dri:i386
 				clear
 				keepinstallingmorestuff
 			return
@@ -316,10 +328,8 @@ select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Manage
 			;;
 			"WINE")
 				sudo dpkg --add-architecture i386
-				wget -nc - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
-				sudo apt-add-repository https://dl.winehq.org/wine-builds/debian/
 				sudo apt update
-				sudo apt install winehq-stable
+				sudo apt install wine wine32 wine64 libwine libwine:i386 fonts-wine
 				pressanykey
 				clear
 				keepinstallingmorestuff

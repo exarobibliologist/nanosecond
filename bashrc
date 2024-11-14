@@ -102,6 +102,7 @@ fi
 . ~/GIT/nanosecond/reconk
 . ~/GIT/nanosecond/refont
 . ~/GIT/nanosecond/rgb2cmyk
+. ~/GIT/nanosecond/slideshower
 . ~/GIT/nanosecond/soundfix
 . ~/GIT/nanosecond/toplag
 . ~/GIT/nanosecond/unlockdpkg
