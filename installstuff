@@ -52,7 +52,7 @@ echo -e "${Color003}Fluxbox Setup${Color_Off} - Installs required files for my p
 echo -e "${Color003}Font Managers${Color_Off} - font-manager gucharmap figlet"
 echo -e "${Color003}Fonts${Color_Off} - lots of nice fonts"
 echo -e "${Color003}Fortunes${Color_Off} - Can install fortune files that you can use in various programs"
-echo -e "${Color003}Games${Color_Off} - angrydd ardentryst asylum atanks bsdgames dopewars dosbox flare kobodeluxe manaplus steam-launcher zangband"
+echo -e "${Color003}Games${Color_Off} - angrydd ardentryst asylum atanks bsdgames dopewars dosbox flare ksudoku kobodeluxe manaplus meritous runescape zangband"
 echo -e "${Color003}Games - ${Color196}Steam${Color_Off}"
 echo -e "${Color003}GNOME Boxes${Color_Off}"
 echo -e "${Color003}Internet${Color_Off} - chromium firefox htop mtr namebench netselect-apt strace Telegram-Desktop torbrowser-launcher"
@@ -223,9 +223,9 @@ select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Manage
 				InstallWhenNotExist flare
 				InstallWhenNotExist flare-game
 				InstallWhenNotExist ksudoku
-				InstallWhenNotExist meritous
 				InstallWhenNotExist kobodeluxe
 				InstallWhenNotExist manaplus
+				InstallWhenNotExist meritous
 				InstallWhenNotExist runescape
 				InstallWhenNotExist zangband
 				pressanykey
@@ -329,7 +329,10 @@ select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Manage
 			"WINE")
 				sudo dpkg --add-architecture i386
 				sudo apt update
-				sudo apt install wine wine32 wine64 libwine libwine:i386 fonts-wine
+				InstallAllWhenNotExist wine wine32 wine64
+				InstallAllWhenNotExist libwine
+				InstallAllWhenNotExist libwine:i386
+				InstallAllWhenNotExist fonts-wine
 				pressanykey
 				clear
 				keepinstallingmorestuff
