@@ -15,48 +15,69 @@
 #Boston, MA  02110-1301, USA.                                                                                                   #
 #################################################################################################################################
 
-function extract() {
-	if [ -f $1 ]
-		then
-                	case $1 in
-				*.tar.bz2)
-					tar xjf $1
-				;;
-				*.tar.gz)
-					tar xzf $1
-				;;
-				*.bz2)
-					bunzip2 $1
-				;;
-				*.rar)
-					unrar x $1
-				;;
-				*.gz)
-					gunzip $1
-				;;
-				*.tar)
-					tar xf $1
-				;;
-				*.tbz2)
-					tar xjf $1
-				;;
-				*.tgz)
-					tar xzf $1
-				;;
-				*.zip)
-					unzip $1
-				;;
-				*.Z)
-					uncompress $1
-				;;
-				*.7z)
-					7z x $1
-				;;
-				*)
-					echo "'$1' archival type cannot be determined. Aborting."
-				;;
-	                esac
-        	else
-                	echo "'$1' is not a valid file"
-        fi
-} 
+function extract()
+{
+if [ -f "$1" ]; then
+	case "$1" in
+		*.tar.bz2|*.tbz2)
+			tar xjf "$1"
+			;;
+		*.tar.gz|*.tgz)
+			tar xzf "$1"
+			;;
+		*.tar.xz)
+			tar xJf "$1"
+			;;
+		*.tar.lz)
+			tar --lzip -xf "$1"
+			;;
+		*.tar.lzma)
+			tar --lzma -xf "$1"
+			;;
+		*.bz2)
+			bunzip2 "$1"
+			;;
+		*.rar)
+			unrar x "$1"
+			;;
+		*.gz)
+			gunzip "$1"
+			;;
+		*.xz)
+			unxz "$1"
+			;;
+		*.lz)
+			lzip -d "$1"
+			;;
+		*.tar)
+			tar xf "$1"
+			;;
+		*.zip)
+			unzip "$1"
+			;;
+		*.Z)
+			uncompress "$1"
+			;;
+		*.7z)
+			7z x "$1"
+			;;
+		*.iso)
+			7z x "$1" # Alternatively: bsdtar -xf "$1"
+			;;
+		*.cab)
+			7z x "$1" ## Alternatively: cabextract "$1"
+			;;
+		*.deb)
+			ar x "$1"
+			;;
+		*.rpm)
+			rpm2cpio "$1" | cpio -idmv
+			;;
+		*)
+			echo "Cannot determine the archival type of '$1'. Aborting."
+            		;;
+	esac
+else
+	echo "'$1' is not a valid file"
+fi
+}
