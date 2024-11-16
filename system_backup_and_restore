@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# Backup List: Creates a backup of all installed packages into a file (packages.txt by default or custom path if specified).
+# Reinstall Backup: Reinstalls the packages from the packages_list.txt file. If the list contains i386 packages, it will ensure the i386 architecture is added and updated.
+
+function system_backup_and_restore() {
+        echo "Make a backup list of programs installed, or reinstall from a backup list?"
+        select packagelist in "Backup List" "Reinstall Backup";
+        do
+                case "$packagelist" in
+                        "Backup List")
+                                # Default file path
+                                local file="${1:-./packages.txt}"
+                                # Check if dpkg-query exists (APT is installed)
+                                if ! command -v dpkg-query &> /dev/null; then
+                                        echo "Error: APT package manager not found. Ensure you're running this on a Debian-based system."
+                                        return 1
+                                fi
+                                # Get the list of installed packages using dpkg-query
+                                local installed_packages
+                                installed_packages=$(dpkg-query -f '${binary:Package}\n' -W)
+                                # Backup the installed packages to the specified file
+                                echo "Backing up installed packages to $file..."
+                                echo "$installed_packages" > "$file"
+                                echo "Package backup completed and saved to $file."
+                        return
+                        ;;
+                        "Reinstall Backup")
+                        # Check if backup file exists
+                        if [ ! -f "packages.txt" ]; then
+                                echo "Error: packages.txt not found. Please ensure the backup file is available."
+                                return 1
+                        fi
+                        # Ensure i386 architecture is supported, if necessary
+                        if grep -q i386 packages_list.txt; then
+                                echo "Found i386. Installing i386 architecture."
+                                sudo dpkg --add-architecture i386
+                                sudo apt update
+                        fi
+                        # Reinstall packages from the backup file
+                        echo "Reinstalling packages from packages_list.txt..."
+                        sudo xargs -a packages.txt apt install -y
+                        echo "Reinstallation completed."
+                        return
+                        ;;
+                        *)
+                        echo "Invalid selection, please choose 'Backup List' or 'Reinstall Backup'."
+                        return 1
+                        ;;
+                esac
+        done
+}
