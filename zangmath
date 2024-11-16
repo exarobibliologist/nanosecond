@@ -1,98 +1,46 @@
 #!/bin/bash
 
-####COPYRIGHT NOTICE#####COPYRIGHT NOTICE#####COPYRIGHT NOTICE#####COPYRIGHT NOTICE#####COPYRIGHT NOTICE#####COPYRIGHT NOTICE####
-#Copyright (C) 2018 exarobibliologst (github.com/exarobibliologist)                                                             #
-#                                                                                                                               #
-#This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License      #
-#as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.          #
-#                                                                                                                               #
-#This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of #
-#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.                     #
-#                                                                                                                               #
-#You should have received a copy of the GNU General Public License along with this program; if not, write to the                #
-#Free Software Foundation, Inc.                                                                                                 #
-#51 Franklin Street, Fifth Floor,                                                                                               #
-#Boston, MA  02110-1301, USA.                                                                                                   #
-#################################################################################################################################
+function zangmath() {
+	echo -e "What's the Current XP?\n"
+	read xp
+	# Define menu options and conversion factors
+	declare -A zangmenu=(
+		["BOOKS"]=100000
+		["RODS/STAFF/WAND/JEWELERY"]=12500
+		["WEAPONS"]=10000
+		["OIL FLASKS"]=7500
+		["SCROLLS/TORCHES"]=5000
+		["FOOD/POTIONS"]=1000
+		["MONEY"]=1
+	)
 
-function zangmath()
-{
-echo -e "What's the Current XP?\n"
-read xp
+	# Display menu
+	PS3="Select an option: "
+	select key in "${!zangmenu[@]}" "QUIT"; do
+		if [[ "$key" == "QUIT" || -z "$key" ]]; then
+			echo "Exiting."
+			return
+		elif [[ -n "${zangmenu[$key]}" ]]; then
+			echo "How many are you converting?"
+			read gimme
 
-select zangmenu in "BOOKS" "RODS/STAFF/WAND/JEWELERY" "WEAPONS" "OIL FLASKS" "SCROLLS/TORCHES" "FOOD/POTIONS" "MONEY"
-	do
-		case "$zangmenu" in
-			"BOOKS")
-				echo "How many are you converting?"
-				read gimme
-				concalc "15root($gimme*100000)"
-				echo -e "\nTOTAL XP ="
-				concalc "$xp + ($gimme*100000)"
-				echo "OR"
-				concalc "$xp * (15root($gimme*100000))"
+			# Retrieve conversion factor
+			factor=${zangmenu[$key]}
+
+			# Calculate possible results using bc
+			calc1=$(echo "scale=9; e(l($gimme * $factor) / 15)" | bc -l)
+			calc2=$(echo "$xp + ($gimme * $factor)" | bc -l)
+			calc3=$(echo "scale=9; $xp * e(l($gimme * $factor) / 15)" | bc -l)
+
+			# Find the smallest result
+			smallest=$(printf "%s\n" "$calc2" "$calc3" | sort -n | head -1)
+
+			clear
+			echo -e "$calc1"
+			echo -e "\nLowest Value = $smallest"
 			return
-			;;
-			"RODS/STAFF/WAND/JEWELERY")
-				echo "How many charges are you converting?"
-				read gimme
-				concalc "15root($gimme*12500)"
-				echo -e "\nTOTAL XP ="
-				concalc "$xp + ($gimme*12500)"
-				echo "OR"
-                                concalc "$xp * (15root($gimme*12500))"
-			return
-			;;
-			"WEAPONS")
-				echo "How many weapons are you converting?"
-				read gimme
-                                concalc "15root($gimme*10000)"
-				echo -e "\nTOTAL XP ="
-				concalc "$xp + ($gimme*10000)"
-				echo "OR"
-                                concalc "$xp * (15root($gimme*10000))"
-			return
-			;;
-			"OIL FLASKS")
-				echo "How many flasks are you converting?"
-				read gimme
-                                concalc "15root($gimme*7500)"
-				echo -e "\nTOTAL XP ="
-				concalc "$xp + ($gimme*7500)"
-                                echo "OR"
-                                concalc "$xp * (15root($gimme*7500))"
-			return
-			;;
-			"SCROLLS/TORCHES")
-				echo "How much are you converting?"
-				read gimme
-                                concalc "15root($gimme*5000)"
-				echo -e "\nTOTAL XP ="
-				concalc "$xp + ($gimme*5000)"
-				echo "OR"
-                                concalc "$xp * (15root($gimme*5000))"
-			return
-			;;
-			"FOOD/POTIONS")
-				echo "How much are you converting?"
-				read gimme
-                                concalc "15root($gimme*1000)"
-				echo -e "\nTOTAL XP ="
-				concalc "$xp + ($gimme*1000)"
-				echo "OR"
-                                concalc "$xp * (15root($gimme*1000))"
-			return
-			;;
-			"MONEY")
-				echo "How many turns of light / money are you converting?"
-				read gimme
-                                concalc "15root($gimme)"
-				echo "TOTAL XP ="
-				concalc "$xp + $gimme"
-				echo "OR"
-                                concalc "$xp * (15root($gimme))"
-			return
-			;;
-		esac
+		else
+			echo "Invalid selection. Please choose again."
+		fi
 	done
 }
