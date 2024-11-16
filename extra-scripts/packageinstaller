@@ -1,40 +1,98 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-DEFAULT_PKG_MANGR=apt
-DEFAULT_FILE="/<path_to_dir>/default_packages.strings"
-packages=()
+function packageinstaller()
+{
+	DEFAULT_PKG_MANGR="apt"
+	DEFAULT_FILE="/<path_to_dir>/default_packages.strings"
 
+# Parse command-line flags
+parse_flags() {
+		while getopts ":f:m:h" option; do
+			case ${option} in
+				f)
+					FILE=$OPTARG
+				;;
+				m)
+					PKG_MANGR=$OPTARG
+				;;
+				h)
+					echo "Usage: $0 [-f STRINGS_FILE] [-m PACKAGE_MANAGER] [-h HELP]"
+					return 0
+				;;
+				\?)
+					echo "Invalid option: -$OPTARG"
+					echo "Usage: $0 [-f STRINGS_FILE] [-m PACKAGE_MANAGER] [-h HELP]"
+					return 1
+				;;
+			esac
+		done
+}
 
-# Parse flag Options
-while getopts ":f:m:" option; do
-	case ${option} in
-		f )
-			FILE=$OPTARG;
-			echo "File: $FILE"
-			;;
-		m )
-			PKG_MANGR=$OPTARG;
-			echo "Pkg manager: $PKG_MANGR"
-			;;
-		\?) echo "usage: $0 [-f STRINGS_FILE] [-m PACKAGE_MANAGER] [-h HELP]"
-			exit 1
-			;;
-	esac
-done
+# Check if the file exists
+check_file_exists()
+{
+if [ ! -f "$file" ]; then
+	echo "Error: File '$file' not found."
+	return 1
+fi
+}
 
-# Check for user defined values
-file=${FILE:-$DEFAULT_FILE}
-package_manager=${PKG_MANGR:-$DEFAULT_PKG_MANGR}
-# Populate package string array
-while IS_STRING= read -r line;
-do
-packages+=( $line )
-done < "$file"
+# Read the package file into an array
+read_package_file()
+{
+mapfile -t packages < "$file"
+}
 
-# Install
-sudo $package_manager update
-sudo $package_manager upgrade
-for package in ${packages[@]}; do
-	sudo $package_manager install -y $package
-done
-sudo $package_manager autoremove
+# Update the system
+update_system()
+{
+echo "Updating package lists..."
+sudo $package_manager update && sudo $package_manager upgrade -y
+}
+
+# Install the packages
+install_packages()
+{
+for package in "${packages[@]}"
+	do
+		echo "Installing $package..."
+		sudo $package_manager install -y "$package"
+	done
+}
+
+# Clean up unnecessary packages
+cleanup_system()
+{
+echo "Cleaning up unused packages..."
+sudo $package_manager autoremove -y
+}
+
+# Main function to orchestrate the tasks
+install_default_packages()
+{
+# Check for user-defined values or fall back to defaults
+file="${FILE:-$DEFAULT_FILE}"
+package_manager="${PKG_MANGR:-$DEFAULT_PKG_MANGR}"
+
+# Parse flags
+parse_flags "$@"
+
+# Check if the package list file exists
+check_file_exists || return 1
+
+# Read the package list file
+read_package_file
+
+# Update and upgrade the system
+update_system
+
+# Install packages
+install_packages
+
+# Clean up the system
+cleanup_system
+}
+
+# Call the main function
+install_default_packages "$@"
+}

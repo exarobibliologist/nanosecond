@@ -1,367 +1,196 @@
 #!/bin/bash
 
-####COPYRIGHT NOTICE#####COPYRIGHT NOTICE#####COPYRIGHT NOTICE#####COPYRIGHT NOTICE#####COPYRIGHT NOTICE#####COPYRIGHT NOTICE####
-#Copyright (C) 2018 exarobibliologst (github.com/exarobibliologist)                                                             #
-#                                                                                                                               #
-#This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License      #
-#as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.          #
-#                                                                                                                               #
-#This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of #
-#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.                     #
-#                                                                                                                               #
-#You should have received a copy of the GNU General Public License along with this program; if not, write to the                #
-#Free Software Foundation, Inc.                                                                                                 #
-#51 Franklin Street, Fifth Floor,                                                                                               #
-#Boston, MA  02110-1301, USA.                                                                                                   #
-#################################################################################################################################
-
-function InstallWhenNotExist()
+# Function to install package if not already installed
+function InstallPackageIfNotExist()
 {
-if ! dpkg -l | grep -wq $1; then echo -e "Working on ${Color196}$1${Color_Off}" && sudo apt install $1; else echo -e "${Color196}$1${Color_Off} is installed"; fi
+	local package=$1
+	local installer=${2:-"apt"}  # Default to apt if not provided
+	local package_manager="sudo $installer install -y"
+
+    # Check if the package is installed
+	if ! dpkg -l | grep -wq "$package"; then
+		echo -e "Working on ${Color196}$package${Color_Off}..."
+        # Install the package
+			if [[ "$installer" == "aptitude" ]]; then
+				sudo aptitude install -Py "$package"   # Use aptitude for forced install
+			else
+				sudo apt install -y "$package"           # Use apt as default
+			fi
+		else
+			echo -e "${Color196}$package${Color_Off} is already installed."
+		fi
 }
 
-function ForceInstallWhenNotExist()
-{
-if ! dpkg -l | grep -wq $1; then echo -e "Working on ${Color196}$1${Color_Off}" && sudo aptitude install -Py $1; else echo -e "${Color196}$1${Color_Off} is installed"; fi
-}
-
-function InstallAllWhenNotExist()
-{
-if ! dpkg -l | grep -wq $1; then echo -e "Working on ${Color196}$1${Color_Off}" && sudo aptitude install -Pr $1; else echo -e "${Color196}$1${Color_Off} is installed"; fi
-}
-
+# Function for menu-driven installation
 function installstuff()
 {
-echo -e "Showing you your sources.list. ${Color196}If anything looks off, abort the script immediately and fix it!${Color_Off}\n"
-grep -e "stable" -e "testing" -e "unstable" -e "experimental" -e "contrib" -e "non-free" /etc/apt/sources.list
-pressanykey
-keepinstallingmorestuff
+	echo -e "Showing you your sources.list. ${Color196}If anything looks off, abort the script immediately and fix it!${Color_Off}\n"
+	grep -e "stable" -e "testing" -e "unstable" -e "experimental" -e "contrib" -e "non-free" /etc/apt/sources.list
+	pressanykey
+	KeepInstallingMoreStuff
 }
 
-function keepinstallingmorestuff()
+# Function to continue installation after source check
+function KeepInstallingMoreStuff()
 {
-clear
-echo -e "Options:\n"
-echo -e "${Color003}Compressed Files${Color_Off} - gzip p7zip tar unrar"
-echo -e "${Color003}Conky${Color_Off} - conky-all"
-echo -e "${Color003}Documents${Color_Off} - libreoffice kate"
-echo -e "${Color003}Drive Management${Color_Off} - apper brasero furiusisomount gnome-disk-utility k3b mintstick smartmontools xfburn"
-echo -e "${Color003}File Browsers${Color_Off} - caja dolphin krusader nautilus nemo spacefm"
-echo -e "${Color003}FlatPak${Color_Off}"
-echo -e "${Color003}Fluxbox Setup${Color_Off} - Installs required files for my personal Fluxbox setup"
-echo -e "${Color003}Font Managers${Color_Off} - font-manager gucharmap figlet"
-echo -e "${Color003}Fonts${Color_Off} - lots of nice fonts"
-echo -e "${Color003}Fortunes${Color_Off} - Can install fortune files that you can use in various programs"
-echo -e "${Color003}Games${Color_Off} - angrydd ardentryst asylum atanks bsdgames dopewars dosbox flare ksudoku kobodeluxe manaplus meritous runescape zangband"
-echo -e "${Color003}Games - ${Color196}Steam${Color_Off}"
-echo -e "${Color003}GNOME Boxes${Color_Off}"
-echo -e "${Color003}Internet${Color_Off} - chromium firefox htop mtr namebench netselect-apt strace Telegram-Desktop torbrowser-launcher"
-echo -e "${Color003}IRC${Color_Off} - hexchat konversation"
-echo -e "${Color003}Media${Color_Off} - flac lame moc smplayer vlc"
-echo -e "${Color003}Pictures${Color_Off} - inkscape luminance-hdr gimp kde-spectacle ufraw"
-echo -e "${Color003}Terminal${Color_Off} - konsole terminator"
-echo -e "${Color003}Torrents${Color_Off} - amule deluge ktorrent qbittorrent transmission-gtk"
-echo -e "${Color003}Virtualbox${Color_Off} - non-free version of virtualbox"
-echo -e "${Color003}WINE${Color_Off} - Automates the WINE installation"
-echo -e "${Color003}XFCE Desktop${Color_Off}"
-echo -e "${Color003}X Screensavers${Color_Off} - xscreensaver xscreensaver-data xscreensaver-data-extra xscreensaver-screensaver-bsod xscreensaver-gl xscreensaver-gl-extra rss-glx"
-echo -e "What do you wish to install?\n\n"
-select installmenuchoice in "Compressed Files" "Conky" "Documents" "Drive Management" "File Browsers" "FlatPak" "Fluxbox Setup" "Font Managers" "Fonts" "Fortunes" "Games" "Games Steam" "GNOME Boxes" "Internet" "IRC" "Media" "Pictures" "Terminal" "Torrents" "Virtualbox" "WINE" "XFCE Desktop" "X Screensavers" "Exit"
-	do
+	clear
+	echo -e "Options:\n"
+# List of installation options
+	local options=(
+	"Compressed Files = gzip p7zip-full tar unrar-free unzip"
+	"Conky"
+	"Documents = kate libreoffice"
+	"Drive Management = apper brasero furiusisomount gnome-disk-utility k3b smartmontools xfburn & mintstick"
+	"File Browsers = caja dolphin krusader nautilus nemo spacefm"
+	"FlatPak"
+	"Fluxbox Setup"
+	"Font Managers = figlet font-manager gucharmap"
+	"Fonts"
+	"Fortunes"
+	"Games = angrydd ardentryst asylum atanks bsdgames dopewars dosbox flare ksudoku kobodeluxe manaplus meritous runescape zangband"
+	"Games Steam"
+	"GNOME Boxes"
+	"Internet = chromium htop mtr namebench netselect-apt strace telegram-desktop torbrowser-launcher"
+	"IRC = hexchat konversation"
+	"Media = flac lame moc smplayer vlc"
+	"Pictures = inkscape luminance-hdr gimp gimp-data-extras gimp-gap gimp-lensfun gimp-ufraw gimp-texturiz gwenview kde-spectacle ufraw ufraw-batch"
+	"Terminal = konsole terminator"
+	"Torrents = amule deluge ktorrent qbittorrent transmission-gtk"
+	"Virtualbox"
+	"WINE"
+	"XFCE Desktop"
+	"X Screensavers"
+	"Exit"
+)
+
+	# Display options dynamically
+	PS3="Please select an option: "
+	select installmenuchoice in "${options[@]}"; do
 		case "$installmenuchoice" in
-			"Compressed Files")
-			        InstallWhenNotExist gzip
-                                InstallWhenNotExist p7zip-full
-                                InstallWhenNotExist tar
-                                InstallWhenNotExist unrar-free
-                                InstallWhenNotExist unzip
-				pressanykey
-				clear
-				keepinstallingmorestuff
-			return
-			;;
+			"Compressed Files = gzip p7zip-full tar unrar-free unzip")
+				for pkg in gzip p7zip-full tar unrar-free unzip; do
+					InstallPackageIfNotExist "$pkg"
+				done
+				;;
 			"Conky")
-				InstallAllWhenNotExist conky-all
-				pressanykey
-				clear
-				keepinstallingmorestuff
-			return
-			;;
-			"Documents")
-				InstallWhenNotExist kate
-				InstallWhenNotExist libreoffice
-				pressanykey
-				clear
-				keepinstallingmorestuff
-			return
-			;;
-			"Drive Management")
-				InstallWhenNotExist apper
-				InstallWhenNotExist brasero
-				InstallWhenNotExist furiusisomount
-				InstallWhenNotExist gnome-disk-utility
-				InstallWhenNotExist k3b
+				InstallPackageIfNotExist conky-all "aptitude"
+				;;
+			"Documents = kate libreoffice")
+				for pkg in kate libreoffice; do
+					InstallPackageIfNotExist "$pkg"
+				done
+				;;
+			"Drive Management = apper brasero furiusisomount gnome-disk-utility k3b smartmontools xfburn & mintstick")
+				for pkg in apper brasero furiusisomount gnome-disk-utility k3b smartmontools xfburn; do
+					InstallPackageIfNotExist "$pkg"
+				done
+				# Firefox download for Mintstick
 				firefox http://packages.linuxmint.com/pool/main/m/mintstick/
-				InstallWhenNotExist smartmontools
-				InstallWhenNotExist xfburn
-				pressanykey
-				clear
-				keepinstallingmorestuff
-			return
-			;;
-			"File Browsers")
-				InstallWhenNotExist caja
-				InstallWhenNotExist dolphin
-				InstallWhenNotExist krusader
-				InstallWhenNotExist nautilus
-				InstallWhenNotExist nemo
-                                InstallWhenNotExist spacefm
-				pressanykey
-				clear
-				keepinstallingmorestuff
-			return
-			;;
+				;;
+			"File Browsers = caja dolphin krusader nautilus nemo spacefm")
+				for pkg in caja dolphin krusader nautilus nemo spacefm; do
+					InstallPackageIfNotExist "$pkg"
+				done
+				;;
 			"FlatPak")
 				sudo apt update
-				InstallWhenNotExist flatpak
-				InstallWhenNotExist gnome-software-plugin-flatpak
+				InstallPackageIfNotExist flatpak
+				InstallPackageIfNotExist gnome-software-plugin-flatpak
 				flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-				pressanykey
 				sudo apt update
-				keepinstallingmorestuff
-			return
-			;;
+				;;
 			"Fluxbox Setup")
-				InstallAllWhenNotExist conky-all
-				InstallWhenNotExist compton
-				InstallWhenNotExist deluge
-				InstallWhenNotExist fluxbox
-				InstallWhenNotExist hexchat
-				InstallWhenNotExist hpanel
-				InstallWhenNotExist network-manager-gnome
-				InstallWhenNotExist suckless-tools
-				InstallWhenNotExist spacefm
-				InstallWhenNotExist terminator
-				InstallWhenNotExist xfce4-power-manager
-				pressanykey
-				clear
-				keepinstallingmorestuff
-			return
-			;;
-			"Font Managers")
-				InstallWhenNotExist figlet
-				InstallWhenNotExist font-manager
-				InstallWhenNotExist gucharmap
-				pressanykey
-				clear
-				keepinstallingmorestuff
-			return
-			;;
+				for pkg in conky-all compton deluge fluxbox hexchat hpanel network-manager-gnome suckless-tools spacefm terminator xfce4-power-manager; do
+					InstallPackageIfNotExist "$pkg"
+				done
+				;;
+			"Font Managers = figlet font-manager gucharmap")
+				for pkg in figlet font-manager gucharmap; do
+					InstallPackageIfNotExist "$pkg"
+				done
+				;;
 			"Fonts")
-				InstallWhenNotExist fonts-arkpandora
-				InstallWhenNotExist fonts-averia-gwf
-				InstallWhenNotExist fonts-averia-sans-gwf
-				InstallWhenNotExist fonts-averia-serif-gwf
-				InstallWhenNotExist fonts-cabin
-				InstallWhenNotExist fonts-cantarell
-				InstallWhenNotExist fonts-cardo
-				InstallWhenNotExist fonts-century-catalogue
-				InstallWhenNotExist fonts-comfortaa
-				InstallWhenNotExist fonts-dejavu
-				InstallWhenNotExist fonts-dejavu-core
-				InstallWhenNotExist fonts-dejavu-extra
-				InstallWhenNotExist fonts-dkg-handwriting
-				InstallWhenNotExist fonts-dseg
-				InstallWhenNotExist fonts-droid
-				InstallWhenNotExist fonts-dosis
-				InstallWhenNotExist fonts-ebgaramond
-				InstallWhenNotExist fonts-ebgaramond-extra
-				InstallWhenNotExist fonts-essays1743
-				InstallWhenNotExist fonts-georgewilliams
-				InstallWhenNotExist fonts-glasstty
-				InstallWhenNotExist fonts-gnutypewriter
-				InstallWhenNotExist fonts-go
-				InstallWhenNotExist fonts-hack-ttf
-				InstallWhenNotExist fonts-junicode
-				InstallWhenNotExist fonts-jura
-				InstallWhenNotExist fonts-kristi
-				InstallWhenNotExist fonts-lato
-				InstallWhenNotExist fonts-linex
-				InstallWhenNotExist fonts-liberation
-				InstallWhenNotExist fonts-lobster
-				InstallWhenNotExist fonts-lobstertwo
-				InstallWhenNotExist fonts-sil-abyssinica
-				InstallWhenNotExist fonts-noto
-				InstallWhenNotExist fonts-play
-				InstallWhenNotExist fonts-roboto
-				InstallWhenNotExist fonts-wine
-				InstallWhenNotExist ttf-aenigma
-				InstallWhenNotExist ttf-engadget
-				InstallWhenNotExist ttf-mscorefonts-installer
-				pressanykey
-				clear
-				keepinstallingmorestuff
-			return
-			;;
+				for pkg in fonts-arkpandora fonts-averia-gwf fonts-averia-sans-gwf fonts-averia-serif-gwf fonts-cabin fonts-cantarell fonts-cardo fonts-century-catalogue fonts-comfortaa fonts-dejavu fonts-dkg-handwriting fonts-droid fonts-dosis fonts-ebgaramond fonts-essays1743 fonts-gnutypewriter fonts-go fonts-hack-ttf fonts-junicode fonts-jura fonts-lato fonts-linex fonts-liberation fonts-lobster fonts-lobstertwo fonts-noto fonts-play fonts-roboto fonts-wine ttf-aenigma ttf-engadget ttf-mscorefonts-installer; do
+					InstallPackageIfNotExist "$pkg"
+				done
+				;;
 			"Fortunes")
-				InstallWhenNotExist fortunes
-				InstallWhenNotExist fortune-mod
-				InstallWhenNotExist fortunes-spam
-				pressanykey
-				clear
-				keepinstallingmorestuff
-			return
-			;;
-			"Games")
-				InstallWhenNotExist angrydd
-				InstallWhenNotExist ardentryst
-				InstallWhenNotExist asylum
-				InstallWhenNotExist atanks
-				InstallWhenNotExist bsdgames
-				InstallWhenNotExist dopewars
-				InstallWhenNotExist dosbox
-				InstallWhenNotExist flare
-				InstallWhenNotExist flare-game
-				InstallWhenNotExist ksudoku
-				InstallWhenNotExist kobodeluxe
-				InstallWhenNotExist manaplus
-				InstallWhenNotExist meritous
-				InstallWhenNotExist runescape
-				InstallWhenNotExist zangband
-				pressanykey
-				clear
-				keepinstallingmorestuff
-			return
-			;;
-			"Games Steam")
+				for pkg in fortunes fortune-mod fortunes-spam; do
+					InstallPackageIfNotExist "$pkg"
+				done
+				;;
+			"Games = angrydd ardentryst asylum atanks bsdgames dopewars dosbox flare ksudoku kobodeluxe manaplus meritous runescape zangband")
+				for pkg in angrydd ardentryst asylum atanks bsdgames dopewars dosbox flare ksudoku kobodeluxe manaplus meritous runescape zangband; do
+					InstallPackageIfNotExist "$pkg"
+				done
+				;;
+			"Games = Steam")
 				sudo dpkg --add-architecture i386
 				sudo apt update
-				sudo apt install steam-installer
+				InstallPackageIfNotExist steam-installer "aptitude"
 				sudo apt install mesa-vulkan-drivers libglx-mesa0:i386 mesa-vulkan-drivers:i386 libgl1-mesa-dri:i386
-				clear
-				keepinstallingmorestuff
-			return
-			;;
+				;;
 			"GNOME Boxes")
-				InstallAllWhenNotExist gnome-boxes
-				pressanykey
-				clear
-				keepinstallingmorestuff
-			return
-			;;
-			"Internet")
-				InstallWhenNotExist chromium
-				InstallWhenNotExist htop
-				InstallWhenNotExist mtr
-				InstallWhenNotExist namebench
-				InstallWhenNotExist netselect-apt
-				InstallWhenNotExist strace
-				InstallWhenNotExist telegram-desktop
-				InstallWhenNotExist torbrowser-launcher
-				pressanykey
-				clear
-				keepinstallingmorestuff
-			return
-			;;
-			"IRC")
-				InstallWhenNotExist hexchat
-				InstallWhenNotExist konversation
-				pressanykey
-				clear
-				keepinstallingmorestuff
-			return
-			;;
-			"Media")
-				InstallWhenNotExist flac
-				InstallWhenNotExist lame
-				InstallWhenNotExist moc
-				InstallWhenNotExist smplayer
-				InstallWhenNotExist vlc
-				pressanykey
-				clear
-				keepinstallingmorestuff
-			return
-			;;
-			"Pictures")
-				InstallWhenNotExist inkscape
-				InstallWhenNotExist luminance-hdr
-				InstallWhenNotExist gimp
-				InstallWhenNotExist gimp-data-extras
-				InstallWhenNotExist gimp-gap
-				InstallWhenNotExist gimp-lensfun
-				InstallWhenNotExist gimp-ufraw
-				InstallWhenNotExist gimp-texturiz
-				InstallWhenNotExist gwenview
-				InstallWhenNotExist kde-spectacle
-				InstallWhenNotExist ufraw
-				InstallWhenNotExist ufraw-batch
-				pressanykey
-				clear
-				keepinstallingmorestuff
-			return
-			;;
-			"Terminal")
-				InstallWhenNotExist konsole
-				InstallWhenNotExist terminator
-				pressanykey
-				clear
-				keepinstallingmorestuff
-			return
-			;;
-			"Torrents")
-				InstallWhenNotExist amule
-				InstallWhenNotExist deluge
-				InstallWhenNotExist ktorrent
-				InstallWhenNotExist qbittorrent
-				InstallWhenNotExist transmission-gtk
-				pressanykey
-				clear
-				keepinstallingmorestuff
-			return
-			;;
+				InstallPackageIfNotExist gnome-boxes "aptitude"
+				;;
+			"Internet = chromium htop mtr namebench netselect-apt strace telegram-desktop torbrowser-launcher")
+				for pkg in chromium htop mtr namebench netselect-apt strace telegram-desktop torbrowser-launcher; do
+					InstallPackageIfNotExist "$pkg"
+				done
+				;;
+			"IRC = hexchat konversation")
+				for pkg in hexchat konversation; do
+					InstallPackageIfNotExist "$pkg"
+				done
+				;;
+			"Media = flac lame moc smplayer vlc")
+				for pkg in flac lame moc smplayer vlc; do
+					InstallPackageIfNotExist "$pkg"
+				done
+				;;
+			"Pictures = inkscape luminance-hdr gimp gimp-data-extras gimp-gap gimp-lensfun gimp-ufraw gimp-texturiz gwenview kde-spectacle ufraw ufraw-batch")
+				for pkg in inkscape luminance-hdr gimp gimp-data-extras gimp-gap gimp-lensfun gimp-ufraw gimp-texturiz gwenview kde-spectacle ufraw ufraw-batch; do
+					InstallPackageIfNotExist "$pkg"
+				done
+				;;
+			"Terminal = konsole terminator")
+				for pkg in konsole terminator; do
+					InstallPackageIfNotExist "$pkg"
+				done
+				;;
+			"Torrents = amule deluge ktorrent qbittorrent transmission-gtk")
+				for pkg in amule deluge ktorrent qbittorrent transmission-gtk; do
+					InstallPackageIfNotExist "$pkg"
+				done
+				;;
 			"Virtualbox")
-				InstallAllWhenNotExist virtualbox-nonfree
-				pressanykey
-				clear
-				keepinstallingmorestuff
-			return
-			;;
+				InstallPackageIfNotExist virtualbox-nonfree "aptitude"
+				;;
 			"WINE")
 				sudo dpkg --add-architecture i386
 				sudo apt update
-				InstallAllWhenNotExist wine wine32 wine64
-				InstallAllWhenNotExist libwine
-				InstallAllWhenNotExist libwine:i386
-				InstallAllWhenNotExist fonts-wine
-				pressanykey
-				clear
-				keepinstallingmorestuff
-			return
-			;;
+				for pkg in wine wine32 wine64 libwine libwine:i386 fonts-wine; do
+					InstallPackageIfNotExist "$pkg" "aptitude"
+				done
+				;;
 			"XFCE Desktop")
-				InstallAllWhenNotExist xfce4
-				InstallAllWhenNotExist xfce4-goodies
-				keepinstallingmorestuff
-			return
-			;;
+				for pkg in xfce4 xfce4-goodies; do
+					InstallPackageIfNotExist "$pkg" "aptitude"
+				done
+				;;
 			"X Screensavers")
-				InstallWhenNotExist xscreensaver
-				InstallWhenNotExist xscreensaver-data
-				InstallWhenNotExist xscreensaver-data-extra
-				InstallWhenNotExist xscreensaver-screensaver-bsod
-				InstallWhenNotExist xfishtank
-				InstallWhenNotExist xdaliclock
-				InstallWhenNotExist xscreensaver-gl
-				InstallWhenNotExist xscreensaver-gl-extra
-				InstallWhenNotExist rss-glx
-				pressanykey
-				clear
-				keepinstallingmorestuff
-				return
-			;;
+				for pkg in xscreensaver xscreensaver-data xscreensaver-data-extra xscreensaver-screensaver-bsod xscreensaver-gl xscreensaver-gl-extra rss-glx; do
+					InstallPackageIfNotExist "$pkg"
+				done
+				;;
 			"Exit")
-				return
-			;;
+				break
+				;;
+			*)
+				echo "Invalid choice, please try again."
+				;;
 		esac
-	done
+	pressanykey
+	clear
+done
 }

@@ -1,33 +1,29 @@
-#! /bin/bash
+#!/bin/bash
 
-####COPYRIGHT NOTICE#####COPYRIGHT NOTICE#####COPYRIGHT NOTICE#####COPYRIGHT NOTICE#####COPYRIGHT NOTICE#####COPYRIGHT NOTICE####
-#Copyright (C) 2018 exarobibliologst (github.com/exarobibliologist)                                                             #
-#                                                                                                                               #
-#This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License      #
-#as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.          #
-#                                                                                                                               #
-#This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of #
-#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.                     #
-#                                                                                                                               #
-#You should have received a copy of the GNU General Public License along with this program; if not, write to the                #
-#Free Software Foundation, Inc.                                                                                                 #
-#51 Franklin Street, Fifth Floor,                                                                                               #
-#Boston, MA  02110-1301, USA.                                                                                                   #
-#################################################################################################################################
+lamer() {
+    # Ensure the argument is provided
+    if [ -z "$1" ]; then
+        echo "No input file provided."
+        return 1
+    fi
 
-function lamer()
-{
-if [ -f $1 ]
-	then
-		case $1 in
-			*".wav")
-				lame -h -b 256 $1 $1.mp3
-			;;
-			*".flac")
-				flac -cd "$1" | lame -b 320 - "${1%.*}".mp3
-			;;
-		esac
-	else
-		echo "'$1' is not a valid input file."
-fi
+    # Check if the input file exists and is a regular file
+    if [ ! -f "$1" ]; then
+        echo "'$1' is not a valid input file."
+        return 1
+    fi
+
+    # Process based on file extension
+    case "$1" in
+        *.wav)
+            lame -h -b 256 "$1" "${1}.mp3"
+            ;;
+        *.flac)
+            flac -cd "$1" | lame -b 320 - "${1%.*}.mp3"
+            ;;
+        *)
+            echo "Unsupported file type: '$1'"
+            return 1
+            ;;
+    esac
 }

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Proper usage: debinstall [FILE]
+# This will take care of installing a troublesome .deb file by resolving anything that makes it hang.
+
 function debinstall() {
 sudo dpkg -i $1
 sudo apt install -f

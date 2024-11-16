@@ -1,22 +1,3 @@
-####COPYRIGHT NOTICE#####COPYRIGHT NOTICE#####COPYRIGHT NOTICE#####COPYRIGHT NOTICE#####COPYRIGHT NOTICE#####COPYRIGHT NOTICE####
-#Copyright (C) 2018 exarobibliologst (github.com/exarobibliologist)								#
-#																#
-#This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License	#
-#as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.		#
-#																#
-#This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of	#
-#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.			#
-#																#
-#You should have received a copy of the GNU General Public License along with this program; if not, write to the		#
-#Free Software Foundation, Inc.													#
-#51 Franklin Street, Fifth Floor,												#
-#Boston, MA  02110-1301, USA.													#
-#################################################################################################################################
-
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
-
 # Source global definitions
 if [ -f /etc/bash.bashrc ]; then
         . /etc/bash.bashrc
@@ -93,7 +74,6 @@ fi
 . ~/GIT/nanosecond/namechanger
 . ~/GIT/nanosecond/networkinfo
 . ~/GIT/nanosecond/owned
-. ~/GIT/nanosecond/packagelistreinstaller
 . ~/GIT/nanosecond/passwordmaker
 . ~/GIT/nanosecond/pressanykey
 . ~/GIT/nanosecond/progress-bar
@@ -104,6 +84,7 @@ fi
 . ~/GIT/nanosecond/rgb2cmyk
 . ~/GIT/nanosecond/slideshower
 . ~/GIT/nanosecond/soundfix
+. ~/GIT/nanosecond/system_backup_and_restore
 . ~/GIT/nanosecond/toplag
 . ~/GIT/nanosecond/unlockdpkg
 . ~/GIT/nanosecond/wallchange
