@@ -12,7 +12,7 @@ function InstallPackageIfNotExist()
 		echo -e "Working on ${Color196}$package${Color_Off}..."
         # Install the package
 			if [[ "$installer" == "aptitude" ]]; then
-				sudo aptitude install -Py "$package"   # Use aptitude for forced install
+				sudo aptitude install -Pry "$package"   # Use aptitude for forced install
 			else
 				sudo apt install -y "$package"           # Use apt as default
 			fi
@@ -100,7 +100,8 @@ function KeepInstallingMoreStuff()
 				sudo apt update
 				;;
 			"Fluxbox Setup")
-				for pkg in conky-all compton deluge fluxbox hexchat hpanel network-manager-gnome suckless-tools spacefm terminator xfce4-power-manager; do
+				InstallPackageIfNotExist conky-all "aptitude"
+				for pkg in compton deluge fluxbox hexchat hpanel network-manager-gnome suckless-tools spacefm terminator xfce4-power-manager; do
 					InstallPackageIfNotExist "$pkg"
 				done
 				;;
