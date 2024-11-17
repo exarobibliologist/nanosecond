@@ -8,7 +8,7 @@ function InstallPackageIfNotExist()
 	local package_manager="sudo $installer install -y"
 
     # Check if the package is installed
-	if ! dpkg -l | grep -wq "$package"; then
+	if ! dpkg -l | awk '{print $2}' | grep -wq "$package"; then
 		echo -e "Working on ${Color196}$package${Color_Off}..."
         # Install the package
 			if [[ "$installer" == "aptitude" ]]; then
