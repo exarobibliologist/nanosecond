@@ -32,15 +32,20 @@ function system_backup_and_restore() {
                                 return 1
                         fi
                         # Ensure i386 architecture is supported, if necessary
-                        if grep -q i386 packages_list.txt; then
+                        if grep -q i386 packages.txt; then
                                 echo "Found i386. Installing i386 architecture."
                                 sudo dpkg --add-architecture i386
                                 sudo apt update
                         fi
                         # Reinstall packages from the backup file
-                        echo "Reinstalling packages from packages_list.txt..."
-                        sudo xargs -a packages.txt apt install -y
-                        echo "Reinstallation completed."
+			echo "Reinstalling packages from packages.txt..."
+				while IFS= read -r package; do
+					if [ -n "$package" ]; then
+						echo "Installing package: $package"
+						sudo apt install -y "$package" || echo "Failed to install $package"
+					fi
+					done < packages.txt
+			echo "Reinstallation completed."
                         return
                         ;;
                         *)
