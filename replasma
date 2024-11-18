@@ -1,0 +1,6 @@
+#! /bin/bash
+
+function replasma()
+{
+systemctl restart --user plasma-plasmashell
+}
