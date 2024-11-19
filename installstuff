@@ -14,7 +14,7 @@ function InstallPackageIfNotExist()
 			if [[ "$installer" == "aptitude" ]]; then
 				sudo aptitude install -Pry "$package"   # Use aptitude for forced install
 			else
-				sudo apt install -y "$package"           # Use apt as default
+				sudo apt install "$package"           # Use apt as default
 			fi
 		else
 			echo -e "${Color196}$package${Color_Off} is already installed."
@@ -40,7 +40,7 @@ function KeepInstallingMoreStuff()
 	"Compressed Files = gzip p7zip-full tar unrar-free unzip"
 	"Conky"
 	"Documents = kate libreoffice"
-	"Drive Management = apper brasero furiusisomount gnome-disk-utility k3b smartmontools xfburn & mintstick"
+	"Drive Management = brasero gnome-disk-utility k3b smartmontools xfburn & mintstick"
 	"File Browsers = caja dolphin krusader nautilus nemo spacefm"
 	"FlatPak"
 	"Fluxbox Setup"
@@ -53,8 +53,8 @@ function KeepInstallingMoreStuff()
 	"Internet = chromium htop mtr namebench netselect-apt strace telegram-desktop torbrowser-launcher"
 	"IRC = hexchat konversation"
 	"Media = flac lame moc smplayer vlc"
-	"Pictures = inkscape luminance-hdr gimp gimp-data-extras gimp-gap gimp-lensfun gimp-ufraw gimp-texturiz gwenview kde-spectacle ufraw ufraw-batch"
-	"Terminal = konsole terminator"
+	"Pictures = feh inkscape luminance-hdr gimp gimp-data-extras gimp-gap gimp-lensfun gimp-ufraw gimp-texturiz gwenview kde-spectacle ufraw ufraw-batch"
+	"Terminal = btop konsole terminator"
 	"Torrents = amule deluge ktorrent qbittorrent transmission-gtk"
 	"Virtualbox"
 	"WINE"
@@ -81,7 +81,7 @@ function KeepInstallingMoreStuff()
 				done
 				;;
 			"Drive Management = apper brasero furiusisomount gnome-disk-utility k3b smartmontools xfburn & mintstick")
-				for pkg in apper brasero furiusisomount gnome-disk-utility k3b smartmontools xfburn; do
+				for pkg in brasero gnome-disk-utility k3b smartmontools xfburn; do
 					InstallPackageIfNotExist "$pkg"
 				done
 				# Firefox download for Mintstick
@@ -111,7 +111,7 @@ function KeepInstallingMoreStuff()
 				done
 				;;
 			"Fonts")
-				for pkg in fonts-arkpandora fonts-averia-gwf fonts-averia-sans-gwf fonts-averia-serif-gwf fonts-cabin fonts-cantarell fonts-cardo fonts-century-catalogue fonts-comfortaa fonts-dejavu fonts-dkg-handwriting fonts-droid fonts-dosis fonts-ebgaramond fonts-essays1743 fonts-gnutypewriter fonts-go fonts-hack-ttf fonts-junicode fonts-jura fonts-lato fonts-linex fonts-liberation fonts-lobster fonts-lobstertwo fonts-noto fonts-play fonts-roboto fonts-wine ttf-aenigma ttf-engadget ttf-mscorefonts-installer; do
+				for pkg in fonts-arkpandora fonts-averia-gwf fonts-averia-sans-gwf fonts-averia-serif-gwf fonts-cabin fonts-cantarell fonts-cardo fonts-century-catalogue fonts-comfortaa fonts-dejavu fonts-dkg-handwriting fonts-droid-fallback fonts-dosis fonts-ebgaramond fonts-essays1743 fonts-freefont-ttf fonts-gnutypewriter fonts-go fonts-hack-ttf fonts-junicode fonts-jura fonts-lato fonts-linex fonts-liberation fonts-lobster fonts-lobstertwo fonts-noto fonts-play fonts-roboto fonts-unifont fonts-wine ttf-mscorefonts-installer; do
 					InstallPackageIfNotExist "$pkg"
 				done
 				;;
@@ -149,13 +149,13 @@ function KeepInstallingMoreStuff()
 					InstallPackageIfNotExist "$pkg"
 				done
 				;;
-			"Pictures = inkscape luminance-hdr gimp gimp-data-extras gimp-gap gimp-lensfun gimp-ufraw gimp-texturiz gwenview kde-spectacle ufraw ufraw-batch")
-				for pkg in inkscape luminance-hdr gimp gimp-data-extras gimp-gap gimp-lensfun gimp-ufraw gimp-texturiz gwenview kde-spectacle ufraw ufraw-batch; do
+			"Pictures = feh inkscape luminance-hdr gimp gimp-data-extras gimp-gap gimp-lensfun gimp-ufraw gimp-texturiz gwenview kde-spectacle ufraw ufraw-batch")
+				for pkg in feh inkscape luminance-hdr gimp gimp-data-extras gimp-gap gimp-lensfun gimp-ufraw gimp-texturiz gwenview kde-spectacle ufraw ufraw-batch; do
 					InstallPackageIfNotExist "$pkg"
 				done
 				;;
 			"Terminal = konsole terminator")
-				for pkg in konsole terminator; do
+				for pkg in btop konsole terminator; do
 					InstallPackageIfNotExist "$pkg"
 				done
 				;;
