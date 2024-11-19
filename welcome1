@@ -82,6 +82,7 @@ function welcome1()
 
     # Determine the current hour
 	hour=$(date +"%H")
+	hour=$((10#$hour)) # Forces the interpretation of $hour as a decimal number
 
     # Select appropriate greeting
 	if (( hour >= 0 && hour < 7 )); then
