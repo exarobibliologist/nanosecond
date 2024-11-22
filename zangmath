@@ -5,11 +5,12 @@ function zangmath() {
 	read xp
 	# Define menu options and conversion factors
 	declare -A zangmenu=(
-		["BOOKS"]=100000
+		["BOOKS/BONES"]=100000
+		["EVERBURNING/PHIAL/STAR"]=50000
 		["RODS/STAFF/WAND/JEWELERY"]=12500
-		["WEAPONS"]=10000
-		["OIL FLASKS"]=7500
-		["SCROLLS/TORCHES"]=5000
+		["WEAPONS/ARMOR"]=10000
+		["OIL FLASKS/TORCHES/LANTERNS"]=7500
+		["SCROLLS"]=5000
 		["FOOD/POTIONS"]=1000
 		["MONEY"]=1
 	)
