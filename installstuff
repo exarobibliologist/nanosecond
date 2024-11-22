@@ -48,7 +48,7 @@ function KeepInstallingMoreStuff()
 	"Fonts"
 	"Fortunes"
 	"Games = angrydd ardentryst asylum atanks bsdgames dopewars dosbox flare ksudoku kobodeluxe manaplus meritous runescape zangband"
-	"Games Steam"
+	"Games = Steam"
 	"GNOME Boxes"
 	"Internet = chromium htop mtr namebench netselect-apt strace telegram-desktop torbrowser-launcher"
 	"IRC = hexchat konversation"
