@@ -50,7 +50,7 @@ function KeepInstallingMoreStuff()
 	"Games = angrydd ardentryst asylum atanks bsdgames dopewars dosbox flare ksudoku kobodeluxe manaplus meritous runescape zangband"
 	"Games = Steam"
 	"GNOME Boxes"
-	"Internet = chromium htop mtr namebench netselect-apt strace telegram-desktop torbrowser-launcher"
+	"Internet = chromium htop mtr namebench netselect-apt strace speedtest-cli telegram-desktop torbrowser-launcher"
 	"IRC = hexchat konversation"
 	"Media = flac lame moc smplayer vlc"
 	"Pictures = feh inkscape luminance-hdr gimp gimp-data-extras gimp-gap gimp-lensfun gimp-ufraw gimp-texturiz gwenview kde-spectacle ufraw ufraw-batch"
@@ -134,8 +134,8 @@ function KeepInstallingMoreStuff()
 			"GNOME Boxes")
 				InstallPackageIfNotExist gnome-boxes "aptitude"
 				;;
-			"Internet = chromium htop mtr namebench netselect-apt strace telegram-desktop torbrowser-launcher")
-				for pkg in chromium htop mtr namebench netselect-apt strace telegram-desktop torbrowser-launcher; do
+			"Internet = chromium htop mtr namebench netselect-apt strace speedtest-cli telegram-desktop torbrowser-launcher")
+				for pkg in chromium htop mtr namebench netselect-apt strace speedtest-cli telegram-desktop torbrowser-launcher; do
 					InstallPackageIfNotExist "$pkg"
 				done
 				;;
