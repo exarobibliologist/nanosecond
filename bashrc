@@ -84,7 +84,9 @@ fi
 . ~/GIT/nanosecond/rgb2cmyk
 . ~/GIT/nanosecond/slideshower
 . ~/GIT/nanosecond/soundfix
+. ~/GIT/nanosecond/subhead_figlet
 . ~/GIT/nanosecond/system_backup_and_restore
+. ~/GIT/nanosecond/title_figlet
 . ~/GIT/nanosecond/toplag
 . ~/GIT/nanosecond/unlockdpkg
 . ~/GIT/nanosecond/wallchange
