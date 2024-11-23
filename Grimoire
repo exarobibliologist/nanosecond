@@ -7,65 +7,122 @@
 #       \__|    \__|  |__/  \_______)     \_______) |__|  \___)(__\_|_)|___|\__/|___|  \"_____/  (__\_|_)|__|  \___) \_______) 
 #                                                                                                                              
 
+####  _____           _   _               __            _____       _     _             
+#### / ____|         | | (_)             /_ |          |  __ \     | |   (_)            
+####| (___   ___  ___| |_ _  ___  _ __    | |  ______  | |  | | ___| |__  _  __ _ _ __  
+#### \___ \ / _ \/ __| __| |/ _ \| '_ \   | | |______| | |  | |/ _ \ '_ \| |/ _` | '_ \ 
+#### ____) |  __/ (__| |_| | (_) | | | |  | |          | |__| |  __/ |_) | | (_| | | | |
+####|_____/ \___|\___|\__|_|\___/|_| |_|  |_|          |_____/ \___|_.__/|_|\__,_|_| |_|
+####                                                                                    
+####                                                                                    
 
-###   _____           _   _               __              ___  ______ _____   _____ _                           
-###  /  ___|         | | (_)             /  |            / _ \ | ___ \_   _| /  ___| |                          
-###  \ `--.  ___  ___| |_ _  ___  _ __   `| |   ______  / /_\ \| |_/ / | |   \ `--.| |_ __ _ _ __  ______ _ ___ 
-###   `--. \/ _ \/ __| __| |/ _ \| '_ \   | |  |______| |  _  ||  __/  | |    `--. \ __/ _` | '_ \|_  / _` / __|
-###  /\__/ /  __/ (__| |_| | (_) | | | | _| |_          | | | || |     | |   /\__/ / || (_| | | | |/ / (_| \__ \
-###  \____/ \___|\___|\__|_|\___/|_| |_| \___/          \_| |_/\_|     \_/   \____/ \__\__,_|_| |_/___\__,_|___/
-###                                                                                                             
-###                                                                                                             
+##__        ___             _____                _              ____       _     _                  _               _   _                 _ _         ____       _   _            
+##\ \      / / |__  _   _  |  ___| __ __ _ _ __ | | _____ _ __ |  _ \  ___| |__ (_) __ _ _ __      / \   _ __ ___  | | | |___ _   _  __ _| | |_   _  | __ )  ___| |_| |_ ___ _ __ 
+## \ \ /\ / /| '_ \| | | | | |_ | '__/ _` | '_ \| |/ / _ \ '_ \| | | |/ _ \ '_ \| |/ _` | '_ \    / _ \ | '__/ _ \ | | | / __| | | |/ _` | | | | | | |  _ \ / _ \ __| __/ _ \ '__|
+##  \ V  V / | | | | |_| | |  _|| | | (_| | | | |   <  __/ | | | |_| |  __/ |_) | | (_| | | | |  / ___ \| | |  __/ | |_| \__ \ |_| | (_| | | | |_| | | |_) |  __/ |_| ||  __/ |   
+##   \_/\_/  |_| |_|\__, | |_|  |_|  \__,_|_| |_|_|\_\___|_| |_|____/ \___|_.__/|_|\__,_|_| |_| /_/   \_\_|  \___|  \___/|___/\__,_|\__,_|_|_|\__, | |____/ \___|\__|\__\___|_|   
+##                  |___/                                                                                                                     |___/                               
 
-Carry me always, carry me well.
-I am thy teacher of Linux and shell.
-I am thy link to programs arcane.
-Forget me and thy kernel will wane.
+The nanosecond repo here on GitHub creates what is colloquially known as a FrankenDebian.
 
-Ten times ten commandments there be.
-They will answer every mystery.
-Kernels, cheats, and apt-key.
-These secrets shall be thine, through me.
+The Debian Wiki @ https://wiki.debian.org/DontBreakDebian advises against making FrankenDebian. It states unequivocally, "Debian Stable should not be combined with other releases carelessly.
+If you're trying to install software that isn't available in the current Debian Stable release, it's not a good idea to add repositories for other Debian releases."
 
-But, hacker, remember this above all.
-I am not for those in mud that crawl.
-And forever doomed shall be the one.
-Who betrays my secrets one by one.
-- Revised with a Linux spin from Eoin Colfer's "Artemis Fowl"
+My studies of this have found other results though. I'd like to say that I didn't approach this trying to destroy my system, and most of the time, I didn't have any crashes at all.
+The reason I even started experimenting with FrankenDebian is because of the purists who would only respond with "RTFM!@!" and link me to the Wiki instead of explaining the answers to specific questions,
+leaving me with more questions and a desire to answer those questions.
 
+First off, The Wiki leads us to believe that adding anything to the sources will create a FrankenDebian!
+	#Debian testing release ## Absolutely NOT true
+	#Debian unstable release (also known as sid) ## Absolutely NOT true
+	#Ubuntu, Mint or other derivative repositories are not compatible with Debian! ## Only partially true.
+	## It would be more accurate to say "They weren't designed with Debian in mind." Most of them are completely compatiable with Debian.
+	## However, derivative repos can introduce an element of unpredictabless to a system, so unless you ABSOLUTELY know what you are doing, probably don't do this.
+	#Ubuntu PPAs and other repositories created to distribute single applications. ## Almost never true. Single applications are much easier to run with Debian than an entire derivative repo.
 
+Here's the problem with this thinking. Debian Stable is admittedly the most stable flavor of Debian, but if you need more up-to-date drivers or support for your system, you won't find it on Stable.
+So, the Debian purists say "Then install Testing." The problem with Testing is that packages move in and out of Testing so rapidly at times, it can be hard to hold on to any stability at all, especially if you're tracking a package under active development.
+So, the Debian purists say "then install Sid." While it's true that packages don't move in and out of Sid with as much rapidity as they do on Testing, you're still one system update away from a brick if you're not careful.
 
-Scribble scribble scribble, as every mage must do.
-These walls will hold your power fast, unless I walk right through.
-A boat I bade from birch and bark, but burned I did at morn.
-Rather I gather in this held spot, than suffer my hands get worn.
-- Shandalar from Baldur's Gate: Tales of the Sword Coast
+This is why the FrankenDebian installation I've made is superior. I found a way to "blend" the sources, without creating chaos.
 
+Here's how it works. In my sources.list, I change all the places where the version is named (i.e; stretch, buster, bullseye, bookworm, trixie, forky, etc) to their generic name (stable, testing, unstable, experimental)
+Then, I add all the sources to my sources.list
 
+#	deb http://deb.debian.org/debian/ stable main contrib non-free non-free-firmware
+#	deb-src http://deb.debian.org/debian/ stable main contrib non-free non-free-firmware
+#
+#	deb http://deb.debian.org/debian/ stable-updates main contrib non-free non-free-firmware
+#	deb-src http://deb.debian.org/debian/ stable-updates main contrib non-free non-free-firmware
+#
+#	deb http://security.debian.org/debian-security stable-security main contrib non-free
+#	deb-src http://security.debian.org/debian-security stable-security main contrib non-free
+#
+#	deb http://deb.debian.org/debian/ testing main contrib non-free non-free-firmware
+#	deb-src http://deb.debian.org/debian/ testing main contrib non-free non-free-firmware
+#
+#	deb http://deb.debian.org/debian/ testing-updates main contrib non-free non-free-firmware
+#	deb-src http://deb.debian.org/debian/ testing-updates main contrib non-free non-free-firmware
+#
+#	deb http://deb.debian.org/debian/ unstable main contrib non-free non-free-firmware
+#	deb-src http://deb.debian.org/debian/ unstable main contrib non-free non-free-firmware
+#
+#	deb http://deb.debian.org/debian/ experimental main contrib non-free
+#	deb-src http://deb.debian.org/debian/ experimental main contrib non-free
 
-I must not fear. Fear is the mind-killer.
-Fear is the little-death that brings total obliteration.
-I will face my fear. I will permit it to pass over me and through me.
-And when it has gone past I will turn the inner eye to see its path.
-Where the fear has gone there will be nothing. Only I will remain.
-- Frank Herbert, Dune
+Now, this, JUST BY ITSELF, would be absolute chaos!! It would almost certinaly not work well, or for very long. What you need to do now is tweak apt_preferences so you force stability on the other sources by deprioritizing them.
+For more information on how this works, look at the section about APT Preferences below, or open a Terminal and type # man apt_preferences
+My completed sourcestopper file looks like this. It change the priority of testing, unstable, and experimental to -10
 
+#	Package: *
+#	Pin: release o=testing
+#	Pin-Priority: -10
+#
+#	Package: *
+#	Pin: release a=testing
+#	Pin-Priority: -10
+#
+#	Package: *
+#	Pin: release n=testing
+#	Pin-Priority: -10
+#
+#	Package: *
+#	Pin: release o=unstable
+#	Pin-Priority: -10
+#
+#	Package: *
+#	Pin: release a=unstable
+#	Pin-Priority: -10
+#
+#	Package: *
+#	Pin: release n=unstable
+#	Pin-Priority: -10
+#
+#	Package: *
+#	Pin: release o=experimental
+#	Pin-Priority: -10
+#
+#	Package: *
+#	Pin: release a=experimental
+#	Pin-Priority: -10
+#
+#	Package: *
+#	Pin: release n=experimental
+#	Pin-Priority: -10
 
-###   _____           _   _               _____           ______     _     _             
-###  /  ___|         | | (_)             / __  \          |  _  \   | |   (_)            
-###  \ `--.  ___  ___| |_ _  ___  _ __   `' / /'  ______  | | | |___| |__  _  __ _ _ __  
-###   `--. \/ _ \/ __| __| |/ _ \| '_ \    / /   |______| | | | / _ \ '_ \| |/ _` | '_ \ 
-###  /\__/ /  __/ (__| |_| | (_) | | | | ./ /___          | |/ /  __/ |_) | | (_| | | | |
-###  \____/ \___|\___|\__|_|\___/|_| |_| \_____/          |___/ \___|_.__/|_|\__,_|_| |_|
-###                                                                                      
-###                                                                                      
+By using generic names for the version names, you can actually create a rolling Debian system that REMAINS Stable, but gives you access to other sources as well. Whenever version names change, apt update will show a message that versions have changed,
+and it will automatically roll into the next version with no difficulty.
 
+This file when placed in /etc/apt/preferences.d allows you to maintain the system at the Stable level, which tracking Testing, Unstable, and Experimental.
 
-##   _______ __           __      __   __               _______               __                __        _______                              
-##  |    ___|__|.-----.--|  |    |  |_|  |--.-----.    |    ___|.---.-.-----.|  |_.-----.-----.|  |_     |     __|.-----.--.--.----.----.-----.
-##  |    ___|  ||     |  _  |    |   _|     |  -__|    |    ___||  _  |__ --||   _|  -__|__ --||   _|    |__     ||  _  |  |  |   _|  __|  -__|
-##  |___|   |__||__|__|_____|    |____|__|__|_____|    |___|    |___._|_____||____|_____|_____||____|    |_______||_____|_____|__| |____|_____|
-##                                                                                                                                             
+Stable is maintained at a pin-priority of 100 as a default, so none of the new sources will impact the system, but you can still install new drivers and programs (packages in Testing will not be automatically installed, and Stable will always have higher priority)
+This type of "blended" FrankenDebian is ridiculously stable, while allowing the most up-to-date software to be accessed and installed.
+
+## _____ _           _   _   _            _____         _            _     ____                           
+##|  ___(_)_ __   __| | | |_| |__   ___  |  ___|_ _ ___| |_ ___  ___| |_  / ___|  ___  _   _ _ __ ___ ___ 
+##| |_  | | '_ \ / _` | | __| '_ \ / _ \ | |_ / _` / __| __/ _ \/ __| __| \___ \ / _ \| | | | '__/ __/ _ \
+##|  _| | | | | | (_| | | |_| | | |  __/ |  _| (_| \__ \ ||  __/\__ \ |_   ___) | (_) | |_| | | | (_|  __/
+##|_|   |_|_| |_|\__,_|  \__|_| |_|\___| |_|  \__,_|___/\__\___||___/\__| |____/ \___/ \__,_|_|  \___\___|
 
 A command line tool called “netselect-apt” is available to find the fastest debian mirror.
 The output file is written to OUTFILE.
@@ -73,12 +130,13 @@ The output file is written to OUTFILE.
 The command will look something like this when used
 #	netselect-apt -c australia -t 15 -a amd64 -n testing
 
+##  ____                      _ _ _               ____  _     _   ____            _                         
+## / ___|___  _ __ ___  _ __ (_) (_)_ __   __ _  / ___|(_) __| | |  _ \ __ _  ___| | ____ _  __ _  ___  ___ 
+##| |   / _ \| '_ ` _ \| '_ \| | | | '_ \ / _` | \___ \| |/ _` | | |_) / _` |/ __| |/ / _` |/ _` |/ _ \/ __|
+##| |__| (_) | | | | | | |_) | | | | | | | (_| |  ___) | | (_| | |  __/ (_| | (__|   < (_| | (_| |  __/\__ \
+## \____\___/|_| |_| |_| .__/|_|_|_|_| |_|\__, | |____/|_|\__,_| |_|   \__,_|\___|_|\_\__,_|\__, |\___||___/
+##                     |_|                |___/                                             |___/           
 
-##   ______                        __ __ __                   _______ __     __      ______              __                            
-##  |      |.-----.--------.-----.|__|  |__|.-----.-----.    |     __|__|.--|  |    |   __ \.---.-.----.|  |--.---.-.-----.-----.-----.
-##  |   ---||  _  |        |  _  ||  |  |  ||     |  _  |    |__     |  ||  _  |    |    __/|  _  |  __||    <|  _  |  _  |  -__|__ --|
-##  |______||_____|__|__|__|   __||__|__|__||__|__|___  |    |_______|__||_____|    |___|   |___._|____||__|__|___._|___  |_____|_____|
-##                         |__|                   |_____|                                                           |_____|            
 Install the Debian source (and the development tools, especially debhelper, devscripts, and build-essential), and then build the package.
 Step by step:
 
@@ -91,12 +149,13 @@ add a deb-src line for sid to your sources.list
 The resulting debs should be in the current directory and can be installed with
 #	dpkg -i *.deb
 
+##  ____ _                              _   _           _                                   
+## / ___| |__   __ _ _ __   __ _  ___  | | | | ___  ___| |_ _ __   __ _ _ __ ___   ___  ___ 
+##| |   | '_ \ / _` | '_ \ / _` |/ _ \ | |_| |/ _ \/ __| __| '_ \ / _` | '_ ` _ \ / _ \/ __|
+##| |___| | | | (_| | | | | (_| |  __/ |  _  | (_) \__ \ |_| | | | (_| | | | | | |  __/\__ \
+## \____|_| |_|\__,_|_| |_|\__, |\___| |_| |_|\___/|___/\__|_| |_|\__,_|_| |_| |_|\___||___/
+##                         |___/                                                            
 
-##   ______ __                                 _______               __                                    
-##  |      |  |--.---.-.-----.-----.-----.    |   |   |.-----.-----.|  |_.-----.---.-.--------.-----.-----.
-##  |   ---|     |  _  |     |  _  |  -__|    |       ||  _  |__ --||   _|     |  _  |        |  -__|__ --|
-##  |______|__|__|___._|__|__|___  |_____|    |___|___||_____|_____||____|__|__|___._|__|__|__|_____|_____|
-##                           |_____|                                                                       
 In order to change the hostname of the computer, you need to change the old hostname present in all the areas below to the new hostname.
 #	/etc/exim4/update-exim4.conf.conf \
 #	/etc/printcap \
@@ -108,12 +167,12 @@ In order to change the hostname of the computer, you need to change the old host
 #	/etc/ssmtp/ssmtp.conf
 Then reboot the computer. The new hostname should be used immediately.
 
+##           _       _       _   _      _                    ____       _     _             
+## _ __ ___ (_)_ __ | |_ ___| |_(_) ___| | __   ___  _ __   |  _ \  ___| |__ (_) __ _ _ __  
+##| '_ ` _ \| | '_ \| __/ __| __| |/ __| |/ /  / _ \| '_ \  | | | |/ _ \ '_ \| |/ _` | '_ \ 
+##| | | | | | | | | | |_\__ \ |_| | (__|   <  | (_) | | | | | |_| |  __/ |_) | | (_| | | | |
+##|_| |_| |_|_|_| |_|\__|___/\__|_|\___|_|\_\  \___/|_| |_| |____/ \___|_.__/|_|\__,_|_| |_|
 
-##             __         __          __   __        __                          _____         __     __              
-##  .--------.|__|.-----.|  |_.-----.|  |_|__|.----.|  |--.    .-----.-----.    |     \.-----.|  |--.|__|.---.-.-----.
-##  |        ||  ||     ||   _|__ --||   _|  ||  __||    <     |  _  |     |    |  --  |  -__||  _  ||  ||  _  |     |
-##  |__|__|__||__||__|__||____|_____||____|__||____||__|__|    |_____|__|__|    |_____/|_____||_____||__||___._|__|__|
-##                                                                                                                    
 Mintstick is a handy tool to use for formatting and creating USB sticks. It's so much easier to use this tool than use fdisk or mkfs
 It also includes an imagewriter that makes creating Live Linux USB drives a snap!
 However, this package is only included on Linux Mint distros. If you're not using Mint, you'll need to follow the steps below.
@@ -122,12 +181,12 @@ However, this package is only included on Linux Mint distros. If you're not usin
 It probably won't install because of missing packages, so...
 #        sudo apt-get install -f
 
+## ____              _ _     ____                                             __      __
+##|  _ \  ___  _ __ ( ) |_  |  _ \ _   _ _ __    _ __ _ __ ___          _ __ / _|    / /
+##| | | |/ _ \| '_ \|/| __| | |_) | | | | '_ \  | '__| '_ ` _ \   _____| '__| |_    / / 
+##| |_| | (_) | | | | | |_  |  _ <| |_| | | | | | |  | | | | | | |_____| |  |  _|  / /  
+##|____/ \___/|_| |_|  \__| |_| \_\\__,_|_| |_| |_|  |_| |_| |_|       |_|  |_|   /_/   
 
-##   _____                 __  __        ______                                                       ___         ___
-##  |     \ .-----..-----.|  ||  |_     |   __ \.--.--..-----.    .----..--------.     ______ .----..'  _|       /  /
-##  |  --  ||  _  ||     | |_||   _|    |      <|  |  ||     |    |   _||        |    |______||   _||   _|     ,' ,' 
-##  |_____/ |_____||__|__|    |____|    |___|__||_____||__|__|    |__|  |__|__|__|            |__|  |__|      /__/   
-##                                                                                                                   
 This is probably the most dangerous command you can use on Linux
 #	rm -rf /
 This command deletes everything it possibly can, including all data on the hard drive, and all data on connected removable media devices.
@@ -149,73 +208,51 @@ Some trolls will attempt to get you to run this command by disguising it
 This is the hex version of rm -rf.
 It will also delete everything just like the above command.
 
-
-##   _______                __    __                      _____                                                              ______                                              __ 
-##  |   _   |.-----..-----.|  |_ |  |--..-----..----.    |     \ .---.-..-----..-----..-----..----..-----..--.--..-----.    |      |.-----..--------..--------..---.-..-----..--|  |
-##  |       ||     ||  _  ||   _||     ||  -__||   _|    |  --  ||  _  ||     ||  _  ||  -__||   _||  _  ||  |  ||__ --|    |   ---||  _  ||        ||        ||  _  ||     ||  _  |
-##  |___|___||__|__||_____||____||__|__||_____||__|      |_____/ |___._||__|__||___  ||_____||__|  |_____||_____||_____|    |______||_____||__|__|__||__|__|__||___._||__|__||_____|
-##                                                                             |_____|                                                                                              
+## __  __                  ____                                                ____                                          _     
+##|  \/  | ___  _ __ ___  |  _ \  __ _ _ __   __ _  ___ _ __ ___  _   _ ___   / ___|___  _ __ ___  _ __ ___   __ _ _ __   __| |___ 
+##| |\/| |/ _ \| '__/ _ \ | | | |/ _` | '_ \ / _` |/ _ \ '__/ _ \| | | / __| | |   / _ \| '_ ` _ \| '_ ` _ \ / _` | '_ \ / _` / __|
+##| |  | | (_) | | |  __/ | |_| | (_| | | | | (_| |  __/ | | (_) | |_| \__ \ | |__| (_) | | | | | | | | | | | (_| | | | | (_| \__ \
+##|_|  |_|\___/|_|  \___| |____/ \__,_|_| |_|\__, |\___|_|  \___/ \__,_|___/  \____\___/|_| |_| |_|_| |_| |_|\__,_|_| |_|\__,_|___/
+##                                           |___/                                                                                 
 /dev/null is a special directory. Moving something to /dev/null is the same thing as destroying it.
 #	mv ~ /dev/null
 So this command would delete your entire home directory.
 
-
-##   _____                 __  __        ______                              __      ___                           __    _____          ___    __                   ___           __         ____   
-##  |     \ .-----..-----.|  ||  |_     |   __ \.--.--..-----.    .--------.|  |--..'  _|.-----.    .-----..--.--.|  |_ |  |  |        /  /.--|  |.-----..--.--.   /  /.-----..--|  |.---.-.|_   |  
-##  |  --  ||  _  ||     | |_||   _|    |      <|  |  ||     |    |        ||    < |   _||__ --| __ |  -__||_   _||   _||__    |     ,' ,' |  _  ||  -__||  |  | ,' ,' |__ --||  _  ||  _  | _|  |_ 
-##  |_____/ |_____||__|__|    |____|    |___|__||_____||__|__|    |__|__|__||__|__||__|  |_____||__||_____||__.__||____|   |__|     /__/   |_____||_____| \___/ /__/   |_____||_____||___._||______|
-##                                                                                                                                                                                                  
 Another dangerous command to avoid is
 #	mkfs.ext4 /dev/sda1
 This command will format the hard drive and replace your current drive (and all your files) with a new ext4 partition.
 
-
-##   _______  __                _____                                           ___ ___                    _______  __                   __     __      __  __                         
-##  |_     _||  |--..-----.    |     |_ .-----..-----..-----..-----..-----.    |   |   |.-----..--.--.    |     __||  |--..-----..--.--.|  |.--|  |    |  |/  |.-----..-----..--.--.--.
-##    |   |  |     ||  -__|    |       ||  -__||__ --||__ --||  _  ||     |     \     / |  _  ||  |  |    |__     ||     ||  _  ||  |  ||  ||  _  |    |     < |     ||  _  ||  |  |  |
-##    |___|  |__|__||_____|    |_______||_____||_____||_____||_____||__|__|      |___|  |_____||_____|    |_______||__|__||_____||_____||__||_____|    |__|\__||__|__||_____||________|
-##                                                                                                                                                                                     
+## _____ _            _                               __   __            ____  _                 _     _   _                          
+##|_   _| |__   ___  | |    ___  ___ ___  ___  _ __   \ \ / /__  _   _  / ___|| |__   ___  _   _| | __| | | |    ___  __ _ _ __ _ __  
+##  | | | '_ \ / _ \ | |   / _ \/ __/ __|/ _ \| '_ \   \ V / _ \| | | | \___ \| '_ \ / _ \| | | | |/ _` | | |   / _ \/ _` | '__| '_ \ 
+##  | | | | | |  __/ | |__|  __/\__ \__ \ (_) | | | |   | | (_) | |_| |  ___) | | | | (_) | |_| | | (_| | | |__|  __/ (_| | |  | | | |
+##  |_| |_| |_|\___| |_____\___||___/___/\___/|_| |_|   |_|\___/ \__,_| |____/|_| |_|\___/ \__,_|_|\__,_| |_____\___|\__,_|_|  |_| |_|
+                                                                                                                                    
 DON'T RUN WEIRD LOOKING, OBVIOUSLY DISGUISED CODE, OR COMMANDS THAT YOU DON'T UNDERSTAND
 
+####  _____           _   _               ___              _____ _____  _    _ ____  
+#### / ____|         | | (_)             |__ \            / ____|  __ \| |  | |  _ \ 
+####| (___   ___  ___| |_ _  ___  _ __      ) |  ______  | |  __| |__) | |  | | |_) |
+#### \___ \ / _ \/ __| __| |/ _ \| '_ \    / /  |______| | | |_ |  _  /| |  | |  _ < 
+#### ____) |  __/ (__| |_| | (_) | | | |  / /_           | |__| | | \ \| |__| | |_) |
+####|_____/ \___|\___|\__|_|\___/|_| |_| |____|           \_____|_|  \_\\____/|____/ 
+####                                                                                 
+####                                                                                 
 
-###   _____           _   _               _____            _____ ______ _   _______ 
-###  /  ___|         | | (_)             |____ |          |  __ \| ___ \ | | | ___ \
-###  \ `--.  ___  ___| |_ _  ___  _ __       / /  ______  | |  \/| |_/ / | | | |_/ /
-###   `--. \/ _ \/ __| __| |/ _ \| '_ \      \ \ |______| | | __ |    /| | | | ___ \
-###  /\__/ /  __/ (__| |_| | (_) | | | | .___/ /          | |_\ \| |\ \| |_| | |_/ /
-###  \____/ \___|\___|\__|_|\___/|_| |_| \____/            \____/\_| \_|\___/\____/ 
-###                                                                                 
-###                                                                                 
+#__        __               _                 __  __               _  ___ _ _   _  ___ _   _                 
+#\ \      / /_ _ _ __ _ __ (_)_ __   __ _ _  |  \/  | __ _ _   _  | |/ (_) | | | |/ (_) |_| |_ ___ _ __  ___ 
+# \ \ /\ / / _` | '__| '_ \| | '_ \ / _` (_) | |\/| |/ _` | | | | | ' /| | | | | ' /| | __| __/ _ \ '_ \/ __|
+#  \ V  V / (_| | |  | | | | | | | | (_| |_  | |  | | (_| | |_| | | . \| | | | | . \| | |_| ||  __/ | | \__ \
+#   \_/\_/ \__,_|_|  |_| |_|_|_| |_|\__, (_) |_|  |_|\__,_|\__, | |_|\_\_|_|_| |_|\_\_|\__|\__\___|_| |_|___/
+#                                   |___/                  |___/                                             
 
+## _____                    _    _                ____ ____  _   _ ____  
+##|_   _|_      _____  __ _| | _(_)_ __   __ _   / ___|  _ \| | | | __ ) 
+##  | | \ \ /\ / / _ \/ _` | |/ / | '_ \ / _` | | |  _| |_) | | | |  _ \ 
+##  | |  \ V  V /  __/ (_| |   <| | | | | (_| | | |_| |  _ <| |_| | |_) |
+##  |_|   \_/\_/ \___|\__,_|_|\_\_|_| |_|\__, |  \____|_| \_\\___/|____/ 
+##                                       |___/                           
 
-##                     __                             __                   __                                         _____         __     __              
-##  .-----.----.--.--.|  |--.______.----.--.--.-----.|  |_.-----.--------.|__|.-----.-----.----.    .-----.-----.    |     \.-----.|  |--.|__|.---.-.-----.
-##  |  _  |   _|  |  ||  _  |______|  __|  |  |__ --||   _|  _  |        ||  ||-- __|  -__|   _|    |  _  |     |    |  --  |  -__||  _  ||  ||  _  |     |
-##  |___  |__| |_____||_____|      |____|_____|_____||____|_____|__|__|__||__||_____|_____|__|      |_____|__|__|    |_____/|_____||_____||__||___._|__|__|
-##  |_____|                                                                                                                                                
-Step 1:	Install these packages
-#	sudo aptitude cmake g++ libgtkmm-3.0-dev gettext libssl-dev libarchive-dev hwinfo
-
-Step 2:	Download the Sources and Extract
-#	wget https://launchpad.net/grub-customizer/5.0/5.0.6/+download/grub-customizer_5.0.6.tar.gz
-
-#	tar zxvf grub-customizer_5.0.6.tar.gz
-#	cd grub-customizer-5.0.6/
-
-Step 3: Compile the Sources
-#	cmake .&& make -j8
-#	sudo make install
-
-If you made a mistake or don't want Grub Customizer installed just type inside grub-customizer-5.0.6 directory:
-#	make uninstall
-#	cd ..;rm -rf grub-customizer-5.0.6
-
-
-##   _______                          __     __                    _______  ______  _______  ______ 
-##  |_     _|.--.--.--..-----..---.-.|  |--.|__|.-----..-----.    |     __||   __ \|   |   ||   __ \
-##    |   |  |  |  |  ||  -__||  _  ||    < |  ||     ||  _  |    |    |  ||      <|   |   ||   __ <
-##    |___|  |________||_____||___._||__|__||__||__|__||___  |    |_______||___|__||_______||______/
-##                                                     |_____|                                      
 Your GRUB settings are stored in. This is the file you edit to change GRUB settings.
 #	/etc/default/grub
 Scripts are located in: Be careful editing or changing any scripts here. Serious system damage can result.
@@ -225,14 +262,15 @@ After editing things, run the command
 
 This makes GRUB automatically combines the settings from the /etc/default/grub, the scripts from the /etc/grub.d/, and creates a /boot/grub/grub.cfg file that’s read at boot.
 
-WARNING!! MAY KILL KITTENS!! - It is possible to edit the file in /boot/grub/grub.cfg
+It is possible to edit the file in /boot/grub/grub.cfg but this should be the absolute last resort you take!
 
+## ____                              _                ____ ____  _   _ ____  
+##|  _ \ ___  ___ _____   _____ _ __(_)_ __   __ _   / ___|  _ \| | | | __ ) 
+##| |_) / _ \/ __/ _ \ \ / / _ \ '__| | '_ \ / _` | | |  _| |_) | | | |  _ \ 
+##|  _ <  __/ (_| (_) \ V /  __/ |  | | | | | (_| | | |_| |  _ <| |_| | |_) |
+##|_| \_\___|\___\___/ \_/ \___|_|  |_|_| |_|\__, |  \____|_| \_\\___/|____/ 
+##                                           |___/                           
 
-##   ______                                          __                    _______  ______  _______  ______ 
-##  |   __ \.-----..----..-----..--.--..-----..----.|__|.-----..-----.    |     __||   __ \|   |   ||   __ \
-##  |      <|  -__||  __||  _  ||  |  ||  -__||   _||  ||     ||  _  |    |    |  ||      <|   |   ||   __ <
-##  |___|__||_____||____||_____| \___/ |_____||__|  |__||__|__||___  |    |_______||___|__||_______||______/
-##                                                             |_____|                                      
 Boot into your Linux LiveCD (use the same version as the one you are recovering, if possible).
 Open Terminal and type:
 #	sudo fdisk -l /dev/sdX					(Replace X with correct letter if you know which partition you use.
@@ -246,30 +284,30 @@ Now you need to tell Linux Mint to install grub2 to the partition you just mount
 Now reboot the computer. You should see a GRUB menu pop up when the reboot is done. If you are dual-booting you may need to refresh GRUB so it detects any Windows partitions. To do this, log in, and open a Terminal and type:
 #	sudo update-grub
 
-
-###   _____           _   _                 ___           ______  ___   _____ _   _ 
-###  /  ___|         | | (_)               /   |          | ___ \/ _ \ /  ___| | | |
-###  \ `--.  ___  ___| |_ _  ___  _ __    / /| |  ______  | |_/ / /_\ \\ `--.| |_| |
-###   `--. \/ _ \/ __| __| |/ _ \| '_ \  / /_| | |______| | ___ \  _  | `--. \  _  |
-###  /\__/ /  __/ (__| |_| | (_) | | | | \___  |          | |_/ / | | |/\__/ / | | |
-###  \____/ \___|\___|\__|_|\___/|_| |_|     |_/          \____/\_| |_/\____/\_| |_/
-###                                                                                 
-###                                                                                 
-
-##   _ __   __ _ _ __   ___  _ __ ___ 
-##  | '_ \ / _` | '_ \ / _ \| '__/ __|
-##  | | | | (_| | | | | (_) | | | (__ 
-##  |_| |_|\__,_|_| |_|\___/|_|  \___|
-##                                    
+####  _____           _   _               ____             ____           _____ _    _    _____ _          _ _ 
+#### / ____|         | | (_)             |___ \           |  _ \   /\    / ____| |  | |  / ____| |        | | |
+####| (___   ___  ___| |_ _  ___  _ __     __) |  ______  | |_) | /  \  | (___ | |__| | | (___ | |__   ___| | |
+#### \___ \ / _ \/ __| __| |/ _ \| '_ \   |__ <  |______| |  _ < / /\ \  \___ \|  __  |  \___ \| '_ \ / _ \ | |
+#### ____) |  __/ (__| |_| | (_) | | | |  ___) |          | |_) / ____ \ ____) | |  | |  ____) | | | |  __/ | |
+####|_____/ \___|\___|\__|_|\___/|_| |_| |____/           |____/_/    \_\_____/|_|  |_| |_____/|_| |_|\___|_|_|
+####                                                                                                           
+####                                                                                                           
+                                                                                                            
+## _ __   __ _ _ __   ___  _ __ ___ 
+##| '_ \ / _` | '_ \ / _ \| '__/ __|
+##| | | | (_| | | | | (_) | | | (__ 
+##|_| |_|\__,_|_| |_|\___/|_|  \___|
+                                  
 To create custom edits of nano preferences, make a copy of the default.nanorc and rename the existing file so that you don't lose it
 The file is in /etc/nanorc
 Make the edits, and put the file back in /etc/nanorc/default.nanorc
 
-##   _______  __                _______  ______  _______  ______      _______                              __ 
-##  |_     _||  |--..-----.    |     __||   __ \|    ___||   __ \    |   |   |.---.-..-----..--.--..---.-.|  |
-##    |   |  |     ||  -__|    |    |  ||      <|    ___||    __/    |       ||  _  ||     ||  |  ||  _  ||  |
-##    |___|  |__|__||_____|    |_______||___|__||_______||___|       |__|_|__||___._||__|__||_____||___._||__|
-##                                                                                                            
+## _____ _             ____ ____  _____ ____    __  __                         _ 
+##|_   _| |__   ___   / ___|  _ \| ____|  _ \  |  \/  | __ _ _ __  _   _  __ _| |
+##  | | | '_ \ / _ \ | |  _| |_) |  _| | |_) | | |\/| |/ _` | '_ \| | | |/ _` | |
+##  | | | | | |  __/ | |_| |  _ <| |___|  __/  | |  | | (_| | | | | |_| | (_| | |
+##  |_| |_| |_|\___|  \____|_| \_\_____|_|     |_|  |_|\__,_|_| |_|\__,_|\__,_|_|
+                                                                               
 To search for the given string within a single file
 #	grep “literal_string” [filename]
 To search for a given string within multiple files
@@ -298,81 +336,50 @@ Display the lines which do not match all the given patterns
 Show line numbers and file names in results
 #	grep -n -H
 
+##     _     _                                             _                
+##  __| | __| |  _ __  _ __ ___   __ _ _ __ ___  ___ ___  | |__   __ _ _ __ 
+## / _` |/ _` | | '_ \| '__/ _ \ / _` | '__/ _ \/ __/ __| | '_ \ / _` | '__|
+##| (_| | (_| | | |_) | | | (_) | (_| | | |  __/\__ \__ \ | |_) | (_| | |   
+## \__,_|\__,_| | .__/|_|  \___/ \__, |_|  \___||___/___/ |_.__/ \__,_|_|   
+##              |_|              |___/                                      
 
-##      __     __                                                                __                 
-##  .--|  |.--|  |    .-----..----..-----..-----..----..-----..-----..-----.    |  |--..---.-..----.
-##  |  _  ||  _  |    |  _  ||   _||  _  ||  _  ||   _||  -__||__ --||__ --|    |  _  ||  _  ||   _|
-##  |_____||_____|    |   __||__|  |_____||___  ||__|  |_____||_____||_____|    |_____||___._||__|  
-##                    |__|                |_____|                                                   
 Use pv to add a loading bar.
 #	sudo aptitude install pv
 Then use the following piped command:
 #	dd if=/path/to/source | pv | dd of=/path/to/write
 
+## ____                       _____                            _             
+##| __ ) _ __ __ _  ___ ___  | ____|_  ___ __   __ _ _ __  ___(_) ___  _ __  
+##|  _ \| '__/ _` |/ __/ _ \ |  _| \ \/ / '_ \ / _` | '_ \/ __| |/ _ \| '_ \ 
+##| |_) | | | (_| | (_|  __/ | |___ >  <| |_) | (_| | | | \__ \ | (_) | | | |
+##|____/|_|  \__,_|\___\___| |_____/_/\_\ .__/ \__,_|_| |_|___/_|\___/|_| |_|
+##                                      |_|                                  
 
-##   ______  __                          __                    _______  _______  ___ ___      _______                __   
-##  |      ||  |--..---.-..-----..-----.|__|.-----..-----.    |_     _||_     _||   |   |    |    ___|.-----..-----.|  |_ 
-##  |   ---||     ||  _  ||     ||  _  ||  ||     ||  _  |      |   |    |   |   \     /     |    ___||  _  ||     ||   _|
-##  |______||__|__||___._||__|__||___  ||__||__|__||___  |      |___|    |___|    |___|      |___|    |_____||__|__||____|
-##                               |_____|           |_____|                                                                
-To change the TTY font
-#	sudo dpkg-reconfigure console-setup
-If you did this in TTY, the changes will happen immediately after you finish.
-If you did not, open TTY and type 
-#	setupcon
-
-WARNING!! MAY KILL KITTENS!!
-Making changes this way can result in missing characters and unformatted text errors
-
-
-##   _______  __  __  __                     __                                        __  __          
-##  |    ___||__||  ||  |_ .-----..----.    |  |.-----.    .----..-----..-----..--.--.|  ||  |_ .-----.
-##  |    ___||  ||  ||   _||  -__||   _|    |  ||__ --|    |   _||  -__||__ --||  |  ||  ||   _||__ --|
-##  |___|    |__||__||____||_____||__|      |__||_____|    |__|  |_____||_____||_____||__||____||_____|
-##                                                                                                     
-You can use wildcards to filter results in "ls"
-For example, while in the Documents folder, you can see only PDF's by using:
-#	ls *pdf
-
-
-##   _____    __                    _______                   __                             __             __        
-##  |     |_ |__|.-----..-----.    |    |  |.--.--..--------.|  |--..-----..----..-----.    |__|.-----.    |  |.-----.
-##  |       ||  ||     ||  -__|    |       ||  |  ||        ||  _  ||  -__||   _||__ --|    |  ||     |    |  ||__ --|
-##  |_______||__||__|__||_____|    |__|____||_____||__|__|__||_____||_____||__|  |_____|    |__||__|__|    |__||_____|
-##                                                                                                                    
-Pipe the resulting info through cat and use the -n modifier
-#	ls | cat -n
-
-
-##   ______                                _______                                     __               
-##  |   __ \.----..---.-..----..-----.    |    ___|.--.--..-----..---.-..-----..-----.|__|.-----..-----.
-##  |   __ <|   _||  _  ||  __||  -__|    |    ___||_   _||  _  ||  _  ||     ||__ --||  ||  _  ||     |
-##  |______/|__|  |___._||____||_____|    |_______||__.__||   __||___._||__|__||_____||__||_____||__|__|
-##                                                        |__|                                          
 Using brackets {} in a BASH statement allows you to make commands that run with different strings.
 For example, in the following command, md5sum is run on all images that end with jpg, JPG, png, and PNG.
 #	md5sum *.{jpg,JPG,png,PNG}
 
-
-##   ______  __                      __                    ______  _______  _______  _______      _______  __         __                       
-##  |      ||  |.-----..---.-..----.|__|.-----..-----.    |   __ \|   _   ||     __||   |   |    |   |   ||__|.-----.|  |_ .-----..----..--.--.
-##  |   ---||  ||  -__||  _  ||   _||  ||     ||  _  |    |   __ <|       ||__     ||       |    |       ||  ||__ --||   _||  _  ||   _||  |  |
-##  |______||__||_____||___._||__|  |__||__|__||___  |    |______/|___|___||_______||___|___|    |___|___||__||_____||____||_____||__|  |___  |
-##                                             |_____|                                                                                  |_____|
+##  ____ _                 _               ____    _    ____  _   _   _   _ _     _                   
+## / ___| | ___  __ _ _ __(_)_ __   __ _  | __ )  / \  / ___|| | | | | | | (_)___| |_ ___  _ __ _   _ 
+##| |   | |/ _ \/ _` | '__| | '_ \ / _` | |  _ \ / _ \ \___ \| |_| | | |_| | / __| __/ _ \| '__| | | |
+##| |___| |  __/ (_| | |  | | | | | (_| | | |_) / ___ \ ___) |  _  | |  _  | \__ \ || (_) | |  | |_| |
+## \____|_|\___|\__,_|_|  |_|_| |_|\__, | |____/_/   \_\____/|_| |_| |_| |_|_|___/\__\___/|_|   \__, |
+##                                 |___/                                                        |___/ 
 After a long time of using BASH, you get a history file that is HUGE! Mine can usually top out to 2000 commands within a week or two. But if there are some commands you don't want people to see, there are multiple ways to go about deleting them.
 
 To erase the history file completely and start over:
 #	history -c && history -w
 To edit commands out of the history file
 #	nano ~/.bash_history
-The GREP ManualThen, save the file, and CLOSE the Terminal completely and reopen it.
+Then, save the file, and CLOSE the Terminal completely and reopen it.
 
+## _____                    _                _         ____  _          _ _ 
+##|  ___|__  _ __ ___ ___  | |    ___   __ _(_)_ __   / ___|| |__   ___| | |
+##| |_ / _ \| '__/ __/ _ \ | |   / _ \ / _` | | '_ \  \___ \| '_ \ / _ \ | |
+##|  _| (_) | | | (_|  __/ | |__| (_) | (_| | | | | |  ___) | | | |  __/ | |
+##|_|  \___/|_|  \___\___| |_____\___/ \__, |_|_| |_| |____/|_| |_|\___|_|_|
+##                                     |___/                                
 
-##   _______                                _____                  __             _______  __            __  __ 
-##  |    ___|.-----..----..----..-----.    |     |_ .-----..-----.|__|.-----.    |     __||  |--..-----.|  ||  |
-##  |    ___||  _  ||   _||  __||  -__|    |       ||  _  ||  _  ||  ||     |    |__     ||     ||  -__||  ||  |
-##  |___|    |_____||__|  |____||_____|    |_______||_____||___  ||__||__|__|    |_______||__|__||_____||__||__|
-##                                                         |_____|                                              
 If a login shell is not an option on the Terminal settings (common in Konsole)
 
 Edit the Current Profile and look for the login Command. It will likely look like
@@ -381,91 +388,70 @@ Edit that line to read
 #	/bin/bash -l
 This will force a login shell everytime the Terminal profile is opened.
 
-
-##   ________  __            __    __             _______  __            __        _______  __  __                    _______                         _____ 
-##  |  |  |  ||  |--..---.-.|  |_ |  |.-----.    |_     _||  |--..---.-.|  |_     |   _   ||  ||__|.---.-..-----.    |   |   |.-----..---.-..-----.  |__   |
-##  |  |  |  ||     ||  _  ||   _| |_||__ --|      |   |  |     ||  _  ||   _|    |       ||  ||  ||  _  ||__ --|    |       ||  -__||  _  ||     |  ',  ,-'
-##  |________||__|__||___._||____|    |_____|      |___|  |__|__||___._||____|    |___|___||__||__||___._||_____|    |__|_|__||_____||___._||__|__|   |--|  
-##                                                                                                                                                    '--'  
+##__        ___           _   _       _____ _           _        _    _ _             __  __                 ___ 
+##\ \      / / |__   __ _| |_( )___  |_   _| |__   __ _| |_     / \  | (_) __ _ ___  |  \/  | ___  __ _ _ __|__ \
+## \ \ /\ / /| '_ \ / _` | __|// __|   | | | '_ \ / _` | __|   / _ \ | | |/ _` / __| | |\/| |/ _ \/ _` | '_ \ / /
+##  \ V  V / | | | | (_| | |_  \__ \   | | | | | | (_| | |_   / ___ \| | | (_| \__ \ | |  | |  __/ (_| | | | |_| 
+##   \_/\_/  |_| |_|\__,_|\__| |___/   |_| |_| |_|\__,_|\__| /_/   \_\_|_|\__,_|___/ |_|  |_|\___|\__,_|_| |_(_) 
+                                                                                                               
 To figure out easily what the command is that is running behind an alias, use:
 #	type [alias]
 
+####  _____           _   _               _  _              _____           _                         
+#### / ____|         | | (_)             | || |            |  __ \         | |                        
+####| (___   ___  ___| |_ _  ___  _ __   | || |_   ______  | |__) |_ _  ___| | ____ _  __ _  ___  ___ 
+#### \___ \ / _ \/ __| __| |/ _ \| '_ \  |__   _| |______| |  ___/ _` |/ __| |/ / _` |/ _` |/ _ \/ __|
+#### ____) |  __/ (__| |_| | (_) | | | |    | |            | |  | (_| | (__|   < (_| | (_| |  __/\__ \
+####|_____/ \___|\___|\__|_|\___/|_| |_|    |_|            |_|   \__,_|\___|_|\_\__,_|\__, |\___||___/
+####                                                                                   __/ |          
+####                                                                                  |___/           
 
-###   _____           _   _               _____           ______          _                         
-###  /  ___|         | | (_)             |  ___|          | ___ \        | |                        
-###  \ `--.  ___  ___| |_ _  ___  _ __   |___ \   ______  | |_/ /_ _  ___| | ____ _  __ _  ___  ___ 
-###   `--. \/ _ \/ __| __| |/ _ \| '_ \      \ \ |______| |  __/ _` |/ __| |/ / _` |/ _` |/ _ \/ __|
-###  /\__/ /  __/ (__| |_| | (_) | | | | /\__/ /          | | | (_| | (__|   < (_| | (_| |  __/\__ \
-###  \____/ \___|\___|\__|_|\___/|_| |_| \____/           \_|  \__,_|\___|_|\_\__,_|\__, |\___||___/
-###                                                                                  __/ |          
-###                                                                                 |___/           
-
-
-##   ______              __                           _______             __     __              
-##  |   __ \.---.-.----.|  |--.---.-.-----.-----.    |   _   |.----.----.|  |--.|__|.--.--.-----.
-##  |    __/|  _  |  __||    <|  _  |  _  |  -__|    |       ||   _|  __||     ||  ||  |  |  -__|
-##  |___|   |___._|____||__|__|___._|___  |_____|    |___|___||__| |____||__|__||__| \___/|_____|
-##                                  |_____|                                                      
+## ____            _                         _             _     _           
+##|  _ \ __ _  ___| | ____ _  __ _  ___     / \   _ __ ___| |__ (_)_   _____ 
+##| |_) / _` |/ __| |/ / _` |/ _` |/ _ \   / _ \ | '__/ __| '_ \| \ \ / / _ \
+##|  __/ (_| | (__|   < (_| | (_| |  __/  / ___ \| | | (__| | | | |\ V /  __/
+##|_|   \__,_|\___|_|\_\__,_|\__, |\___| /_/   \_\_|  \___|_| |_|_| \_/ \___|
+##                           |___/                                           
 If you haven't cleaned this folder recently, you can find every package you've installed in /var/cache/apt/archives
 This is useful to roll back to a previous version if something breaks.
 
-
-##   _______                               ___         __         __    
-##  |     __|.----.----.-----.-----.-----.'  _|.-----.|  |_.----.|  |--.
-##  |__     ||  __|   _|  -__|  -__|     |   _||  -__||   _|  __||     |
-##  |_______||____|__| |_____|_____|__|__|__|  |_____||____|____||__|__|
-##                                                                      
+## ____                            __      _       _     
+##/ ___|  ___ _ __ ___  ___ _ __  / _| ___| |_ ___| |__  
+##\___ \ / __| '__/ _ \/ _ \ '_ \| |_ / _ \ __/ __| '_ \ 
+## ___) | (__| | |  __/  __/ | | |  _|  __/ || (__| | | |
+##|____/ \___|_|  \___|\___|_| |_|_|  \___|\__\___|_| |_|
+##                                                       
 Screenfetch is a really cool way of displaying infos about your computer in a Terminal.
 #        wget -O screenfetch 'https://raw.github.com/KittyKatt/screenfetch/master/screenfetch-dev'
 #        chmod +x screenfetch
 #        sudo mv screenfetch /usr/bin/
 
-
-##   __               __ 
-##  |__|.-----.--.--.|__|
-##  |  ||     |_   _||  |
-##  |__||__|__|__.__||__|
-##                       
+## _            _ 
+##(_)_ __ __  _(_)
+##| | '_ \\ \/ / |
+##| | | | |>  <| |
+##|_|_| |_/_/\_\_|
+##                
 The inxi program has been neutered on most Linux distros so it can't update using -U
 To allow updating, open a Terminal and
 #	sudo touch /etc/inxi.conf && echo 'B_ALLOW_UPDATE=true' >> /etc/inxi.conf
 
+####  _____           _   _               _____                     _____ _______ 
+#### / ____|         | | (_)             | ____|              /\   |  __ \__   __|
+####| (___   ___  ___| |_ _  ___  _ __   | |__    ______     /  \  | |__) | | |   
+#### \___ \ / _ \/ __| __| |/ _ \| '_ \  |___ \  |______|   / /\ \ |  ___/  | |   
+#### ____) |  __/ (__| |_| | (_) | | | |  ___) |           / ____ \| |      | |   
+####|_____/ \___|\___|\__|_|\___/|_| |_| |____/           /_/    \_\_|      |_|   
+####                                                                              
+####                                                                              
 
-###   _____           _   _                ____            _   _______ _____ 
-###  /  ___|         | | (_)              / ___|          | | / /  _  \  ___|
-###  \ `--.  ___  ___| |_ _  ___  _ __   / /___   ______  | |/ /| | | | |__  
-###   `--. \/ _ \/ __| __| |/ _ \| '_ \  | ___ \ |______| |    \| | | |  __| 
-###  /\__/ /  __/ (__| |_| | (_) | | | | | \_/ |          | |\  \ |/ /| |___ 
-###  \____/ \___|\___|\__|_|\___/|_| |_| \_____/          \_| \_/___/ \____/ 
-###                                                                          
-###                                                                          
-
-
-##   _______ __               __                   ________ __           __                      _____                               __   __                    
-##  |   |   |__|.-----.-----.|__|.-----.-----.    |  |  |  |__|.-----.--|  |.-----.--.--.--.    |     \.-----.----.-----.----.---.-.|  |_|__|.-----.-----.-----.
-##  |       |  ||__ --|__ --||  ||     |  _  |    |  |  |  |  ||     |  _  ||  _  |  |  |  |    |  --  |  -__|  __|  _  |   _|  _  ||   _|  ||  _  |     |__ --|
-##  |__|_|__|__||_____|_____||__||__|__|___  |    |________|__||__|__|_____||_____|________|    |_____/|_____|____|_____|__| |___._||____|__||_____|__|__|_____|
-##                                     |_____|                                                                                                                  
-        If windows are missing titlebar, and all window decoration in Plasma 5, install kwin (or the newest version of kwin available in Sid)
-
-
-###   _____           _   _               ______            ___  ______ _____ 
-###  /  ___|         | | (_)             |___  /           / _ \ | ___ \_   _|
-###  \ `--.  ___  ___| |_ _  ___  _ __      / /   ______  / /_\ \| |_/ / | |  
-###   `--. \/ _ \/ __| __| |/ _ \| '_ \    / /   |______| |  _  ||  __/  | |  
-###  /\__/ /  __/ (__| |_| | (_) | | | | ./ /             | | | || |     | |  
-###  \____/ \___|\___|\__|_|\___/|_| |_| \_/              \_| |_/\_|     \_/  
-###                                                                           
-###                                                                           
-
-
-##   _______  __             ______               __                       ______               __                              _______                   __                     
-##  |    ___||__|.--.--.    |   __ \.----..-----.|  |--..-----..-----.    |   __ \.---.-..----.|  |--..---.-..-----..-----.    |   |   |.-----..---.-..--|  |.-----..----..-----.
-##  |    ___||  ||_   _|    |   __ <|   _||  _  ||    < |  -__||     |    |    __/|  _  ||  __||    < |  _  ||  _  ||  -__|    |       ||  -__||  _  ||  _  ||  -__||   _||__ --|
-##  |___|    |__||__.__|    |______/|__|  |_____||__|__||_____||__|__|    |___|   |___._||____||__|__||___._||___  ||_____|    |___|___||_____||___._||_____||_____||__|  |_____|
-##                                                                                                           |_____|                                                             
-I have not seen this error in a very long time, and I only saw it on Linux Mint Nadia, Olivia, and Petra.
-I'm including it just in case it ever pops up again.
+## _____ _        ____            _                ____            _                      _   _                _               
+##|  ___(_)_  __ | __ ) _ __ ___ | | _____ _ __   |  _ \ __ _  ___| | ____ _  __ _  ___  | | | | ___  __ _  __| | ___ _ __ ___ 
+##| |_  | \ \/ / |  _ \| '__/ _ \| |/ / _ \ '_ \  | |_) / _` |/ __| |/ / _` |/ _` |/ _ \ | |_| |/ _ \/ _` |/ _` |/ _ \ '__/ __|
+##|  _| | |>  <  | |_) | | | (_) |   <  __/ | | | |  __/ (_| | (__|   < (_| | (_| |  __/ |  _  |  __/ (_| | (_| |  __/ |  \__ \
+##|_|   |_/_/\_\ |____/|_|  \___/|_|\_\___|_| |_| |_|   \__,_|\___|_|\_\__,_|\__, |\___| |_| |_|\___|\__,_|\__,_|\___|_|  |___/
+##                                                                           |___/                                             
+I have not seen this error in a very long time, and I only saw it on Linux Mint Nadia, Olivia, and Petra. I'm including it just in case it ever pops up again.
 I noticed that the Package Manager will encounter an odd error. It will display a broken symbol and apt-get update will generate a message like this:
 #	Reading package lists... Error!
 #	E: Encountered a package list with no Package: header
@@ -483,11 +469,12 @@ After that’s done, switch to the other Terminal and type
 #	sudo apt-get update
 Let it update. If you encounter another error, switch to the other Terminal and axe some more MergeLists. Otherwise the error should go away once the MergeLists have been refreshed.
 
-##   _______         __               __         _____   ______  __  __  _______ 
-##  |   |   |.-----.|  |.-----..----.|  |--.    |     \ |   __ \|  |/  ||     __|
-##  |   |   ||     ||  ||  _  ||  __||    <     |  --  ||    __/|     < |    |  |
-##  |_______||__|__||__||_____||____||__|__|    |_____/ |___|   |__|\__||_______|
-##                                                                               
+## _   _       _            _      ____  ____  _  ______ 
+##| | | |_ __ | | ___   ___| | __ |  _ \|  _ \| |/ / ___|
+##| | | | '_ \| |/ _ \ / __| |/ / | | | | |_) | ' / |  _ 
+##| |_| | | | | | (_) | (__|   <  | |_| |  __/| . \ |_| |
+## \___/|_| |_|_|\___/ \___|_|\_\ |____/|_|   |_|\_\____|
+##                                                       
 If you start installing a package, and for whatever reason have to abort the install it will most likely lock up dpkg and you’ll be unable to install anything else until the installation you just started is finished. This can be rough if the package in question won’t install for some reason.
 Sometimes dpkg can get locked because the xapian-index is out of date. Update it and see if this clears the lock.
 #	sudo update-apt-xapian-index  --force
@@ -508,12 +495,12 @@ Then to stop dpkg from trying to install the same package again.
 #	sudo dpkg --configure -a
 It will remove the package from the cache and install any other packages held because of the broken package was lagging the install.
 
-
-##   _______ ______ _______      ______              ___                                          
-##  |   _   |   __ \_     _|    |   __ \.----.-----.'  _|.-----.----.-----.-----.----.-----.-----.
-##  |       |    __/ |   |      |    __/|   _|  -__|   _||  -__|   _|  -__|     |  __|  -__|__ --|
-##  |___|___|___|    |___|      |___|   |__| |_____|__|  |_____|__| |_____|__|__|____|_____|_____|
-##                                                                                                
+##    _    ____ _____   ____            __                                   
+##   / \  |  _ \_   _| |  _ \ _ __ ___ / _| ___ _ __ ___ _ __   ___ ___  ___ 
+##  / _ \ | |_) || |   | |_) | '__/ _ \ |_ / _ \ '__/ _ \ '_ \ / __/ _ \/ __|
+## / ___ \|  __/ | |   |  __/| | |  __/  _|  __/ | |  __/ | | | (_|  __/\__ \
+##/_/   \_\_|    |_|   |_|   |_|  \___|_|  \___|_|  \___|_| |_|\___\___||___/
+##                                                                           
 
 ##	How To Use APT Preferences
 The APT preferences file /etc/apt/preferences and the fragment files in the /etc/apt/preferences.d/ folder can be used to control which versions of packages will be selected for installation.
@@ -789,12 +776,12 @@ FILES
            File fragments for the version preferences. Configuration Item:
            Dir::Etc::PreferencesParts.
 
-
-##      ___        __           ___              __      ___                                            __ __         __   
-##     /  /.-----.|  |_.----.  /  /.---.-.-----.|  |_   /  /.-----.-----.--.--.----.----.-----.-----.  |  |__|.-----.|  |_ 
-##   ,' ,' |  -__||   _|  __|,' ,' |  _  |  _  ||   _|,' ,' |__ --|  _  |  |  |   _|  __|  -__|__ --|__|  |  ||__ --||   _|
-##  /__/   |_____||____|____/__/   |___._|   __||____/__/   |_____|_____|_____|__| |____|_____|_____|__|__|__||_____||____|
-##                                       |__|                                                                              
+##    __   _          __          _      __                                   _ _     _   
+##   / /__| |_ ___   / /_ _ _ __ | |_   / /__  ___  _   _ _ __ ___ ___  ___  | (_)___| |_ 
+##  / / _ \ __/ __| / / _` | '_ \| __| / / __|/ _ \| | | | '__/ __/ _ \/ __| | | / __| __|
+## / /  __/ || (__ / / (_| | |_) | |_ / /\__ \ (_) | |_| | | | (_|  __/\__ \_| | \__ \ |_ 
+##/_/ \___|\__\___/_/ \__,_| .__/ \__/_/ |___/\___/ \__,_|_|  \___\___||___(_)_|_|___/\__|
+##                         |_|                                                            
 DESCRIPTION
 	The source list /etc/apt/sources.list is designed to support any number of active sources and a variety of source media. The file lists one source per line, with the most preferred source listed first. The information available from the configured
 	sources is acquired by apt-get update (or by an equivalent command from another APT front-end).
@@ -932,22 +919,21 @@ EXAMPLES
 
            deb http://ftp.tlh.debian.org/universe unstable/binary-$(ARCH)/
 
+####  _____           _   _                 __             _   _      _                      _    
+#### / ____|         | | (_)               / /            | \ | |    | |                    | |   
+####| (___   ___  ___| |_ _  ___  _ __    / /_    ______  |  \| | ___| |___      _____  _ __| | __
+#### \___ \ / _ \/ __| __| |/ _ \| '_ \  | '_ \  |______| | . ` |/ _ \ __\ \ /\ / / _ \| '__| |/ /
+#### ____) |  __/ (__| |_| | (_) | | | | | (_) |          | |\  |  __/ |_ \ V  V / (_) | |  |   < 
+####|_____/ \___|\___|\__|_|\___/|_| |_|  \___/           |_| \_|\___|\__| \_/\_/ \___/|_|  |_|\_\
+####                                                                                              
+####                                                                                              
 
-###   _____           _   _               _____            _   _      _                      _    
-###  /  ___|         | | (_)             |  _  |          | \ | |    | |                    | |   
-###  \ `--.  ___  ___| |_ _  ___  _ __    \ V /   ______  |  \| | ___| |___      _____  _ __| | __
-###   `--. \/ _ \/ __| __| |/ _ \| '_ \   / _ \  |______| | . ` |/ _ \ __\ \ /\ / / _ \| '__| |/ /
-###  /\__/ /  __/ (__| |_| | (_) | | | | | |_| |          | |\  |  __/ |_ \ V  V / (_) | |  |   < 
-###  \____/ \___|\___|\__|_|\___/|_| |_| \_____/          \_| \_/\___|\__| \_/\_/ \___/|_|  |_|\_\
-###                                                                                               
-###                                                                                               
-
-
-##   _______                                         _______ _______ _______       ___                            ___         __ __               ___             __                        __               __ 
-##  |_     _|.--.--.----.-----.    .-----.-----.    |    ___|_     _|   |   |    .'  _|.----.-----.--------.    .'  _|.---.-.|__|  |.-----.---.-.'  _|.-----.    |  |_.-----.----.--------.|__|.-----.---.-.|  |
-##    |   |  |  |  |   _|     |    |  _  |     |    |    ___| |   | |       |    |   _||   _|  _  |        |    |   _||  _  ||  |  ||__ --|  _  |   _||  -__|    |   _|  -__|   _|        ||  ||     |  _  ||  |
-##    |___|  |_____|__| |__|__|    |_____|__|__|    |_______| |___| |___|___|    |__|  |__| |_____|__|__|__|    |__|  |___._||__|__||_____|___._|__|  |_____|    |____|_____|__| |__|__|__||__||__|__|___._||__|
-##                                                                                                                                                                                                              
+## _____                                 _____ _____ _   _    __                        __       _ _            __        _                      _             _ 
+##|_   _|   _ _ __ _ __     ___  _ __   | ____|_   _| | | |  / _|_ __ ___  _ __ ___    / _| __ _(_) |___  __ _ / _| ___  | |_ ___ _ __ _ __ ___ (_)_ __   __ _| |
+##  | || | | | '__| '_ \   / _ \| '_ \  |  _|   | | | |_| | | |_| '__/ _ \| '_ ` _ \  | |_ / _` | | / __|/ _` | |_ / _ \ | __/ _ \ '__| '_ ` _ \| | '_ \ / _` | |
+##  | || |_| | |  | | | | | (_) | | | | | |___  | | |  _  | |  _| | | (_) | | | | | | |  _| (_| | | \__ \ (_| |  _|  __/ | ||  __/ |  | | | | | | | | | | (_| | |
+##  |_| \__,_|_|  |_| |_|  \___/|_| |_| |_____| |_| |_| |_| |_| |_|  \___/|_| |_| |_| |_|  \__,_|_|_|___/\__,_|_|  \___|  \__\___|_|  |_| |_| |_|_|_| |_|\__,_|_|
+##                                                                                                                                                               
 Place the following into /etc/network/interfaces with an editor.
 #	sudo nano /etc/network/interfaces
 This block of text will cause the network manager to bring up your Ethernet automatically and configure it with DHCP.
@@ -959,31 +945,31 @@ After adding this restart the network manager with:
 
 If this causes an error message, restart the computer.
 
-
-##   _______               __                __        _____  _______ _______      _______                                    
-##  |    ___|.---.-.-----.|  |_.-----.-----.|  |_     |     \|    |  |     __|    |     __|.-----.----.--.--.-----.----.-----.
-##  |    ___||  _  |__ --||   _|  -__|__ --||   _|    |  --  |       |__     |    |__     ||  -__|   _|  |  |  -__|   _|__ --|
-##  |___|    |___._|_____||____|_____|_____||____|    |_____/|__|____|_______|    |_______||_____|__|  \___/|_____|__| |_____|
-##                                                                                                                            
+## _____         _            _     ____  _   _ ____    ____                               
+##|  ___|_ _ ___| |_ ___  ___| |_  |  _ \| \ | / ___|  / ___|  ___ _ ____   _____ _ __ ___ 
+##| |_ / _` / __| __/ _ \/ __| __| | | | |  \| \___ \  \___ \ / _ \ '__\ \ / / _ \ '__/ __|
+##|  _| (_| \__ \ ||  __/\__ \ |_  | |_| | |\  |___) |  ___) |  __/ |   \ V /  __/ |  \__ \
+##|_|  \__,_|___/\__\___||___/\__| |____/|_| \_|____/  |____/ \___|_|    \_/ \___|_|  |___/
+##                                                                                         
 Install namebench, and run the namebench utility.
 #	sudo apt-get install namebench
 #	namebench
 
-
-##   _______ __           __      ___ ___                        _______ _______ ______      _______     __     __                         
-##  |    ___|__|.-----.--|  |    |   |   |.-----.--.--.----.    |   |   |   _   |      |    |   _   |.--|  |.--|  |.----.-----.-----.-----.
-##  |    ___|  ||     |  _  |     \     / |  _  |  |  |   _|    |       |       |   ---|    |       ||  _  ||  _  ||   _|  -__|__ --|__ --|
-##  |___|   |__||__|__|_____|      |___|  |_____|_____|__|      |__|_|__|___|___|______|    |___|___||_____||_____||__| |_____|_____|_____|
-##                                                                                                                                         
+## _____ _           _  __   __                 __  __    _    ____      _       _     _                   
+##|  ___(_)_ __   __| | \ \ / /__  _   _ _ __  |  \/  |  / \  / ___|    / \   __| | __| |_ __ ___  ___ ___ 
+##| |_  | | '_ \ / _` |  \ V / _ \| | | | '__| | |\/| | / _ \| |       / _ \ / _` |/ _` | '__/ _ \/ __/ __|
+##|  _| | | | | | (_| |   | | (_) | |_| | |    | |  | |/ ___ \ |___   / ___ \ (_| | (_| | | |  __/\__ \__ \
+##|_|   |_|_| |_|\__,_|   |_|\___/ \__,_|_|    |_|  |_/_/   \_\____| /_/   \_\__,_|\__,_|_|  \___||___/___/
+##                                                                                                         
 To find the MAC address, use the following Terminal command:
 #	ip addr show
 
-
-##   ______ __                   _______               __   __                             __ __   __         _______ _______ ______ 
-##  |   __ \__|.-----.-----.    |_     _|.-----.-----.|  |_|__|.-----.-----.    .--.--.--.|__|  |_|  |--.    |   |   |_     _|   __ \
-##  |    __/  ||     |  _  |      |   |  |  -__|__ --||   _|  ||     |  _  |    |  |  |  ||  |   _|     |    |       | |   | |      <
-##  |___|  |__||__|__|___  |      |___|  |_____|_____||____|__||__|__|___  |    |________||__|____|__|__|    |__|_|__| |___| |___|__|
-##                   |_____|                                         |_____|                                                         
+## ____  _               _____         _   _                        _ _   _       __  __ _____ ____  
+##|  _ \(_)_ __   __ _  |_   _|__  ___| |_(_)_ __   __ _  __      _(_) |_| |__   |  \/  |_   _|  _ \ 
+##| |_) | | '_ \ / _` |   | |/ _ \/ __| __| | '_ \ / _` | \ \ /\ / / | __| '_ \  | |\/| | | | | |_) |
+##|  __/| | | | | (_| |   | |  __/\__ \ |_| | | | | (_| |  \ V  V /| | |_| | | | | |  | | | | |  _ < 
+##|_|   |_|_| |_|\__, |   |_|\___||___/\__|_|_| |_|\__, |   \_/\_/ |_|\__|_| |_| |_|  |_| |_| |_| \_\
+##               |___/                             |___/                                             
 I like to customize the MTR command to figure out specific things:
 When the command specifies a ping count (using -c) assume that the sensitivity of the report can be raised or lowered by increasing or decreasing the count.
 
@@ -995,78 +981,80 @@ You can also check IPv4 and IPv6 connectivity using this command
 #	(IPv4) mtr -c 20 -4 -w -r -location
 #	(IPv6) mtr -c 20 -6 -w -r -location
 
+####  _____           _   _               ______            _____                                    __      ___     _                _____                       _ 
+#### / ____|         | | (_)             |____  |          |_   _|                                   \ \    / (_)   | |              / ____|                     | |
+####| (___   ___  ___| |_ _  ___  _ __       / /   ______    | |  _ __ ___   __ _  __ _  ___  ___     \ \  / / _  __| | ___  ___    | (___   ___  _   _ _ __   __| |
+#### \___ \ / _ \/ __| __| |/ _ \| '_ \     / /   |______|   | | | '_ ` _ \ / _` |/ _` |/ _ \/ __|     \ \/ / | |/ _` |/ _ \/ _ \    \___ \ / _ \| | | | '_ \ / _` |
+#### ____) |  __/ (__| |_| | (_) | | | |   / /              _| |_| | | | | | (_| | (_| |  __/\__ \_     \  /  | | (_| |  __/ (_) |   ____) | (_) | |_| | | | | (_| |
+####|_____/ \___|\___|\__|_|\___/|_| |_|  /_/              |_____|_| |_| |_|\__,_|\__, |\___||___( )     \/   |_|\__,_|\___|\___( ) |_____/ \___/ \__,_|_| |_|\__,_|
+####                                                                               __/ |         |/                             |/                                  
+####                                                                              |___/                                                                             
 
-###   _____           _   _               _____            _____                                    _   _ _     _                    _____                       _ 
-###  /  ___|         | | (_)             |  _  |          |_   _|                                  | | | (_)   | |                  /  ___|                     | |
-###  \ `--.  ___  ___| |_ _  ___  _ __   | |_| |  ______    | | _ __ ___   __ _  __ _  ___  ___    | | | |_  __| | ___  ___  ___    \ `--.  ___  _   _ _ __   __| |
-###   `--. \/ _ \/ __| __| |/ _ \| '_ \  \____ | |______|   | || '_ ` _ \ / _` |/ _` |/ _ \/ __|   | | | | |/ _` |/ _ \/ _ \/ __|    `--. \/ _ \| | | | '_ \ / _` |
-###  /\__/ /  __/ (__| |_| | (_) | | | | .___/ /           _| || | | | | | (_| | (_| |  __/\__ \_  \ \_/ / | (_| |  __/ (_) \__ \_  /\__/ / (_) | |_| | | | | (_| |
-###  \____/ \___|\___|\__|_|\___/|_| |_| \____/            \___/_| |_| |_|\__,_|\__, |\___||___( )  \___/|_|\__,_|\___|\___/|___( ) \____/ \___/ \__,_|_| |_|\__,_|
-###                                                                              __/ |         |/                               |/                                 
-###                                                                             |___/                                                                              
-
-##   ___ ___             __         __                    __ __ 
-##  |   |   .-----.--.--|  |_.--.--|  |--.-----.______.--|  |  |
-##   \     /|  _  |  |  |   _|  |  |  _  |  -__|______|  _  |  |
-##    |___| |_____|_____|____|_____|_____|_____|      |_____|__|
-##                                                              
-Note that distribution packages are often outdated.
-As a rule of thumb, youtube-dl releases at least once a month, and often weekly or even daily. Simply go to https://yt-dl.org to find out the current version.
-
-To manually install the most up-to-date version of youtube-dl
-#	sudo wget https://yt-dl.org/latest/youtube-dl -O /usr/local/bin/youtube-dl
-#	sudo chmod a+x /usr/local/bin/youtube-dl
-#	hash -r
+##__   __          _         _                    _ _ 
+##\ \ / /__  _   _| |_ _   _| |__   ___        __| | |
+## \ V / _ \| | | | __| | | | '_ \ / _ \_____ / _` | |
+##  | | (_) | |_| | |_| |_| | |_) |  __/_____| (_| | |
+##  |_|\___/ \__,_|\__|\__,_|_.__/ \___|      \__,_|_|
+##                                                    
+To manually install the most up-to-date version of youtube-dl, you will need to compile it yourself
+#	sudo apt install build-essential git
+#	git clone https://github.com/ytdl-org/youtube-dl.git
+#	cd youtube-dl/
+#	make youtube-dl
+Once you made youtube-dl, you need to copy it to a location in the path. Use the command below:
+#	sudo cp youtube-dl /usr/local/bin/
+if you run youtube-dl from the command line, you will get an error about python because it tries to run using python while in Ubuntu, it is python3. You can create an alias on your .bashrc like:
+####	alias youtube-dl='python3 /usr/local/bin/youtube-dl'
 Then you can use
 #	youtube-dl -U
 to update the manually installed package.
 
-
-##  ________ _______ _______      __              _______ ______ ______ 
-## |  |  |  |   |   |   _   |    |  |_.-----.    |   |   |   __ \__    |
-## |  |  |  |       |       |    |   _|  _  |    |       |    __/__    |
-## |________|__|_|__|___|___|    |____|_____|    |__|_|__|___|  |______|
+##__        ____  __    _      _          __  __ ____ _____ 
+##\ \      / /  \/  |  / \    | |_ ___   |  \/  |  _ \___ / 
+## \ \ /\ / /| |\/| | / _ \   | __/ _ \  | |\/| | |_) ||_ \ 
+##  \ V  V / | |  | |/ ___ \  | || (_) | | |  | |  __/___) |
+##   \_/\_/  |_|  |_/_/   \_\  \__\___/  |_|  |_|_|  |____/ 
+##                                                          
 Navigate to the folder that contains the wma files and run the following command to convert them.
 #	for file in *.wma; do ffmpeg -i "${file}"  -acodec libmp3lame -ab 192k "${file/.wma/.mp3}"; done
 MP3 files will be saved to the same (source) directory.
 
+##__        _____     __  _          __  __ ____ _____ 
+##\ \      / / \ \   / / | |_ ___   |  \/  |  _ \___ / 
+## \ \ /\ / / _ \ \ / /  | __/ _ \  | |\/| | |_) ||_ \ 
+##  \ V  V / ___ \ V /   | || (_) | | |  | |  __/___) |
+##   \_/\_/_/   \_\_/     \__\___/  |_|  |_|_|  |____/ 
+##                                                     
 
-##   _______ ___ ___ _______      __              _______ ______ _____  
-##  |   _   |   |   |_     _|    |  |_.-----.    |   |   |   __ \  |  | 
-##  |       |   |   |_|   |_     |   _|  _  |    |       |    __/__    |
-##  |___|___|\_____/|_______|    |____|_____|    |__|_|__|___|     |__| 
-##                                                                      
+The following Terminal command can rip wav to mp3 in the Terminal
+#	lame -h -b 256 <input wav file> <output mp3 file>
+
+##    ___     _____   _          __  __ ____  _  _   
+##   / \ \   / /_ _| | |_ ___   |  \/  |  _ \| || |  
+##  / _ \ \ / / | |  | __/ _ \  | |\/| | |_) | || |_ 
+## / ___ \ V /  | |  | || (_) | | |  | |  __/|__   _|
+##/_/   \_\_/  |___|  \__\___/  |_|  |_|_|      |_|  
+##                                                   
 Install mencoder
 #	sudo aptitude install mencoder
 Convert the file
 #	mencoder input.avi -o output.mp4 -oac copy -ovc lavc vcodec=mpeg1video -of mpeg
 
-
-##   ______ _____  _______      __                _____ ______ _______ 
-##  |   __ \     \|    ___|    |  |_.-----.     _|     |   __ \     __|
-##  |    __/  --  |    ___|    |   _|  _  |    |       |    __/    |  |
-##  |___|  |_____/|___|        |____|_____|    |_______|___|  |_______|
-##                                                                     
-Easiest way to do that is to use pdftohtml which is part of the poppler-utils package.
-#	pdftohtml [pdf file]
-Then extract the images from the html folder
-
-
-##   ______  __                __                    _____   ___ ___  _____       __               _______  _______  _______ 
-##  |   __ \|__|.-----..-----.|__|.-----..-----.    |     \ |   |   ||     \     |  |_ .-----.    |_     _||     __||       |
-##  |      <|  ||  _  ||  _  ||  ||     ||  _  |    |  --  ||   |   ||  --  |    |   _||  _  |     _|   |_ |__     ||   -   |
-##  |___|__||__||   __||   __||__||__|__||___  |    |_____/  \_____/ |_____/     |____||_____|    |_______||_______||_______|
-##              |__|   |__|              |_____|                                                                             
-Easiest way to do this is with the dd command
+## ______     ______    _          ___ ____   ___  
+##|  _ \ \   / /  _ \  | |_ ___   |_ _/ ___| / _ \ 
+##| | | \ \ / /| | | | | __/ _ \   | |\___ \| | | |
+##| |_| |\ V / | |_| | | || (_) |  | | ___) | |_| |
+##|____/  \_/  |____/   \__\___/  |___|____/ \___/ 
+##                                                 
+Not too many computers even use DVD anymore, but if you come across one you want to turn into an ISO file, then the easiest way to do this is with the dd command
 #	dd if=dev/sr0 of=file.iso
 
-
-
-##   _______                                                   __        __    
-##  |_     _|.--------.---.-.-----.-----.--------.---.-.-----.|__|.----.|  |--.
-##   _|   |_ |        |  _  |  _  |  -__|        |  _  |  _  ||  ||  __||    < 
-##  |_______||__|__|__|___._|___  |_____|__|__|__|___._|___  ||__||____||__|__|
-##                          |_____|                    |_____|                 
+## ___                                                  _      _    
+##|_ _|_ __ ___   __ _  __ _  ___ _ __ ___   __ _  __ _(_) ___| | __
+## | || '_ ` _ \ / _` |/ _` |/ _ \ '_ ` _ \ / _` |/ _` | |/ __| |/ /
+## | || | | | | | (_| | (_| |  __/ | | | | | (_| | (_| | | (__|   < 
+##|___|_| |_| |_|\__,_|\__, |\___|_| |_| |_|\__,_|\__, |_|\___|_|\_\
+##                     |___/                      |___/             
 The convert command takes an image, performs actions on it, and saves the image with the file name you specify. One of the most basic things you can do with it is converting images between formats.
 
 The following command takes a PNG file named “howtogeek.png” in the current directory and creates a JPEG image from it:
@@ -1092,32 +1080,21 @@ For example, the following command would take all PNG files in the current direc
 
 Many more operations are possible by reading "man convert"
 
+####  _____           _   _                ___              _____      _              __  __             _      
+#### / ____|         | | (_)              / _ \            / ____|    | |            |  \/  |           (_)     
+####| (___   ___  ___| |_ _  ___  _ __   | (_) |  ______  | |     ___ | | ___  _ __  | \  / | __ _  __ _ _  ___ 
+#### \___ \ / _ \/ __| __| |/ _ \| '_ \   > _ <  |______| | |    / _ \| |/ _ \| '__| | |\/| |/ _` |/ _` | |/ __|
+#### ____) |  __/ (__| |_| | (_) | | | | | (_) |          | |___| (_) | | (_) | |    | |  | | (_| | (_| | | (__ 
+####|_____/ \___|\___|\__|_|\___/|_| |_|  \___/            \_____\___/|_|\___/|_|    |_|  |_|\__,_|\__, |_|\___|
+####                                                                                                __/ |       
+####                                                                                               |___/        
 
-##   ________ _______ ___ ___      __              _______ ______ ______ 
-##  |  |  |  |   _   |   |   |    |  |_.-----.    |   |   |   __ \__    |
-##  |  |  |  |       |   |   |    |   _|  _  |    |       |    __/__    |
-##  |________|___|___|\_____/     |____|_____|    |__|_|__|___|  |______|
-##                                                                       
-The following Terminal command can rip wav to mp3 in the Terminal
-#	lame -h -b 256 <input wav file> <output mp3 file>
-
-
-
-###   _____           _   _               __  _____            _____       _             ___  ___            _      
-###  /  ___|         | | (_)             /  ||  _  |          /  __ \     | |            |  \/  |           (_)     
-###  \ `--.  ___  ___| |_ _  ___  _ __   `| || |/' |  ______  | /  \/ ___ | | ___  _ __  | .  . | __ _  __ _ _  ___ 
-###   `--. \/ _ \/ __| __| |/ _ \| '_ \   | ||  /| | |______| | |    / _ \| |/ _ \| '__| | |\/| |/ _` |/ _` | |/ __|
-###  /\__/ /  __/ (__| |_| | (_) | | | | _| |\ |_/ /          | \__/\ (_) | | (_) | |    | |  | | (_| | (_| | | (__ 
-###  \____/ \___|\___|\__|_|\___/|_| |_| \___/\___/            \____/\___/|_|\___/|_|    \_|  |_/\__,_|\__, |_|\___|
-###                                                                                                     __/ |       
-###                                                                                                    |___/        
-
-
-##   ______  _______  ______      __               ______  _______  ___ ___  __  __ 
-##  |   __ \|     __||   __ \    |  |_ .-----.    |      ||   |   ||   |   ||  |/  |
-##  |      <|    |  ||   __ <    |   _||  _  |    |   ---||       | \     / |     < 
-##  |___|__||_______||______/    |____||_____|    |______||__|_|__|  |___|  |__|\__|
-##                                                                                  
+## ____   ____ ____    _           ____ __  ____   ___  __
+##|  _ \ / ___| __ )  | |_ ___    / ___|  \/  \ \ / / |/ /
+##| |_) | |  _|  _ \  | __/ _ \  | |   | |\/| |\ V /| ' / 
+##|  _ <| |_| | |_) | | || (_) | | |___| |  | | | | | . \ 
+##|_| \_\\____|____/   \__\___/   \____|_|  |_| |_| |_|\_\
+##                                                        
 To change an RGB color to CMYK, just follow this formula:
 #	computedC = 1 - (r/255)
 #	computedM = 1 - (g/255)
@@ -1128,12 +1105,12 @@ Find the minimum
 #	Y = (computedY - minCMY) / (1 - minCMY)
 #	K = minCMY
 
-
-##   ______  __                          __                    _____    _______          ______  _______  _____    _______  ______  _______ 
-##  |      ||  |--..---.-..-----..-----.|__|.-----..-----.    |     |_ |     __|        |      ||       ||     |_ |       ||   __ \|     __|
-##  |   ---||     ||  _  ||     ||  _  ||  ||     ||  _  |    |       ||__     |        |   ---||   -   ||       ||   -   ||      <|__     |
-##  |______||__|__||___._||__|__||___  ||__||__|__||___  |    |_______||_______| ______ |______||_______||_______||_______||___|__||_______|
-##                               |_____|           |_____|                      |______|                                                    
+##  ____ _                       _               _     ____     ____ ___  _     ___  ____  ____  
+## / ___| |__   __ _ _ __   __ _(_)_ __   __ _  | |   / ___|   / ___/ _ \| |   / _ \|  _ \/ ___| 
+##| |   | '_ \ / _` | '_ \ / _` | | '_ \ / _` | | |   \___ \  | |  | | | | |  | | | | |_) \___ \ 
+##| |___| | | | (_| | | | | (_| | | | | | (_| | | |___ ___) | | |__| |_| | |__| |_| |  _ < ___) |
+## \____|_| |_|\__,_|_| |_|\__, |_|_| |_|\__, | |_____|____/___\____\___/|_____\___/|_| \_\____/ 
+##                         |___/         |___/            |_____|                                
 When your running Linux and do a "ls -al --color" in your Bash shell,  on some systems the directory color is so dark you can barely make out the directory names? This is surprisingly a common problem. Here’s the solution:
 You can change both the intensity and the color, along with the background color on lots of things.
 
@@ -1178,12 +1155,12 @@ Here's some colors I want to save:
 Black Text on Red Background = 38;05;0;41
 White Blinking Test on Red Background = 01;05;41
 
-
-##   ______  ______  __  ______  ______                  _______  __                _______                          __        _______                __   
-##  |__    ||  __  ||__||      ||    __|     ______     |_     _||  |--..-----.    |     __|.--.--.--..-----..-----.|  |_     |     __|.-----..-----.|  |_ 
-##  |__    ||  __  | __ |  --  ||__    |    |______|      |   |  |     ||  -__|    |__     ||  |  |  ||  -__||  -__||   _|    |__     ||  _  ||  _  ||   _|
-##  |______||______||  ||______||______|                  |___|  |__|__||_____|    |_______||________||_____||_____||____|    |_______||   __||_____||____|
-##                   |_|                                                                                                               |__|                
+## _____  ___    ___  ____            _____ _            ____                   _     ____              _   
+##|___ / ( _ )_ / _ \| ___|          |_   _| |__   ___  / ___|_      _____  ___| |_  / ___| _ __   ___ | |_ 
+##  |_ \ / _ (_) | | |___ \   _____    | | | '_ \ / _ \ \___ \ \ /\ / / _ \/ _ \ __| \___ \| '_ \ / _ \| __|
+## ___) | (_) || |_| |___) | |_____|   | | | | | |  __/  ___) \ V  V /  __/  __/ |_   ___) | |_) | (_) | |_ 
+##|____/ \___( )\___/|____/            |_| |_| |_|\___| |____/ \_/\_/ \___|\___|\__| |____/| .__/ \___/ \__|
+##           |/                                                                            |_|              
 There are also numbers that produce color that are not included in the standard chart (for example, 38 which I marked as a sweet spot)
 
 #	THE SWEET SPOT IS = 38;05;{1..255}
@@ -1198,61 +1175,33 @@ To see all these colors
 
 You can change the first two numbers and preview all the color combinations across 255 permutations.
 
+####  _____           _   _                ___             ______ _ _        __  __                                                   _   
+#### / ____|         | | (_)              / _ \           |  ____(_) |      |  \/  |                                                 | |  
+####| (___   ___  ___| |_ _  ___  _ __   | (_) |  ______  | |__   _| | ___  | \  / | __ _ _ __   __ _  __ _  ___ _ __ ___   ___ _ __ | |_ 
+#### \___ \ / _ \/ __| __| |/ _ \| '_ \   \__, | |______| |  __| | | |/ _ \ | |\/| |/ _` | '_ \ / _` |/ _` |/ _ \ '_ ` _ \ / _ \ '_ \| __|
+#### ____) |  __/ (__| |_| | (_) | | | |    / /           | |    | | |  __/ | |  | | (_| | | | | (_| | (_| |  __/ | | | | |  __/ | | | |_ 
+####|_____/ \___|\___|\__|_|\___/|_| |_|   /_/            |_|    |_|_|\___| |_|  |_|\__,_|_| |_|\__,_|\__, |\___|_| |_| |_|\___|_| |_|\__|
+####                                                                                                   __/ |                              
+####                                                                                                  |___/                               
 
-###   _____           _   _               __   __            ______ _           _     
-###  /  ___|         | | (_)             /  | /  |           |  ___| |         | |    
-###  \ `--.  ___  ___| |_ _  ___  _ __   `| | `| |   ______  | |_  | | __ _ ___| |__  
-###   `--. \/ _ \/ __| __| |/ _ \| '_ \   | |  | |  |______| |  _| | |/ _` / __| '_ \ 
-###  /\__/ /  __/ (__| |_| | (_) | | | | _| |__| |_          | |   | | (_| \__ \ | | |
-###  \____/ \___|\___|\__|_|\___/|_| |_| \___/\___/          \_|   |_|\__,_|___/_| |_|
-###                                                                                   
-###                                                                                   
-
-
-##   ______                    _______         __                              __    __                    _______  ________  _______ 
-##  |   __ \.--.--..-----.    |_     _|.-----.|  |_ .-----..----..---.-..----.|  |_ |__|.--.--..-----.    |     __||  |  |  ||    ___|
-##  |      <|  |  ||     |     _|   |_ |     ||   _||  -__||   _||  _  ||  __||   _||  ||  |  ||  -__|    |__     ||  |  |  ||    ___|
-##  |___|__||_____||__|__|    |_______||__|__||____||_____||__|  |___._||____||____||__| \___/ |_____|    |_______||________||___|    
-##                                                                                                                                    
-Open Terminal
-#	cd /usr/share/mime/packages
-#	sudo nano freedesktop.org.xml
-In that file search for "vnd.adobe.flash.movie"
-This should find a line that looks like:
-#	<mime-type type="application/vnd.adobe.flash.movie">
-Edit that line to read:
-#	<mime-type type="application/x-shockwave-flash">
-Save the file.
-Then run:
-#	sudo update-mime-database /usr/share/mime
-
-
-###   _____           _   _               __   _____           ______ _ _       ___  ___                                                  _   
-###  /  ___|         | | (_)             /  | / __  \          |  ___(_) |      |  \/  |                                                 | |  
-###  \ `--.  ___  ___| |_ _  ___  _ __   `| | `' / /'  ______  | |_   _| | ___  | .  . | __ _ _ __   __ _  __ _  ___ _ __ ___   ___ _ __ | |_ 
-###   `--. \/ _ \/ __| __| |/ _ \| '_ \   | |   / /   |______| |  _| | | |/ _ \ | |\/| |/ _` | '_ \ / _` |/ _` |/ _ \ '_ ` _ \ / _ \ '_ \| __|
-###  /\__/ /  __/ (__| |_| | (_) | | | | _| |_./ /___          | |   | | |  __/ | |  | | (_| | | | | (_| | (_| |  __/ | | | | |  __/ | | | |_ 
-###  \____/ \___|\___|\__|_|\___/|_| |_| \___/\_____/          \_|   |_|_|\___| \_|  |_/\__,_|_| |_|\__,_|\__, |\___|_| |_| |_|\___|_| |_|\__|
-###                                                                                                        __/ |                              
-###                                                                                                       |___/                               
-
-
-##                    __        
-##  .-----..--.--..--|  |.-----.
-##  |__ --||  |  ||  _  ||  _  |
-##  |_____||_____||_____||_____|
-##                              
+##               _       
+## ___ _   _  __| | ___  
+##/ __| | | |/ _` |/ _ \ 
+##\__ \ |_| | (_| | (_) |
+##|___/\__,_|\__,_|\___/ 
+##                       
 sudo allows a permitted user to execute a command as the superuser or another user, as specified in the sudoers file.
 The real and effective uid and gid are set to match those of the target user as specified in the passwd file (the group vector is also initialized when the target user is not root).
 By default, sudo requires that users authenticate themselves with a password (NOTE: by default this is the user's password, not the root password).
 Once a user has been authenticated, a timestamp is updated and the user may then use sudo without a password for a short period of time (5 minutes unless overridden in sudoers).
 
+## __  __       _    _                                                       _                     
+##|  \/  | __ _| | _(_)_ __   __ _   _   _ ___  ___ _ __ ___   ___ _   _  __| | ___   ___ _ __ ___ 
+##| |\/| |/ _` | |/ / | '_ \ / _` | | | | / __|/ _ \ '__/ __| / __| | | |/ _` |/ _ \ / _ \ '__/ __|
+##| |  | | (_| |   <| | | | | (_| | | |_| \__ \  __/ |  \__ \ \__ \ |_| | (_| | (_) |  __/ |  \__ \
+##|_|  |_|\__,_|_|\_\_|_| |_|\__, |  \__,_|___/\___|_|  |___/ |___/\__,_|\__,_|\___/ \___|_|  |___/
+##                           |___/                                                                 
 
-##   _______     __     __ __                                                     __                                                                    __        
-##  |   _   |.--|  |.--|  |__|.-----.-----.    .--.--.-----.-----.----.-----.    |  |_.-----.    .---.-.----.----.-----.-----.-----.    .-----.--.--.--|  |.-----.
-##  |       ||  _  ||  _  |  ||     |  _  |    |  |  |__ --|  -__|   _|__ --|    |   _|  _  |    |  _  |  __|  __|  -__|__ --|__ --|    |__ --|  |  |  _  ||  _  |
-##  |___|___||_____||_____|__||__|__|___  |    |_____|_____|_____|__| |_____|    |____|_____|    |___._|____|____|_____|_____|_____|    |_____|_____|_____||_____|
-##                                  |_____|                                                                                                                       
 Users are not given sudo on initial install. To fix this, open Terminal, then load the sudoers file.
 #	su
 #	visudo
@@ -1265,13 +1214,12 @@ It should look like this after you are done:
 	root        ALL=(ALL:ALL) ALL
 	newuser    ALL=(ALL:ALL) ALL
 
-
-##   _______  __  __      _______  __                   __        ______  __                         __ 
-##  |   _   ||  ||  |    |   _   ||  |--..-----..--.--.|  |_     |      ||  |--..--------..-----..--|  |
-##  |       ||  ||  |    |       ||  _  ||  _  ||  |  ||   _|    |   ---||     ||        ||  _  ||  _  |
-##  |___|___||__||__|    |___|___||_____||_____||_____||____|    |______||__|__||__|__|__||_____||_____|
-##                                                                                                      
-
+##    _    _ _         _                 _          _                         _ 
+##   / \  | | |   __ _| |__   ___  _   _| |_    ___| |__  _ __ ___   ___   __| |
+##  / _ \ | | |  / _` | '_ \ / _ \| | | | __|  / __| '_ \| '_ ` _ \ / _ \ / _` |
+## / ___ \| | | | (_| | |_) | (_) | |_| | |_  | (__| | | | | | | | | (_) | (_| |
+##/_/   \_\_|_|  \__,_|_.__/ \___/ \__,_|\__|  \___|_| |_|_| |_| |_|\___/ \__,_|
+##                                                                              
 You can see file permissions by typing
 #	ls -l
 
@@ -1294,21 +1242,19 @@ You can also you binary coding to set permissions. The code is split the followi
 So to give a file full access permissions for anyone use:
 #	chmod 777 [file]
 
+##                           
+## _ __ ___ _   _ _ __   ___ 
+##| '__/ __| | | | '_ \ / __|
+##| |  \__ \ |_| | | | | (__ 
+##|_|  |___/\__, |_| |_|\___|
+##          |___/            
 
-##   ______  _______  ___ ___  _______  ______ 
-##  |   __ \|     __||   |   ||    |  ||      |
-##  |      <|__     | \     / |       ||   ---|
-##  |___|__||_______|  |___|  |__|____||______|
-##                                             
 rsync stands for remote sync. First time, rsync replicates the whole content between the source and destination directories. Next time, rsync transfers only the changed blocks or bytes to the destination location, which makes the transfer really fast.
 #	rsync [options] source destination
 Here’s how I use rsync when backing up my hard drive to an external backup.
 #	rsync -izvrdop --progress source destination
 Here's a way to mirror a folder onto an external SD card, so that the files are transferred in the correct order.
 #	rsync -avP
-For transferring songs from folder to KH SD card, make a folder on the computer with the songs correctly labeled and in order. The copy the files from the folder to two folders on the SD labeled A and Z.
-#	rsync -ravP source/ /media/user/Music/A/
-#	rsync -ravP source/ /media/user/Music/Z/
 If a file is not present at the source, but present at the target, you might want to delete the file at the target during rsync.
 In that case, use –delete option as shown below. rsync delete option deletes files that are not there in source directory.
 #	rsync -zvrdop --delete source destination
@@ -1319,12 +1265,12 @@ Use -i to view the difference between the source and destination files before tr
 Use the --dry-run option for testing. This won’t transfer files but will simulate the transfer
 #	rsync -zvrdop --dry-run source destination
 
-
-##   _______             _______  _______  ______  __  __      ___ ___                                    __   ___ 
-##  |     __|.-----.    |    ___||     __||      ||  |/  |    |   |   |.-----..--.--..----..-----..-----.|  |.'  _|
-##  |    |  ||  _  |    |    ___||__     ||   ---||     <      \     / |  _  ||  |  ||   _||__ --||  -__||  ||   _|
-##  |_______||_____|    |___|    |_______||______||__|\__|      |___|  |_____||_____||__|  |_____||_____||__||__|  
-##                                                                                                                 
+##  ____         _____ ____   ____ _  __ __   __                        _  __ 
+## / ___| ___   |  ___/ ___| / ___| |/ / \ \ / /__  _   _ _ __ ___  ___| |/ _|
+##| |  _ / _ \  | |_  \___ \| |   | ' /   \ V / _ \| | | | '__/ __|/ _ \ | |_ 
+##| |_| | (_) | |  _|  ___) | |___| . \    | | (_) | |_| | |  \__ \  __/ |  _|
+## \____|\___/  |_|   |____/ \____|_|\_\   |_|\___/ \__,_|_|  |___/\___|_|_|  
+##                                                                            
 If you want to reboot and have the computer perform an FSCK on the next reboot, then open the Terminal and type:
 #	sudo shutdown -rF now
 OR…
@@ -1340,12 +1286,12 @@ Second: Unmount the drive (Replace /dev/??? with the correct address from step 1
 Now start the FSCK (Replace /dev/??? with the correct address from step 1 and 2)
 #	sudo fsck -t ext4 /dev/???
 	
-
-##   ______            __      _______               __                            _______                     
-##  |   __ \.---.-..--|  |    |     __|.-----..----.|  |_ .-----..----..-----.    |     __|.----..---.-..-----.
-##  |   __ <|  _  ||  _  |    |__     ||  -__||  __||   _||  _  ||   _||__ --|    |__     ||  __||  _  ||     |
-##  |______/|___._||_____|    |_______||_____||____||____||_____||__|  |_____|    |_______||____||___._||__|__|
-##                                                                                                             
+## ____            _   ____            _                   ____                  
+##| __ )  __ _  __| | / ___|  ___  ___| |_ ___  _ __ ___  / ___|  ___ __ _ _ __  
+##|  _ \ / _` |/ _` | \___ \ / _ \/ __| __/ _ \| '__/ __| \___ \ / __/ _` | '_ \ 
+##| |_) | (_| | (_| |  ___) |  __/ (__| || (_) | |  \__ \  ___) | (_| (_| | | | |
+##|____/ \__,_|\__,_| |____/ \___|\___|\__\___/|_|  |___/ |____/ \___\__,_|_| |_|
+##                                                                               
 To scan a computer for bad sectors, you can either use the Drive Utility tool or the badblocks Terminal command.
 First: Locate the drive you are going to FSCK
 #	sudo fdisk -l
@@ -1358,85 +1304,21 @@ First you have to write the location of the bad sectors to a flat file
 After that, we need to feed the flat file into the FSCK command to mark these sectors as unusable
 #	sudo fsck -l bad-blocks /dev/sda
 
+####  _____           _   _               __  ___             _____                                    _     
+#### / ____|         | | (_)             /_ |/ _ \           |  __ \                                  | |    
+####| (___   ___  ___| |_ _  ___  _ __    | | | | |  ______  | |__) |_ _ ___ _____      _____  _ __ __| |___ 
+#### \___ \ / _ \/ __| __| |/ _ \| '_ \   | | | | | |______| |  ___/ _` / __/ __\ \ /\ / / _ \| '__/ _` / __|
+#### ____) |  __/ (__| |_| | (_) | | | |  | | |_| |          | |  | (_| \__ \__ \\ V  V / (_) | | | (_| \__ \
+####|_____/ \___|\___|\__|_|\___/|_| |_|  |_|\___/           |_|   \__,_|___/___/ \_/\_/ \___/|_|  \__,_|___/
+####                                                                                                         
+####                                                                                                         
 
-###   _____           _   _               __   _____           ______                                   _     
-###  /  ___|         | | (_)             /  | |____ |          | ___ \                                 | |    
-###  \ `--.  ___  ___| |_ _  ___  _ __   `| |     / /  ______  | |_/ /_ _ ___ _____      _____  _ __ __| |___ 
-###   `--. \/ _ \/ __| __| |/ _ \| '_ \   | |     \ \ |______| |  __/ _` / __/ __\ \ /\ / / _ \| '__/ _` / __|
-###  /\__/ /  __/ (__| |_| | (_) | | | | _| |_.___/ /          | | | (_| \__ \__ \\ V  V / (_) | | | (_| \__ \
-###  \____/ \___|\___|\__|_|\___/|_| |_| \___/\____/           \_|  \__,_|___/___/ \_/\_/ \___/|_|  \__,_|___/
-###                                                                                                           
-###                                                                                                           
-
-
-##   _______             ______                                           __      _______                 __           __ 
-##  |    |  |.-----.    |   __ \.---.-.-----.-----.--.--.--.-----.----.--|  |    |    |  |.-----.-----.--|  |.-----.--|  |
-##  |       ||  _  |    |    __/|  _  |__ --|__ --|  |  |  |  _  |   _|  _  |    |       ||  -__|  -__|  _  ||  -__|  _  |
-##  |__|____||_____|    |___|   |___._|_____|_____|________|_____|__| |_____|    |__|____||_____|_____|_____||_____|_____|
-##                                                                                                                        
-If you'd like to run a user account without needing to be prompted for the password ever again, try this
-First, if your user has sudo privileges, you must enable its NOPASSWD option. Otherwise, sudo will ask for a password even when you don't have one, and won't accept an empty password.
-
-To do so, open the sudoers configuration file
-#	sudo visudo
-add the following line to the file, replacing david with your username:
-#	david ALL=(ALL) NOPASSWD:ALL
-
-Close the editor to apply the changes, and test the effect on sudo in a new terminal.
-
-Second, delete the password for your user by running this command:
-#	sudo passwd -d username
-
-If you ever get prompted for a password, just type enter and it should work. I've tested this answer with LightDM, the lock screen, sudo, gksu
-
-
-##   _______                                __              ______                                           __        
-##  |     __|.-----.-----.-----.----.---.-.|  |_.-----.    |   __ \.---.-.-----.-----.--.--.--.-----.----.--|  |.-----.
-##  |    |  ||  -__|     |  -__|   _|  _  ||   _|  -__|    |    __/|  _  |__ --|__ --|  |  |  |  _  |   _|  _  ||__ --|
-##  |_______||_____|__|__|_____|__| |___._||____|_____|    |___|   |___._|_____|_____|________|_____|__| |_____||_____|
-##                                                                                                                     
-Many passwords can be created effortlessly using makepasswd
-
-#	sudo aptitude install makepasswd
-
-#	man makepasswd
-
-I like using makepasswd this way
-#	touch FILE
-#	(Enter a password into the file)
-#	makepasswd --clearfrom FILE --repeatpass 30 --crypt >> passwordfile
-#	makepasswd --clearfrom FILE --repeatpass 30 --crypt-md5 >> passwordfile
-
-
-##   ______                       __        _____                  __        _______  __                   __               ______                                                 __ 
-##  |   __ \.-----..-----..-----.|  |_     |     |_ .-----..-----.|  |_     |   |   ||  |--..--.--..-----.|  |_ .--.--.    |   __ \.---.-..-----..-----..--.--.--..-----..----..--|  |
-##  |      <|  -__||__ --||  -__||   _|    |       ||  _  ||__ --||   _|    |   |   ||  _  ||  |  ||     ||   _||  |  |    |    __/|  _  ||__ --||__ --||  |  |  ||  _  ||   _||  _  |
-##  |___|__||_____||_____||_____||____|    |_______||_____||_____||____|    |_______||_____||_____||__|__||____||_____|    |___|   |___._||_____||_____||________||_____||__|  |_____|
-##                                                                                                                                                                                    
-To Reset a Lost Password on Ubuntu
-Boot from a live CD
-Mount the computer’s hard drive
-Open Terminal.
-If using Ubuntu Live CD, type
-#	gksudo nautilus
-If using Linux Mint Live CD, type
-#	gksudo nemo
-If using Linux Mint KDE Live CD, type
-#	kdesudo dolphin
-Go to mounted drive, and find the /etc/ directory
-Scroll past all the directories until you find the shadow text file
-Create a backup of the shadow text file
-Edit the file
-Scroll down to the username in question and replace the encrypted password with:
-#	U6aMy0wojraho
-Reboot
-
-
-##   ______         __                    _______             _______         __                _______                                       ______                                                 __        
-##  |   __ \.--.--.|  |.-----..-----.    |_     _|.-----.    |   |   |.---.-.|  |--..-----.    |     __|.-----..----..--.--..----..-----.    |   __ \.---.-..-----..-----..--.--.--..-----..----..--|  |.-----.
-##  |      <|  |  ||  ||  -__||__ --|      |   |  |  _  |    |       ||  _  ||    < |  -__|    |__     ||  -__||  __||  |  ||   _||  -__|    |    __/|  _  ||__ --||__ --||  |  |  ||  _  ||   _||  _  ||__ --|
-##  |___|__||_____||__||_____||_____|      |___|  |_____|    |__|_|__||___._||__|__||_____|    |_______||_____||____||_____||__|  |_____|    |___|   |___._||_____||_____||________||_____||__|  |_____||_____|
-##                                                                                                                                                                                                             
+## ____        _             _          __  __       _          ____                             ____                                     _     
+##|  _ \ _   _| | ___  ___  | |_ ___   |  \/  | __ _| | _____  / ___|  ___  ___ _   _ _ __ ___  |  _ \ __ _ ___ _____      _____  _ __ __| |___ 
+##| |_) | | | | |/ _ \/ __| | __/ _ \  | |\/| |/ _` | |/ / _ \ \___ \ / _ \/ __| | | | '__/ _ \ | |_) / _` / __/ __\ \ /\ / / _ \| '__/ _` / __|
+##|  _ <| |_| | |  __/\__ \ | || (_) | | |  | | (_| |   <  __/  ___) |  __/ (__| |_| | | |  __/ |  __/ (_| \__ \__ \\ V  V / (_) | | | (_| \__ \
+##|_| \_\\__,_|_|\___||___/  \__\___/  |_|  |_|\__,_|_|\_\___| |____/ \___|\___|\__,_|_|  \___| |_|   \__,_|___/___/ \_/\_/ \___/|_|  \__,_|___/
+##                                                                                                                                              
 A strong password has at least 16 characters
 A strong password uses uppercase letters.
 A strong password is NOT made up of only uppercase letters.
@@ -1472,12 +1354,54 @@ A strong password is NOT a password that unlocks a bunch of stored passwords.
 
 A strong password is NEVER used as a login ID somewhere else.
 
+##  ____                           _         ____                                     _     
+## / ___| ___ _ __   ___ _ __ __ _| |_ ___  |  _ \ __ _ ___ _____      _____  _ __ __| |___ 
+##| |  _ / _ \ '_ \ / _ \ '__/ _` | __/ _ \ | |_) / _` / __/ __\ \ /\ / / _ \| '__/ _` / __|
+##| |_| |  __/ | | |  __/ | | (_| | ||  __/ |  __/ (_| \__ \__ \\ V  V / (_) | | | (_| \__ \
+## \____|\___|_| |_|\___|_|  \__,_|\__\___| |_|   \__,_|___/___/ \_/\_/ \___/|_|  \__,_|___/
+##                                                                                          
+Many passwords can be created effortlessly using makepasswd
 
-##   ______                                                 __      ________         __            __  __                 
-##  |   __ \.---.-..-----..-----..--.--.--..-----..----..--|  |    |  |  |  |.-----.|  |--..-----.|__||  |_ .-----..-----.
-##  |    __/|  _  ||__ --||__ --||  |  |  ||  _  ||   _||  _  |    |  |  |  ||  -__||  _  ||__ --||  ||   _||  -__||__ --|
-##  |___|   |___._||_____||_____||________||_____||__|  |_____|    |________||_____||_____||_____||__||____||_____||_____|
-##                                                                                                                        
+#	sudo aptitude install makepasswd
+
+#	man makepasswd
+
+I like using makepasswd this way
+#	touch FILE
+#	(Enter a password into the file)
+#	makepasswd --clearfrom FILE --repeatpass 30 --crypt >> passwordfile
+#	makepasswd --clearfrom FILE --repeatpass 30 --crypt-md5 >> passwordfile
+
+## ____                _     _              _     _   _ _                 _           ____                                     _ 
+##|  _ \ ___  ___  ___| |_  | |    ___  ___| |_  | | | | |__  _   _ _ __ | |_ _   _  |  _ \ __ _ ___ _____      _____  _ __ __| |
+##| |_) / _ \/ __|/ _ \ __| | |   / _ \/ __| __| | | | | '_ \| | | | '_ \| __| | | | | |_) / _` / __/ __\ \ /\ / / _ \| '__/ _` |
+##|  _ <  __/\__ \  __/ |_  | |__| (_) \__ \ |_  | |_| | |_) | |_| | | | | |_| |_| | |  __/ (_| \__ \__ \\ V  V / (_) | | | (_| |
+##|_| \_\___||___/\___|\__| |_____\___/|___/\__|  \___/|_.__/ \__,_|_| |_|\__|\__,_| |_|   \__,_|___/___/ \_/\_/ \___/|_|  \__,_|
+##                                                                                                                               
+No idea if this still works or not...
+Boot from a live CD
+Mount the computer’s hard drive
+Open Terminal.
+If using Ubuntu Live CD, type
+#	gksudo nautilus
+If using Linux Mint Live CD, type
+#	gksudo nemo
+If using Linux Mint KDE Live CD, type
+#	kdesudo dolphin
+Go to mounted drive, and find the /etc/ directory
+Scroll past all the directories until you find the shadow text file
+Create a backup of the shadow text file
+Edit the file
+Scroll down to the username in question and replace the encrypted password with:
+#	U6aMy0wojraho
+Reboot
+
+## ____                                     _  __        __   _         _ _            
+##|  _ \ __ _ ___ _____      _____  _ __ __| | \ \      / /__| |__  ___(_) |_ ___  ___ 
+##| |_) / _` / __/ __\ \ /\ / / _ \| '__/ _` |  \ \ /\ / / _ \ '_ \/ __| | __/ _ \/ __|
+##|  __/ (_| \__ \__ \\ V  V / (_) | | | (_| |   \ V  V /  __/ |_) \__ \ | ||  __/\__ \
+##|_|   \__,_|___/___/ \_/\_/ \___/|_|  \__,_|    \_/\_/ \___|_.__/|___/_|\__\___||___/
+##                                                                                     
 If you're too lazy to use some of the commands above to make passwords, there are websites that can do it as well.
 #	http://maord.com/
 		I highly recommend this site for generating passwords as it can generate up to 2500 passwords at a time (viewable as a webpage, or downloadable in CSV format or plain text)
@@ -1497,31 +1421,30 @@ I highly recommend the following sites for telling if the password you are using
 #	www.passfault.com
 #	www.howsecureismypassword.net
 
+####  _____           _   _               __ __             _____ _____  _    _            __  __                                 
+#### / ____|         | | (_)             /_ /_ |           / ____|  __ \| |  | |   ___    |  \/  |                                
+####| (___   ___  ___| |_ _  ___  _ __    | || |  ______  | |    | |__) | |  | |  ( _ )   | \  / | ___ _ __ ___   ___  _ __ _   _ 
+#### \___ \ / _ \/ __| __| |/ _ \| '_ \   | || | |______| | |    |  ___/| |  | |  / _ \/\ | |\/| |/ _ \ '_ ` _ \ / _ \| '__| | | |
+#### ____) |  __/ (__| |_| | (_) | | | |  | || |          | |____| |    | |__| | | (_>  < | |  | |  __/ | | | | | (_) | |  | |_| |
+####|_____/ \___|\___|\__|_|\___/|_| |_|  |_||_|           \_____|_|     \____/   \___/\/ |_|  |_|\___|_| |_| |_|\___/|_|   \__, |
+####                                                                                                                         __/ |
+####                                                                                                                        |___/ 
 
-###   _____           _   _               __    ___            _____ ______ _   _           ___  ___                                
-###  /  ___|         | | (_)             /  |  /   |          /  __ \| ___ \ | | |   ___    |  \/  |                                
-###  \ `--.  ___  ___| |_ _  ___  _ __   `| | / /| |  ______  | /  \/| |_/ / | | |  ( _ )   | .  . | ___ _ __ ___   ___  _ __ _   _ 
-###   `--. \/ _ \/ __| __| |/ _ \| '_ \   | |/ /_| | |______| | |    |  __/| | | |  / _ \/\ | |\/| |/ _ \ '_ ` _ \ / _ \| '__| | | |
-###  /\__/ /  __/ (__| |_| | (_) | | | | _| |\___  |          | \__/\| |   | |_| | | (_>  < | |  | |  __/ | | | | | (_) | |  | |_| |
-###  \____/ \___|\___|\__|_|\___/|_| |_| \___/   |_/           \____/\_|    \___/   \___/\/ \_|  |_/\___|_| |_| |_|\___/|_|   \__, |
-###                                                                                                                            __/ |
-###                                                                                                                           |___/ 
-
-
-##   _______                __  __         __     __             _______                                      
-##  |   _   |.--.--..---.-.|__||  |.---.-.|  |--.|  |.-----.    |   |   |.-----..--------..-----..----..--.--.
-##  |       ||  |  ||  _  ||  ||  ||  _  ||  _  ||  ||  -__|    |       ||  -__||        ||  _  ||   _||  |  |
-##  |___|___| \___/ |___._||__||__||___._||_____||__||_____|    |__|_|__||_____||__|__|__||_____||__|  |___  |
-##                                                                                                     |_____|
+##    _             _ _       _     _        __  __                                 
+##   / \__   ____ _(_) | __ _| |__ | | ___  |  \/  | ___ _ __ ___   ___  _ __ _   _ 
+##  / _ \ \ / / _` | | |/ _` | '_ \| |/ _ \ | |\/| |/ _ \ '_ ` _ \ / _ \| '__| | | |
+## / ___ \ V / (_| | | | (_| | |_) | |  __/ | |  | |  __/ | | | | | (_) | |  | |_| |
+##/_/   \_\_/ \__,_|_|_|\__,_|_.__/|_|\___| |_|  |_|\___|_| |_| |_|\___/|_|   \__, |
+##                                                                            |___/ 
 To see more information on memory, open Terminal and type in the following command:
 #	cat /proc/meminfo
 
-
-##   _______                       __               _______                                 
-##  |   |   |.-----..--.--.--.    |  |_ .-----.    |   |   |.-----..-----.    .-----..-----.
-##  |       ||  _  ||  |  |  |    |   _||  _  |    |   |   ||__ --||  -__|    |  _  ||__ --|
-##  |___|___||_____||________|    |____||_____|    |_______||_____||_____|    |   __||_____|
-##                                                                            |__|          
+## _   _                 _          _   _                      
+##| | | | _____      __ | |_ ___   | | | |___  ___   _ __  ___ 
+##| |_| |/ _ \ \ /\ / / | __/ _ \  | | | / __|/ _ \ | '_ \/ __|
+##|  _  | (_) \ V  V /  | || (_) | | |_| \__ \  __/ | |_) \__ \
+##|_| |_|\___/ \_/\_/    \__\___/   \___/|___/\___| | .__/|___/
+##                                                  |_|        
 ps displays information about a selection of the active processes.
 If you want a repetitive update of the selection and the displayed information, use "htop" or “top” instead. Or you can use the directions above to see memory infos.
 
@@ -1538,128 +1461,21 @@ To list processes in a hierarchy, tree format
 To list all threads in a particular process
 #	ps -C [process] -L -o pid,tid,pcpu,state
 
+####  _____           _   _               __ ___             __  __ _                           __ _    __          ___           _                   
+#### / ____|         | | (_)             /_ |__ \           |  \/  (_)                         / _| |   \ \        / (_)         | |                  
+####| (___   ___  ___| |_ _  ___  _ __    | |  ) |  ______  | \  / |_  ___ _ __ ___  ___  ___ | |_| |_   \ \  /\  / / _ _ __   __| | _____      _____ 
+#### \___ \ / _ \/ __| __| |/ _ \| '_ \   | | / /  |______| | |\/| | |/ __| '__/ _ \/ __|/ _ \|  _| __|   \ \/  \/ / | | '_ \ / _` |/ _ \ \ /\ / / __|
+#### ____) |  __/ (__| |_| | (_) | | | |  | |/ /_           | |  | | | (__| | | (_) \__ \ (_) | | | |_     \  /\  /  | | | | | (_| | (_) \ V  V /\__ \
+####|_____/ \___|\___|\__|_|\___/|_| |_|  |_|____|          |_|  |_|_|\___|_|  \___/|___/\___/|_|  \__|     \/  \/   |_|_| |_|\__,_|\___/ \_/\_/ |___/
+####                                                                                                                                                  
+####                                                                                                                                                  
 
-###   _____           _   _               __   _____            _     _                   ______      _                
-###  /  ___|         | | (_)             /  | |  ___|          | |   (_)                  |  _  \    (_)               
-###  \ `--.  ___  ___| |_ _  ___  _ __   `| | |___ \   ______  | |    _ _ __  _   ___  __ | | | |_ __ ___   _____  ___ 
-###   `--. \/ _ \/ __| __| |/ _ \| '_ \   | |     \ \ |______| | |   | | '_ \| | | \ \/ / | | | | '__| \ \ / / _ \/ __|
-###  /\__/ /  __/ (__| |_| | (_) | | | | _| |_/\__/ /          | |___| | | | | |_| |>  <  | |/ /| |  | |\ V /  __/\__ \
-###  \____/ \___|\___|\__|_|\___/|_| |_| \___/\____/           \_____/_|_| |_|\__,_/_/\_\ |___/ |_|  |_| \_/ \___||___/
-###                                                                                                                    
-###                                                                                                                    
-
-
-##   _______                                __        _____         __                    __               _______  ___ ___  _______  _____  
-##  |    ___|.-----..----..--------..---.-.|  |_     |     \ .----.|__|.--.--..-----.    |  |_ .-----.    |    ___||   |   ||_     _||  |  | 
-##  |    ___||  _  ||   _||        ||  _  ||   _|    |  --  ||   _||  ||  |  ||  -__|    |   _||  _  |    |    ___||-     -|  |   |  |__    |
-##  |___|    |_____||__|  |__|__|__||___._||____|    |_____/ |__|  |__| \___/ |_____|    |____||_____|    |_______||___|___|  |___|     |__| 
-##                                                                                                                                           
-Check the drive partition status in FDisk
-#	sudo fdisk -l
-If needed, delete old partitions and set up a new partition in FDisk
-#	sudo fdisk /dev/sdb
-This brings up the FDisk menu, which can be complicated at times.
-Command action
-	a   toggle a bootable flagL
-	b   edit bsd disklabel
-	c   toggle the dos compatibility flag
-	d   delete a partition
-	You will be asked for a partition number. If you want to delete /dev/sdb5 you would enter 5
-
-	l   list known partition types
-	m   print this menu
-	n   add a new partition
-	o   create a new empty DOS partition table
-	p   print the partition table
-	q   quit without saving changes
-	s   create a new empty Sun disklabel
-	t   change a partition's system id
-	u   change display/entry units
-	v   verify the partition table
-	w   write table to disk and exit
-	x   extra functionality (experts only)
-
-Here's how I use FDisk.
-Listing partitions on disk, press "p". To create new ones press "n" (probably after deleting one or more partitions by pressing "d"). Finally, press "w" to write the changes to the disk
-
-After that is done, you actually need to format the new partition to EXT4.
-#	sudo mkfs.ext4 /dev/sdbX
-
-You will probably notice that the drive won't allow you to add/remove any files even after the format.
-Find the mountpoint of the drive using
-#	lsblk
-You'll see the mountpoint listed next to the drive entry like below:
-sdb1      8:16   1   7.4G  0 disk /media/user/location
-
-So navigate to the actual drive location
-#	cd /media/user
-#	ls -al
-That will probably show that the drive is owned by root:root and cannot be written to. Use the following commands to take control of the drive.
-#	chown username:username /media/location
-#	chmod 777 /media/location
-This will change the device to read/write/execute, and it will be owned by the correct user. You can now write to the drive.
-
-
-###   _____           _   _               __    ____            _    _ _           _                     __  _____ 
-###  /  ___|         | | (_)             /  |  / ___|          | |  | (_)         | |                   /  ||  _  |
-###  \ `--.  ___  ___| |_ _  ___  _ __   `| | / /___   ______  | |  | |_ _ __   __| | _____      _____  `| || |/' |
-###   `--. \/ _ \/ __| __| |/ _ \| '_ \   | | | ___ \ |______| | |/\| | | '_ \ / _` |/ _ \ \ /\ / / __|  | ||  /| |
-###  /\__/ /  __/ (__| |_| | (_) | | | | _| |_| \_/ |          \  /\  / | | | | (_| | (_) \ V  V /\__ \ _| |\ |_/ /
-###  \____/ \___|\___|\__|_|\___/|_| |_| \___/\_____/           \/  \/|_|_| |_|\__,_|\___/ \_/\_/ |___/ \___/\___/ 
-###                                                                                                                
-###                                                                                                                
-
-
-##   _______  __     __             __             ________  __                _______      _______                    _____    __                      
-##  |_     _||  |--.|__|.-----.    |__|.-----.    |  |  |  ||  |--..--.--.    |_     _|    |   |   |.-----..-----.    |     |_ |__|.-----..--.--..--.--.
-##    |   |  |     ||  ||__ --|    |  ||__ --|    |  |  |  ||     ||  |  |     _|   |_     |   |   ||__ --||  -__|    |       ||  ||     ||  |  ||_   _|
-##    |___|  |__|__||__||_____|    |__||_____|    |________||__|__||___  |    |_______|    |_______||_____||_____|    |_______||__||__|__||_____||__.__|
-##                                                                 |_____|                                                                              
-
-WARNING!! WINDOWS 10 KILLS KITTENS EVERY TIME YOU USE IT!!
-SAVE THE KITTENS!! BE A SMART LINUX USER!!
-
-#Windows Update Ruins Lives
-The way Windows Update currently forces Windows 10 upgrades and updates on you is bad.
-
-If Windows Update wants to do its thing, it is going to get on with it - regardless of what you might be doing, sometimes without letting users complete the task they were engaged with.
-Loss of data is common, usually because the computer will suddenly restart with no warning.
-
-Sometimes Windows Update can't finish an update, and it can't rollback the system to a safe point either, which leaves the entire system in an unusable state.
-This can leave you stranded without a working computer for hours or days before you can get it fixed, IF it can even be fixed.
-
-The most common piece of advice on Windows forums when dealing with huge bugs is "Just format the hard drive and start over."
-
-THE ONLY WAY TO STOP WINDOWS 10 UPDATES IS TO NOT CONNECT THE COMPUTER TO WIFI
-
-It is not unusual for Windows Update to sabotage the bootloader and make a computer unbootable without serious software repair.
-
-
-##   _____   __                __     __             _______  _______  _______  _______         ___     _______                                       ______                __   
-##  |     \ |__|.-----..---.-.|  |--.|  |.-----.    |   |   ||    ___||    ___||_     _|       /  /    |     __|.-----..----..--.--..----..-----.    |   __ \.-----..-----.|  |_ 
-##  |  --  ||  ||__ --||  _  ||  _  ||  ||  -__|    |   |   ||    ___||    ___| _|   |_      ,' ,'     |__     ||  -__||  __||  |  ||   _||  -__|    |   __ <|  _  ||  _  ||   _|
-##  |_____/ |__||_____||___._||_____||__||_____|    |_______||_______||___|    |_______|    /__/       |_______||_____||____||_____||__|  |_____|    |______/|_____||_____||____|
-##                                                                                                                                                                               
-It will be a similar method on other computers.
-Power down computer.
-Power up.
-Hit F2 as soon as computer boots up to get to UEFI control screen.
-Use arrows to navigate to Boot Options
-
-In options should be option for Secure Boot
-
-Set Secure Boot to Disabled
-
-Press F10 to save settings.
-Reboot.
-
-
-##   ________  __            __                              ______                                    _______         __    __    __                      
-##  |  |  |  ||__|.-----..--|  |.-----..--.--.--..-----.    |   __ \.-----..--.--.--..-----..----.    |     __|.-----.|  |_ |  |_ |__|.-----..-----..-----.
-##  |  |  |  ||  ||     ||  _  ||  _  ||  |  |  ||__ --|    |    __/|  _  ||  |  |  ||  -__||   _|    |__     ||  -__||   _||   _||  ||     ||  _  ||__ --|
-##  |________||__||__|__||_____||_____||________||_____|    |___|   |_____||________||_____||__|      |_______||_____||____||____||__||__|__||___  ||_____|
-##                                                                                                                                           |_____|       
-
+##__        ___           _                        _    ____ ____ ___   ____       _   _   _                 
+##\ \      / (_)_ __   __| | _____      _____     / \  / ___|  _ \_ _| / ___|  ___| |_| |_(_)_ __   __ _ ___ 
+## \ \ /\ / /| | '_ \ / _` |/ _ \ \ /\ / / __|   / _ \| |   | |_) | |  \___ \ / _ \ __| __| | '_ \ / _` / __|
+##  \ V  V / | | | | | (_| | (_) \ V  V /\__ \  / ___ \ |___|  __/| |   ___) |  __/ |_| |_| | | | | (_| \__ \
+##   \_/\_/  |_|_| |_|\__,_|\___/ \_/\_/ |___/ /_/   \_\____|_|  |___| |____/ \___|\__|\__|_|_| |_|\__, |___/
+##                                                                                                 |___/     
 Windows PCs typically operate in a number of Advanced Configuration and Power Interface (ACPI) power states. An S0 power state, for example, is when your PC is running and ready to respond to your input.
 There are a number of power states, including S1, S2, and S3, and there's also a HYBRID SLEEP state where hibernation is used in tandem with a sleep state.
 
@@ -1671,12 +1487,12 @@ An S5 power state (soft off) is when your PC is shut down and rebooted completel
 
 There is also a G3 power state, which is when your PC consumes absolutely no power and is by all means off.
 
-
-##   _____         __                    ________                __  __        _______                       __        __             _____    __                      
-##  |     \ .----.|__|.--.--..-----.    |  |  |  |.-----..-----.|  ||  |_     |   |   |.-----..--.--..-----.|  |_     |__|.-----.    |     |_ |__|.-----..--.--..--.--.
-##  |  --  ||   _||  ||  |  ||  -__|    |  |  |  ||  _  ||     | |_||   _|    |       ||  _  ||  |  ||     ||   _|    |  ||     |    |       ||  ||     ||  |  ||_   _|
-##  |_____/ |__|  |__| \___/ |_____|    |________||_____||__|__|    |____|    |__|_|__||_____||_____||__|__||____|    |__||__|__|    |_______||__||__|__||_____||__.__|
-##                                                                                                                                                                     
+## ____       _            __        __          _ _     __  __                   _     ___         _     _                  
+##|  _ \ _ __(_)_   _____  \ \      / /__  _ __ ( ) |_  |  \/  | ___  _   _ _ __ | |_  |_ _|_ __   | |   (_)_ __  _   ___  __
+##| | | | '__| \ \ / / _ \  \ \ /\ / / _ \| '_ \|/| __| | |\/| |/ _ \| | | | '_ \| __|  | || '_ \  | |   | | '_ \| | | \ \/ /
+##| |_| | |  | |\ V /  __/   \ V  V / (_) | | | | | |_  | |  | | (_) | |_| | | | | |_   | || | | | | |___| | | | | |_| |>  < 
+##|____/|_|  |_| \_/ \___|    \_/\_/ \___/|_| |_|  \__| |_|  |_|\___/ \__,_|_| |_|\__| |___|_| |_| |_____|_|_| |_|\__,_/_/\_\
+##                                                                                                                           
 The only way that Linux can easily access files on a Windows hard drive is if the computer turns off completely and doesn't leave the drive partially hibernating.
 
 This is especially annoying if you're trying to rescue files from a hard drive that Windows has corrupted. And you try to mount the drive, and it won't mount!
@@ -1701,24 +1517,23 @@ Using a Linux Mint Live ISO, open Terminal and type:
 #	sudo ntfsfix /dev/sdXY
 where XY is the partition. For example sdA2
 
+####  _____           _   _               __ ____              _____                     _                 _   _      _           
+#### / ____|         | | (_)             /_ |___ \            / ____|                   | |     /\        | | (_)    | |          
+####| (___   ___  ___| |_ _  ___  _ __    | | __) |  ______  | (___   __ ___   _____  __| |    /  \   _ __| |_ _  ___| | ___  ___ 
+#### \___ \ / _ \/ __| __| |/ _ \| '_ \   | ||__ <  |______|  \___ \ / _` \ \ / / _ \/ _` |   / /\ \ | '__| __| |/ __| |/ _ \/ __|
+#### ____) |  __/ (__| |_| | (_) | | | |  | |___) |           ____) | (_| |\ V /  __/ (_| |  / ____ \| |  | |_| | (__| |  __/\__ \
+####|_____/ \___|\___|\__|_|\___/|_| |_|  |_|____/           |_____/ \__,_| \_/ \___|\__,_| /_/    \_\_|   \__|_|\___|_|\___||___/
+####                                                                                                                              
+####                                                                                                                              
 
-###   _____           _   _               __   ______           _____                     _    ___       _   _      _           
-###  /  ___|         | | (_)             /  | |___  /          /  ___|                   | |  / _ \     | | (_)    | |          
-###  \ `--.  ___  ___| |_ _  ___  _ __   `| |    / /   ______  \ `--.  __ ___   _____  __| | / /_\ \_ __| |_ _  ___| | ___  ___ 
-###   `--. \/ _ \/ __| __| |/ _ \| '_ \   | |   / /   |______|  `--. \/ _` \ \ / / _ \/ _` | |  _  | '__| __| |/ __| |/ _ \/ __|
-###  /\__/ /  __/ (__| |_| | (_) | | | | _| |_./ /             /\__/ / (_| |\ V /  __/ (_| | | | | | |  | |_| | (__| |  __/\__ \
-###  \____/ \___|\___|\__|_|\___/|_| |_| \___/\_/              \____/ \__,_| \_/ \___|\__,_| \_| |_/_|   \__|_|\___|_|\___||___/
-###                                                                                                                             
-###                                                                                                                             
-
-
-##   ________ __               ___ ___                   _______                 __                 _______        __                  __             
-##  |  |  |  |  |--.--.--.    |   |   |.-----.--.--.    |    |  |.-----.-----.--|  |    .---.-.    |     __|.----.|__|.--------.-----.|__|.----.-----.
-##  |  |  |  |     |  |  |     \     / |  _  |  |  |    |       ||  -__|  -__|  _  |    |  _  |    |    |  ||   _||  ||        |  _  ||  ||   _|  -__|
-##  |________|__|__|___  |      |___|  |_____|_____|    |__|____||_____|_____|_____|    |___._|    |_______||__|  |__||__|__|__|_____||__||__| |_____|
-##                 |_____|                                                                                                                            
-## This article was published in Volume Twenty-Seven, Number Two, Summer 2010 article of 2600 The Hacker Quarterly.
-## by Leviathan
+##__        ___            __   __            _   _               _            ____      _                 _          
+##\ \      / / |__  _   _  \ \ / /__  _   _  | \ | | ___  ___  __| |   __ _   / ___|_ __(_)_ __ ___   ___ (_)_ __ ___ 
+## \ \ /\ / /| '_ \| | | |  \ V / _ \| | | | |  \| |/ _ \/ _ \/ _` |  / _` | | |  _| '__| | '_ ` _ \ / _ \| | '__/ _ \
+##  \ V  V / | | | | |_| |   | | (_) | |_| | | |\  |  __/  __/ (_| | | (_| | | |_| | |  | | | | | | | (_) | | | |  __/
+##   \_/\_/  |_| |_|\__, |   |_|\___/ \__,_| |_| \_|\___|\___|\__,_|  \__,_|  \____|_|  |_|_| |_| |_|\___/|_|_|  \___|
+##                  |___/                                                                                             
+### This article was published in Volume Twenty-Seven, Number Two, Summer 2010 article of 2600 The Hacker Quarterly.
+### by Leviathan
 
 No matter how long you have been hacking, surfing, or working in IT, and especially in these uncertain times when your activity can be sniffed, parsed, logged, and archived, you need a grimoire.
 Dictionary.com defines a grimiore as "a manual of black magic (for invoking spirits and demons)." Those of us who have been pushing bits around for some time know that the things we routinely accomplish can sometimes appear to be black magic to the less technically adept among us. The sheer volume of information we have stuck in our craniums and bookmarks, and our ability to Google with precision, gives us an edge in finding and implementing all sorts of technology magic. This is all good.
@@ -1735,13 +1550,13 @@ If you accumulate as much information as I have (my grimoire is about 12 years o
 And if, saints forbid, you should ever be in an embaressing legal situation and you have to get rid of its evidence quickly, tear out the offending pages, shed a few tears, then flick your Bic. Let's see you clean up a hard drive that cleanly. Privacy, my friends; it is priceless. If your dealing are not quite that dramatic, your grimiore is a good reference at review time or when preparing your resume.
 So spend a few wise dollars and obtain a good quality, bound notebook with lined archive paper, and start filling it with your accumulated IT wisdom. You and your grimoire will make history.
 
-
-##  ______ __                 __     __              __             _____                  
-## |      |  |--.-----.-----.|  |--.|__|.----.-----.|  |.-----.    |     |_.---.-.--.--.--.
-## |   ---|     |  -__|__ --||     ||  ||   _|  -__| |_||__ --|    |       |  _  |  |  |  |
-## |______|__|__|_____|_____||__|__||__||__| |_____|    |_____|    |_______|___._|________|
-##                                                                                         
-## Adapted from http://CheshireCatalyst.Com/CheshiresLaw.html
+##  ____ _               _     _          _       _                   
+## / ___| |__   ___  ___| |__ (_)_ __ ___( )___  | |    __ ___      __
+##| |   | '_ \ / _ \/ __| '_ \| | '__/ _ \// __| | |   / _` \ \ /\ / /
+##| |___| | | |  __/\__ \ | | | | | |  __/ \__ \ | |__| (_| |\ V  V / 
+## \____|_| |_|\___||___/_| |_|_|_|  \___| |___/ |_____\__,_| \_/\_/  
+##                                                                    
+### Adapted from http://CheshireCatalyst.Com/CheshiresLaw.html
 
 # You can't break the rules, but once you know what they are, you can abuse the crap out of them!
 
@@ -1754,13 +1569,12 @@ Now your mother wasn't trying to be racist here. She simply didn't want your shi
 We don't really care whether we seperate out the white clothes from the color clothing, the problem here really is that you DON'T WANT to seperate the wash, and (probably more important), you don't want to have to do two loads! So if the application of the rules say, "mix the underwear with the rest of the laundry, but don't include white clothing", then the application of the Law is really saying, "wear colored underwear, or better yet use color-safe clothing, and you won't have to seperate the wash"!
 Remember that the underlying idea behind Cheshire's Law is to look at The Rules with a new eye. Look for non-traditional methods to abuse the intent of the rule in such a way that might allow you to show how what you want to do is not only allowed, but is the way it's suppossed to to be done! After all, colored underwear are suppossed to be washed with the rest of the colored clothes.
 
-
-##   ________ __           __        __             _______              __     __                   __,-,__      ______                                          _______               __                          __               _____ 
-##  |  |  |  |  |--.---.-.|  |_     |__|.-----.    |   |   |.---.-.----.|  |--.|__|.-----.-----.    |  ' '__|    |   __ \.-----.--.--.-----.----.-----.-----.    |    ___|.-----.-----.|__|.-----.-----.-----.----.|__|.-----.-----.|__   |
-##  |  |  |  |     |  _  ||   _|    |  ||__ --|    |       ||  _  |  __||    < |  ||     |  _  |    |     __|    |      <|  -__|  |  |  -__|   _|__ --|  -__|    |    ___||     |  _  ||  ||     |  -__|  -__|   _||  ||     |  _  |',  ,-'
-##  |________|__|__|___._||____|    |__||_____|    |___|___||___._|____||__|__||__||__|__|___  |    |_______|    |___|__||_____|\___/|_____|__| |_____|_____|    |_______||__|__|___  ||__||__|__|_____|_____|__|  |__||__|__|___  | |--|  
-##                                                                                       |_____|       |_|                                                                      |_____|                                      |_____| '--'  
-
+##__        ___           _     _       _   _            _    _                ___     ____                                _____             _                      _             
+##\ \      / / |__   __ _| |_  (_)___  | | | | __ _  ___| | _(_)_ __   __ _   ( _ )   |  _ \ _____   _____ _ __ ___  ___  | ____|_ __   __ _(_)_ __   ___  ___ _ __(_)_ __   __ _ 
+## \ \ /\ / /| '_ \ / _` | __| | / __| | |_| |/ _` |/ __| |/ / | '_ \ / _` |  / _ \/\ | |_) / _ \ \ / / _ \ '__/ __|/ _ \ |  _| | '_ \ / _` | | '_ \ / _ \/ _ \ '__| | '_ \ / _` |
+##  \ V  V / | | | | (_| | |_  | \__ \ |  _  | (_| | (__|   <| | | | | (_| | | (_>  < |  _ <  __/\ V /  __/ |  \__ \  __/ | |___| | | | (_| | | | | |  __/  __/ |  | | | | | (_| |
+##   \_/\_/  |_| |_|\__,_|\__| |_|___/ |_| |_|\__,_|\___|_|\_\_|_| |_|\__, |  \___/\/ |_| \_\___| \_/ \___|_|  |___/\___| |_____|_| |_|\__, |_|_| |_|\___|\___|_|  |_|_| |_|\__, |
+##                                                                    |___/                                                            |___/                                |___/ 
 It is amazing, and rather disconcerting, to realize how much software we run without knowing for sure what it does. We buy software off the shelf in shrink wrapped packages. We run setup utilities that install numerous files, change system settings, delete or disable older versions and superseded utilities, and modify critical registry files. Every time we access a Web site, we may invoke or interact with dozens of programs and code segments that are necessary to give us the intended look, feel, and behavior. We purchase CD's with hundreds of games and utilities or download them as shareware. We exchange useful programs with colleagues and friends when we have tried only a fraction of each program’s features.
 Then, we download updates and install patches, trusting that the vendors are sure that the changes are correct and complete. We blindly hope that the latest change to each program keeps it compatible with all of the rest of the programs on our system. We rely on much software that we do not understand and do not know very well at all.
 Many people fear hackers because they have been instilled with a negative view from the press, however, you owe many advancements made in computer software and hardware to hacking.
@@ -1816,416 +1630,46 @@ Keep thinking outside the box.
 Hacking and reverse-engineering should not be illegal when used to benefit others.
 
 -------------------------------------------------------------------
-# ACTON'S LAW
-    Power tends to corrupt; absolute power corrupts absolutely.
 
-# ALBRECHT'S LAW
-    Social innovations tend to the level of minimum tolerable well-being.
-
-# ALLEN'S (or CANN'S) AXIOM
-    When all else fails, read the instructions.
-
-# BOREN'S FIRST LAW
-    When in doubt, mumble.
-
-# BO DIDDELEY'S OBSERVATION ON THE LAW:
-   Always take a lawyer with you, and bring another lawyer to watch him.
-
-# BOVE'S THEOREM
-    The remaining work to finish in order to reach your goal increases as the deadline approaches.
-
-# BOWIE'S THEOREM
-    If an experiment works, you must be using the wrong equipment.
-
-# BRILLIANT'S OBSERVATION ON MODERN ART:
-   Not all our artists are playing a joke on the public.
-   Some are genuinely mad.
-
-# BRILLIANT'S LAW OF LIMITED AMBITION:
-   If you can't learn how to do it well learn how to enjoy doing it poorly.
-
-# BROOK'S LAW
-    Adding manpower to a late software project makes it later.
-
-# CANADA BILL JONES' MOTTO
-    It's morally wrong to allow naive end users to keep their money.
-
-# CANN'S (or ALLEN'S) AXIOM
-    When all else fails, read the instructions.
-
-# CARLSON'S CONSOLATION
-    Nothing is ever a complete failure; it can always serve as a bad example.
-
-# CLARKE'S THIRD LAW
-    Any sufficiently advanced technology is indistinguishable from magic.
-
-# COHN'S LAW
-    The more time you spend in reporting on what you are doing, the less time you have to do anything. Stability is achieved when you spend all your time reporting on the nothing you are doing.
-
-# CONWAY'S LAW
-    In any organization there will always be one person who knows what is going on. This person must be fired.
-
-# LAW OF CONTINUITY
-    Experiments should be reproducible. They should all fail in the same way.
-
-# CORRESPONDENCE COROLLARY
-    An experiment may be considered a success if no more than half of your data must be discarded to obtain correspondence with your theory.
-
-# CROPP'S LAW
-    The amount of work done varies inversely with the amount of time spent in the office.
-
-# CUTLER WEBSTER'S LAW
-    There are two sides to every argument, unless a person is personally involved, in which case there is only one.
-
-# DEADLINE-DAN'S DEMO DEMONSTRATION
-    The higher the "higher-ups" are who've come to see your demo, the lower your chances are of giving a successful one.
-
-# DEMIAN'S OBSERVATION
-    There is always one item on the screen menu that is mislabeled and should read "ABANDON HOPE ALL YE WHO ENTER HERE".
-
-# DENNISTON'S LAW
-    Virtue is its own punishment.
-
-# DOW'S LAW
-    In a hierarchical organization, the higher the level, the greater the confusion.
-
-# DR. CALIGARI'S COME-BACK
-    A bad sector disk error occurs only after you've done several hours of work without performing a backup.
-
-# ESTRIDGE'S LAW
-    No matter how large and standardized the marketplace is, IBM can redefine it.
-
-# FINAGLE'S LAWS
-    1) Once a job is fouled up, anything done to improve it makes it worse.
-    2) No matter what results are expected, someone is always willing to fake it.
-    3) No matter what the result, someone is always eager to misinterpret it.
-    4) No matter what occurs, someone believes it happened according to his pet theory.
-
-# FINAGLE'S RULES:
-    1) To study an application best, understand it thoroughly before you start.
-    2) Always keep a record of data. It indicates you've been working.
-    3) Always draw your curves, then plot the reading.
-    4) In case of doubt, make it sound convincing.
-    5) Program results should always be reproducible. They should all fail in the same way.
-    6) Do not believe in miracles. Rely on them.
-
-# FINAGLE'S LAW OF GOVERNMENT CONTRACTING:
-   Dealing with the government is like kicking a 300-pound sponge.
-
-# FINAGLE'S LAW OF MILITARY SUPERIORITY:
-   The bigger they are the harder they hit.
-
-# FINSTER'S LAW
-    A closed mouth gathers no feet.
-
-# FIRST RULE OF HISTORY
-    History doesn't repeat itself -- historians merely repeat each other.
-
-# FLO CAPP'S OBSERVATION:
-   The next best thing to doing something smart is not doing something stupid.
-
-# FRANKLIN'S RULE
-    Blessed is the end user who expects nothing, for he/she will not be disappointed.
-
-# GILB'S LAWS OF UNRELIABILITY
-    1) At the source of every error which is blamed on the computer you will find at least two human errors, including the error of blaming it on the computer.
-    2) Any system which depends on human reliability is unreliable.
-    3) Udetectable errors are infinite in variety, in contrast to detectable errors, which by definition are limited.
-    4) Investment in reliability will increase until it exceeds the probable cost of errors, or until someone insists on getting some useful work done.
-
-# GINSBERG'S THEOREM
-    1) You can't win.
-    2) You can't break even.
-    3) You can't even quit the game.
-
-# GLYME'S FORMULA FOR SUCCESS
-    The secret of success is sincerity.  Once you can fake that, you've got it made.
-
-# GOEBEL'S LAW OF USELESS DIFFICULTY:
-   Just because it's hard doesn't mean it's worth the effort.
-
-# GOEBEL'S SECOND LAW OF USELESS DIFFICULTY:
-   The fastest way to get something done is to determine that it isn't worth doing.
-
-# GOEBEL'S LAW OF COMPUTER SUPPORT:
-   Troubleshooting a computer over the telephone is like having sex through a hole in a board fence.  It can be done but it is neither EASY nor PLEASANT.
-
-# GOEBEL'S LAW OF SOFTWARE COMPATIBILITY:
-   A statement of absolute functional equivalence made in bold print followed by several pages of qualifications in fine.
-
-# GOEBEL'S THEOREM OF SOFTWARE SCHEDULES:
-   Always multiply a software schedule by pi.  This is because you think you're going in a straight line but always end up going full circle.
-
-# GOEBEL'S LAW OF PRODUCT INTRODUCTIONS:
-   A future product release date does NOT say when a product will be introduced.  All it says it that you don't have a chance in HELL of seeing it before that time.
-
-# GOEBEL'S OBSERVATION ON UTOPIA:
-   If everyone believed in Peace
-   They would immediately begin fighting over the best way to achieve it.
-
-# GOEBEL'S LAW OF INTELLECTUAL OBSCURITY:
-   WHAT FUN IS IT TO BE AN EXPERT IF YOU MAKE YOURSELF EASY TO UNDERSTAND?
-
-# THE GOLDEN RULE OF ARTS AND SCIENCES
-    Whoever has the gold makes the rules.
-
-# GOLD'S LAW
-    If the shoe fits, it's ugly.
-
-# GORDON'S FIRST LAW
-    If a research project is not worth doing at all, it is not worth doing well.
-
-# GOVERNMENT'S LAW
-    There is an exception to all laws.
-
-# GREEN'S LAW OF DEBATE
-    Anything is possible if you don't know what you're talking about.
-
-# GUMMIDGES'S LAW
-    The amount of expertise varies in inverse proportion to the number of statements understood by the general public.
-
-# GUMPERSON'S LAW
-    The probability of a given event occurring is inversely proportional to its desirability.
-
-# HANLON'S RAZOR
-    Never attribute to malice that which is adequately explained by stupidity.
-
-# HARP'S COROLLARY TO ESTRIDGE'S LAW
-    Your "IBM PC-compatible" computer grows more incompatible with every passing moment.
-
-# HARRISON'S POSTULATE
-    For every action, there is an equal and opposite criticism.
-
-# HELLER'S LAW
-    The first myth of management is that it exists.
-
-# HINDS' LAW OF COMPUTER PROGRAMMING
-    1) Any given program, when running, is obsolete.
-    2) If a program is useful, it will have to be changed.
-    3) If a program is useless, it will have to be documented.
-    4) Any given program will expand to fill all available memory.
-    5) The value of a program is proportional to the weight of its output.
-    6) Program complexity grows until it exceeds the capability of the programmer who must maintain it.
-    7) Make it possible for programmers to write programs in English, and you will find that programmers cannot write in English.
-
-# HOARE'S LAW OF LARGE PROGRAMS
-    Inside every large program is a small program struggling to get out.
-
-# HUBBARD'S LAW
-    Don't take life too seriously; you won't get out of it alive.
-
-# JENKINSON'S LAW
-    It won't work.
-
-# JOHNSON-LAIRD'S LAW
-    Toothache tends to start on Saturday night.
-
-# LARKINSON'S LAW
-    All laws are basically false.
-
-# THE LAST ONE'S LAW OF PROGRAM GENERATORS
-    A program generator creates programs that are more "buggy" than the program generator.
-
-# LIEBERMAN'S LAW
-    Everybody lies; but it doesn't matter, since nobody listens.
-
-# LYNCH'S LAW
-    When the going gets tough, everyone leaves.
-
-# MASON'S FIRST LAW OF SYNERGISM
-    The one day you'd sell you soul for something, souls are a glut.
-
-# MAY'S LAW
-    The quality of correlation is inverely proportional to the density of control. (The fewer the data points, the smoother the curves.)
-
-# MENCKEN'S LAW
-    There is always an easy answer to every human problem -- neat, plausible, and wrong.
-
-# MESKIMEN'S LAW
-    There's never time to do it right, but always time to do it over.
-
-# MUIR'S LAW
-    When we try to pick out anything by itself, we find it hitched to everything else in the universe.
-
-# MURPHY'S LAWS
-    1) If anything can go wrong, it will (and at the worst possible moment).
-    2) Nothing is as easy as it looks.
-    3) Everything takes longer than you think it will.
-
-# MURPHY'S FOURTH LAW
-    If there is a possibility of several things going wrong, the one that will cause the most damage will be the one to go wrong.
-
-# MURPHY'S LAW OF THERMODYNAMICS
-    Things get worse under pressure.
-
-# NINETY-NINETY RULE OF PROJECT SCHEDULES
-    The first ninety percent of the task takes ninety percent of the time, and the last ten percent takes the other ninety percent.
-
-# NIXON'S THEOREM
-    The man who can smile when things go wrong has thought of someone he can blame it on.
-
-# NOLAN'S PLACEBO
-    An ounce of image is worth a pound of performance.
-
-# OLIVER'S LAW OF LOCATION
-    No matter where you are, there you are.
-
-# O'REILLY'S LAW OF THE KITCHEN
-    Cleanliness is next to impossible.
-
-# OSBORN'S LAW
-    Variables won't, constants aren't.
-
-# O'TOOLE'S COMMENTARY ON MURPHY'S LAW
-    Murphy was an optimist.
-
-# PARKINSON'S LAW
-    Work expands to fill the time available for its completion.
-
-# PARKINSON'S LAW, MODIFIED
-    The components you have will expand to fill the available space.
-
-# PEER'S LAW
-    The solution to a problem changes the problem.
-
-# PETER'S PRINCIPLE
-    In every hierarchy, each employee tends to rise to the level of his incompetence.
-
-# THE LAW OF THE PERVERSITY OF NATURE
-    You cannot determine beforehand which side of the bread to butter.
-
-# PUDDER'S LAW
-    Anything that begins well will end badly. (Note: The converse of Pudder's law is not true.)
-
-# RHODE'S COROLLARY TO HOARE'S LAW
-    Inside every complex and unworkable program is a useful routine struggling to be free.
-
-# ROBERT E. LEE'S TRUCE
-    Judgement comes from experience; experience comes from poor judgement.
-
-# RUDIN'S LAW
-    In a crisis that forces a choice to be made among alternative courses of action, people tend to choose the worst possible course.
-
-# RULE OF ACCURACY
-    When working toward the solution of a problem it always helps you to know the answer.
-
-# RYAN'S LAW
-    Make three correct guesses consecutively and you will establish yourself as an expert.
-
-# SATTINGER'S LAW
-    It works better if you plug it in.
-
-# SAUSAGE PRINCIPLE
-    People who love sausage and respect the law should never watch either one being made.
-
-# SHAW'S PRINCIPLE
-    Build a system that even a fool can use, and only a fool will want to use it.
-
-# SNAFU EQUATIONS
-    1) Given any problem containing N equations, there will be N+1 unknowns.
-    2) An object or bit of information most needed will be least available.
-    3) Any device requiring service or adjustment will be least accessible.
-    4) Interchangeable devices won't.
-    5) In any human endeavor, once you have exhausted all possibilities and fail, there will be one solution, simple and obvious, highly visible to everyone else.
-    6) Badness comes in waves.
-
-# STEWART'S LAW OF RETROACTION
-    It is easier to get forgiveness than permission.
-
-# THOREAU'S THEORIES OF ADAPTATION
-    1) After months of training and you finally understand all of a program's commands, a revised version of the program arrives with an all-new command structure.
-    2) After designing a useful routine that gets around a familiar "bug" in the system, the system is revised, the "bug" taken away, and you're left with a useless routine.
-    3) Efforts in improving a program's "user friendliness" invariable lead to work in improving user's "computer literacy".
-    4) That's not a "bug", that's a feature!
-
-# THYME'S LAW
-    Everything goes wrong at once.
-
-# THE LAW OF THE TOO SOLID GOOF
-    In any collection of data, the figures that are obviously correct beyond all need of checking contain the errors.
-
-    Corollary 1: No one you ask for help will see the error either.
-
-    Corollary 2: Any nagging intruder, who stops by with unsought advice, will spot it immediately.
-
-# UNNAMED LAW
-    If it happens, it must be possible.
-
-# WEILER'S LAW
-    Nothing is impossible for the man who doesn't have to do the work.
-
-# WEINBERG'S COROLLARY
-    An expert is a person who avoids the small errors while sweeping on to the grand fallacy.
-
-# WEINBERG'S LAW
-    If builders built buildings the way programmers write programs, then the first woodpecker that came along would destroy civilization.
-
-# WHITEHEAD'S LAW
-    The obvious answer is always overlooked.
-
-# WILCOX'S LAW
-    A pat on the back is only a few centimeters from a kick in the pants.
-
-# WOOD'S AXIOM
-    As soon as a still-to-be-finished computer task becomes a life-or-death situation, the power fails.
-
-# WOODWARD'S LAW
-    A theory is better than its explanation.
-
-# ZYMURGY'S FIRST LAW OF EVOLVING SYSTEM DYNAMICS
-    Once you open a can of worms, the only way to recan them is to use a larger can.
-
-# LAWS OF PROJECT MANAGEMENT
-	1. No major project is ever installed on time, within budgets, with the staff that started it.  Yours will not be the first.
-	2. Projects progress quickly until they become 90 percent complete, then they remain at 90 percent complete forever.
-	3. One advantage of fuzzy project objectives is that they let you avoid the embarrassment of estimating the corresponding costs.
-	4. When things are going well, something will go wrong.
-	   When things just can't get any worse, they will.
-	   When things appear to be going better you have overlooked something.
-	5. If project content is allowed to change freely, the rate of change will exceed the rate of progress.
-	6. No system is ever completely debugged. Attempts to debug a system inevitably introduce new bugs that are even harder to find.
-	7. A carelessly planned project will take three times longer to complete than expected; a carefully planned project will take only twice as long.
-	8. Project teams detest progress reporting because it vividly manifests their lack of progress.
-
-
-###   _____           _   _               __   _____            _____ _                _     _____           _           
-###  /  ___|         | | (_)             /  | |  _  |          /  __ \ |              | |   /  __ \         | |          
-###  \ `--.  ___  ___| |_ _  ___  _ __   `| |  \ V /   ______  | /  \/ |__   ___  __ _| |_  | /  \/ ___   __| | ___  ___ 
-###   `--. \/ _ \/ __| __| |/ _ \| '_ \   | |  / _ \  |______| | |   | '_ \ / _ \/ _` | __| | |    / _ \ / _` |/ _ \/ __|
-###  /\__/ /  __/ (__| |_| | (_) | | | | _| |_| |_| |          | \__/\ | | |  __/ (_| | |_  | \__/\ (_) | (_| |  __/\__ \
-###  \____/ \___|\___|\__|_|\___/|_| |_| \___/\_____/           \____/_| |_|\___|\__,_|\__|  \____/\___/ \__,_|\___||___/
-###                                                                                                                      
-###                                                                                                                      
-
-
-##   _______ __     __      _______         __              __             _______ __                _______         __   ___ 
-##  |     __|__|.--|  |    |   |   |.-----.|__|.-----.----.|  |.-----.    |     __|__|.--------.    |     __|.-----.|  |.'  _|
-##  |__     |  ||  _  |    |       ||  -__||  ||  -__|   _| |_||__ --|    |__     |  ||        |    |    |  ||  _  ||  ||   _|
-##  |_______|__||_____|    |__|_|__||_____||__||_____|__|      |_____|    |_______|__||__|__|__|    |_______||_____||__||__|  
-##                                                                                                                            
+####  _____           _   _               __ _  _               _____ _                _      _____          _           
+#### / ____|         | | (_)             /_ | || |             / ____| |              | |    / ____|        | |          
+####| (___   ___  ___| |_ _  ___  _ __    | | || |_   ______  | |    | |__   ___  __ _| |_  | |     ___   __| | ___  ___ 
+#### \___ \ / _ \/ __| __| |/ _ \| '_ \   | |__   _| |______| | |    | '_ \ / _ \/ _` | __| | |    / _ \ / _` |/ _ \/ __|
+#### ____) |  __/ (__| |_| | (_) | | | |  | |  | |            | |____| | | |  __/ (_| | |_  | |___| (_) | (_| |  __/\__ \
+####|_____/ \___|\___|\__|_|\___/|_| |_|  |_|  |_|             \_____|_| |_|\___|\__,_|\__|  \_____\___/ \__,_|\___||___/
+####                                                                                                                     
+####                                                                                                                     
+
+Most of these cheat codes are for really old games, but the cheats were passed around by word-of-mouth and most are next to impossible to find on the net now. I've backed a few up here, so I can use them as long as the games continue working.
+
+## ____  _     _   __  __      _           _       ____  _              ____       _  __ 
+##/ ___|(_) __| | |  \/  | ___(_) ___ _ __( )___  / ___|(_)_ __ ___    / ___| ___ | |/ _|
+##\___ \| |/ _` | | |\/| |/ _ \ |/ _ \ '__|// __| \___ \| | '_ ` _ \  | |  _ / _ \| | |_ 
+## ___) | | (_| | | |  | |  __/ |  __/ |    \__ \  ___) | | | | | | | | |_| | (_) | |  _|
+##|____/|_|\__,_| |_|  |_|\___|_|\___|_|    |___/ |____/|_|_| |_| |_|  \____|\___/|_|_|  
+##                                                                                       
 During gameplay Press Ctrl + S then type in bombsheep
 
 During gameplay Press Shift + = to get more money
 
 Save the game. Open the save file in a hex editor. You can edit your golfer stats by tweaking the entries at offset 1C18B
 
-
-##   ______        __                                        _______         __                      ______ 
-##  |   __ \.----.|__|.-----..----..-----..-----..-----.    |   |   |.---.-.|  |--..-----..----.    |__    |
-##  |    __/|   _||  ||     ||  __||  -__||__ --||__ --|    |       ||  _  ||    < |  -__||   _|    |    __|
-##  |___|   |__|  |__||__|__||____||_____||_____||_____|    |__|_|__||___._||__|__||_____||__|      |______|
-##                                                                                                          
+## ____       _                           __  __       _               ____  
+##|  _ \ _ __(_)_ __   ___ ___  ___ ___  |  \/  | __ _| | _____ _ __  |___ \ 
+##| |_) | '__| | '_ \ / __/ _ \/ __/ __| | |\/| |/ _` | |/ / _ \ '__|   __) |
+##|  __/| |  | | | | | (_|  __/\__ \__ \ | |  | | (_| |   <  __/ |     / __/ 
+##|_|   |_|  |_|_| |_|\___\___||___/___/ |_|  |_|\__,_|_|\_\___|_|    |_____|
 Go to town.
 Press F12-R-N-Q.
 Go back home.
 Go to town.
 
-
-##   _______  _______                __                      __ 
-##  |__     ||   _   |.-----..-----.|  |--..---.-..-----..--|  |
-##  |     __||       ||     ||  _  ||  _  ||  _  ||     ||  _  |
-##  |_______||___|___||__|__||___  ||_____||___._||__|__||_____|
-##                           |_____|                            
+## _____   _                _                     _ 
+##|__  /  / \   _ __   __ _| |__   __ _ _ __   __| |
+##  / /  / _ \ | '_ \ / _` | '_ \ / _` | '_ \ / _` |
+## / /_ / ___ \| | | | (_| | |_) | (_| | | | | (_| |
+##/____/_/   \_\_| |_|\__, |_.__/ \__,_|_| |_|\__,_|
+##                    |___/                         
 You can access Debugging mode, without that unsightly WIZARD mark on the screen, by enabling cheats in the menu. Press = then "i", and select f. This will allow you to cheat death, and enables all Debugging commands.
 
 === Debugging mode ===
@@ -2237,36 +1681,53 @@ To enter a command count: type '0', enter the number desired, and press enter. W
 Wizard mode does nothing else except keep your character alive, provide verbose information on all damage you do to monsters, and explain why an object disappears.
 To enter wizard mode, hold down the ctrl key and press 'w'.
 
-
-##   _______  __                     
-##  |    ___||  |.---.-..----..-----.
-##  |    ___||  ||  _  ||   _||  -__|
-##  |___|    |__||___._||__|  |_____|
-##                                   
-Save files are in
-        ~/.local/share/flare
-Game modules are found in
-        /usr/share/games/flare/flare-game/mods
-
-
-##   _____                                                 ______                         __      _______  __                             _______                      
-##  |     \ .--.--..-----..-----..-----..-----..-----.    |      |.----..---.-..--.--.--.|  |    |     __||  |_ .-----..-----..-----.    |     __|.-----..--.--..-----.
-##  |  --  ||  |  ||     ||  _  ||  -__||  _  ||     |    |   ---||   _||  _  ||  |  |  ||  |    |__     ||   _||  _  ||     ||  -__|    |__     ||  _  ||  |  ||  _  |
-##  |_____/ |_____||__|__||___  ||_____||_____||__|__|    |______||__|  |___._||________||__|    |_______||____||_____||__|__||_____|    |_______||_____||_____||   __|
-##                        |_____|                                                                                                                               |__|   
+## ____                                        ____                    _   ____  _                     ____                    
+##|  _ \ _   _ _ __   __ _  ___  ___  _ __    / ___|_ __ __ ___      _| | / ___|| |_ ___  _ __   ___  / ___|  ___  _   _ _ __  
+##| | | | | | | '_ \ / _` |/ _ \/ _ \| '_ \  | |   | '__/ _` \ \ /\ / / | \___ \| __/ _ \| '_ \ / _ \ \___ \ / _ \| | | | '_ \ 
+##| |_| | |_| | | | | (_| |  __/ (_) | | | | | |___| | | (_| |\ V  V /| |  ___) | || (_) | | | |  __/  ___) | (_) | |_| | |_) |
+##|____/ \__,_|_| |_|\__, |\___|\___/|_| |_|  \____|_|  \__,_| \_/\_/ |_| |____/ \__\___/|_| |_|\___| |____/ \___/ \__,_| .__/ 
+##                   |___/                                                                                              |_|    
 Press & in game to access Wizard Mode
 Press ? to see possible cheats
 
+####  _____           _   _               __ _____             ____              _                              _   _    _                            
+#### / ____|         | | (_)             /_ | ____|           / __ \            | |                            | | | |  | |                           
+####| (___   ___  ___| |_ _  ___  _ __    | | |__    ______  | |  | |_   _  ___ | |_ ___  ___    __ _ _ __   __| | | |__| |_   _ _ __ ___   ___  _ __ 
+#### \___ \ / _ \/ __| __| |/ _ \| '_ \   | |___ \  |______| | |  | | | | |/ _ \| __/ _ \/ __|  / _` | '_ \ / _` | |  __  | | | | '_ ` _ \ / _ \| '__|
+#### ____) |  __/ (__| |_| | (_) | | | |  | |___) |          | |__| | |_| | (_) | ||  __/\__ \ | (_| | | | | (_| | | |  | | |_| | | | | | | (_) | |   
+####|_____/ \___|\___|\__|_|\___/|_| |_|  |_|____/            \___\_\\__,_|\___/ \__\___||___/  \__,_|_| |_|\__,_| |_|  |_|\__,_|_| |_| |_|\___/|_|   
+####                                                                                                                                                  
+####                                                                                                                                                  
 
+Carry me always, carry me well.
+I am thy teacher of Linux and shell.
+I am thy link to programs arcane.
+Forget me and thy kernel will wane.
 
-###   _____           _   _               __   _____            _____             _            
-###  /  ___|         | | (_)             /  | |  _  |          |  _  |           | |           
-###  \ `--.  ___  ___| |_ _  ___  _ __   `| | | |_| |  ______  | | | |_   _  ___ | |_ ___  ___ 
-###   `--. \/ _ \/ __| __| |/ _ \| '_ \   | | \____ | |______| | | | | | | |/ _ \| __/ _ \/ __|
-###  /\__/ /  __/ (__| |_| | (_) | | | | _| |_.___/ /          \ \/' / |_| | (_) | ||  __/\__ \
-###  \____/ \___|\___|\__|_|\___/|_| |_| \___/\____/            \_/\_\\__,_|\___/ \__\___||___/
-###                                                                                            
-###                                                                                            
+Ten times ten commandments there be.
+They will answer every mystery.
+Kernels, cheats, and apt-key.
+These secrets shall be thine, through me.
+
+But, hacker, remember this above all.
+I am not for those in mud that crawl.
+And forever doomed shall be the one.
+Who betrays my secrets one by one.
+####- Revised with a Linux spin from Eoin Colfer's "Artemis Fowl"
+#	-------------------------------------------------------------------
+Scribble scribble scribble, as every mage must do.
+These walls will hold your power fast, unless I walk right through.
+A boat I bade from birch and bark, but burned I did at morn.
+Rather I gather in this held spot, than suffer my hands get worn.
+####- Shandalar from Baldur's Gate: Tales of the Sword Coast
+#	-------------------------------------------------------------------
+I must not fear. Fear is the mind-killer.
+Fear is the little-death that brings total obliteration.
+I will face my fear. I will permit it to pass over me and through me.
+And when it has gone past I will turn the inner eye to see its path.
+Where the fear has gone there will be nothing. Only I will remain.
+####- Frank Herbert, Dune
+#	-------------------------------------------------------------------
 Never test for an error condition you don't know how to handle.
 #	-------------------------------------------------------------------
 Maybe books won’t survive the transition to digital devices, any more than scrolls survived the transition to movable type.
@@ -2341,13 +1802,6 @@ A logical fallacy is a flaw in reasoning. Logical fallacies are like tricks or i
 	Thou shalt not assume “this” follows “that” when it has no logical connection. (Non sequitur)
 	Thou shalt not claim that because a premise is popular, it must be true. (Bandwagon fallacy)
 #	-------------------------------------------------------------------
-#	-------------------------------------------------------------------
-#	-------------------------------------------------------------------
-#	-------------------------------------------------------------------
-#	-------------------------------------------------------------------
-#	-------------------------------------------------------------------
--------------------------------------------------------------------
-
 The Programmers Alphabet
 A is for APPLE who sent us our Macs,
 D is for DEC, and they sold us a Vax.
@@ -2423,8 +1877,372 @@ adapts to stress
 
 goal oriented
 		continually sets low goals for himself, and usually fails to meet them.
+#	-------------------------------------------------------------------
+####	ACTON'S LAW
+    Power tends to corrupt; absolute power corrupts absolutely.
+#	-------------------------------------------------------------------
+####	ALBRECHT'S LAW
+    Social innovations tend to the level of minimum tolerable well-being.
+#	-------------------------------------------------------------------
+####	ALLEN'S (or CANN'S) AXIOM
+    When all else fails, read the instructions.
+#	-------------------------------------------------------------------
+####	BOREN'S FIRST LAW
+    When in doubt, mumble.
+#	-------------------------------------------------------------------
+####	BO DIDDELEY'S OBSERVATION ON THE LAW:
+   Always take a lawyer with you, and bring another lawyer to watch him.
+#	-------------------------------------------------------------------
+####	BOVE'S THEOREM
+    The remaining work to finish in order to reach your goal increases as the deadline approaches.
+#	-------------------------------------------------------------------
+####	BOWIE'S THEOREM
+    If an experiment works, you must be using the wrong equipment.
+#	-------------------------------------------------------------------
+####	BRILLIANT'S OBSERVATION ON MODERN ART:
+   Not all our artists are playing a joke on the public.
+   Some are genuinely mad.
+#	-------------------------------------------------------------------
+####	BRILLIANT'S LAW OF LIMITED AMBITION:
+   If you can't learn how to do it well learn how to enjoy doing it poorly.
+#	-------------------------------------------------------------------
+####	BROOK'S LAW
+    Adding manpower to a late software project makes it later.
+#	-------------------------------------------------------------------
+####	CANADA BILL JONES' MOTTO
+    It's morally wrong to allow naive end users to keep their money.
+#	-------------------------------------------------------------------
+####	CANN'S (or ALLEN'S) AXIOM
+    When all else fails, read the instructions.
+#	-------------------------------------------------------------------
+####	CARLSON'S CONSOLATION
+    Nothing is ever a complete failure; it can always serve as a bad example.
+#	-------------------------------------------------------------------
+####	CLARKE'S THIRD LAW
+    Any sufficiently advanced technology is indistinguishable from magic.
+#	-------------------------------------------------------------------
+####	COHN'S LAW
+    The more time you spend in reporting on what you are doing, the less time you have to do anything. Stability is achieved when you spend all your time reporting on the nothing you are doing.
+#	-------------------------------------------------------------------
+####	CONWAY'S LAW
+    In any organization there will always be one person who knows what is going on. This person must be fired.
+#	-------------------------------------------------------------------
+####	LAW OF CONTINUITY
+    Experiments should be reproducible. They should all fail in the same way.
+#	-------------------------------------------------------------------
+####	CORRESPONDENCE COROLLARY
+    An experiment may be considered a success if no more than half of your data must be discarded to obtain correspondence with your theory.
+#	-------------------------------------------------------------------
+####	CROPP'S LAW
+    The amount of work done varies inversely with the amount of time spent in the office.
+#	-------------------------------------------------------------------
+####	CUTLER WEBSTER'S LAW
+    There are two sides to every argument, unless a person is personally involved, in which case there is only one.
+#	-------------------------------------------------------------------
+####	DEADLINE-DAN'S DEMO DEMONSTRATION
+    The higher the "higher-ups" are who've come to see your demo, the lower your chances are of giving a successful one.
+#	-------------------------------------------------------------------
+####	DEMIAN'S OBSERVATION
+    There is always one item on the screen menu that is mislabeled and should read "ABANDON HOPE ALL YE WHO ENTER HERE".
+#	-------------------------------------------------------------------
+####	DENNISTON'S LAW
+    Virtue is its own punishment.
+#	-------------------------------------------------------------------
+####	DOW'S LAW
+    In a hierarchical organization, the higher the level, the greater the confusion.
+#	-------------------------------------------------------------------
+####	DR. CALIGARI'S COME-BACK
+    A bad sector disk error occurs only after you've done several hours of work without performing a backup.
+#	-------------------------------------------------------------------
+####	ESTRIDGE'S LAW
+    No matter how large and standardized the marketplace is, IBM can redefine it.
+#	-------------------------------------------------------------------
+####	FINAGLE'S LAWS
+    1) Once a job is fouled up, anything done to improve it makes it worse.
+    2) No matter what results are expected, someone is always willing to fake it.
+    3) No matter what the result, someone is always eager to misinterpret it.
+    4) No matter what occurs, someone believes it happened according to his pet theory.
+#	-------------------------------------------------------------------
+####	FINAGLE'S RULES:
+    1) To study an application best, understand it thoroughly before you start.
+    2) Always keep a record of data. It indicates you've been working.
+    3) Always draw your curves, then plot the reading.
+    4) In case of doubt, make it sound convincing.
+    5) Program results should always be reproducible. They should all fail in the same way.
+    6) Do not believe in miracles. Rely on them.
+#	-------------------------------------------------------------------
+####	FINAGLE'S LAW OF GOVERNMENT CONTRACTING:
+   Dealing with the government is like kicking a 300-pound sponge.
+#	-------------------------------------------------------------------
+####	FINAGLE'S LAW OF MILITARY SUPERIORITY:
+   The bigger they are the harder they hit.
+#	-------------------------------------------------------------------
+####	FINSTER'S LAW
+    A closed mouth gathers no feet.
+#	-------------------------------------------------------------------
+####	FIRST RULE OF HISTORY
+    History doesn't repeat itself -- historians merely repeat each other.
+#	-------------------------------------------------------------------
+####	FLO CAPP'S OBSERVATION:
+   The next best thing to doing something smart is not doing something stupid.
+#	-------------------------------------------------------------------
+####	FRANKLIN'S RULE
+    Blessed is the end user who expects nothing, for he/she will not be disappointed.
+#	-------------------------------------------------------------------
+####	GILB'S LAWS OF UNRELIABILITY
+    1) At the source of every error which is blamed on the computer you will find at least two human errors, including the error of blaming it on the computer.
+    2) Any system which depends on human reliability is unreliable.
+    3) Udetectable errors are infinite in variety, in contrast to detectable errors, which by definition are limited.
+    4) Investment in reliability will increase until it exceeds the probable cost of errors, or until someone insists on getting some useful work done.
+#	-------------------------------------------------------------------
+####	GINSBERG'S THEOREM
+    1) You can't win.
+    2) You can't break even.
+    3) You can't even quit the game.
+#	-------------------------------------------------------------------
+####	GLYME'S FORMULA FOR SUCCESS
+    The secret of success is sincerity.  Once you can fake that, you've got it made.
+#	-------------------------------------------------------------------
+####	GOEBEL'S LAW OF USELESS DIFFICULTY:
+   Just because it's hard doesn't mean it's worth the effort.
+#	-------------------------------------------------------------------
+####	GOEBEL'S SECOND LAW OF USELESS DIFFICULTY:
+   The fastest way to get something done is to determine that it isn't worth doing.
+#	-------------------------------------------------------------------
+####	GOEBEL'S LAW OF COMPUTER SUPPORT:
+   Troubleshooting a computer over the telephone is like having sex through a hole in a board fence.  It can be done but it is neither EASY nor PLEASANT.
+#	-------------------------------------------------------------------
+####	GOEBEL'S LAW OF SOFTWARE COMPATIBILITY:
+   A statement of absolute functional equivalence made in bold print followed by several pages of qualifications in fine.
+#	-------------------------------------------------------------------
+####	GOEBEL'S THEOREM OF SOFTWARE SCHEDULES:
+   Always multiply a software schedule by pi.  This is because you think you're going in a straight line but always end up going full circle.
+#	-------------------------------------------------------------------
+####	GOEBEL'S LAW OF PRODUCT INTRODUCTIONS:
+   A future product release date does NOT say when a product will be introduced.  All it says it that you don't have a chance in HELL of seeing it before that time.
+#	-------------------------------------------------------------------
+####	GOEBEL'S OBSERVATION ON UTOPIA:
+   If everyone believed in Peace
+   They would immediately begin fighting over the best way to achieve it.
+#	-------------------------------------------------------------------
+####	GOEBEL'S LAW OF INTELLECTUAL OBSCURITY:
+   WHAT FUN IS IT TO BE AN EXPERT IF YOU MAKE YOURSELF EASY TO UNDERSTAND?
+#	-------------------------------------------------------------------
+####	THE GOLDEN RULE OF ARTS AND SCIENCES
+    Whoever has the gold makes the rules.
+#	-------------------------------------------------------------------
+####	GOLD'S LAW
+    If the shoe fits, it's ugly.
+#	-------------------------------------------------------------------
+####	GORDON'S FIRST LAW
+    If a research project is not worth doing at all, it is not worth doing well.
+#	-------------------------------------------------------------------
+####	GOVERNMENT'S LAW
+    There is an exception to all laws.
+#	-------------------------------------------------------------------
+####	GREEN'S LAW OF DEBATE
+    Anything is possible if you don't know what you're talking about.
+#	-------------------------------------------------------------------
+####	GUMMIDGES'S LAW
+    The amount of expertise varies in inverse proportion to the number of statements understood by the general public.
+#	-------------------------------------------------------------------
+####	GUMPERSON'S LAW
+    The probability of a given event occurring is inversely proportional to its desirability.
+#	-------------------------------------------------------------------
+####	HANLON'S RAZOR
+    Never attribute to malice that which is adequately explained by stupidity.
+#	-------------------------------------------------------------------
+####	HARP'S COROLLARY TO ESTRIDGE'S LAW
+    Your "IBM PC-compatible" computer grows more incompatible with every passing moment.
+#	-------------------------------------------------------------------
+####	HARRISON'S POSTULATE
+    For every action, there is an equal and opposite criticism.
+#	-------------------------------------------------------------------
+####	HELLER'S LAW
+    The first myth of management is that it exists.
+#	-------------------------------------------------------------------
+####	HINDS' LAW OF COMPUTER PROGRAMMING
+    1) Any given program, when running, is obsolete.
+    2) If a program is useful, it will have to be changed.
+    3) If a program is useless, it will have to be documented.
+    4) Any given program will expand to fill all available memory.
+    5) The value of a program is proportional to the weight of its output.
+    6) Program complexity grows until it exceeds the capability of the programmer who must maintain it.
+    7) Make it possible for programmers to write programs in English, and you will find that programmers cannot write in English.
+#	-------------------------------------------------------------------
+####	HOARE'S LAW OF LARGE PROGRAMS
+    Inside every large program is a small program struggling to get out.
+#	-------------------------------------------------------------------
+####	HUBBARD'S LAW
+    Don't take life too seriously; you won't get out of it alive.
+#	-------------------------------------------------------------------
+####	JENKINSON'S LAW
+    It won't work.
+#	-------------------------------------------------------------------
+####	JOHNSON-LAIRD'S LAW
+    Toothache tends to start on Saturday night.
+#	-------------------------------------------------------------------
+####	LARKINSON'S LAW
+    All laws are basically false.
+#	-------------------------------------------------------------------
+####	THE LAST ONE'S LAW OF PROGRAM GENERATORS
+    A program generator creates programs that are more "buggy" than the program generator.
+#	-------------------------------------------------------------------
+####	LIEBERMAN'S LAW
+    Everybody lies; but it doesn't matter, since nobody listens.
+#	-------------------------------------------------------------------
+####	LYNCH'S LAW
+    When the going gets tough, everyone leaves.
+#	-------------------------------------------------------------------
+####	MASON'S FIRST LAW OF SYNERGISM
+    The one day you'd sell you soul for something, souls are a glut.
+#	-------------------------------------------------------------------
+####	MAY'S LAW
+    The quality of correlation is inverely proportional to the density of control. (The fewer the data points, the smoother the curves.)
+#	-------------------------------------------------------------------
+####	MENCKEN'S LAW
+    There is always an easy answer to every human problem -- neat, plausible, and wrong.
+#	-------------------------------------------------------------------
+####	MESKIMEN'S LAW
+    There's never time to do it right, but always time to do it over.
+#	-------------------------------------------------------------------
+####	MUIR'S LAW
+    When we try to pick out anything by itself, we find it hitched to everything else in the universe.
+#	-------------------------------------------------------------------
+####	MURPHY'S LAWS
+    1) If anything can go wrong, it will (and at the worst possible moment).
+    2) Nothing is as easy as it looks.
+    3) Everything takes longer than you think it will.
+    4) If there is a possibility of several things going wrong, the one that will cause the most damage will be the one to go wrong.
+#	-------------------------------------------------------------------
+####	MURPHY'S LAW OF THERMODYNAMICS
+    Things get worse under pressure.
+#	-------------------------------------------------------------------
+####	NINETY-NINETY RULE OF PROJECT SCHEDULES
+    The first ninety percent of the task takes ninety percent of the time, and the last ten percent takes the other ninety percent.
+#	-------------------------------------------------------------------
+####	NIXON'S THEOREM
+    The man who can smile when things go wrong has thought of someone he can blame it on.
+#	-------------------------------------------------------------------
+####	NOLAN'S PLACEBO
+    An ounce of image is worth a pound of performance.
+#	-------------------------------------------------------------------
+####	OLIVER'S LAW OF LOCATION
+    No matter where you are, there you are.
+#	-------------------------------------------------------------------
+####	O'REILLY'S LAW OF THE KITCHEN
+    Cleanliness is next to impossible.
+#	-------------------------------------------------------------------
+####	OSBORN'S LAW
+    Variables won't, constants aren't.
+#	-------------------------------------------------------------------
+####	O'TOOLE'S COMMENTARY ON MURPHY'S LAW
+    Murphy was an optimist.
+#	-------------------------------------------------------------------
+####	PARKINSON'S LAW
+    Work expands to fill the time available for its completion.
+#	-------------------------------------------------------------------
+####	PARKINSON'S LAW, MODIFIED
+    The components you have will expand to fill the available space.
+#	-------------------------------------------------------------------
+####	PEER'S LAW
+    The solution to a problem changes the problem.
+#	-------------------------------------------------------------------
+####	PETER'S PRINCIPLE
+    In every hierarchy, each employee tends to rise to the level of his incompetence.
+#	-------------------------------------------------------------------
+####	THE LAW OF THE PERVERSITY OF NATURE
+    You cannot determine beforehand which side of the bread to butter.
+#	-------------------------------------------------------------------
+####	PUDDER'S LAW
+    Anything that begins well will end badly. (Note: The converse of Pudder's law is not true.)
+#	-------------------------------------------------------------------
+####	RHODE'S COROLLARY TO HOARE'S LAW
+    Inside every complex and unworkable program is a useful routine struggling to be free.
+#	-------------------------------------------------------------------
+####	ROBERT E. LEE'S TRUCE
+    Judgement comes from experience; experience comes from poor judgement.
+#	-------------------------------------------------------------------
+####	RUDIN'S LAW
+    In a crisis that forces a choice to be made among alternative courses of action, people tend to choose the worst possible course.
+#	-------------------------------------------------------------------
+####	RULE OF ACCURACY
+    When working toward the solution of a problem it always helps you to know the answer.
+#	-------------------------------------------------------------------
+####	RYAN'S LAW
+    Make three correct guesses consecutively and you will establish yourself as an expert.
+#	-------------------------------------------------------------------
+####	SATTINGER'S LAW
+    It works better if you plug it in.
+#	-------------------------------------------------------------------
+####	SAUSAGE PRINCIPLE
+    People who love sausage and respect the law should never watch either one being made.
+#	-------------------------------------------------------------------
+####	SHAW'S PRINCIPLE
+    Build a system that even a fool can use, and only a fool will want to use it.
+#	-------------------------------------------------------------------
+####	SNAFU EQUATIONS
+    1) Given any problem containing N equations, there will be N+1 unknowns.
+    2) An object or bit of information most needed will be least available.
+    3) Any device requiring service or adjustment will be least accessible.
+    4) Interchangeable devices won't.
+    5) In any human endeavor, once you have exhausted all possibilities and fail, there will be one solution, simple and obvious, highly visible to everyone else.
+    6) Badness comes in waves.
+#	-------------------------------------------------------------------
+####	STEWART'S LAW OF RETROACTION
+    It is easier to get forgiveness than permission.
+#	-------------------------------------------------------------------
+####	THOREAU'S THEORIES OF ADAPTATION
+    1) After months of training and you finally understand all of a program's commands, a revised version of the program arrives with an all-new command structure.
+    2) After designing a useful routine that gets around a familiar "bug" in the system, the system is revised, the "bug" taken away, and you're left with a useless routine.
+    3) Efforts in improving a program's "user friendliness" invariable lead to work in improving user's "computer literacy".
+    4) That's not a "bug", that's a feature!
+#	-------------------------------------------------------------------
+####	THYME'S LAW
+    Everything goes wrong at once.
+#	-------------------------------------------------------------------
+####	THE LAW OF THE TOO SOLID GOOF
+    In any collection of data, the figures that are obviously correct beyond all need of checking contain the errors.
 
+    Corollary 1: No one you ask for help will see the error either.
 
-
-
-
+    Corollary 2: Any nagging intruder, who stops by with unsought advice, will spot it immediately.
+#	-------------------------------------------------------------------
+####	UNNAMED LAW
+    If it happens, it must be possible.
+#	-------------------------------------------------------------------
+####	WEILER'S LAW
+    Nothing is impossible for the man who doesn't have to do the work.
+#	-------------------------------------------------------------------
+####	WEINBERG'S COROLLARY
+    An expert is a person who avoids the small errors while sweeping on to the grand fallacy.
+#	-------------------------------------------------------------------
+####	WEINBERG'S LAW
+    If builders built buildings the way programmers write programs, then the first woodpecker that came along would destroy civilization.
+#	-------------------------------------------------------------------
+####	WHITEHEAD'S LAW
+    The obvious answer is always overlooked.
+#	-------------------------------------------------------------------
+####	WILCOX'S LAW
+    A pat on the back is only a few centimeters from a kick in the pants.
+#	-------------------------------------------------------------------
+####	WOOD'S AXIOM
+    As soon as a still-to-be-finished computer task becomes a life-or-death situation, the power fails.
+#	-------------------------------------------------------------------
+####	WOODWARD'S LAW
+    A theory is better than its explanation.
+#	-------------------------------------------------------------------
+####	ZYMURGY'S FIRST LAW OF EVOLVING SYSTEM DYNAMICS
+    Once you open a can of worms, the only way to recan them is to use a larger can.
+#	-------------------------------------------------------------------
+####	LAWS OF PROJECT MANAGEMENT
+	1. No major project is ever installed on time, within budgets, with the staff that started it.  Yours will not be the first.
+	2. Projects progress quickly until they become 90 percent complete, then they remain at 90 percent complete forever.
+	3. One advantage of fuzzy project objectives is that they let you avoid the embarrassment of estimating the corresponding costs.
+	4. When things are going well, something will go wrong.
+	   When things just can't get any worse, they will.
+	   When things appear to be going better you have overlooked something.
+	5. If project content is allowed to change freely, the rate of change will exceed the rate of progress.
+	6. No system is ever completely debugged. Attempts to debug a system inevitably introduce new bugs that are even harder to find.
+	7. A carelessly planned project will take three times longer to complete than expected; a carefully planned project will take only twice as long.
+	8. Project teams detest progress reporting because it vividly manifests their lack of progress.
