@@ -43,6 +43,7 @@ function KeepInstallingMoreStuff()
 	"Drive Management = brasero gnome-disk-utility k3b smartmontools xfburn & mintstick"
 	"File Browsers = caja dolphin krusader nautilus nemo spacefm"
 	"FlatPak"
+	"Snap Store"
 	"Fluxbox Setup"
 	"Font Managers = figlet font-manager gucharmap"
 	"Fonts"
@@ -94,10 +95,16 @@ function KeepInstallingMoreStuff()
 				;;
 			"FlatPak")
 				sudo apt update
-				InstallPackageIfNotExist flatpak
-				InstallPackageIfNotExist gnome-software-plugin-flatpak
+				for pkg in flatpak gnome-software-plugin-flatpak; do
+					InstallPackageIfNotExist "$pkg"
+				done
 				flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 				sudo apt update
+				;;
+			"Snap Store")
+				sudo apt update
+				InstallPackageIfNotExist snapd
+				sudo snap install snapd
 				;;
 			"Fluxbox Setup")
 				InstallPackageIfNotExist conky-all "aptitude"
