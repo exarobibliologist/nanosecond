@@ -40,8 +40,11 @@ First off, The Wiki leads us to believe that adding anything to the sources will
 	## However, derivative repos can introduce an element of unpredictabless to a system, so unless you ABSOLUTELY know what you are doing, probably don't do this.
 	#Ubuntu PPAs and other repositories created to distribute single applications. ## Almost never true. Single applications are much easier to run with Debian than an entire derivative repo.
 
+The biggest problem with this advice is that it ASSUMES that all Debian users have the same needs, and like doing things the hard way.
+It also PRESUMES that adding sources to the Debian system will AUTOMATICALLY result in a broken system.
+
 Here's the problem with this thinking. Debian Stable is admittedly the most stable flavor of Debian, but if you need more up-to-date drivers or support for your system, you won't find it on Stable.
-So, the Debian purists say "Then install Testing." The problem with Testing is that packages move in and out of Testing so rapidly at times, it can be hard to hold on to any stability at all, especially if you're tracking a package under active development.
+So, the Debian purists say "Then install Testing." The problem with Testing is that packages move in and out of Testing so rapidly at times, it can be hard to hold on to any stability at all, especially if you're tracking a package under active development. It's also not unlikely that you will find a package in Testing, but none of the dependencies are available (because they only exist in Stable or Sid).
 So, the Debian purists say "then install Sid." While it's true that packages don't move in and out of Sid with as much rapidity as they do on Testing, you're still one system update away from a brick if you're not careful.
 
 This is why the FrankenDebian installation I've made is superior. I found a way to "blend" the sources, without creating chaos.
@@ -70,8 +73,9 @@ Then, I add all the sources to my sources.list
 #	deb http://deb.debian.org/debian/ experimental main contrib non-free
 #	deb-src http://deb.debian.org/debian/ experimental main contrib non-free
 
-Now, this, JUST BY ITSELF, would be absolute chaos!! It would almost certinaly not work well, or for very long. What you need to do now is tweak apt_preferences so you force stability on the other sources by deprioritizing them.
-For more information on how this works, look at the section about APT Preferences below, or open a Terminal and type # man apt_preferences
+Now, this, JUST BY ITSELF, would be absolute chaos!! It would almost certinaly not work well, or for very long.
+
+What you need to do now is tweak apt_preferences so you force stability on the other sources by deprioritizing them. For more information on how this works, look at the section about APT Preferences below, or open a Terminal and type # man apt_preferences
 My completed sourcestopper file looks like this. It change the priority of testing, unstable, and experimental to -10
 
 #	Package: *
@@ -115,8 +119,8 @@ and it will automatically roll into the next version with no difficulty.
 
 This file when placed in /etc/apt/preferences.d allows you to maintain the system at the Stable level, which tracking Testing, Unstable, and Experimental.
 
-Stable is maintained at a pin-priority of 100 as a default, so none of the new sources will impact the system, but you can still install new drivers and programs (packages in Testing will not be automatically installed, and Stable will always have higher priority)
-This type of "blended" FrankenDebian is ridiculously stable, while allowing the most up-to-date software to be accessed and installed.
+Stable is automatically maintained at a pin-priority of 100 as a default, so none of the new sources will impact the system, but you can still install new drivers and programs (packages in Testing will not be automatically installed, and Stable will always have higher priority)
+This type of "blended" FrankenDebian is ridiculously stable, while allowing the most up-to-date software to be accessed and installed. If a particular package only exists in Sid, but the dependencies exist in Testing, all of them will install correctly and only those packages will have any impact on the system.
 
 ## _____ _           _   _   _            _____         _            _     ____                           
 ##|  ___(_)_ __   __| | | |_| |__   ___  |  ___|_ _ ___| |_ ___  ___| |_  / ___|  ___  _   _ _ __ ___ ___ 
