@@ -6,7 +6,9 @@ The sources use deb.debian.org so that you will always be on the fastest Debian 
 Generic version names are used to allow rolling release upgrades and updates.
 
 <b>APT Preferences will also be heavily modified.</b> This will help to control the extra sources so things stay stable while giving you extra access to packages far beyond stable.
+
 ![](https://i.imgur.com/k67VjAZ.png)![](https://i.imgur.com/MdgbyFV.png)![](https://i.imgur.com/bMVIk0p.png)
+
 To run these scripts you will need:
 <blockquote><b>Expert</b> level Debian Linux knowledge. Don't attempt to run these scripts without brains.</blockquote>
 <blockquote><b>God-Level</b> knowledge, if attempting to rewrite or modify these scripts for another Linux operating system.</blockquote>
