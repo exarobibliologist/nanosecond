@@ -1,16 +1,12 @@
-![](https://i.imgur.com/IBI6jMR.png)![](https://i.imgur.com/Q8xOdrd.png)
-<br>![](https://i.imgur.com/0LISqPB.png)![](https://i.imgur.com/AnNQqER.png)
-
+![](https://i.imgur.com/OKroi5L.png)![](https://i.imgur.com/1moGpOI.png)
 <h1>THIS IS ONLY FOR DEBIAN!!<br><br>Additionally, it will work with the Debian package for WSL (Windows Subsystem for Linux) on Windows.</h1>
-
 <h2>This will cause <u>unrecoverable</u> changes to your Debian setup.</h2>
-
 <b>You will get a modified sources.list that includes extra sources (for testing, unstable, and experimental).</b>
 The sources use deb.debian.org so that you will always be on the fastest Debian server.
 Generic version names are used to allow rolling release upgrades and updates.
 
 <b>APT Preferences will also be heavily modified.</b> This will help to control the extra sources so things stay stable while giving you extra access to packages far beyond stable.
-
+![](https://i.imgur.com/k67VjAZ.png)![](https://i.imgur.com/MdgbyFV.png)![](https://i.imgur.com/bMVIk0p.png)
 To run these scripts you will need:
 <blockquote><b>Expert</b> level Debian Linux knowledge. Don't attempt to run these scripts without brains.</blockquote>
 <blockquote><b>God-Level</b> knowledge, if attempting to rewrite or modify these scripts for another Linux operating system.</blockquote>
@@ -25,7 +21,8 @@ If you believe that everything in the Debian Wiki is absolute and cannot be viol
 These scripts will produce a <b>FrankenDebian setup</b> that is incredibly versatile, without sacrificing stability.
 If you do not understand what that is, this repo <b>IS NOT</b> for you! <b>Walk away now!</b>
 
-<b>Don't ask for help</b> from the Debian gurus on Freenode or Libera IRC. Your requests for help will be ignored once they realize you are running a FrankenDebian.
+<b>Don't expect to get help</b> from Debian gurus on Freenode. Your requests for help will be ignored once they realize you are running a FrankenDebian.
+
 You must be willing to solve all your own problems, with limited or no support. If you are unwilling to do this, this repo <b>IS NOT</b> for you! <b>Walk away now!</b>
 
 These scripts are a <b>learning experience.</b>
@@ -41,7 +38,7 @@ If you are uncomfortable with learning new things, and want to stick with the st
 
 You will need <b>git-all</b> installed beforehand, in order to fetch and use all the files.
 
-<blockquote><code>sudo apt install git-all</code></blockquote>
+<blockquote><code>sudo apt-get install git-all</code></blockquote>
 
 Open a Terminal and type
 <blockquote><code>cd</code></blockquote>
@@ -65,3 +62,5 @@ Then type:
 <blockquote><code>installstuff</code></blockquote>
 
 Follow the menu prompts to install other programs your system can use.
+
+![](https://i.imgur.com/8ADPFLl.png)
