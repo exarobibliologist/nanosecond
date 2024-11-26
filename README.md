@@ -1,3 +1,6 @@
+![](https://i.imgur.com/IBI6jMR.png)![](https://i.imgur.com/Q8xOdrd.png)
+<br>![](https://i.imgur.com/0LISqPB.png)![](https://i.imgur.com/AnNQqER.png)
+
 <h1>THIS IS ONLY FOR DEBIAN!!<br><br>Additionally, it will work with the Debian package for WSL (Windows Subsystem for Linux) on Windows.</h1>
 
 <h2>This will cause <u>unrecoverable</u> changes to your Debian setup.</h2>
@@ -22,8 +25,7 @@ If you believe that everything in the Debian Wiki is absolute and cannot be viol
 These scripts will produce a <b>FrankenDebian setup</b> that is incredibly versatile, without sacrificing stability.
 If you do not understand what that is, this repo <b>IS NOT</b> for you! <b>Walk away now!</b>
 
-<b>Don't expect to get help</b> from Debian gurus on Freenode. Your requests for help will be ignored once they realize you are running a FrankenDebian.
-
+<b>Don't ask for help</b> from the Debian gurus on Freenode or Libera IRC. Your requests for help will be ignored once they realize you are running a FrankenDebian.
 You must be willing to solve all your own problems, with limited or no support. If you are unwilling to do this, this repo <b>IS NOT</b> for you! <b>Walk away now!</b>
 
 These scripts are a <b>learning experience.</b>
@@ -39,7 +41,7 @@ If you are uncomfortable with learning new things, and want to stick with the st
 
 You will need <b>git-all</b> installed beforehand, in order to fetch and use all the files.
 
-<blockquote><code>sudo apt-get install git-all</code></blockquote>
+<blockquote><code>sudo apt install git-all</code></blockquote>
 
 Open a Terminal and type
 <blockquote><code>cd</code></blockquote>
