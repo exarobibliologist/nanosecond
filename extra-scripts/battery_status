@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Percentage at which to warn
+LOW_PCT=10
+# Delay between samples
+DELAY=60s
+
+# Gets the percentage of the display device
+battery_pct() {
+    LANG=C upower -d | sed -rn '/DisplayDevice/,/^$/{s/ *percentage: *([0-9]+).*$/\1/p;}'
+}
+
+# Checks whether the main battery is discharging
+battery_discharging() {
+    [[ "$(LANG=C upower -d | sed -rn '/Daemon/,/^$/{s/ *on-battery: *//p;}')" == "yes" ]]
+}
+
+# Warns when the battery is low
+warn() {
+    echo "Battery low! $1% remaining"
+    paplay /usr/share/sounds/freedesktop/stereo/power-unplug.oga
+    paplay /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga
+}
+
+# Main: poll for battery percentage and warn if low
+while sleep "$DELAY"; do
+    if battery_discharging; then
+        pct=$(battery_pct)
+        if [[ -z "$pct" ]]; then
+            echo "Failed to get battery percentage!" >&2
+        elif (( pct <= LOW_PCT )); then
+            warn "$pct"
+        fi
+    fi
+done
