@@ -37,7 +37,7 @@ do
 			return
 			;;
 		"Upgrade Menu")
-			select upgradechoice in "List Upgrades" "Run Safe-Upgrade" "Run Full-Upgrade"
+			select upgradechoice in "List Upgrades" "Run Safe-Upgrade" "Run Full-Upgrade" "Autoremove Unrequired"
 				do
 					case "$upgradechoice" in
 						"List Upgrades")
@@ -50,6 +50,10 @@ do
 						;;
 						"Run Full-Upgrade")
 							sudo apt full-upgrade || return
+							return
+						;;
+						"Autoremove Unrequired")
+							sudo apt autoremove || return
 							return
 						;;
 					esac
