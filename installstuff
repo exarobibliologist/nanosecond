@@ -161,7 +161,7 @@ function KeepInstallingMoreStuff()
 					InstallPackageIfNotExist "$pkg"
 				done
 				;;
-			"Terminal = konsole terminator")
+			"Terminal = btop konsole terminator")
 				for pkg in btop konsole terminator; do
 					InstallPackageIfNotExist "$pkg"
 				done
