@@ -1,0 +1,31 @@
+#!/bin/bash
+
+#### Example usage
+#### roll_dice "3d8"
+
+roll_dice() {
+    local notation=$1
+    local rolls sides
+    local total=0
+
+    # Extract the number of rolls and sides from the notation
+    rolls=$(echo "$notation" | cut -d'd' -f1)
+    sides=$(echo "$notation" | cut -d'd' -f2)
+
+    # Validate inputs
+    if ! [[ "$rolls" =~ ^[0-9]+$ ]] || ! [[ "$sides" =~ ^[0-9]+$ ]]; then
+        echo "Invalid notation. Please use the format 'NdM' (e.g., 3d8)."
+        return 1
+    fi
+
+    echo "Rolling $rolls dice with $sides sides each..."
+
+    # Roll the dice and calculate the total
+    for ((i = 1; i <= rolls; i++)); do
+        roll=$((RANDOM % sides + 1))
+        echo "Dice $i: $roll"
+        total=$((total + roll))
+    done
+
+    echo "Total: $total"
+}
