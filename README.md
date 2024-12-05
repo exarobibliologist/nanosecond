@@ -1,4 +1,4 @@
-![](https://i.imgur.com/OKroi5L.png)![](https://i.imgur.com/k67VjAZ.png)![](https://i.imgur.com/MdgbyFV.png)![](https://i.imgur.com/bMVIk0p.png)
+![](https://i.imgur.com/OKroi5L.png)![](https://i.imgur.com/k67VjAZ.png)<br>![](https://i.imgur.com/MdgbyFV.png)![](https://i.imgur.com/bMVIk0p.png)
 
 <h1>THIS IS ONLY FOR DEBIAN!!<br><br>Additionally, it will work with the Debian package for WSL (Windows Subsystem for Linux) on Windows.</h1>
 <h2>This will cause <u>unrecoverable</u> changes to your Debian setup.</h2>
