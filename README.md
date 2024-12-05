@@ -1,4 +1,5 @@
-![](https://i.imgur.com/OKroi5L.png)![](https://i.imgur.com/1moGpOI.png)
+![](https://i.imgur.com/OKroi5L.png)![](https://i.imgur.com/k67VjAZ.png)![](https://i.imgur.com/MdgbyFV.png)![](https://i.imgur.com/bMVIk0p.png)
+
 <h1>THIS IS ONLY FOR DEBIAN!!<br><br>Additionally, it will work with the Debian package for WSL (Windows Subsystem for Linux) on Windows.</h1>
 <h2>This will cause <u>unrecoverable</u> changes to your Debian setup.</h2>
 <b>You will get a modified sources.list that includes extra sources (for testing, unstable, and experimental).</b>
@@ -6,8 +7,6 @@ The sources use deb.debian.org so that you will always be on the fastest Debian 
 Generic version names are used to allow rolling release upgrades and updates.
 
 <b>APT Preferences will also be heavily modified.</b> This will help to control the extra sources so things stay stable while giving you extra access to packages far beyond stable.
-
-![](https://i.imgur.com/k67VjAZ.png)![](https://i.imgur.com/MdgbyFV.png)![](https://i.imgur.com/bMVIk0p.png)
 
 To run these scripts you will need:
 <blockquote><b>Expert</b> level Debian Linux knowledge. Don't attempt to run these scripts without brains.</blockquote>
