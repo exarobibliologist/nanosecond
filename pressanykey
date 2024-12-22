@@ -1,13 +1,27 @@
 #! /bin/bash
 
-function pressanykey ()
-{
-tput smso
-echo "PRESS ANY KEY"
-tput rmso
-oldstty=`stty -g`
-stty -icanon -echo min 1 time 0
-dd bs=1 count=1 >/dev/null 2>&1
-stty "$oldstty"
-echo
+function pressanykey () {
+    tput smso
+    tput rmso
+
+    # Save the current terminal settings
+    oldstty=$(stty -g)
+    stty -icanon -echo min 0 time 0
+
+    # Spinner array
+    arr=('- - - - - - - - - - PRESS ANY KEY - - - - - - - - - -' '\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ PRESS ANY KEY \\ \\ \\ \\ \\ \\ \\ \\ \\ \\' '| | | | | | | | | | PRESS ANY KEY | | | | | | | | | |' '/ / / / / / / / / / PRESS ANY KEY / / / / / / / / / /')
+    while :; do
+        for c in "${arr[@]}"; do
+            echo -en "\r $c "
+            sleep 0.1
+
+            # Check for key press
+            if read -t 0.1 -n 1; then
+                # Restore the terminal settings
+                stty "$oldstty"
+                echo -e "\n"
+                return
+            fi
+        done
+    done
 }
