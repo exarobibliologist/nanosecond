@@ -6,7 +6,7 @@ LS_COLORS='di=97;40:ln=35;40:so=32;40:pi=33;40:ex=96;40:fi=38;05;60:bd=34;46:cd=
 export LS_COLORS
 
 if [ "$color_prompt" = yes ]; then
-	PS1="${debian_chroot:+($debian_chroot)}\n\[$Color015\]\u\[$Color010\]@\[$Color015\]\h\ in \[$Color010\]\w\\[$Color_Off\]\n\[$Color009\]≣ \[$Color010\]Enter Your Command Here\[$Color009\] ≣ \[$Color_Off\]"
+	PS1="$(bold 1)\u$(reset)@$(bold 3)\h$(reset):$(color 8)\w$(reset)\n$(bold 1)≣ $(bold 15)Enter Your Command Here $(bold 1)≣ $(reset)"
 else
 	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
