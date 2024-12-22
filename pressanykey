@@ -9,7 +9,12 @@ function pressanykey () {
     stty -icanon -echo min 0 time 0
 
     # Spinner array
-    arr=('- - - - - - - - - - PRESS ANY KEY - - - - - - - - - -' '\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ PRESS ANY KEY \\ \\ \\ \\ \\ \\ \\ \\ \\ \\' '| | | | | | | | | | PRESS ANY KEY | | | | | | | | | |' '/ / / / / / / / / / PRESS ANY KEY / / / / / / / / / /')
+    arr=(
+    "$(color 1)- - - - - - - - - - $(color 2)PRESS ANY KEY$(color 1) - - - - - - - - - -$(reset)"
+    "$(color 2)/ / / / / / / / / / $(color 3)PRESS ANY KEY$(color 2) \\ \\ \\ \\ \\ \\ \\ \\ \\ \\$(reset)"
+    "$(color 3)| | | | | | | | | | $(color 4)PRESS ANY KEY$(color 3) | | | | | | | | | |$(reset)"
+    "$(color 4)\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ $(color 1)PRESS ANY KEY$(color 4) / / / / / / / / / /$(reset)"
+    )
     while :; do
         for c in "${arr[@]}"; do
             echo -en "\r $c "
