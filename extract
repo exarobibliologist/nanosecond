@@ -61,7 +61,7 @@ if [ -f "$1" ]; then
 			rpm2cpio "$1" | cpio -idmv
 			;;
 		*)
-			echo "Cannot determine the archival type of '$1'. Aborting."
+			echo -e "$(color 3)Cannot determine the archival type$(reset) of '$1'. Aborting."
             		;;
 	esac
 else
