@@ -14,7 +14,12 @@ if [ -f $1 ]
 				return
 				;;
 					"Change File Access Permissions")
-						echo -e "-------------------------------------------------------------------------------------------------\n|       Owner                   |       Group                   |       Others                  |\n|(R)ead, (W)rite, (E)xecute     |(R)ead, (W)rite, (E)xecute     |(R)ead, (W)rite, (E)xecute     |\n-------------------------------------------------------------------------------------------------\n\n000 = 0 (Completely locked)\n001 = 1 (Execute only)\n010 = 2 (Write only)\n011 = 3 (Write and execute)\n100 = 4 (Read only)\n101 = 5 (Read and execute)\n110 = 6 (Read and write)\n111 = 7 (Full access)"
+						echo -e "$(color 8)-------------------------------------------------------------------------------------------------$(reset)"
+						echo -e "$(color 8)|$(reset)       Owner                   $(color 8)|$(reset)       Group                   $(color 8)|$(reset)       Others                  $(color 8)|$(reset)"
+						echo -e "$(color 8)|$(reset)$(color 1)(R)$(reset)ead, $(color 2)(W)$(reset)rite, $(color 3)(E)$(reset)xecute     $(color 8)|$(reset)$(color 1)(R)$(reset)ead, $(color 2)(W)$(reset)rite, $(color 3)(E)$(reset)xecute     $(color 8)|$(reset)$(color 1)(R)$(reset)ead, $(color 2)(W)$(reset)rite, $(color 3)(E)$(reset)xecute     $(color 8)|$(reset)"
+						echo -e "$(color 8)-------------------------------------------------------------------------------------------------"
+						echo
+						echo -e "$(color 1)0$(color 2)0$(color 3)0$(reset) = 0 (Completely locked)\n$(color 1)0$(color 2)0$(color 3)1$(reset) = 1 (Execute only)\n$(color 1)0$(color 2)1$(color 3)0$(reset) = 2 (Write only) \n$(color 1)0$(color 2)1$(color 3)1$(reset) = 3 (Write and execute)\n$(color 1)1$(color 2)0$(color 3)0$(reset) = 4 (Read only)\n$(color 1)1$(color 2)0$(color 3)1$(reset) = 5 (Read and execute)\n$(color 1)1$(color 2)1$(color 3)0$(reset) = 6 (Read and write)\n$(color 1)1$(color 2)1$(color 3)1$(reset) = 7 (Full access)"
 						echo -e "Enter permissions number desired."
 						read permnum
 						pressanykey

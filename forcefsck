@@ -3,7 +3,7 @@
 function forcefsck()
 {
 clear
-echo -e "${Color009}THIS WILL RESTART YOUR COMPUTER!!${Color_Off}\nPlease save your work and close any open applications.\nAfter the computer restarts, this will run an FSCK to check your drive for errors.\nYou will need to enter your password to confirm this."
+echo -e "$(color 9)THIS WILL RESTART YOUR COMPUTER!!$(reset)\nPlease save your work and close any open applications.\nAfter the computer restarts, this will run an FSCK to check your drive for errors.\nYou will need to enter your password to confirm this."
 pressanykey
 cd
 sudo touch /forcefsck

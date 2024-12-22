@@ -9,7 +9,7 @@ function InstallPackageIfNotExist()
 
     # Check if the package is installed
 	if ! dpkg -l | awk '{print $2}' | grep -wq "^$package$"; then
-		echo -e "Working on ${Color196}$package${Color_Off}..."
+		echo -e "Working on $(color 196)$package$(reset)..."
         # Install the package
 			if [[ "$installer" == "aptitude" ]]; then
 				sudo aptitude install -Pry "$package"   # Use aptitude for forced install
@@ -17,14 +17,14 @@ function InstallPackageIfNotExist()
 				sudo apt install "$package"           # Use apt as default
 			fi
 		else
-			echo -e "${Color196}$package${Color_Off} is already installed."
+			echo -e "$(color 196)$package$(reset) is already installed."
 		fi
 }
 
 # Function for menu-driven installation
 function installstuff()
 {
-	echo -e "Showing you your sources.list. ${Color196}If anything looks off, abort the script immediately and fix it!${Color_Off}\n"
+	echo -e "Showing you your sources.list. $(color 196)If anything looks off, abort the script immediately and fix it!$(reset)\n"
 	grep -e "stable" -e "testing" -e "unstable" -e "experimental" -e "contrib" -e "non-free" /etc/apt/sources.list
 	pressanykey
 	KeepInstallingMoreStuff
