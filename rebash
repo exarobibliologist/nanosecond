@@ -41,7 +41,7 @@ do
 				do
 					case "$upgradechoice" in
 						"List Upgrades")
-							sudo apt list --upgradeable
+							apt list --upgradable 2>/dev/null | cut -d/ -f1 | sort | column
 							return
 						;;
 						"Run Safe-Upgrade")
