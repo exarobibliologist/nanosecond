@@ -37,11 +37,15 @@ do
 			return
 			;;
 		"Upgrade Menu")
-			select upgradechoice in "List Upgrades" "Run Safe-Upgrade" "Run Full-Upgrade" "Autoremove Unrequired"
+			select upgradechoice in "List Upgrades" "List Upgrades with Detail" "Run Safe-Upgrade" "Run Full-Upgrade" "Autoremove Unrequired"
 				do
 					case "$upgradechoice" in
 						"List Upgrades")
 							apt list --upgradable 2>/dev/null | cut -d/ -f1 | sort | column
+							return
+						;;
+						"List Upgrades with Detail")
+							sudo apt list --upgradeable
 							return
 						;;
 						"Run Safe-Upgrade")
