@@ -44,6 +44,7 @@ show_grand_total() {
 # Main menu function
 dice_menu() {
   while true; do
+    clear # Clears the screen
     echo -e "\n=== Dice Rolling Menu ==="
     echo "1. Roll a dice"
     echo "2. Show Grand Total"
@@ -75,5 +76,8 @@ dice_menu() {
         echo "Invalid choice. Please select an option from 1 to 4."
         ;;
     esac
-  done
+
+    # Pause before showing the menu again
+    pressanykey
+    done
 }
