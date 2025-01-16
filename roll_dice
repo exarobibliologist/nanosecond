@@ -1,31 +1,79 @@
 #!/bin/bash
 
-#### Example usage
-#### roll_dice "3d8"
+# Global variable to keep track of the grand total
+GRAND_TOTAL=0
 
+# Function to roll a dice of a specified number of sides
 roll_dice() {
-    local notation=$1
-    local rolls sides
-    local total=0
+  local sides=$1
+  echo $((RANDOM % sides + 1))
+}
 
-    # Extract the number of rolls and sides from the notation
-    rolls=$(echo "$notation" | cut -d'd' -f1)
-    sides=$(echo "$notation" | cut -d'd' -f2)
+# Function to roll until a 1 is rolled
+roll_until_one() {
+  local sides=$1
+  local total=0
+  local roll=0
 
-    # Validate inputs
-    if ! [[ "$rolls" =~ ^[0-9]+$ ]] || ! [[ "$sides" =~ ^[0-9]+$ ]]; then
-        echo "Invalid notation. Please use the format 'NdM' (e.g., 3d8)."
-        return 1
+  echo "Rolling a d$sides until a 1 is rolled..."
+
+  while true; do
+    roll=$(roll_dice "$sides")
+    if [[ $roll -eq 1 ]]; then
+      echo "Rolled: 1, stopping. Final Total: $total"
+      break
     fi
+    total=$((total + roll))
+    echo "Rolled: $roll, Total: $total"
+  done
 
-    echo "Rolling $rolls dice with $sides sides each..."
+  GRAND_TOTAL=$((GRAND_TOTAL + total))
+}
 
-    # Roll the dice and calculate the total
-    for ((i = 1; i <= rolls; i++)); do
-        roll=$((RANDOM % sides + 1))
-        echo "Dice $i: $roll"
-        total=$((total + roll))
-    done
+# Function to reset the grand total
+reset_grand_total() {
+  GRAND_TOTAL=0
+  echo "Grand total has been reset."
+}
 
-    echo "Total: $total"
+# Function to show the current grand total
+show_grand_total() {
+  echo "Current Grand Total: $GRAND_TOTAL"
+}
+
+# Main menu function
+dice_menu() {
+  while true; do
+    echo -e "\n=== Dice Rolling Menu ==="
+    echo "1. Roll a dice"
+    echo "2. Show Grand Total"
+    echo "3. Reset Grand Total"
+    echo "4. Exit"
+    echo "========================="
+
+    read -rp "Choose an option (1-4): " choice
+    case $choice in
+      1)
+        read -rp "Enter the number of sides on the dice: " sides
+        if [[ $sides =~ ^[0-9]+$ ]]; then
+          roll_until_one "$sides"
+        else
+          echo "Invalid input. Please enter a positive integer."
+        fi
+        ;;
+      2)
+        show_grand_total
+        ;;
+      3)
+        reset_grand_total
+        ;;
+      4)
+        echo "Goodbye!"
+        break
+        ;;
+      *)
+        echo "Invalid choice. Please select an option from 1 to 4."
+        ;;
+    esac
+  done
 }
