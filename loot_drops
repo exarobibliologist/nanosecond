@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Function for loot drops with quantity input and unique items
 loot_drop() {
     # Check if a valid number of drops is provided
