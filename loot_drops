@@ -1,4 +1,4 @@
-# Function for loot drops with quantity input
+# Function for loot drops with quantity input and unique items
 loot_drop() {
     # Check if a valid number of drops is provided
     if [[ -z "$1" || ! "$1" =~ ^[0-9]+$ || "$1" -le 0 ]]; then
@@ -20,6 +20,12 @@ loot_drop() {
     # Rarity categories (for reference)
     RARITIES=("Ranged" "Melee" "Armor" "Tools")
 
+    # Temporary pools to track remaining items
+    local TEMP_RANGED=("${RANGED[@]}")
+    local TEMP_MELEE=("${MELEE[@]}")
+    local TEMP_ARMOR=("${ARMOR[@]}")
+    local TEMP_TOOLS=("${TOOLS[@]}")
+
     # Calculate the total weight for rarities
     local TOTAL_RARITY_WEIGHT=0
     for weight in "${RARITY_WEIGHTS[@]}"; do
@@ -27,8 +33,14 @@ loot_drop() {
     done
 
     # Generate loot drops
-    echo "Generating $num_drops loot drop(s):"
+    echo "Generating $num_drops unique loot drop(s):"
     for ((drop=1; drop<=num_drops; drop++)); do
+        # If all pools are empty, stop
+        if [[ ${#TEMP_RANGED[@]} -eq 0 && ${#TEMP_MELEE[@]} -eq 0 && ${#TEMP_ARMOR[@]} -eq 0 && ${#TEMP_TOOLS[@]} -eq 0 ]]; then
+            echo "No more items left in the loot pools!"
+            break
+        fi
+
         # Randomly select rarity
         local RANDOM_RARITY=$((RANDOM % TOTAL_RARITY_WEIGHT + 1))
         local current_rarity_weight=0
@@ -40,19 +52,34 @@ loot_drop() {
             if (( RANDOM_RARITY <= current_rarity_weight )); then
                 SELECTED_RARITY=${RARITIES[i]}
                 case $SELECTED_RARITY in
-                    "Ranged") LOOT_POOL=("${RANGED[@]}") ;;
-                    "Melee") LOOT_POOL=("${MELEE[@]}") ;;
-                    "Armor") LOOT_POOL=("${ARMOR[@]}") ;;
-                    "Tools") LOOT_POOL=("${TOOLS[@]}") ;;
+                    "Ranged") LOOT_POOL=("${TEMP_RANGED[@]}") ;;
+                    "Melee") LOOT_POOL=("${TEMP_MELEE[@]}") ;;
+                    "Armor") LOOT_POOL=("${TEMP_ARMOR[@]}") ;;
+                    "Tools") LOOT_POOL=("${TEMP_TOOLS[@]}") ;;
                 esac
                 break
             fi
         done
 
+        # Skip to the next iteration if the selected pool is empty
+        if [[ ${#LOOT_POOL[@]} -eq 0 ]]; then
+            ((drop--))  # Retry this drop
+            continue
+        fi
+
         # Randomly select an item from the chosen rarity pool
-        local RANDOM_ITEM=${LOOT_POOL[RANDOM % ${#LOOT_POOL[@]}]}
+        local RANDOM_INDEX=$((RANDOM % ${#LOOT_POOL[@]}))
+        local RANDOM_ITEM=${LOOT_POOL[RANDOM_INDEX]}
 
         # Output the loot drop
         echo "  Drop $drop: $SELECTED_RARITY - $RANDOM_ITEM"
+
+        # Remove the item from the temporary pool
+        case $SELECTED_RARITY in
+            "Ranged") TEMP_RANGED=("${TEMP_RANGED[@]:0:RANDOM_INDEX}" "${TEMP_RANGED[@]:RANDOM_INDEX+1}") ;;
+            "Melee") TEMP_MELEE=("${TEMP_MELEE[@]:0:RANDOM_INDEX}" "${TEMP_MELEE[@]:RANDOM_INDEX+1}") ;;
+            "Armor") TEMP_ARMOR=("${TEMP_ARMOR[@]:0:RANDOM_INDEX}" "${TEMP_ARMOR[@]:RANDOM_INDEX+1}") ;;
+            "Tools") TEMP_TOOLS=("${TEMP_TOOLS[@]:0:RANDOM_INDEX}" "${TEMP_TOOLS[@]:RANDOM_INDEX+1}") ;;
+        esac
     done
 }
