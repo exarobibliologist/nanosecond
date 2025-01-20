@@ -83,6 +83,7 @@ fi
 . ~/GIT/nanosecond/reconk
 . ~/GIT/nanosecond/refont
 . ~/GIT/nanosecond/rgb2cmyk
+. ~/GIT/nanosecond/roll_character_function
 . ~/GIT/nanosecond/roll_dice
 . ~/GIT/nanosecond/slideshower
 . ~/GIT/nanosecond/soundfix
