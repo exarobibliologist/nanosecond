@@ -70,6 +70,7 @@ fi
 . ~/GIT/nanosecond/installstuff
 . ~/GIT/nanosecond/julian
 . ~/GIT/nanosecond/lamer
+. ~/GIT/nanosecond/loot_drops
 . ~/GIT/nanosecond/lsabcd
 . ~/GIT/nanosecond/namechanger
 . ~/GIT/nanosecond/networkinfo
