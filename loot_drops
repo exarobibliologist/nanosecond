@@ -1,0 +1,58 @@
+# Function for loot drops with quantity input
+loot_drop() {
+    # Check if a valid number of drops is provided
+    if [[ -z "$1" || ! "$1" =~ ^[0-9]+$ || "$1" -le 0 ]]; then
+        echo "Usage: loot_drop <number_of_drops>"
+        return 1
+    fi
+
+    local num_drops=$1  # Number of loot items to drop
+
+    # Loot arrays based on rarity
+    RANGED=("Ranged Weapon" "Pistol" "Blaster Pistol")
+    MELEE=("Melee Weapon" "Generic Whip" "Dagger" "Sword" "Flail" "Nightfang" "Eclipse Edge" "Sledgehammer" "Hexblade" "Whispering Shadows" "Longsword of the Watery Tart" "Sovereign Sigil Spear" "Lightsaber")
+    ARMOR=("Generic Armor" "Brown Pants" "Glass Armor" "Doom Armor" "Emberplate" "Spider Silk Armor" "Bikini Armor" "Tactical Vest" "Space Suit" "Leather Boots" "Protective Elite Tactical Armor")
+    TOOLS=("MIND Tool" "SENSE Tool" "BODY Tool" "Energy Drink" "Metal Detector" "Movable Mansion" "Laser Pointer" "Comprehensive Medkit" "Performance Enhancing Drugs" "Scope" "Titan Coil" "Portable Hole" "Chronicle of Echoing Futures" "Solar Nexus Cell" "Pocket of Holding" "Cellphone" "Energized Performance Drugs")
+
+    # Rarity weights (probabilities for selecting a rarity)
+    RARITY_WEIGHTS=(25 25 25 25)  # Ranged: 25%, Melee: 25%, Armor: 25%, Tools: 25%
+
+    # Rarity categories (for reference)
+    RARITIES=("Ranged" "Melee" "Armor" "Tools")
+
+    # Calculate the total weight for rarities
+    local TOTAL_RARITY_WEIGHT=0
+    for weight in "${RARITY_WEIGHTS[@]}"; do
+        TOTAL_RARITY_WEIGHT=$((TOTAL_RARITY_WEIGHT + weight))
+    done
+
+    # Generate loot drops
+    echo "Generating $num_drops loot drop(s):"
+    for ((drop=1; drop<=num_drops; drop++)); do
+        # Randomly select rarity
+        local RANDOM_RARITY=$((RANDOM % TOTAL_RARITY_WEIGHT + 1))
+        local current_rarity_weight=0
+        local SELECTED_RARITY=""
+        local LOOT_POOL=()
+
+        for i in "${!RARITY_WEIGHTS[@]}"; do
+            current_rarity_weight=$((current_rarity_weight + RARITY_WEIGHTS[i]))
+            if (( RANDOM_RARITY <= current_rarity_weight )); then
+                SELECTED_RARITY=${RARITIES[i]}
+                case $SELECTED_RARITY in
+                    "Ranged") LOOT_POOL=("${RANGED[@]}") ;;
+                    "Melee") LOOT_POOL=("${MELEE[@]}") ;;
+                    "Armor") LOOT_POOL=("${ARMOR[@]}") ;;
+                    "Tools") LOOT_POOL=("${TOOLS[@]}") ;;
+                esac
+                break
+            fi
+        done
+
+        # Randomly select an item from the chosen rarity pool
+        local RANDOM_ITEM=${LOOT_POOL[RANDOM % ${#LOOT_POOL[@]}]}
+
+        # Output the loot drop
+        echo "  Drop $drop: $SELECTED_RARITY - $RANDOM_ITEM"
+    done
+}
