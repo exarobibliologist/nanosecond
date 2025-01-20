@@ -1,0 +1,53 @@
+#!/bin/bash
+
+roll_character() {
+  roll_stat() {
+    # Rolls a stat within the range [level - tolerance, level + tolerance].
+    level=$1
+    tolerance=$2
+    min=$(( level - tolerance ))
+    max=$(( level + tolerance ))
+    echo $(( (RANDOM % (max - min + 1)) + min ))
+  }
+
+  generate_character() {
+    # Rolls a character with stats MIND, SENSE, and BODY.
+    level=$1
+    tolerance=$2
+    MIND=$(roll_stat "$level" "$tolerance")
+    SENSE=$(roll_stat "$level" "$tolerance")
+    BODY=$(roll_stat "$level" "$tolerance")
+    MAX_HP=$(( BODY * 5 ))
+    echo "MIND: $MIND"
+    echo "SENSE: $SENSE"
+    echo "BODY: $BODY"
+    echo "Max HP: $MAX_HP"
+    echo "-----------------"
+  }
+
+  get_input() {
+    # Function to get and validate a numeric input
+    prompt=$1
+    min_value=$2
+    while true; do
+      read -p "$prompt" value
+      if [[ $value =~ ^[0-9]+$ ]] && ((value >= min_value)); then
+        echo "$value"
+        break
+      else
+        echo "Invalid input. Please enter a number greater than or equal to $min_value."
+      fi
+    done
+  }
+
+  # Get inputs: level, tolerance, and optionally number of characters
+  level=${1:-$(get_input "Enter the base level for the character (e.g., 25): " 1)}
+  tolerance=${2:-$(get_input "Enter the tolerance (e.g., 5): " 0)}
+  count=${3:-$(get_input "Enter the number of characters to generate (e.g., 1): " 1)}
+
+  echo "Generating $count character(s) with stats centered around level $level and tolerance $tolerance:"
+  for ((i = 1; i <= count; i++)); do
+    echo "Character $i:"
+    generate_character "$level" "$tolerance"
+  done
+}
