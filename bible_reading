@@ -1,12 +1,13 @@
-# Function for generating a Bible reading schedule
+# Function for generating a Bible reading schedule with two random chapters per day
 bible_reading() {
     # Validate user input
     if [[ -z "$1" || ! "$1" =~ ^[0-9]+$ || "$1" -le 0 ]]; then
-        echo "Usage: bible_reading <number_of_days>"
+        echo "Usage: bible_reading <number_of_chapters_per_day> [book_name]"
         return 1
     fi
 
-    local num_days=$1  # Number of days to complete the reading
+    local chapters_per_day=$1  # Number of chapters to read per day (default: 2)
+    local selected_book=$2  # Optional: Specific book to generate schedule for
 
     # Define the chapters for each book (full Bible)
     declare -A BIBLE_BOOKS=(
@@ -78,51 +79,39 @@ bible_reading() {
         [Revelation]=$(seq 1 22)
     )
 
-    # Save the schedule to a file
-    echo "Schedule generated. Saving to bible_schedule.txt."
-    > bible_schedule.txt
+    # Check if a specific book is selected
+    local books_to_read=()
+    if [[ -n "$selected_book" ]]; then
+        if [[ -z "${BIBLE_BOOKS[$selected_book]}" ]]; then
+            echo "Error: Book '$selected_book' not found. Please check the spelling."
+            return 1
+        fi
+        books_to_read=("$selected_book")
+    else
+        books_to_read=("${!BIBLE_BOOKS[@]}")
+    fi
 
-    # Calculate total chapters and chapters per day
-    local total_chapters=0
-    for chapters in "${BIBLE_BOOKS[@]}"; do
-        total_chapters=$((total_chapters + $(wc -w <<< "$chapters")))
-    done
-
-    local chapters_per_day=$((total_chapters / num_days))
-    local remainder=$((total_chapters % num_days))  # For uneven distribution
-
-    echo "Generating Bible reading schedule for $num_days day(s):"
-
-    local day=1
-    for book in "${!BIBLE_BOOKS[@]}"; do
-        local chapters=( ${BIBLE_BOOKS[$book]} )
-        while [[ ${#chapters[@]} -gt 0 ]]; do
-            # Determine the number of chapters to read today
-            local chapters_today=$chapters_per_day
-            if [[ $remainder -gt 0 ]]; then
-                chapters_today=$((chapters_today + 1))
-                remainder=$((remainder - 1))
-            fi
-
-            # Ensure we don't exceed the chapters available in the current book
-            if [[ ${#chapters[@]} -lt $chapters_today ]]; then
-                chapters_today=${#chapters[@]}
-            fi
-
-            # Assign chapters for the day
-            local daily_reading=( "${chapters[@]:0:chapters_today}" )
-            chapters=( "${chapters[@]:chapters_today}" )
-
-            # Output the schedule for the day
-            echo "Day $day: $book ${daily_reading[*]}" | tee -a bible_schedule.txt
-            day=$((day + 1))
-
-            # Stop if we've filled all days
-            if [[ $day -gt $num_days ]]; then
-                return
-            fi
+    # Collect all chapters from the selected books
+    local all_chapters=()
+    for book in "${books_to_read[@]}"; do
+        for chapter in ${BIBLE_BOOKS[$book]}; do
+            all_chapters+=("$book $chapter")
         done
     done
-}
 
-# Example usage: bible_reading 30  # Generates a 30-day reading schedule
+    # Shuffle chapters randomly
+    all_chapters=( $(shuf -e "${all_chapters[@]}") )
+
+    echo "Generating Bible reading schedule with $chapters_per_day chapters per day:" | tee bible_schedule.txt
+
+    local day=1
+    while [[ ${#all_chapters[@]} -gt 0 ]]; do
+        # Get the chapters for today
+        local daily_reading=( "${all_chapters[@]:0:chapters_per_day}" )
+        # Remove the selected chapters from the list
+        all_chapters=( "${all_chapters[@]:chapters_per_day}" )
+        # Output today's schedule
+        echo "Day $day: ${daily_reading[*]}" | tee -a bible_schedule.txt
+        day=$((day + 1))
+    done
+}
