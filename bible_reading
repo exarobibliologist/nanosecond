@@ -1,0 +1,128 @@
+# Function for generating a Bible reading schedule
+bible_reading() {
+    # Validate user input
+    if [[ -z "$1" || ! "$1" =~ ^[0-9]+$ || "$1" -le 0 ]]; then
+        echo "Usage: bible_reading <number_of_days>"
+        return 1
+    fi
+
+    local num_days=$1  # Number of days to complete the reading
+
+    # Define the chapters for each book (full Bible)
+    declare -A BIBLE_BOOKS=(
+        [Genesis]=$(seq 1 50)
+        [Exodus]=$(seq 1 40)
+        [Leviticus]=$(seq 1 27)
+        [Numbers]=$(seq 1 36)
+        [Deuteronomy]=$(seq 1 34)
+        [Joshua]=$(seq 1 24)
+        [Judges]=$(seq 1 21)
+        [Ruth]=$(seq 1 4)
+        [1_Samuel]=$(seq 1 31)
+        [2_Samuel]=$(seq 1 24)
+        [1_Kings]=$(seq 1 22)
+        [2_Kings]=$(seq 1 25)
+        [1_Chronicles]=$(seq 1 29)
+        [2_Chronicles]=$(seq 1 36)
+        [Ezra]=$(seq 1 10)
+        [Nehemiah]=$(seq 1 13)
+        [Esther]=$(seq 1 10)
+        [Job]=$(seq 1 42)
+        [Psalms]=$(seq 1 150)
+        [Proverbs]=$(seq 1 31)
+        [Ecclesiastes]=$(seq 1 12)
+        [Song_of_Solomon]=$(seq 1 8)
+        [Isaiah]=$(seq 1 66)
+        [Jeremiah]=$(seq 1 52)
+        [Lamentations]=$(seq 1 5)
+        [Ezekiel]=$(seq 1 48)
+        [Daniel]=$(seq 1 12)
+        [Hosea]=$(seq 1 14)
+        [Joel]=$(seq 1 3)
+        [Amos]=$(seq 1 9)
+        [Obadiah]=$(seq 1 1)
+        [Jonah]=$(seq 1 4)
+        [Micah]=$(seq 1 7)
+        [Nahum]=$(seq 1 3)
+        [Habakkuk]=$(seq 1 3)
+        [Zephaniah]=$(seq 1 3)
+        [Haggai]=$(seq 1 2)
+        [Zechariah]=$(seq 1 14)
+        [Malachi]=$(seq 1 4)
+        [Matthew]=$(seq 1 28)
+        [Mark]=$(seq 1 16)
+        [Luke]=$(seq 1 24)
+        [John]=$(seq 1 21)
+        [Acts]=$(seq 1 28)
+        [Romans]=$(seq 1 16)
+        [1_Corinthians]=$(seq 1 16)
+        [2_Corinthians]=$(seq 1 13)
+        [Galatians]=$(seq 1 6)
+        [Ephesians]=$(seq 1 6)
+        [Philippians]=$(seq 1 4)
+        [Colossians]=$(seq 1 4)
+        [1_Thessalonians]=$(seq 1 5)
+        [2_Thessalonians]=$(seq 1 3)
+        [1_Timothy]=$(seq 1 6)
+        [2_Timothy]=$(seq 1 4)
+        [Titus]=$(seq 1 3)
+        [Philemon]=$(seq 1 1)
+        [Hebrews]=$(seq 1 13)
+        [James]=$(seq 1 5)
+        [1_Peter]=$(seq 1 5)
+        [2_Peter]=$(seq 1 3)
+        [1_John]=$(seq 1 5)
+        [2_John]=$(seq 1 1)
+        [3_John]=$(seq 1 1)
+        [Jude]=$(seq 1 1)
+        [Revelation]=$(seq 1 22)
+    )
+
+    # Save the schedule to a file
+    echo "Schedule generated. Saving to bible_schedule.txt."
+    > bible_schedule.txt
+
+    # Calculate total chapters and chapters per day
+    local total_chapters=0
+    for chapters in "${BIBLE_BOOKS[@]}"; do
+        total_chapters=$((total_chapters + $(wc -w <<< "$chapters")))
+    done
+
+    local chapters_per_day=$((total_chapters / num_days))
+    local remainder=$((total_chapters % num_days))  # For uneven distribution
+
+    echo "Generating Bible reading schedule for $num_days day(s):"
+
+    local day=1
+    for book in "${!BIBLE_BOOKS[@]}"; do
+        local chapters=( ${BIBLE_BOOKS[$book]} )
+        while [[ ${#chapters[@]} -gt 0 ]]; do
+            # Determine the number of chapters to read today
+            local chapters_today=$chapters_per_day
+            if [[ $remainder -gt 0 ]]; then
+                chapters_today=$((chapters_today + 1))
+                remainder=$((remainder - 1))
+            fi
+
+            # Ensure we don't exceed the chapters available in the current book
+            if [[ ${#chapters[@]} -lt $chapters_today ]]; then
+                chapters_today=${#chapters[@]}
+            fi
+
+            # Assign chapters for the day
+            local daily_reading=( "${chapters[@]:0:chapters_today}" )
+            chapters=( "${chapters[@]:chapters_today}" )
+
+            # Output the schedule for the day
+            echo "Day $day: $book ${daily_reading[*]}" | tee -a bible_schedule.txt
+            day=$((day + 1))
+
+            # Stop if we've filled all days
+            if [[ $day -gt $num_days ]]; then
+                return
+            fi
+        done
+    done
+}
+
+# Example usage: bible_reading 30  # Generates a 30-day reading schedule

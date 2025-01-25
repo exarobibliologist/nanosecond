@@ -59,6 +59,7 @@ fi
 . ~/GIT/nanosecond/apt-search
 . ~/GIT/nanosecond/apt-show
 . ~/GIT/nanosecond/apt-stuff
+. ~/GIT/nanosecond/bible_reading
 . ~/GIT/nanosecond/catgrapple
 . ~/GIT/nanosecond/colorize
 . ~/GIT/nanosecond/debinstall
