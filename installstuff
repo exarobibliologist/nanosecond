@@ -24,6 +24,16 @@ function InstallPackageIfNotExist()
 # Function for menu-driven installation
 function installstuff()
 {
+	if ! dpkg -l | grep -q aptitude; then sudo apt install aptitude; else echo "aptitude already installed. Skipping."; fi
+	if ! dpkg -l | grep -q apt-transport-https; then sudo apt install apt-transport-https; else echo "apt-transport-https already installed. Skipping."; fi
+	if ! dpkg -l | grep -q apt; then sudo apt install apt; else echo "apt already installed. Skipping."; fi
+	if ! dpkg -l | grep -q bash-completion; then sudo apt install bash-completion; else echo "bash-completion already installed. Skipping."; fi
+	if ! dpkg -l | grep -q curl; then sudo apt install curl; else echo "curl already installed. Skipping."; fi
+	if ! dpkg -l | grep -q dirmngr; then sudo apt install dirmngr; else echo "dirmngr already installed. Skipping."; fi
+	if ! dpkg -l | grep -q inxi; then sudo apt install inxi; else echo "inxi already installed. Skipping."; fi
+	if ! dpkg -l | grep -q wget; then sudo apt install wget; else echo "wget already installed. Skipping."; fi
+	if ! dpkg -l | grep -q systemd-timesyncd; then sudo apt install systemd-timesyncd; else echo "systemd-timesyncd already installed. Skipping."; fi
+
 	echo -e "Showing you your sources.list. $(color 196)If anything looks off, abort the script immediately and fix it!$(reset)\n"
 	grep -e "stable" -e "testing" -e "unstable" -e "experimental" -e "contrib" -e "non-free" /etc/apt/sources.list
 	pressanykey
