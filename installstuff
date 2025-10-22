@@ -36,7 +36,7 @@ function installstuff()
 	pressanykey
 	clear
 	echo -e "Showing you your sources.list. $(color 196)If anything looks off, abort the script immediately and fix it!$(reset)\n"
-	grep -e "stable" -e "testing" -e "unstable" -e "experimental" -e "contrib" -e "non-free" /etc/apt/sources.list
+	grep -e "main" -e "testing" -e "unstable" -e "experimental" -e "contrib" -e "\<non-free\>" /etc/apt/sources.list
 	pressanykey
 	KeepInstallingMoreStuff
 }
