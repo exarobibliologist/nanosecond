@@ -33,7 +33,8 @@ function installstuff()
 	if ! dpkg -l | grep -q inxi; then sudo apt install inxi; else echo "inxi already installed. Skipping."; fi
 	if ! dpkg -l | grep -q wget; then sudo apt install wget; else echo "wget already installed. Skipping."; fi
 	if ! dpkg -l | grep -q systemd-timesyncd; then sudo apt install systemd-timesyncd; else echo "systemd-timesyncd already installed. Skipping."; fi
-
+	pressanykey
+	clear
 	echo -e "Showing you your sources.list. $(color 196)If anything looks off, abort the script immediately and fix it!$(reset)\n"
 	grep -e "stable" -e "testing" -e "unstable" -e "experimental" -e "contrib" -e "non-free" /etc/apt/sources.list
 	pressanykey
