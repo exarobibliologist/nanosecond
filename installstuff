@@ -36,7 +36,10 @@ function installstuff()
 	pressanykey
 	clear
 	echo -e "Showing you your sources.list. $(color 196)If anything looks off, abort the script immediately and fix it!$(reset)\n"
-	grep -e "stable" -e "stable-updates" -e "stable-security" -e "testing" -e "testing-updates" -e "unstable" -e "experimental" /etc/apt/sources.list
+	# 1. Highlight the blue set of patterns (main, contrib, non-free, etc.)
+	GREP_COLORS='mt=01;34' grep -E --color=always 'main|testing|unstable|experimental|contrib|non-free|$' /etc/apt/sources.list | \
+	# 2. Pipe to the second grep to highlight the red set of patterns (stable, testing, unstable, etc.)
+	GREP_COLORS='mt=01;31' grep -E --color=always 'stable|stable-updates|stable-security|testing|testing-updates|unstable|experimental|$'
 	pressanykey
 	KeepInstallingMoreStuff
 }
