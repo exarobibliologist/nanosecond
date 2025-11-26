@@ -70,6 +70,7 @@ function KeepInstallingMoreStuff()
 	"Media = flac lame moc smplayer vlc"
 	"Mintstick"
 	"Pictures = feh inkscape luminance-hdr gimp gimp-data-extras gimp-gap gimp-lensfun gimp-ufraw gimp-texturiz gwenview kde-spectacle ufraw ufraw-batch"
+	"Python Setup"
 	"Terminal = btop konsole terminator"
 	"Torrents = amule deluge ktorrent qbittorrent transmission-gtk"
 	"Virtualbox"
@@ -176,6 +177,12 @@ function KeepInstallingMoreStuff()
 			"Pictures = feh inkscape luminance-hdr gimp gimp-data-extras gimp-gap gimp-lensfun gimp-ufraw gimp-texturiz gwenview kde-spectacle ufraw ufraw-batch")
 				for pkg in feh inkscape luminance-hdr gimp gimp-data-extras gimp-gap gimp-lensfun gimp-ufraw gimp-texturiz gwenview kde-spectacle ufraw ufraw-batch; do
 					InstallPackageIfNotExist "$pkg"
+				done
+				;;
+			"Python Setup")
+				for pkg in python3 python3-pip3 python3-tk; do
+					InstallPackageIfNotExist "$pkg"
+				pip3 install Pillow --break-system-packages
 				done
 				;;
 			"Terminal = btop konsole terminator")
