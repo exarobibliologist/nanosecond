@@ -59,7 +59,6 @@ fi
 . ~/GIT/nanosecond/apt-search
 . ~/GIT/nanosecond/apt-show
 . ~/GIT/nanosecond/apt-stuff
-. ~/GIT/nanosecond/bible_reading
 . ~/GIT/nanosecond/catgrapple
 . ~/GIT/nanosecond/colorize
 . ~/GIT/nanosecond/debinstall
@@ -71,8 +70,8 @@ fi
 . ~/GIT/nanosecond/installstuff
 . ~/GIT/nanosecond/julian
 . ~/GIT/nanosecond/lamer
-. ~/GIT/nanosecond/loot_drops
 . ~/GIT/nanosecond/lsabcd
+. ~/GIT/nanosecond/mkcd
 . ~/GIT/nanosecond/namechanger
 . ~/GIT/nanosecond/networkinfo
 . ~/GIT/nanosecond/owned
@@ -84,8 +83,6 @@ fi
 . ~/GIT/nanosecond/reconk
 . ~/GIT/nanosecond/refont
 . ~/GIT/nanosecond/rgb2cmyk
-. ~/GIT/nanosecond/roll_character_function
-. ~/GIT/nanosecond/roll_dice
 . ~/GIT/nanosecond/slideshower
 . ~/GIT/nanosecond/soundfix
 . ~/GIT/nanosecond/subhead_figlet
