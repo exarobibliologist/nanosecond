@@ -1,44 +1,42 @@
-#   ___________  __    __    _______       _______    _______    __     ___      ___     ______    __      _______    _______  
-#  ("     _   ")/" |  | "\  /"     "|     /" _   "|  /"      \  |" \   |"  \    /"  |   /    " \  |" \    /"      \  /"     "| 
-#   )__/  \\__/(:  (__)  :)(: ______)    (: ( \___) |:        | ||  |   \   \  //   |  // ____  \ ||  |  |:        |(: ______) 
-#      \\_ /    \/      \/  \/    |       \/ \      |_____/   ) |:  |   /\\  \/.    | /  /    ) :)|:  |  |_____/   ) \/    |   
-#      |.  |    //  __  \\  // ___)_      //  \ ___  //      /  |.  |  |: \.        |(: (____/ // |.  |   //      /  // ___)_  
-#      \:  |   (:  (  )  :)(:      "|    (:   _(  _||:  __   \  /\  |\ |.  \    /:  | \        /  /\  |\ |:  __   \ (:      "| 
-#       \__|    \__|  |__/  \_______)     \_______) |__|  \___)(__\_|_)|___|\__/|___|  \"_____/  (__\_|_)|__|  \___) \_______) 
-#                                                                                                                              
+# _______ _             _____      _                 _          
+#|__   __| |           / ____|    (_)               (_)         
+#   | |  | |__   ___  | |  __ _ __ _ _ __ ___   ___  _ _ __ ___ 
+#   | |  | '_ \ / _ \ | | |_ | '__| | '_ ` _ \ / _ \| | '__/ _ \
+#   | |  | | | |  __/ | |__| | |  | | | | | | | (_) | | | |  __/
+#   |_|  |_| |_|\___|  \_____|_|  |_|_| |_| |_|\___/|_|_|  \___|
+#                                                               
+#                                                 
 
-####  _____           _   _               __            _____       _     _             
-#### / ____|         | | (_)             /_ |          |  __ \     | |   (_)            
-####| (___   ___  ___| |_ _  ___  _ __    | |  ______  | |  | | ___| |__  _  __ _ _ __  
-#### \___ \ / _ \/ __| __| |/ _ \| '_ \   | | |______| | |  | |/ _ \ '_ \| |/ _` | '_ \ 
-#### ____) |  __/ (__| |_| | (_) | | | |  | |          | |__| |  __/ |_) | | (_| | | | |
-####|_____/ \___|\___|\__|_|\___/|_| |_|  |_|          |_____/ \___|_.__/|_|\__,_|_| |_|
-####                                                                                    
-####                                                                                    
+##  _____           _   _               __            _____       _     _             
+## / ____|         | | (_)             /_ |          |  __ \     | |   (_)            
+##| (___   ___  ___| |_ _  ___  _ __    | |  ______  | |  | | ___| |__  _  __ _ _ __  
+## \___ \ / _ \/ __| __| |/ _ \| '_ \   | | |______| | |  | |/ _ \ '_ \| |/ _` | '_ \ 
+## ____) |  __/ (__| |_| | (_) | | | |  | |          | |__| |  __/ |_) | | (_| | | | |
+##|_____/ \___|\___|\__|_|\___/|_| |_|  |_|          |_____/ \___|_.__/|_|\__,_|_| |_|
+##                                                                                    
+##                                                                                    
 
-##__        ___             _____                _              ____       _     _                  _               _   _                 _ _         ____       _   _            
-##\ \      / / |__  _   _  |  ___| __ __ _ _ __ | | _____ _ __ |  _ \  ___| |__ (_) __ _ _ __      / \   _ __ ___  | | | |___ _   _  __ _| | |_   _  | __ )  ___| |_| |_ ___ _ __ 
-## \ \ /\ / /| '_ \| | | | | |_ | '__/ _` | '_ \| |/ / _ \ '_ \| | | |/ _ \ '_ \| |/ _` | '_ \    / _ \ | '__/ _ \ | | | / __| | | |/ _` | | | | | | |  _ \ / _ \ __| __/ _ \ '__|
-##  \ V  V / | | | | |_| | |  _|| | | (_| | | | |   <  __/ | | | |_| |  __/ |_) | | (_| | | | |  / ___ \| | |  __/ | |_| \__ \ |_| | (_| | | | |_| | | |_) |  __/ |_| ||  __/ |   
-##   \_/\_/  |_| |_|\__, | |_|  |_|  \__,_|_| |_|_|\_\___|_| |_|____/ \___|_.__/|_|\__,_|_| |_| /_/   \_\_|  \___|  \___/|___/\__,_|\__,_|_|_|\__, | |____/ \___|\__|\__\___|_|   
-##                  |___/                                                                                                                     |___/                               
-
-The nanosecond repo here on GitHub creates what is colloquially known as a FrankenDebian.
+### _____              _ _     ____                 _      _____       _     _             
+###|  __ \            ( ) |   |  _ \               | |    |  __ \     | |   (_)            
+###| |  | | ___  _ __ |/| |_  | |_) |_ __ ___  __ _| | __ | |  | | ___| |__  _  __ _ _ __  
+###| |  | |/ _ \| '_ \  | __| |  _ <| '__/ _ \/ _` | |/ / | |  | |/ _ \ '_ \| |/ _` | '_ \ 
+###| |__| | (_) | | | | | |_  | |_) | | |  __/ (_| |   <  | |__| |  __/ |_) | | (_| | | | |
+###|_____/ \___/|_| |_|  \__| |____/|_|  \___|\__,_|_|\_\ |_____/ \___|_.__/|_|\__,_|_| |_|
+###                                                                                        
+###                    
 
 The Debian Wiki @ https://wiki.debian.org/DontBreakDebian advises against making FrankenDebian. It states unequivocally, "Debian Stable should not be combined with other releases carelessly.
 If you're trying to install software that isn't available in the current Debian Stable release, it's not a good idea to add repositories for other Debian releases."
 
 My studies of this have found other results though. I'd like to say that I didn't approach this trying to destroy my system, and most of the time, I didn't have any crashes at all.
-The reason I even started experimenting with FrankenDebian is because of the purists who would only respond with "RTFM!@!" and link me to the Wiki instead of explaining the answers to specific questions,
-leaving me with more questions and a desire to answer those questions.
+The reason I even started experimenting with FrankenDebian is because of the purists who would only respond with "RTFM!@!" and link me to the Wiki instead of explaining the answers to specific questions, leaving me with more questions and a desire to answer those questions.
 
 First off, The Wiki leads us to believe that adding anything to the sources will create a FrankenDebian!
 	#Debian testing release ## Absolutely NOT true
 	#Debian unstable release (also known as sid) ## Absolutely NOT true
-	#Ubuntu, Mint or other derivative repositories are not compatible with Debian! ## Only partially true.
-	## It would be more accurate to say "They weren't designed with Debian in mind." Most of them are completely compatiable with Debian.
-	## However, derivative repos can introduce an element of unpredictabless to a system, so unless you ABSOLUTELY know what you are doing, probably don't do this.
-	#Ubuntu PPAs and other repositories created to distribute single applications. ## Almost never true. Single applications are much easier to run with Debian than an entire derivative repo.
+	#Ubuntu PPAs and other repositories created to distribute single applications. ## Almost never true. Single applications distributed by PPA are much easier to run with Debian than configuring an entire derivative repo.
+	#Ubuntu, Mint or other derivative repositories are not compatible with Debian! ## Only partially true. It would be more accurate to say "They weren't designed with Debian in mind." Most of them are completely compatiable with Debian.
+	### However, derivative repos can introduce an element of unpredictabless to a system, so probably don't do this unless you ABSOLUTELY know what you are doing.
 
 The biggest problem with this advice is that it ASSUMES that all Debian users have the same needs, and like doing things the hard way.
 It also PRESUMES that adding sources to the Debian system will AUTOMATICALLY result in a broken system.
@@ -49,7 +47,7 @@ So, the Debian purists say "then install Sid." While it's true that packages don
 
 This is why the FrankenDebian installation I've made is superior. I found a way to "blend" the sources, without creating chaos.
 
-Here's how it works. In my sources.list, I change all the places where the version is named (i.e; stretch, buster, bullseye, bookworm, trixie, forky, etc) to their generic name (stable, testing, unstable, experimental)
+Here's how it works. In my sources.list, I change all the places where the version is named (i.e; squeeze, wheezy, stretch, buster, bullseye, bookworm, trixie, forky, duke, etc) to their generic name (stable, testing, unstable, experimental)
 Then, I add all the sources to my sources.list
 
 #	deb http://deb.debian.org/debian/ stable main contrib non-free non-free-firmware
@@ -73,7 +71,8 @@ Then, I add all the sources to my sources.list
 #	deb http://deb.debian.org/debian/ experimental main contrib non-free
 #	deb-src http://deb.debian.org/debian/ experimental main contrib non-free
 
-Now, this, JUST BY ITSELF, would be absolute chaos!! It would almost certinaly not work well, or for very long.
+If this was all I did to my system, then the purists would be absolutely correct that editing the sources.list leads to a broken system.
+This, JUST BY ITSELF, would be absolute chaos!! It would almost certinaly not work well, or for very long.
 
 What you need to do now is tweak apt_preferences so you force stability on the other sources by deprioritizing them. For more information on how this works, look at the section about APT Preferences below, or open a Terminal and type # man apt_preferences
 My completed sourcestopper file looks like this. It change the priority of testing, unstable, and experimental to -10
@@ -117,16 +116,19 @@ My completed sourcestopper file looks like this. It change the priority of testi
 By using generic names for the version names, you can actually create a rolling Debian system that REMAINS Stable, but gives you access to other sources as well. Whenever version names change, apt update will show a message that versions have changed,
 and it will automatically roll into the next version with no difficulty.
 
-This file when placed in /etc/apt/preferences.d allows you to maintain the system at the Stable level, which tracking Testing, Unstable, and Experimental.
+This file when placed in /etc/apt/preferences.d allows you to maintain the system at the Stable level, while tracking Testing, Unstable, and Experimental.
 
 Stable is automatically maintained at a pin-priority of 100 as a default, so none of the new sources will impact the system, but you can still install new drivers and programs (packages in Testing will not be automatically installed, and Stable will always have higher priority)
-This type of "blended" FrankenDebian is ridiculously stable, while allowing the most up-to-date software to be accessed and installed. If a particular package only exists in Sid, but the dependencies exist in Testing, all of them will install correctly and only those packages will have any impact on the system.
+This type of hybridized Debian setup is ridiculously stable, while allowing the most up-to-date software to be accessed and installed. If a particular package only exists in Sid, but the dependencies exist in Testing, all of them will install correctly and only those packages will have any impact on the system. And when the packages migrate from Sid to Testing, or Testing to Stable, it will not have any effect on the stability of your system as you can track the packages wherever they are.
 
-## _____ _           _   _   _            _____         _            _     ____                           
-##|  ___(_)_ __   __| | | |_| |__   ___  |  ___|_ _ ___| |_ ___  ___| |_  / ___|  ___  _   _ _ __ ___ ___ 
-##| |_  | | '_ \ / _` | | __| '_ \ / _ \ | |_ / _` / __| __/ _ \/ __| __| \___ \ / _ \| | | | '__/ __/ _ \
-##|  _| | | | | | (_| | | |_| | | |  __/ |  _| (_| \__ \ ||  __/\__ \ |_   ___) | (_) | |_| | | | (_|  __/
-##|_|   |_|_| |_|\__,_|  \__|_| |_|\___| |_|  \__,_|___/\__\___||___/\__| |____/ \___/ \__,_|_|  \___\___|
+### ______ _           _   _   _            ______        _            _      _____                          
+###|  ____(_)         | | | | | |          |  ____|      | |          | |    / ____|                         
+###| |__   _ _ __   __| | | |_| |__   ___  | |__ __ _ ___| |_ ___  ___| |_  | (___   ___  _   _ _ __ ___ ___ 
+###|  __| | | '_ \ / _` | | __| '_ \ / _ \ |  __/ _` / __| __/ _ \/ __| __|  \___ \ / _ \| | | | '__/ __/ _ \
+###| |    | | | | | (_| | | |_| | | |  __/ | | | (_| \__ \ ||  __/\__ \ |_   ____) | (_) | |_| | | | (_|  __/
+###|_|    |_|_| |_|\__,_|  \__|_| |_|\___| |_|  \__,_|___/\__\___||___/\__| |_____/ \___/ \__,_|_|  \___\___|
+###                                                                                                          
+###         
 
 A command line tool called “netselect-apt” is available to find the fastest debian mirror.
 The output file is written to OUTFILE.
@@ -134,12 +136,14 @@ The output file is written to OUTFILE.
 The command will look something like this when used
 #	netselect-apt -c australia -t 15 -a amd64 -n testing
 
-##  ____                      _ _ _               ____  _     _   ____            _                         
-## / ___|___  _ __ ___  _ __ (_) (_)_ __   __ _  / ___|(_) __| | |  _ \ __ _  ___| | ____ _  __ _  ___  ___ 
-##| |   / _ \| '_ ` _ \| '_ \| | | | '_ \ / _` | \___ \| |/ _` | | |_) / _` |/ __| |/ / _` |/ _` |/ _ \/ __|
-##| |__| (_) | | | | | | |_) | | | | | | | (_| |  ___) | | (_| | |  __/ (_| | (__|   < (_| | (_| |  __/\__ \
-## \____\___/|_| |_| |_| .__/|_|_|_|_| |_|\__, | |____/|_|\__,_| |_|   \__,_|\___|_|\_\__,_|\__, |\___||___/
-##                     |_|                |___/                                             |___/           
+###  _____                      _ _ _                _____ _     _   _____           _                         
+### / ____|                    (_) (_)              / ____(_)   | | |  __ \         | |                        
+###| |     ___  _ __ ___  _ __  _| |_ _ __   __ _  | (___  _  __| | | |__) |_ _  ___| | ____ _  __ _  ___  ___ 
+###| |    / _ \| '_ ` _ \| '_ \| | | | '_ \ / _` |  \___ \| |/ _` | |  ___/ _` |/ __| |/ / _` |/ _` |/ _ \/ __|
+###| |___| (_) | | | | | | |_) | | | | | | | (_| |  ____) | | (_| | | |  | (_| | (__|   < (_| | (_| |  __/\__ \
+### \_____\___/|_| |_| |_| .__/|_|_|_|_| |_|\__, | |_____/|_|\__,_| |_|   \__,_|\___|_|\_\__,_|\__, |\___||___/
+###                      | |                 __/ |                                              __/ |          
+###                      |_|                |___/                                              |___/           
 
 Install the Debian source (and the development tools, especially debhelper, devscripts, and build-essential), and then build the package.
 Step by step:
@@ -153,12 +157,14 @@ add a deb-src line for sid to your sources.list
 The resulting debs should be in the current directory and can be installed with
 #	dpkg -i *.deb
 
-##  ____ _                              _   _           _                                   
-## / ___| |__   __ _ _ __   __ _  ___  | | | | ___  ___| |_ _ __   __ _ _ __ ___   ___  ___ 
-##| |   | '_ \ / _` | '_ \ / _` |/ _ \ | |_| |/ _ \/ __| __| '_ \ / _` | '_ ` _ \ / _ \/ __|
-##| |___| | | | (_| | | | | (_| |  __/ |  _  | (_) \__ \ |_| | | | (_| | | | | | |  __/\__ \
-## \____|_| |_|\__,_|_| |_|\__, |\___| |_| |_|\___/|___/\__|_| |_|\__,_|_| |_| |_|\___||___/
-##                         |___/                                                            
+###  _____ _                              _    _           _                                   
+### / ____| |                            | |  | |         | |                                  
+###| |    | |__   __ _ _ __   __ _  ___  | |__| | ___  ___| |_ _ __   __ _ _ __ ___   ___  ___ 
+###| |    | '_ \ / _` | '_ \ / _` |/ _ \ |  __  |/ _ \/ __| __| '_ \ / _` | '_ ` _ \ / _ \/ __|
+###| |____| | | | (_| | | | | (_| |  __/ | |  | | (_) \__ \ |_| | | | (_| | | | | | |  __/\__ \
+### \_____|_| |_|\__,_|_| |_|\__, |\___| |_|  |_|\___/|___/\__|_| |_|\__,_|_| |_| |_|\___||___/
+###                           __/ |                                                            
+###                          |___/                                                
 
 In order to change the hostname of the computer, you need to change the old hostname present in all the areas below to the new hostname.
 #	/etc/exim4/update-exim4.conf.conf \
@@ -171,11 +177,14 @@ In order to change the hostname of the computer, you need to change the old host
 #	/etc/ssmtp/ssmtp.conf
 Then reboot the computer. The new hostname should be used immediately.
 
-##           _       _       _   _      _                    ____       _     _             
-## _ __ ___ (_)_ __ | |_ ___| |_(_) ___| | __   ___  _ __   |  _ \  ___| |__ (_) __ _ _ __  
-##| '_ ` _ \| | '_ \| __/ __| __| |/ __| |/ /  / _ \| '_ \  | | | |/ _ \ '_ \| |/ _` | '_ \ 
-##| | | | | | | | | | |_\__ \ |_| | (__|   <  | (_) | | | | | |_| |  __/ |_) | | (_| | | | |
-##|_| |_| |_|_|_| |_|\__|___/\__|_|\___|_|\_\  \___/|_| |_| |____/ \___|_.__/|_|\__,_|_| |_|
+###           _       _       _   _      _                    _____       _     _             
+###          (_)     | |     | | (_)    | |                  |  __ \     | |   (_)            
+### _ __ ___  _ _ __ | |_ ___| |_ _  ___| | __   ___  _ __   | |  | | ___| |__  _  __ _ _ __  
+###| '_ ` _ \| | '_ \| __/ __| __| |/ __| |/ /  / _ \| '_ \  | |  | |/ _ \ '_ \| |/ _` | '_ \ 
+###| | | | | | | | | | |_\__ \ |_| | (__|   <  | (_) | | | | | |__| |  __/ |_) | | (_| | | | |
+###|_| |_| |_|_|_| |_|\__|___/\__|_|\___|_|\_\  \___/|_| |_| |_____/ \___|_.__/|_|\__,_|_| |_|
+###                                                                                           
+###                      
 
 Mintstick is a handy tool to use for formatting and creating USB sticks. It's so much easier to use this tool than use fdisk or mkfs
 It also includes an imagewriter that makes creating Live Linux USB drives a snap!
@@ -185,11 +194,14 @@ However, this package is only included on Linux Mint distros. If you're not usin
 It probably won't install because of missing packages, so...
 #        sudo apt-get install -f
 
-## ____              _ _     ____                                             __      __
-##|  _ \  ___  _ __ ( ) |_  |  _ \ _   _ _ __    _ __ _ __ ___          _ __ / _|    / /
-##| | | |/ _ \| '_ \|/| __| | |_) | | | | '_ \  | '__| '_ ` _ \   _____| '__| |_    / / 
-##| |_| | (_) | | | | | |_  |  _ <| |_| | | | | | |  | | | | | | |_____| |  |  _|  / /  
-##|____/ \___/|_| |_|  \__| |_| \_\\__,_|_| |_| |_|  |_| |_| |_|       |_|  |_|   /_/   
+### _____              _ _     _____               _____                                                _____                                          _     
+###|  __ \            ( ) |   |  __ \             |  __ \                                              / ____|                                        | |    
+###| |  | | ___  _ __ |/| |_  | |__) |   _ _ __   | |  | | __ _ _ __   __ _  ___ _ __ ___  _   _ ___  | |     ___  _ __ ___  _ __ ___   __ _ _ __   __| |___ 
+###| |  | |/ _ \| '_ \  | __| |  _  / | | | '_ \  | |  | |/ _` | '_ \ / _` |/ _ \ '__/ _ \| | | / __| | |    / _ \| '_ ` _ \| '_ ` _ \ / _` | '_ \ / _` / __|
+###| |__| | (_) | | | | | |_  | | \ \ |_| | | | | | |__| | (_| | | | | (_| |  __/ | | (_) | |_| \__ \ | |___| (_) | | | | | | | | | | | (_| | | | | (_| \__ \
+###|_____/ \___/|_| |_|  \__| |_|  \_\__,_|_| |_| |_____/ \__,_|_| |_|\__, |\___|_|  \___/ \__,_|___/  \_____\___/|_| |_| |_|_| |_| |_|\__,_|_| |_|\__,_|___/
+###                                                                    __/ |                                                                                 
+###                                                                   |___/                         
 
 This is probably the most dangerous command you can use on Linux
 #	rm -rf /
@@ -212,12 +224,7 @@ Some trolls will attempt to get you to run this command by disguising it
 This is the hex version of rm -rf.
 It will also delete everything just like the above command.
 
-## __  __                  ____                                                ____                                          _     
-##|  \/  | ___  _ __ ___  |  _ \  __ _ _ __   __ _  ___ _ __ ___  _   _ ___   / ___|___  _ __ ___  _ __ ___   __ _ _ __   __| |___ 
-##| |\/| |/ _ \| '__/ _ \ | | | |/ _` | '_ \ / _` |/ _ \ '__/ _ \| | | / __| | |   / _ \| '_ ` _ \| '_ ` _ \ / _` | '_ \ / _` / __|
-##| |  | | (_) | | |  __/ | |_| | (_| | | | | (_| |  __/ | | (_) | |_| \__ \ | |__| (_) | | | | | | | | | | | (_| | | | | (_| \__ \
-##|_|  |_|\___/|_|  \___| |____/ \__,_|_| |_|\__, |\___|_|  \___/ \__,_|___/  \____\___/|_| |_| |_|_| |_| |_|\__,_|_| |_|\__,_|___/
-##                                           |___/                                                                                 
+
 /dev/null is a special directory. Moving something to /dev/null is the same thing as destroying it.
 #	mv ~ /dev/null
 So this command would delete your entire home directory.
@@ -226,36 +233,31 @@ Another dangerous command to avoid is
 #	mkfs.ext4 /dev/sda1
 This command will format the hard drive and replace your current drive (and all your files) with a new ext4 partition.
 
-## _____ _            _                               __   __            ____  _                 _     _   _                          
-##|_   _| |__   ___  | |    ___  ___ ___  ___  _ __   \ \ / /__  _   _  / ___|| |__   ___  _   _| | __| | | |    ___  __ _ _ __ _ __  
-##  | | | '_ \ / _ \ | |   / _ \/ __/ __|/ _ \| '_ \   \ V / _ \| | | | \___ \| '_ \ / _ \| | | | |/ _` | | |   / _ \/ _` | '__| '_ \ 
-##  | | | | | |  __/ | |__|  __/\__ \__ \ (_) | | | |   | | (_) | |_| |  ___) | | | | (_) | |_| | | (_| | | |__|  __/ (_| | |  | | | |
-##  |_| |_| |_|\___| |_____\___||___/___/\___/|_| |_|   |_|\___/ \__,_| |____/|_| |_|\___/ \__,_|_|\__,_| |_____\___|\__,_|_|  |_| |_|
+### _____ _            _                               __   __            ____  _                 _     _   _                          
+###|_   _| |__   ___  | |    ___  ___ ___  ___  _ __   \ \ / /__  _   _  / ___|| |__   ___  _   _| | __| | | |    ___  __ _ _ __ _ __  
+###  | | | '_ \ / _ \ | |   / _ \/ __/ __|/ _ \| '_ \   \ V / _ \| | | | \___ \| '_ \ / _ \| | | | |/ _` | | |   / _ \/ _` | '__| '_ \ 
+###  | | | | | |  __/ | |__|  __/\__ \__ \ (_) | | | |   | | (_) | |_| |  ___) | | | | (_) | |_| | | (_| | | |__|  __/ (_| | |  | | | |
+###  |_| |_| |_|\___| |_____\___||___/___/\___/|_| |_|   |_|\___/ \__,_| |____/|_| |_|\___/ \__,_|_|\__,_| |_____\___|\__,_|_|  |_| |_|
                                                                                                                                     
 DON'T RUN WEIRD LOOKING, OBVIOUSLY DISGUISED CODE, OR COMMANDS THAT YOU DON'T UNDERSTAND
 
-####  _____           _   _               ___              _____ _____  _    _ ____  
-#### / ____|         | | (_)             |__ \            / ____|  __ \| |  | |  _ \ 
-####| (___   ___  ___| |_ _  ___  _ __      ) |  ______  | |  __| |__) | |  | | |_) |
-#### \___ \ / _ \/ __| __| |/ _ \| '_ \    / /  |______| | | |_ |  _  /| |  | |  _ < 
-#### ____) |  __/ (__| |_| | (_) | | | |  / /_           | |__| | | \ \| |__| | |_) |
-####|_____/ \___|\___|\__|_|\___/|_| |_| |____|           \_____|_|  \_\\____/|____/ 
-####                                                                                 
-####                                                                                 
+##  _____           _   _               ___              _____ _____  _    _ ____   ###   ____          __              _                 __  __               _  ___ _ _   _  ___ _   _               __  
+## / ____|         | | (_)             |__ \            / ____|  __ \| |  | |  _ \  ###  / /\ \        / /             (_)            _  |  \/  |             | |/ (_) | | | |/ (_) | | |              \ \ 
+##| (___   ___  ___| |_ _  ___  _ __      ) |  ______  | |  __| |__) | |  | | |_) | ### | |  \ \  /\  / /_ _ _ __ _ __  _ _ __   __ _(_) | \  / | __ _ _   _  | ' / _| | | | ' / _| |_| |_ ___ _ __  ___| |
+## \___ \ / _ \/ __| __| |/ _ \| '_ \    / /  |______| | | |_ |  _  /| |  | |  _ <  ### | |   \ \/  \/ / _` | '__| '_ \| | '_ \ / _` |   | |\/| |/ _` | | | | |  < | | | | |  < | | __| __/ _ \ '_ \/ __| |
+## ____) |  __/ (__| |_| | (_) | | | |  / /_           | |__| | | \ \| |__| | |_) | ### | |    \  /\  / (_| | |  | | | | | | | | (_| |_  | |  | | (_| | |_| | | . \| | | | | . \| | |_| ||  __/ | | \__ \ |
+##|_____/ \___|\___|\__|_|\___/|_| |_| |____|           \_____|_|  \_\\____/|____/  ### | |     \/  \/ \__,_|_|  |_| |_|_|_| |_|\__, (_) |_|  |_|\__,_|\__, | |_|\_\_|_|_| |_|\_\_|\__|\__\___|_| |_|___/ |
+##                                                                                  ###  \_\                                     __/ |                  __/ |                                          /_/ 
+##                                                                                  ###                                         |___/                  |___/                                               
 
-#__        __               _                 __  __               _  ___ _ _   _  ___ _   _                 
-#\ \      / /_ _ _ __ _ __ (_)_ __   __ _ _  |  \/  | __ _ _   _  | |/ (_) | | | |/ (_) |_| |_ ___ _ __  ___ 
-# \ \ /\ / / _` | '__| '_ \| | '_ \ / _` (_) | |\/| |/ _` | | | | | ' /| | | | | ' /| | __| __/ _ \ '_ \/ __|
-#  \ V  V / (_| | |  | | | | | | | | (_| |_  | |  | | (_| | |_| | | . \| | | | | . \| | |_| ||  __/ | | \__ \
-#   \_/\_/ \__,_|_|  |_| |_|_|_| |_|\__, (_) |_|  |_|\__,_|\__, | |_|\_\_|_|_| |_|\_\_|\__|\__\___|_| |_|___/
-#                                   |___/                  |___/                                             
-
-## _____                    _    _                ____ ____  _   _ ____  
-##|_   _|_      _____  __ _| | _(_)_ __   __ _   / ___|  _ \| | | | __ ) 
-##  | | \ \ /\ / / _ \/ _` | |/ / | '_ \ / _` | | |  _| |_) | | | |  _ \ 
-##  | |  \ V  V /  __/ (_| |   <| | | | | (_| | | |_| |  _ <| |_| | |_) |
-##  |_|   \_/\_/ \___|\__,_|_|\_\_|_| |_|\__, |  \____|_| \_\\___/|____/ 
-##                                       |___/                           
+### _______                 _    _                _____ _____  _    _ ____  
+###|__   __|               | |  (_)              / ____|  __ \| |  | |  _ \ 
+###   | |_      _____  __ _| | ___ _ __   __ _  | |  __| |__) | |  | | |_) |
+###   | \ \ /\ / / _ \/ _` | |/ / | '_ \ / _` | | | |_ |  _  /| |  | |  _ < 
+###   | |\ V  V /  __/ (_| |   <| | | | | (_| | | |__| | | \ \| |__| | |_) |
+###   |_| \_/\_/ \___|\__,_|_|\_\_|_| |_|\__, |  \_____|_|  \_\\____/|____/ 
+###                                       __/ |                             
+###                                      |___/                              
 
 Your GRUB settings are stored in. This is the file you edit to change GRUB settings.
 #	/etc/default/grub
@@ -268,12 +270,14 @@ This makes GRUB automatically combines the settings from the /etc/default/grub, 
 
 It is possible to edit the file in /boot/grub/grub.cfg but this should be the absolute last resort you take!
 
-## ____                              _                ____ ____  _   _ ____  
-##|  _ \ ___  ___ _____   _____ _ __(_)_ __   __ _   / ___|  _ \| | | | __ ) 
-##| |_) / _ \/ __/ _ \ \ / / _ \ '__| | '_ \ / _` | | |  _| |_) | | | |  _ \ 
-##|  _ <  __/ (_| (_) \ V /  __/ |  | | | | | (_| | | |_| |  _ <| |_| | |_) |
-##|_| \_\___|\___\___/ \_/ \___|_|  |_|_| |_|\__, |  \____|_| \_\\___/|____/ 
-##                                           |___/                           
+### _____                              _                _____ _____  _    _ ____  
+###|  __ \                            (_)              / ____|  __ \| |  | |  _ \ 
+###| |__) |___  ___ _____   _____ _ __ _ _ __   __ _  | |  __| |__) | |  | | |_) |
+###|  _  // _ \/ __/ _ \ \ / / _ \ '__| | '_ \ / _` | | | |_ |  _  /| |  | |  _ < 
+###| | \ \  __/ (_| (_) \ V /  __/ |  | | | | | (_| | | |__| | | \ \| |__| | |_) |
+###|_|  \_\___|\___\___/ \_/ \___|_|  |_|_| |_|\__, |  \_____|_|  \_\\____/|____/ 
+###                                             __/ |                             
+###                                            |___/                    
 
 Boot into your Linux LiveCD (use the same version as the one you are recovering, if possible).
 Open Terminal and type:
@@ -288,29 +292,49 @@ Now you need to tell Linux Mint to install grub2 to the partition you just mount
 Now reboot the computer. You should see a GRUB menu pop up when the reboot is done. If you are dual-booting you may need to refresh GRUB so it detects any Windows partitions. To do this, log in, and open a Terminal and type:
 #	sudo update-grub
 
-####  _____           _   _               ____             ____           _____ _    _    _____ _          _ _ 
-#### / ____|         | | (_)             |___ \           |  _ \   /\    / ____| |  | |  / ____| |        | | |
-####| (___   ___  ___| |_ _  ___  _ __     __) |  ______  | |_) | /  \  | (___ | |__| | | (___ | |__   ___| | |
-#### \___ \ / _ \/ __| __| |/ _ \| '_ \   |__ <  |______| |  _ < / /\ \  \___ \|  __  |  \___ \| '_ \ / _ \ | |
-#### ____) |  __/ (__| |_| | (_) | | | |  ___) |          | |_) / ____ \ ____) | |  | |  ____) | | | |  __/ | |
-####|_____/ \___|\___|\__|_|\___/|_| |_| |____/           |____/_/    \_\_____/|_|  |_| |_____/|_| |_|\___|_|_|
-####                                                                                                           
-####                                                                                                           
-                                                                                                            
-## _ __   __ _ _ __   ___  _ __ ___ 
-##| '_ \ / _` | '_ \ / _ \| '__/ __|
-##| | | | (_| | | | | (_) | | | (__ 
-##|_| |_|\__,_|_| |_|\___/|_|  \___|
-                                  
+##  _____           _   _               ____             ____           _____ _    _    _____ _          _ _ 
+## / ____|         | | (_)             |___ \           |  _ \   /\    / ____| |  | |  / ____| |        | | |
+##| (___   ___  ___| |_ _  ___  _ __     __) |  ______  | |_) | /  \  | (___ | |__| | | (___ | |__   ___| | |
+## \___ \ / _ \/ __| __| |/ _ \| '_ \   |__ <  |______| |  _ < / /\ \  \___ \|  __  |  \___ \| '_ \ / _ \ | |
+## ____) |  __/ (__| |_| | (_) | | | |  ___) |          | |_) / ____ \ ____) | |  | |  ____) | | | |  __/ | |
+##|_____/ \___|\___|\__|_|\___/|_| |_| |____/           |____/_/    \_\_____/|_|  |_| |_____/|_| |_|\___|_|_|
+##                                                                                                           
+##                                                                                                     
+
+### _  __                                _    _____                     _        __                                                               
+###| |/ /                               | |  / ____|                   | |      / _|                                                              
+###| ' / ___ _   ___      _____  _ __ __| | | (___   ___  __ _ _ __ ___| |__   | |_ ___  _ __   _ __ ___   __ _ _ __  _ __   __ _  __ _  ___  ___ 
+###|  < / _ \ | | \ \ /\ / / _ \| '__/ _` |  \___ \ / _ \/ _` | '__/ __| '_ \  |  _/ _ \| '__| | '_ ` _ \ / _` | '_ \| '_ \ / _` |/ _` |/ _ \/ __|
+###| . \  __/ |_| |\ V  V / (_) | | | (_| |  ____) |  __/ (_| | | | (__| | | | | || (_) | |    | | | | | | (_| | | | | |_) | (_| | (_| |  __/\__ \
+###|_|\_\___|\__, | \_/\_/ \___/|_|  \__,_| |_____/ \___|\__,_|_|  \___|_| |_| |_| \___/|_|    |_| |_| |_|\__,_|_| |_| .__/ \__,_|\__, |\___||___/
+###           __/ |                                                                                                  | |           __/ |          
+###          |___/                                                                                                   |_|          |___/           
+
+Want to read a manpage but can't remember what it's called? Instead of blindly stabbing in commands hoping to remember what it's called use
+#	man -K keyword
+This will let you read all the manpages that have that particular search phrase
+
+###                                  
+###                                  
+### _ __   __ _ _ __   ___  _ __ ___ 
+###| '_ \ / _` | '_ \ / _ \| '__/ __|
+###| | | | (_| | | | | (_) | | | (__ 
+###|_| |_|\__,_|_| |_|\___/|_|  \___|
+###                                  
+###                            
+
 To create custom edits of nano preferences, make a copy of the default.nanorc and rename the existing file so that you don't lose it
 The file is in /etc/nanorc
 Make the edits, and put the file back in /etc/nanorc/default.nanorc
 
-## _____ _             ____ ____  _____ ____    __  __                         _ 
-##|_   _| |__   ___   / ___|  _ \| ____|  _ \  |  \/  | __ _ _ __  _   _  __ _| |
-##  | | | '_ \ / _ \ | |  _| |_) |  _| | |_) | | |\/| |/ _` | '_ \| | | |/ _` | |
-##  | | | | | |  __/ | |_| |  _ <| |___|  __/  | |  | | (_| | | | | |_| | (_| | |
-##  |_| |_| |_|\___|  \____|_| \_\_____|_|     |_|  |_|\__,_|_| |_|\__,_|\__,_|_|
+### _______ _             _____ _____  ______ _____    __  __                         _ 
+###|__   __| |           / ____|  __ \|  ____|  __ \  |  \/  |                       | |
+###   | |  | |__   ___  | |  __| |__) | |__  | |__) | | \  / | __ _ _ __  _   _  __ _| |
+###   | |  | '_ \ / _ \ | | |_ |  _  /|  __| |  ___/  | |\/| |/ _` | '_ \| | | |/ _` | |
+###   | |  | | | |  __/ | |__| | | \ \| |____| |      | |  | | (_| | | | | |_| | (_| | |
+###   |_|  |_| |_|\___|  \_____|_|  \_\______|_|      |_|  |_|\__,_|_| |_|\__,_|\__,_|_|
+###                                                                                     
+###                 
                                                                                
 To search for the given string within a single file
 #	grep “literal_string” [filename]
@@ -340,35 +364,42 @@ Display the lines which do not match all the given patterns
 Show line numbers and file names in results
 #	grep -n -H
 
-##     _     _                                             _                
-##  __| | __| |  _ __  _ __ ___   __ _ _ __ ___  ___ ___  | |__   __ _ _ __ 
-## / _` |/ _` | | '_ \| '__/ _ \ / _` | '__/ _ \/ __/ __| | '_ \ / _` | '__|
-##| (_| | (_| | | |_) | | | (_) | (_| | | |  __/\__ \__ \ | |_) | (_| | |   
-## \__,_|\__,_| | .__/|_|  \___/ \__, |_|  \___||___/___/ |_.__/ \__,_|_|   
-##              |_|              |___/                                      
+###     _     _                                             _                
+###    | |   | |                                           | |               
+###  __| | __| |  _ __  _ __ ___   __ _ _ __ ___  ___ ___  | |__   __ _ _ __ 
+### / _` |/ _` | | '_ \| '__/ _ \ / _` | '__/ _ \/ __/ __| | '_ \ / _` | '__|
+###| (_| | (_| | | |_) | | | (_) | (_| | | |  __/\__ \__ \ | |_) | (_| | |   
+### \__,_|\__,_| | .__/|_|  \___/ \__, |_|  \___||___/___/ |_.__/ \__,_|_|   
+###              | |               __/ |                                     
+###              |_|              |___/                
 
 Use pv to add a loading bar.
 #	sudo aptitude install pv
 Then use the following piped command:
 #	dd if=/path/to/source | pv | dd of=/path/to/write
 
-## ____                       _____                            _             
-##| __ ) _ __ __ _  ___ ___  | ____|_  ___ __   __ _ _ __  ___(_) ___  _ __  
-##|  _ \| '__/ _` |/ __/ _ \ |  _| \ \/ / '_ \ / _` | '_ \/ __| |/ _ \| '_ \ 
-##| |_) | | | (_| | (_|  __/ | |___ >  <| |_) | (_| | | | \__ \ | (_) | | | |
-##|____/|_|  \__,_|\___\___| |_____/_/\_\ .__/ \__,_|_| |_|___/_|\___/|_| |_|
-##                                      |_|                                  
+### ____                       ______                            _             
+###|  _ \                     |  ____|                          (_)            
+###| |_) |_ __ __ _  ___ ___  | |__  __  ___ __   __ _ _ __  ___ _  ___  _ __  
+###|  _ <| '__/ _` |/ __/ _ \ |  __| \ \/ / '_ \ / _` | '_ \/ __| |/ _ \| '_ \ 
+###| |_) | | | (_| | (_|  __/ | |____ >  <| |_) | (_| | | | \__ \ | (_) | | | |
+###|____/|_|  \__,_|\___\___| |______/_/\_\ .__/ \__,_|_| |_|___/_|\___/|_| |_|
+###                                       | |                                  
+###                                       |_|                           
 
 Using brackets {} in a BASH statement allows you to make commands that run with different strings.
 For example, in the following command, md5sum is run on all images that end with jpg, JPG, png, and PNG.
 #	md5sum *.{jpg,JPG,png,PNG}
 
-##  ____ _                 _               ____    _    ____  _   _   _   _ _     _                   
-## / ___| | ___  __ _ _ __(_)_ __   __ _  | __ )  / \  / ___|| | | | | | | (_)___| |_ ___  _ __ _   _ 
-##| |   | |/ _ \/ _` | '__| | '_ \ / _` | |  _ \ / _ \ \___ \| |_| | | |_| | / __| __/ _ \| '__| | | |
-##| |___| |  __/ (_| | |  | | | | | (_| | | |_) / ___ \ ___) |  _  | |  _  | \__ \ || (_) | |  | |_| |
-## \____|_|\___|\__,_|_|  |_|_| |_|\__, | |____/_/   \_\____/|_| |_| |_| |_|_|___/\__\___/|_|   \__, |
-##                                 |___/                                                        |___/ 
+###  _____ _                 _               ____           _____ _    _   _    _ _     _                   
+### / ____| |               (_)             |  _ \   /\    / ____| |  | | | |  | (_)   | |                  
+###| |    | | ___  __ _ _ __ _ _ __   __ _  | |_) | /  \  | (___ | |__| | | |__| |_ ___| |_ ___  _ __ _   _ 
+###| |    | |/ _ \/ _` | '__| | '_ \ / _` | |  _ < / /\ \  \___ \|  __  | |  __  | / __| __/ _ \| '__| | | |
+###| |____| |  __/ (_| | |  | | | | | (_| | | |_) / ____ \ ____) | |  | | | |  | | \__ \ || (_) | |  | |_| |
+### \_____|_|\___|\__,_|_|  |_|_| |_|\__, | |____/_/    \_\_____/|_|  |_| |_|  |_|_|___/\__\___/|_|   \__, |
+###                                   __/ |                                                            __/ |
+###                                  |___/                                                            |___/ 
+
 After a long time of using BASH, you get a history file that is HUGE! Mine can usually top out to 2000 commands within a week or two. But if there are some commands you don't want people to see, there are multiple ways to go about deleting them.
 
 To erase the history file completely and start over:
@@ -377,12 +408,14 @@ To edit commands out of the history file
 #	nano ~/.bash_history
 Then, save the file, and CLOSE the Terminal completely and reopen it.
 
-## _____                    _                _         ____  _          _ _ 
-##|  ___|__  _ __ ___ ___  | |    ___   __ _(_)_ __   / ___|| |__   ___| | |
-##| |_ / _ \| '__/ __/ _ \ | |   / _ \ / _` | | '_ \  \___ \| '_ \ / _ \ | |
-##|  _| (_) | | | (_|  __/ | |__| (_) | (_| | | | | |  ___) | | | |  __/ | |
-##|_|  \___/|_|  \___\___| |_____\___/ \__, |_|_| |_| |____/|_| |_|\___|_|_|
-##                                     |___/                                
+### ______                   _                 _          _____ _          _ _ 
+###|  ____|                 | |               (_)        / ____| |        | | |
+###| |__ ___  _ __ ___ ___  | |     ___   __ _ _ _ __   | (___ | |__   ___| | |
+###|  __/ _ \| '__/ __/ _ \ | |    / _ \ / _` | | '_ \   \___ \| '_ \ / _ \ | |
+###| | | (_) | | | (_|  __/ | |___| (_) | (_| | | | | |  ____) | | | |  __/ | |
+###|_|  \___/|_|  \___\___| |______\___/ \__, |_|_| |_| |_____/|_| |_|\___|_|_|
+###                                       __/ |                                
+###                                      |___/                                 
 
 If a login shell is not an option on the Terminal settings (common in Konsole)
 
@@ -392,70 +425,71 @@ Edit that line to read
 #	/bin/bash -l
 This will force a login shell everytime the Terminal profile is opened.
 
-##__        ___           _   _       _____ _           _        _    _ _             __  __                 ___ 
-##\ \      / / |__   __ _| |_( )___  |_   _| |__   __ _| |_     / \  | (_) __ _ ___  |  \/  | ___  __ _ _ __|__ \
-## \ \ /\ / /| '_ \ / _` | __|// __|   | | | '_ \ / _` | __|   / _ \ | | |/ _` / __| | |\/| |/ _ \/ _` | '_ \ / /
-##  \ V  V / | | | | (_| | |_  \__ \   | | | | | | (_| | |_   / ___ \| | | (_| \__ \ | |  | |  __/ (_| | | | |_| 
-##   \_/\_/  |_| |_|\__,_|\__| |___/   |_| |_| |_|\__,_|\__| /_/   \_\_|_|\__,_|___/ |_|  |_|\___|\__,_|_| |_(_) 
+###__          ___           _   _       _______ _           _              _ _             __  __                 ___  
+###\ \        / / |         | | ( )     |__   __| |         | |       /\   | (_)           |  \/  |               |__ \ 
+### \ \  /\  / /| |__   __ _| |_|/ ___     | |  | |__   __ _| |_     /  \  | |_  __ _ ___  | \  / | ___  __ _ _ __   ) |
+###  \ \/  \/ / | '_ \ / _` | __| / __|    | |  | '_ \ / _` | __|   / /\ \ | | |/ _` / __| | |\/| |/ _ \/ _` | '_ \ / / 
+###   \  /\  /  | | | | (_| | |_  \__ \    | |  | | | | (_| | |_   / ____ \| | | (_| \__ \ | |  | |  __/ (_| | | | |_|  
+###    \/  \/   |_| |_|\__,_|\__| |___/    |_|  |_| |_|\__,_|\__| /_/    \_\_|_|\__,_|___/ |_|  |_|\___|\__,_|_| |_(_)  
+###                                                                                                                     
+###                                                                                                                     
                                                                                                                
 To figure out easily what the command is that is running behind an alias, use:
 #	type [alias]
 
-####  _____           _   _               _  _              _____           _                         
-#### / ____|         | | (_)             | || |            |  __ \         | |                        
-####| (___   ___  ___| |_ _  ___  _ __   | || |_   ______  | |__) |_ _  ___| | ____ _  __ _  ___  ___ 
-#### \___ \ / _ \/ __| __| |/ _ \| '_ \  |__   _| |______| |  ___/ _` |/ __| |/ / _` |/ _` |/ _ \/ __|
-#### ____) |  __/ (__| |_| | (_) | | | |    | |            | |  | (_| | (__|   < (_| | (_| |  __/\__ \
-####|_____/ \___|\___|\__|_|\___/|_| |_|    |_|            |_|   \__,_|\___|_|\_\__,_|\__, |\___||___/
-####                                                                                   __/ |          
-####                                                                                  |___/           
+##  _____           _   _               _  _              _____           _                         
+## / ____|         | | (_)             | || |            |  __ \         | |                        
+##| (___   ___  ___| |_ _  ___  _ __   | || |_   ______  | |__) |_ _  ___| | ____ _  __ _  ___  ___ 
+## \___ \ / _ \/ __| __| |/ _ \| '_ \  |__   _| |______| |  ___/ _` |/ __| |/ / _` |/ _` |/ _ \/ __|
+## ____) |  __/ (__| |_| | (_) | | | |    | |            | |  | (_| | (__|   < (_| | (_| |  __/\__ \
+##|_____/ \___|\___|\__|_|\___/|_| |_|    |_|            |_|   \__,_|\___|_|\_\__,_|\__, |\___||___/
+##                                                                                   __/ |          
+##                                                                                  |___/      
 
-## ____            _                         _             _     _           
-##|  _ \ __ _  ___| | ____ _  __ _  ___     / \   _ __ ___| |__ (_)_   _____ 
-##| |_) / _` |/ __| |/ / _` |/ _` |/ _ \   / _ \ | '__/ __| '_ \| \ \ / / _ \
-##|  __/ (_| | (__|   < (_| | (_| |  __/  / ___ \| | | (__| | | | |\ V /  __/
-##|_|   \__,_|\___|_|\_\__,_|\__, |\___| /_/   \_\_|  \___|_| |_|_| \_/ \___|
-##                           |___/                                           
+### _____           _                                        _     _           
+###|  __ \         | |                        /\            | |   (_)          
+###| |__) |_ _  ___| | ____ _  __ _  ___     /  \   _ __ ___| |__  ___   _____ 
+###|  ___/ _` |/ __| |/ / _` |/ _` |/ _ \   / /\ \ | '__/ __| '_ \| \ \ / / _ \
+###| |  | (_| | (__|   < (_| | (_| |  __/  / ____ \| | | (__| | | | |\ V /  __/
+###|_|   \__,_|\___|_|\_\__,_|\__, |\___| /_/    \_\_|  \___|_| |_|_| \_/ \___|
+###                            __/ |                                           
+###                           |___/                                            
+
 If you haven't cleaned this folder recently, you can find every package you've installed in /var/cache/apt/archives
 This is useful to roll back to a previous version if something breaks.
 
-## ____                            __      _       _     
-##/ ___|  ___ _ __ ___  ___ _ __  / _| ___| |_ ___| |__  
-##\___ \ / __| '__/ _ \/ _ \ '_ \| |_ / _ \ __/ __| '_ \ 
-## ___) | (__| | |  __/  __/ | | |  _|  __/ || (__| | | |
-##|____/ \___|_|  \___|\___|_| |_|_|  \___|\__\___|_| |_|
-##                                                       
-Screenfetch is a really cool way of displaying infos about your computer in a Terminal.
-#        wget -O screenfetch 'https://raw.github.com/KittyKatt/screenfetch/master/screenfetch-dev'
-#        chmod +x screenfetch
-#        sudo mv screenfetch /usr/bin/
+### _    _           _       _         _            _ 
+###| |  | |         | |     | |       (_)          (_)
+###| |  | |_ __   __| | __ _| |_ ___   _ _ __ __  ___ 
+###| |  | | '_ \ / _` |/ _` | __/ _ \ | | '_ \\ \/ / |
+###| |__| | |_) | (_| | (_| | ||  __/ | | | | |>  <| |
+### \____/| .__/ \__,_|\__,_|\__\___| |_|_| |_/_/\_\_|
+###       | |                                         
+###       |_|                                         
 
-## _            _ 
-##(_)_ __ __  _(_)
-##| | '_ \\ \/ / |
-##| | | | |>  <| |
-##|_|_| |_/_/\_\_|
-##                
 The inxi program has been neutered on most Linux distros so it can't update using -U
 To allow updating, open a Terminal and
 #	sudo touch /etc/inxi.conf && echo 'B_ALLOW_UPDATE=true' >> /etc/inxi.conf
 
-####  _____           _   _               _____                     _____ _______ 
-#### / ____|         | | (_)             | ____|              /\   |  __ \__   __|
-####| (___   ___  ___| |_ _  ___  _ __   | |__    ______     /  \  | |__) | | |   
-#### \___ \ / _ \/ __| __| |/ _ \| '_ \  |___ \  |______|   / /\ \ |  ___/  | |   
-#### ____) |  __/ (__| |_| | (_) | | | |  ___) |           / ____ \| |      | |   
-####|_____/ \___|\___|\__|_|\___/|_| |_| |____/           /_/    \_\_|      |_|   
-####                                                                              
-####                                                                              
+##  _____           _   _               _____                     _____ _______ 
+## / ____|         | | (_)             | ____|              /\   |  __ \__   __|
+##| (___   ___  ___| |_ _  ___  _ __   | |__    ______     /  \  | |__) | | |   
+## \___ \ / _ \/ __| __| |/ _ \| '_ \  |___ \  |______|   / /\ \ |  ___/  | |   
+## ____) |  __/ (__| |_| | (_) | | | |  ___) |           / ____ \| |      | |   
+##|_____/ \___|\___|\__|_|\___/|_| |_| |____/           /_/    \_\_|      |_|   
+##                                                                              
+##                                                                 
 
-## _____ _        ____            _                ____            _                      _   _                _               
-##|  ___(_)_  __ | __ ) _ __ ___ | | _____ _ __   |  _ \ __ _  ___| | ____ _  __ _  ___  | | | | ___  __ _  __| | ___ _ __ ___ 
-##| |_  | \ \/ / |  _ \| '__/ _ \| |/ / _ \ '_ \  | |_) / _` |/ __| |/ / _` |/ _` |/ _ \ | |_| |/ _ \/ _` |/ _` |/ _ \ '__/ __|
-##|  _| | |>  <  | |_) | | | (_) |   <  __/ | | | |  __/ (_| | (__|   < (_| | (_| |  __/ |  _  |  __/ (_| | (_| |  __/ |  \__ \
-##|_|   |_/_/\_\ |____/|_|  \___/|_|\_\___|_| |_| |_|   \__,_|\___|_|\_\__,_|\__, |\___| |_| |_|\___|\__,_|\__,_|\___|_|  |___/
-##                                                                           |___/                                             
-I have not seen this error in a very long time, and I only saw it on Linux Mint Nadia, Olivia, and Petra. I'm including it just in case it ever pops up again.
+### ______ _        ____            _                _____           _                      _    _                _               
+###|  ____(_)      |  _ \          | |              |  __ \         | |                    | |  | |              | |              
+###| |__   ___  __ | |_) |_ __ ___ | | _____ _ __   | |__) |_ _  ___| | ____ _  __ _  ___  | |__| | ___  __ _  __| | ___ _ __ ___ 
+###|  __| | \ \/ / |  _ <| '__/ _ \| |/ / _ \ '_ \  |  ___/ _` |/ __| |/ / _` |/ _` |/ _ \ |  __  |/ _ \/ _` |/ _` |/ _ \ '__/ __|
+###| |    | |>  <  | |_) | | | (_) |   <  __/ | | | | |  | (_| | (__|   < (_| | (_| |  __/ | |  | |  __/ (_| | (_| |  __/ |  \__ \
+###|_|    |_/_/\_\ |____/|_|  \___/|_|\_\___|_| |_| |_|   \__,_|\___|_|\_\__,_|\__, |\___| |_|  |_|\___|\__,_|\__,_|\___|_|  |___/
+###                                                                             __/ |                                             
+###                                                                            |___/                         
+
+I have not seen this error in a very long time! I'm including it just in case it ever pops up again.
 I noticed that the Package Manager will encounter an odd error. It will display a broken symbol and apt-get update will generate a message like this:
 #	Reading package lists... Error!
 #	E: Encountered a package list with no Package: header
@@ -473,12 +507,15 @@ After that’s done, switch to the other Terminal and type
 #	sudo apt-get update
 Let it update. If you encounter another error, switch to the other Terminal and axe some more MergeLists. Otherwise the error should go away once the MergeLists have been refreshed.
 
-## _   _       _            _      ____  ____  _  ______ 
-##| | | |_ __ | | ___   ___| | __ |  _ \|  _ \| |/ / ___|
-##| | | | '_ \| |/ _ \ / __| |/ / | | | | |_) | ' / |  _ 
-##| |_| | | | | | (_) | (__|   <  | |_| |  __/| . \ |_| |
-## \___/|_| |_|_|\___/ \___|_|\_\ |____/|_|   |_|\_\____|
-##                                                       
+### _    _       _            _      _____  _____  _  _______ 
+###| |  | |     | |          | |    |  __ \|  __ \| |/ / ____|
+###| |  | |_ __ | | ___   ___| | __ | |  | | |__) | ' / |  __ 
+###| |  | | '_ \| |/ _ \ / __| |/ / | |  | |  ___/|  <| | |_ |
+###| |__| | | | | | (_) | (__|   <  | |__| | |    | . \ |__| |
+### \____/|_| |_|_|\___/ \___|_|\_\ |_____/|_|    |_|\_\_____|
+###                                                           
+###                                                           
+
 If you start installing a package, and for whatever reason have to abort the install it will most likely lock up dpkg and you’ll be unable to install anything else until the installation you just started is finished. This can be rough if the package in question won’t install for some reason.
 Sometimes dpkg can get locked because the xapian-index is out of date. Update it and see if this clears the lock.
 #	sudo update-apt-xapian-index  --force
@@ -499,12 +536,14 @@ Then to stop dpkg from trying to install the same package again.
 #	sudo dpkg --configure -a
 It will remove the package from the cache and install any other packages held because of the broken package was lagging the install.
 
-##    _    ____ _____   ____            __                                   
-##   / \  |  _ \_   _| |  _ \ _ __ ___ / _| ___ _ __ ___ _ __   ___ ___  ___ 
-##  / _ \ | |_) || |   | |_) | '__/ _ \ |_ / _ \ '__/ _ \ '_ \ / __/ _ \/ __|
-## / ___ \|  __/ | |   |  __/| | |  __/  _|  __/ | |  __/ | | | (_|  __/\__ \
-##/_/   \_\_|    |_|   |_|   |_|  \___|_|  \___|_|  \___|_| |_|\___\___||___/
-##                                                                           
+### _______ _                     _____ _______   _____           __                                    ____  _ _     _      
+###|__   __| |              /\   |  __ \__   __| |  __ \         / _|                                  |  _ \(_) |   | |     
+###   | |  | |__   ___     /  \  | |__) | | |    | |__) | __ ___| |_ ___ _ __ ___ _ __   ___ ___  ___  | |_) |_| |__ | | ___ 
+###   | |  | '_ \ / _ \   / /\ \ |  ___/  | |    |  ___/ '__/ _ \  _/ _ \ '__/ _ \ '_ \ / __/ _ \/ __| |  _ <| | '_ \| |/ _ \
+###   | |  | | | |  __/  / ____ \| |      | |    | |   | | |  __/ ||  __/ | |  __/ | | | (_|  __/\__ \ | |_) | | |_) | |  __/
+###   |_|  |_| |_|\___| /_/    \_\_|      |_|    |_|   |_|  \___|_| \___|_|  \___|_| |_|\___\___||___/ |____/|_|_.__/|_|\___|
+###                                                                                                                          
+###                                                                                                                          
 
 ##	How To Use APT Preferences
 The APT preferences file /etc/apt/preferences and the fragment files in the /etc/apt/preferences.d/ folder can be used to control which versions of packages will be selected for installation.
@@ -780,164 +819,24 @@ FILES
            File fragments for the version preferences. Configuration Item:
            Dir::Etc::PreferencesParts.
 
-##    __   _          __          _      __                                   _ _     _   
-##   / /__| |_ ___   / /_ _ _ __ | |_   / /__  ___  _   _ _ __ ___ ___  ___  | (_)___| |_ 
-##  / / _ \ __/ __| / / _` | '_ \| __| / / __|/ _ \| | | | '__/ __/ _ \/ __| | | / __| __|
-## / /  __/ || (__ / / (_| | |_) | |_ / /\__ \ (_) | |_| | | | (_|  __/\__ \_| | \__ \ |_ 
-##/_/ \___|\__\___/_/ \__,_| .__/ \__/_/ |___/\___/ \__,_|_|  \___\___||___(_)_|_|___/\__|
-##                         |_|                                                            
-DESCRIPTION
-	The source list /etc/apt/sources.list is designed to support any number of active sources and a variety of source media. The file lists one source per line, with the most preferred source listed first. The information available from the configured
-	sources is acquired by apt-get update (or by an equivalent command from another APT front-end).
+##  _____           _   _                 __             _   _      _                      _    
+## / ____|         | | (_)               / /            | \ | |    | |                    | |   
+##| (___   ___  ___| |_ _  ___  _ __    / /_    ______  |  \| | ___| |___      _____  _ __| | __
+## \___ \ / _ \/ __| __| |/ _ \| '_ \  | '_ \  |______| | . ` |/ _ \ __\ \ /\ / / _ \| '__| |/ /
+## ____) |  __/ (__| |_| | (_) | | | | | (_) |          | |\  |  __/ |_ \ V  V / (_) | |  |   < 
+##|_____/ \___|\___|\__|_|\___/|_| |_|  \___/           |_| \_|\___|\__| \_/\_/ \___/|_|  |_|\_\
+##                                                                                              
+##                                                                                              
 
-	Each line specifying a source starts with type (e.g.  deb-src) followed by options and arguments for this type. Individual entries cannot be continued onto a following line. Empty lines are ignored, and a hash (#) character anywhere on a line
-	marks the remainder of that line as a comment.
+### _______                               ______ _______ _    _    __                       ______    _ _            __       _______                  _             _ 
+###|__   __|                             |  ____|__   __| |  | |  / _|                     |  ____|  (_) |          / _|     |__   __|                (_)           | |
+###   | |_   _ _ __ _ __     ___  _ __   | |__     | |  | |__| | | |_ _ __ ___  _ __ ___   | |__ __ _ _| |___  __ _| |_ ___     | | ___ _ __ _ __ ___  _ _ __   __ _| |
+###   | | | | | '__| '_ \   / _ \| '_ \  |  __|    | |  |  __  | |  _| '__/ _ \| '_ ` _ \  |  __/ _` | | / __|/ _` |  _/ _ \    | |/ _ \ '__| '_ ` _ \| | '_ \ / _` | |
+###   | | |_| | |  | | | | | (_) | | | | | |____   | |  | |  | | | | | | | (_) | | | | | | | | | (_| | | \__ \ (_| | ||  __/    | |  __/ |  | | | | | | | | | | (_| | |
+###   |_|\__,_|_|  |_| |_|  \___/|_| |_| |______|  |_|  |_|  |_| |_| |_|  \___/|_| |_| |_| |_|  \__,_|_|_|___/\__,_|_| \___|    |_|\___|_|  |_| |_| |_|_|_| |_|\__,_|_|
+###                                                                                                                                                                    
+###                                                                                                                                                                    
 
-SOURCES.LIST.D
-	The /etc/apt/sources.list.d directory provides a way to add sources.list entries in separate files. The format is the same as for the regular sources.list file. File names need to end with .list and may only contain letters (a-z and A-Z), digits (0-9),
-	underscore (_), hyphen (-) and period (.) characters. Otherwise APT will print a notice that it has ignored a file, unless that file matches a pattern in the Dir::Ignore-Files-Silently configuration list - in which case it will be silently ignored.
-
-THE DEB AND DEB-SRC TYPES
-	The deb type references a typical two-level Debian archive, distribution/component. The distribution is generally an archive name like stable or testing or a codename like wheezy or
-jessie while component is one of main, contrib or non-free. The deb-src type references a Debian distribution's source code in the same form as the deb type. A deb-src line is required
-to fetch source indexes.
-
-	The format for a sources.list entry using the deb and deb-src types is:
-
-#        deb [ options ] uri distribution [component1] [component2] [...]
-
-       The URI for the deb type must specify the base of the Debian distribution, from which APT will find the information it
-       needs.  distribution can specify an exact path, in which case the components must be omitted and distribution must end
-       with a slash (/). This is useful for the case when only a particular sub-section of the archive denoted by the URI is of
-       interest. If distribution does not specify an exact path, at least one component must be present.
-
-       distribution may also contain a variable, $(ARCH) which expands to the Debian architecture (such as amd64 or armel) used
-       on the system. This permits architecture-independent sources.list files to be used. In general this is only of interest
-       when specifying an exact path, APT will automatically generate a URI with the current architecture otherwise.
-
-       Since only one distribution can be specified per line it may be necessary to have multiple lines for the same URI, if a
-       subset of all available distributions or components at that location is desired. APT will sort the URI list after it has
-       generated a complete set internally, and will collapse multiple references to the same Internet host, for instance, into a
-       single connection, so that it does not inefficiently establish an FTP connection, close it, do something else, and then
-       re-establish a connection to that same host. This feature is useful for accessing busy FTP sites with limits on the number
-       of simultaneous anonymous users. APT also parallelizes connections to different hosts to more effectively deal with sites
-       with low bandwidth.
-
-       options is always optional and needs to be surrounded by square brackets. It can consist of multiple settings in the form
-       setting=value. Multiple settings are separated by spaces. The following settings are supported by APT (note however that
-       unsupported settings will be ignored silently):
-
-       ·   arch=arch1,arch2,...  can be used to specify for which architectures information should be downloaded. If this option
-           is not set all architectures defined by the APT::Architectures option will be downloaded.
-
-       ·   trusted=yes can be set to indicate that packages from this source are always authenticated even if the Release file is
-           not signed or the signature can't be checked. This disables parts of apt-secure(8) and should therefore only be used
-           in a local and trusted context.  trusted=no is the opposite which handles even correctly authenticated sources as not
-           authenticated.
-
-       It is important to list sources in order of preference, with the most preferred source listed first. Typically this will
-       result in sorting by speed from fastest to slowest (CD-ROM followed by hosts on a local network, followed by distant
-       Internet hosts, for example).
-
-       Some examples:
-
-#	deb http://ftp.debian.org/debian wheezy main contrib non-free
-#	deb http://security.debian.org/ wheezy/updates main contrib non-free
-
-URI SPECIFICATION
-       The currently recognized URI types are:
-
-       file
-           The file scheme allows an arbitrary directory in the file system to be considered an archive. This is useful for NFS
-           mounts and local mirrors or archives.
-
-       cdrom
-           The cdrom scheme allows APT to use a local CD-ROM drive with media swapping. Use the apt-cdrom(8) program to create
-           cdrom entries in the source list.
-
-       http
-           The http scheme specifies an HTTP server for the archive. If an environment variable http_proxy is set with the format
-           http://server:port/, the proxy server specified in http_proxy will be used. Users of authenticated HTTP/1.1 proxies
-           may use a string of the format http://user:pass@server:port/. Note that this is an insecure method of authentication.
-
-       ftp
-           The ftp scheme specifies an FTP server for the archive. APT's FTP behavior is highly configurable; for more
-           information see the apt.conf(5) manual page. Please note that an FTP proxy can be specified by using the ftp_proxy
-           environment variable. It is possible to specify an HTTP proxy (HTTP proxy servers often understand FTP URLs) using
-           this environment variable and only this environment variable. Proxies using HTTP specified in the configuration file
-           will be ignored.
-
-       copy
-           The copy scheme is identical to the file scheme except that packages are copied into the cache directory instead of
-           used directly at their location. This is useful for people using removable media to copy files around with APT.
-
-       rsh, ssh
-           The rsh/ssh method invokes RSH/SSH to connect to a remote host and access the files as a given user. Prior
-           configuration of rhosts or RSA keys is recommended. The standard find and dd commands are used to perform the file
-           transfers from the remote host.
-
-       adding more recognizable URI types
-           APT can be extended with more methods shipped in other optional packages, which should follow the naming scheme
-           apt-transport-method. For instance, the APT team also maintains the package apt-transport-https, which provides access
-           methods for HTTPS URIs with features similar to the http method. Methods for using e.g. debtorrent are also available
-           - see apt-transport-debtorrent(1).
-
-EXAMPLES
-       Uses the archive stored locally (or NFS mounted) at /home/jason/debian for stable/main, stable/contrib, and
-       stable/non-free.
-
-           deb file:/home/jason/debian stable main contrib non-free
-
-       As above, except this uses the unstable (development) distribution.
-
-           deb file:/home/jason/debian unstable main contrib non-free
-
-       Source line for the above
-
-           deb-src file:/home/jason/debian unstable main contrib non-free
-
-       The first line gets package information for the architectures in APT::Architectures while the second always retrieves
-       amd64 and armel.
-
-           deb http://ftp.debian.org/debian wheezy main
-           deb [ arch=amd64,armel ] http://ftp.debian.org/debian wheezy main
-
-       Uses HTTP to access the archive at archive.debian.org, and uses only the hamm/main area.
-
-           deb http://archive.debian.org/debian-archive hamm main
-
-       Uses FTP to access the archive at ftp.debian.org, under the debian directory, and uses only the wheezy/contrib area.
-
-           deb ftp://ftp.debian.org/debian wheezy contrib
-
-       Uses FTP to access the archive at ftp.debian.org, under the debian directory, and uses only the unstable/contrib area. If
-       this line appears as well as the one in the previous example in sources.list a single FTP session will be used for both
-       resource lines.
-
-           deb ftp://ftp.debian.org/debian unstable contrib
-
-       Uses HTTP to access the archive at ftp.tlh.debian.org, under the universe directory, and uses only files found under
-       unstable/binary-i386 on i386 machines, unstable/binary-amd64 on amd64, and so forth for other supported architectures.
-       [Note this example only illustrates how to use the substitution variable; official debian archives are not structured like
-       this]
-
-           deb http://ftp.tlh.debian.org/universe unstable/binary-$(ARCH)/
-
-####  _____           _   _                 __             _   _      _                      _    
-#### / ____|         | | (_)               / /            | \ | |    | |                    | |   
-####| (___   ___  ___| |_ _  ___  _ __    / /_    ______  |  \| | ___| |___      _____  _ __| | __
-#### \___ \ / _ \/ __| __| |/ _ \| '_ \  | '_ \  |______| | . ` |/ _ \ __\ \ /\ / / _ \| '__| |/ /
-#### ____) |  __/ (__| |_| | (_) | | | | | (_) |          | |\  |  __/ |_ \ V  V / (_) | |  |   < 
-####|_____/ \___|\___|\__|_|\___/|_| |_|  \___/           |_| \_|\___|\__| \_/\_/ \___/|_|  |_|\_\
-####                                                                                              
-####                                                                                              
-
-## _____                                 _____ _____ _   _    __                        __       _ _            __        _                      _             _ 
-##|_   _|   _ _ __ _ __     ___  _ __   | ____|_   _| | | |  / _|_ __ ___  _ __ ___    / _| __ _(_) |___  __ _ / _| ___  | |_ ___ _ __ _ __ ___ (_)_ __   __ _| |
-##  | || | | | '__| '_ \   / _ \| '_ \  |  _|   | | | |_| | | |_| '__/ _ \| '_ ` _ \  | |_ / _` | | / __|/ _` | |_ / _ \ | __/ _ \ '__| '_ ` _ \| | '_ \ / _` | |
-##  | || |_| | |  | | | | | (_) | | | | | |___  | | |  _  | |  _| | | (_) | | | | | | |  _| (_| | | \__ \ (_| |  _|  __/ | ||  __/ |  | | | | | | | | | | (_| | |
-##  |_| \__,_|_|  |_| |_|  \___/|_| |_| |_____| |_| |_| |_| |_| |_|  \___/|_| |_| |_| |_|  \__,_|_|_|___/\__,_|_|  \___|  \__\___|_|  |_| |_| |_|_|_| |_|\__,_|_|
-##                                                                                                                                                               
 Place the following into /etc/network/interfaces with an editor.
 #	sudo nano /etc/network/interfaces
 This block of text will cause the network manager to bring up your Ethernet automatically and configure it with DHCP.
@@ -949,31 +848,40 @@ After adding this restart the network manager with:
 
 If this causes an error message, restart the computer.
 
-## _____         _            _     ____  _   _ ____    ____                               
-##|  ___|_ _ ___| |_ ___  ___| |_  |  _ \| \ | / ___|  / ___|  ___ _ ____   _____ _ __ ___ 
-##| |_ / _` / __| __/ _ \/ __| __| | | | |  \| \___ \  \___ \ / _ \ '__\ \ / / _ \ '__/ __|
-##|  _| (_| \__ \ ||  __/\__ \ |_  | |_| | |\  |___) |  ___) |  __/ |   \ V /  __/ |  \__ \
-##|_|  \__,_|___/\__\___||___/\__| |____/|_| \_|____/  |____/ \___|_|    \_/ \___|_|  |___/
-##                                                                                         
+### ______        _            _     _____  _   _  _____    _____                              
+###|  ____|      | |          | |   |  __ \| \ | |/ ____|  / ____|                             
+###| |__ __ _ ___| |_ ___  ___| |_  | |  | |  \| | (___   | (___   ___ _ ____   _____ _ __ ___ 
+###|  __/ _` / __| __/ _ \/ __| __| | |  | | . ` |\___ \   \___ \ / _ \ '__\ \ / / _ \ '__/ __|
+###| | | (_| \__ \ ||  __/\__ \ |_  | |__| | |\  |____) |  ____) |  __/ |   \ V /  __/ |  \__ \
+###|_|  \__,_|___/\__\___||___/\__| |_____/|_| \_|_____/  |_____/ \___|_|    \_/ \___|_|  |___/
+###                                                                                            
+###                                                                                            
+
 Install namebench, and run the namebench utility.
 #	sudo apt-get install namebench
 #	namebench
 
-## _____ _           _  __   __                 __  __    _    ____      _       _     _                   
-##|  ___(_)_ __   __| | \ \ / /__  _   _ _ __  |  \/  |  / \  / ___|    / \   __| | __| |_ __ ___  ___ ___ 
-##| |_  | | '_ \ / _` |  \ V / _ \| | | | '__| | |\/| | / _ \| |       / _ \ / _` |/ _` | '__/ _ \/ __/ __|
-##|  _| | | | | | (_| |   | | (_) | |_| | |    | |  | |/ ___ \ |___   / ___ \ (_| | (_| | | |  __/\__ \__ \
-##|_|   |_|_| |_|\__,_|   |_|\___/ \__,_|_|    |_|  |_/_/   \_\____| /_/   \_\__,_|\__,_|_|  \___||___/___/
-##                                                                                                         
+### ______ _           _  __     __                __  __          _____               _     _                   
+###|  ____(_)         | | \ \   / /               |  \/  |   /\   / ____|     /\      | |   | |                  
+###| |__   _ _ __   __| |  \ \_/ /__  _   _ _ __  | \  / |  /  \ | |         /  \   __| | __| |_ __ ___  ___ ___ 
+###|  __| | | '_ \ / _` |   \   / _ \| | | | '__| | |\/| | / /\ \| |        / /\ \ / _` |/ _` | '__/ _ \/ __/ __|
+###| |    | | | | | (_| |    | | (_) | |_| | |    | |  | |/ ____ \ |____   / ____ \ (_| | (_| | | |  __/\__ \__ \
+###|_|    |_|_| |_|\__,_|    |_|\___/ \__,_|_|    |_|  |_/_/    \_\_____| /_/    \_\__,_|\__,_|_|  \___||___/___/
+###                                                                                                              
+###                                                                                                              
+
 To find the MAC address, use the following Terminal command:
 #	ip addr show
 
-## ____  _               _____         _   _                        _ _   _       __  __ _____ ____  
-##|  _ \(_)_ __   __ _  |_   _|__  ___| |_(_)_ __   __ _  __      _(_) |_| |__   |  \/  |_   _|  _ \ 
-##| |_) | | '_ \ / _` |   | |/ _ \/ __| __| | '_ \ / _` | \ \ /\ / / | __| '_ \  | |\/| | | | | |_) |
-##|  __/| | | | | (_| |   | |  __/\__ \ |_| | | | | (_| |  \ V  V /| | |_| | | | | |  | | | | |  _ < 
-##|_|   |_|_| |_|\__, |   |_|\___||___/\__|_|_| |_|\__, |   \_/\_/ |_|\__|_| |_| |_|  |_| |_| |_| \_\
-##               |___/                             |___/                                             
+### _____ _               _______        _   _                        _ _   _       __  __ _______ _____  
+###|  __ (_)             |__   __|      | | (_)                      (_) | | |     |  \/  |__   __|  __ \ 
+###| |__) | _ __   __ _     | | ___  ___| |_ _ _ __   __ _  __      ___| |_| |__   | \  / |  | |  | |__) |
+###|  ___/ | '_ \ / _` |    | |/ _ \/ __| __| | '_ \ / _` | \ \ /\ / / | __| '_ \  | |\/| |  | |  |  _  / 
+###| |   | | | | | (_| |    | |  __/\__ \ |_| | | | | (_| |  \ V  V /| | |_| | | | | |  | |  | |  | | \ \ 
+###|_|   |_|_| |_|\__, |    |_|\___||___/\__|_|_| |_|\__, |   \_/\_/ |_|\__|_| |_| |_|  |_|  |_|  |_|  \_\
+###                __/ |                              __/ |                                               
+###               |___/                              |___/                                                
+
 I like to customize the MTR command to figure out specific things:
 When the command specifies a ping count (using -c) assume that the sensitivity of the report can be raised or lowered by increasing or decreasing the count.
 
@@ -985,80 +893,96 @@ You can also check IPv4 and IPv6 connectivity using this command
 #	(IPv4) mtr -c 20 -4 -w -r -location
 #	(IPv6) mtr -c 20 -6 -w -r -location
 
-####  _____           _   _               ______            _____                                    __      ___     _                _____                       _ 
-#### / ____|         | | (_)             |____  |          |_   _|                                   \ \    / (_)   | |              / ____|                     | |
-####| (___   ___  ___| |_ _  ___  _ __       / /   ______    | |  _ __ ___   __ _  __ _  ___  ___     \ \  / / _  __| | ___  ___    | (___   ___  _   _ _ __   __| |
-#### \___ \ / _ \/ __| __| |/ _ \| '_ \     / /   |______|   | | | '_ ` _ \ / _` |/ _` |/ _ \/ __|     \ \/ / | |/ _` |/ _ \/ _ \    \___ \ / _ \| | | | '_ \ / _` |
-#### ____) |  __/ (__| |_| | (_) | | | |   / /              _| |_| | | | | | (_| | (_| |  __/\__ \_     \  /  | | (_| |  __/ (_) |   ____) | (_) | |_| | | | | (_| |
-####|_____/ \___|\___|\__|_|\___/|_| |_|  /_/              |_____|_| |_| |_|\__,_|\__, |\___||___( )     \/   |_|\__,_|\___|\___( ) |_____/ \___/ \__,_|_| |_|\__,_|
-####                                                                               __/ |         |/                             |/                                  
-####                                                                              |___/                                                                             
+##  _____           _   _               ______           __      ___     _                _____                       _ 
+## / ____|         | | (_)             |____  |          \ \    / (_)   | |              / ____|                     | |
+##| (___   ___  ___| |_ _  ___  _ __       / /   ______   \ \  / / _  __| | ___  ___    | (___   ___  _   _ _ __   __| |
+## \___ \ / _ \/ __| __| |/ _ \| '_ \     / /   |______|   \ \/ / | |/ _` |/ _ \/ _ \    \___ \ / _ \| | | | '_ \ / _` |
+## ____) |  __/ (__| |_| | (_) | | | |   / /                \  /  | | (_| |  __/ (_) |   ____) | (_) | |_| | | | | (_| |
+##|_____/ \___|\___|\__|_|\___/|_| |_|  /_/                  \/   |_|\__,_|\___|\___( ) |_____/ \___/ \__,_|_| |_|\__,_|
+##                                                                                  |/                                  
+##                                                                                                                      
 
-##__   __          _         _                    _ _ 
-##\ \ / /__  _   _| |_ _   _| |__   ___        __| | |
-## \ V / _ \| | | | __| | | | '_ \ / _ \_____ / _` | |
-##  | | (_) | |_| | |_| |_| | |_) |  __/_____| (_| | |
-##  |_|\___/ \__,_|\__|\__,_|_.__/ \___|      \__,_|_|
-##                                                    
-To manually install the most up-to-date version of youtube-dl, you will need to compile it yourself
-#	sudo apt install build-essential git
-#	git clone https://github.com/ytdl-org/youtube-dl.git
-#	cd youtube-dl/
-#	make youtube-dl
-Once you made youtube-dl, you need to copy it to a location in the path. Use the command below:
-#	sudo cp youtube-dl /usr/local/bin/
-if you run youtube-dl from the command line, you will get an error about python because it tries to run using python while in Ubuntu, it is python3. You can create an alias on your .bashrc like:
-####	alias youtube-dl='python3 /usr/local/bin/youtube-dl'
-Then you can use
-#	youtube-dl -U
-to update the manually installed package.
+###__     __         _         _                    _ _ 
+###\ \   / /        | |       | |                  | | |
+### \ \_/ /__  _   _| |_ _   _| |__   ___ ______ __| | |
+###  \   / _ \| | | | __| | | | '_ \ / _ \______/ _` | |
+###   | | (_) | |_| | |_| |_| | |_) |  __/     | (_| | |
+###   |_|\___/ \__,_|\__|\__,_|_.__/ \___|      \__,_|_|
+###                                                     
+###                                                     
 
-##__        ____  __    _      _          __  __ ____ _____ 
-##\ \      / /  \/  |  / \    | |_ ___   |  \/  |  _ \___ / 
-## \ \ /\ / /| |\/| | / _ \   | __/ _ \  | |\/| | |_) ||_ \ 
-##  \ V  V / | |  | |/ ___ \  | || (_) | | |  | |  __/___) |
-##   \_/\_/  |_|  |_/_/   \_\  \__\___/  |_|  |_|_|  |____/ 
-##                                                          
+To get a current version of youtube-dl, use
+#	https://github.com/yt-dlp/yt-dlp/releases
+
+###__          ____  __            _          __  __ _____ ____  
+###\ \        / /  \/  |   /\     | |        |  \/  |  __ \___ \ 
+### \ \  /\  / /| \  / |  /  \    | |_ ___   | \  / | |__) |__) |
+###  \ \/  \/ / | |\/| | / /\ \   | __/ _ \  | |\/| |  ___/|__ < 
+###   \  /\  /  | |  | |/ ____ \  | || (_) | | |  | | |    ___) |
+###    \/  \/   |_|  |_/_/    \_\  \__\___/  |_|  |_|_|   |____/ 
+###                                                              
+###                                                              
+
 Navigate to the folder that contains the wma files and run the following command to convert them.
 #	for file in *.wma; do ffmpeg -i "${file}"  -acodec libmp3lame -ab 192k "${file/.wma/.mp3}"; done
 MP3 files will be saved to the same (source) directory.
 
-##__        _____     __  _          __  __ ____ _____ 
-##\ \      / / \ \   / / | |_ ___   |  \/  |  _ \___ / 
-## \ \ /\ / / _ \ \ / /  | __/ _ \  | |\/| | |_) ||_ \ 
-##  \ V  V / ___ \ V /   | || (_) | | |  | |  __/___) |
-##   \_/\_/_/   \_\_/     \__\___/  |_|  |_|_|  |____/ 
-##                                                     
+###__          ____      __  _          __  __ _____ ____  
+###\ \        / /\ \    / / | |        |  \/  |  __ \___ \ 
+### \ \  /\  / /  \ \  / /  | |_ ___   | \  / | |__) |__) |
+###  \ \/  \/ / /\ \ \/ /   | __/ _ \  | |\/| |  ___/|__ < 
+###   \  /\  / ____ \  /    | || (_) | | |  | | |    ___) |
+###    \/  \/_/    \_\/      \__\___/  |_|  |_|_|   |____/ 
+###                                                        
+###                                                        
 
 The following Terminal command can rip wav to mp3 in the Terminal
 #	lame -h -b 256 <input wav file> <output mp3 file>
 
-##    ___     _____   _          __  __ ____  _  _   
-##   / \ \   / /_ _| | |_ ___   |  \/  |  _ \| || |  
-##  / _ \ \ / / | |  | __/ _ \  | |\/| | |_) | || |_ 
-## / ___ \ V /  | |  | || (_) | | |  | |  __/|__   _|
-##/_/   \_\_/  |___|  \__\___/  |_|  |_|_|      |_|  
-##                                                   
+###     __      _______   _          __  __ _____  _  _   
+###    /\ \    / /_   _| | |        |  \/  |  __ \| || |  
+###   /  \ \  / /  | |   | |_ ___   | \  / | |__) | || |_ 
+###  / /\ \ \/ /   | |   | __/ _ \  | |\/| |  ___/|__   _|
+### / ____ \  /   _| |_  | || (_) | | |  | | |       | |  
+###/_/    \_\/   |_____|  \__\___/  |_|  |_|_|       |_|  
+###                                                       
+###                                                       
+
 Install mencoder
 #	sudo aptitude install mencoder
 Convert the file
 #	mencoder input.avi -o output.mp4 -oac copy -ovc lavc vcodec=mpeg1video -of mpeg
 
-## ______     ______    _          ___ ____   ___  
-##|  _ \ \   / /  _ \  | |_ ___   |_ _/ ___| / _ \ 
-##| | | \ \ / /| | | | | __/ _ \   | |\___ \| | | |
-##| |_| |\ V / | |_| | | || (_) |  | | ___) | |_| |
-##|____/  \_/  |____/   \__\___/  |___|____/ \___/ 
-##                                                 
+### _______      _______    _          _____  _____  ____  
+###|  __ \ \    / /  __ \  | |        |_   _|/ ____|/ __ \ 
+###| |  | \ \  / /| |  | | | |_ ___     | | | (___ | |  | |
+###| |  | |\ \/ / | |  | | | __/ _ \    | |  \___ \| |  | |
+###| |__| | \  /  | |__| | | || (_) |  _| |_ ____) | |__| |
+###|_____/   \/   |_____/   \__\___/  |_____|_____/ \____/ 
+###                                                        
+###                                                        
+
 Not too many computers even use DVD anymore, but if you come across one you want to turn into an ISO file, then the easiest way to do this is with the dd command
 #	dd if=dev/sr0 of=file.iso
 
-## ___                                                  _      _    
-##|_ _|_ __ ___   __ _  __ _  ___ _ __ ___   __ _  __ _(_) ___| | __
-## | || '_ ` _ \ / _` |/ _` |/ _ \ '_ ` _ \ / _` |/ _` | |/ __| |/ /
-## | || | | | | | (_| | (_| |  __/ | | | | | (_| | (_| | | (__|   < 
-##|___|_| |_| |_|\__,_|\__, |\___|_| |_| |_|\__,_|\__, |_|\___|_|\_\
-##                     |___/                      |___/             
+##  _____           _   _                ___              _____      _              __  __             _      
+## / ____|         | | (_)              / _ \            / ____|    | |            |  \/  |           (_)     
+##| (___   ___  ___| |_ _  ___  _ __   | (_) |  ______  | |     ___ | | ___  _ __  | \  / | __ _  __ _ _  ___ 
+## \___ \ / _ \/ __| __| |/ _ \| '_ \   > _ <  |______| | |    / _ \| |/ _ \| '__| | |\/| |/ _` |/ _` | |/ __|
+## ____) |  __/ (__| |_| | (_) | | | | | (_) |          | |___| (_) | | (_) | |    | |  | | (_| | (_| | | (__ 
+##|_____/ \___|\___|\__|_|\___/|_| |_|  \___/            \_____\___/|_|\___/|_|    |_|  |_|\__,_|\__, |_|\___|
+##                                                                                                __/ |       
+##                                                                                               |___/        
+
+### _____                                                  _      _    
+###|_   _|                                                (_)    | |   
+###  | |  _ __ ___   __ _  __ _  ___ _ __ ___   __ _  __ _ _  ___| | __
+###  | | | '_ ` _ \ / _` |/ _` |/ _ \ '_ ` _ \ / _` |/ _` | |/ __| |/ /
+### _| |_| | | | | | (_| | (_| |  __/ | | | | | (_| | (_| | | (__|   < 
+###|_____|_| |_| |_|\__,_|\__, |\___|_| |_| |_|\__,_|\__, |_|\___|_|\_\
+###                        __/ |                      __/ |            
+###                       |___/                      |___/             
+
 The convert command takes an image, performs actions on it, and saves the image with the file name you specify. One of the most basic things you can do with it is converting images between formats.
 
 The following command takes a PNG file named “howtogeek.png” in the current directory and creates a JPEG image from it:
@@ -1084,21 +1008,15 @@ For example, the following command would take all PNG files in the current direc
 
 Many more operations are possible by reading "man convert"
 
-####  _____           _   _                ___              _____      _              __  __             _      
-#### / ____|         | | (_)              / _ \            / ____|    | |            |  \/  |           (_)     
-####| (___   ___  ___| |_ _  ___  _ __   | (_) |  ______  | |     ___ | | ___  _ __  | \  / | __ _  __ _ _  ___ 
-#### \___ \ / _ \/ __| __| |/ _ \| '_ \   > _ <  |______| | |    / _ \| |/ _ \| '__| | |\/| |/ _` |/ _` | |/ __|
-#### ____) |  __/ (__| |_| | (_) | | | | | (_) |          | |___| (_) | | (_) | |    | |  | | (_| | (_| | | (__ 
-####|_____/ \___|\___|\__|_|\___/|_| |_|  \___/            \_____\___/|_|\___/|_|    |_|  |_|\__,_|\__, |_|\___|
-####                                                                                                __/ |       
-####                                                                                               |___/        
+### _____   _____ ____    _           _____ __  ____     ___  __
+###|  __ \ / ____|  _ \  | |         / ____|  \/  \ \   / / |/ /
+###| |__) | |  __| |_) | | |_ ___   | |    | \  / |\ \_/ /| ' / 
+###|  _  /| | |_ |  _ <  | __/ _ \  | |    | |\/| | \   / |  <  
+###| | \ \| |__| | |_) | | || (_) | | |____| |  | |  | |  | . \ 
+###|_|  \_\\_____|____/   \__\___/   \_____|_|  |_|  |_|  |_|\_\
+###                                                             
+###                                                             
 
-## ____   ____ ____    _           ____ __  ____   ___  __
-##|  _ \ / ___| __ )  | |_ ___    / ___|  \/  \ \ / / |/ /
-##| |_) | |  _|  _ \  | __/ _ \  | |   | |\/| |\ V /| ' / 
-##|  _ <| |_| | |_) | | || (_) | | |___| |  | | | | | . \ 
-##|_| \_\\____|____/   \__\___/   \____|_|  |_| |_| |_|\_\
-##                                                        
 To change an RGB color to CMYK, just follow this formula:
 #	computedC = 1 - (r/255)
 #	computedM = 1 - (g/255)
@@ -1109,12 +1027,15 @@ Find the minimum
 #	Y = (computedY - minCMY) / (1 - minCMY)
 #	K = minCMY
 
-##  ____ _                       _               _     ____     ____ ___  _     ___  ____  ____  
-## / ___| |__   __ _ _ __   __ _(_)_ __   __ _  | |   / ___|   / ___/ _ \| |   / _ \|  _ \/ ___| 
-##| |   | '_ \ / _` | '_ \ / _` | | '_ \ / _` | | |   \___ \  | |  | | | | |  | | | | |_) \___ \ 
-##| |___| | | | (_| | | | | (_| | | | | | (_| | | |___ ___) | | |__| |_| | |__| |_| |  _ < ___) |
-## \____|_| |_|\__,_|_| |_|\__, |_|_| |_|\__, | |_____|____/___\____\___/|_____\___/|_| \_\____/ 
-##                         |___/         |___/            |_____|                                
+###  _____ _                       _               _       _____  _____ ____  _      ____  _____   _____ 
+### / ____| |                     (_)             | |     / ____|/ ____/ __ \| |    / __ \|  __ \ / ____|
+###| |    | |__   __ _ _ __   __ _ _ _ __   __ _  | |    | (___ | |   | |  | | |   | |  | | |__) | (___  
+###| |    | '_ \ / _` | '_ \ / _` | | '_ \ / _` | | |     \___ \| |   | |  | | |   | |  | |  _  / \___ \ 
+###| |____| | | | (_| | | | | (_| | | | | | (_| | | |____ ____) | |___| |__| | |___| |__| | | \ \ ____) |
+### \_____|_| |_|\__,_|_| |_|\__, |_|_| |_|\__, | |______|_____/ \_____\____/|______\____/|_|  \_\_____/ 
+###                           __/ |         __/ |            ______                                      
+###                          |___/         |___/            |______|                                     
+
 When your running Linux and do a "ls -al --color" in your Bash shell,  on some systems the directory color is so dark you can barely make out the directory names? This is surprisingly a common problem. Here’s the solution:
 You can change both the intensity and the color, along with the background color on lots of things.
 
@@ -1159,12 +1080,15 @@ Here's some colors I want to save:
 Black Text on Red Background = 38;05;0;41
 White Blinking Test on Red Background = 01;05;41
 
-## _____  ___    ___  ____            _____ _            ____                   _     ____              _   
-##|___ / ( _ )_ / _ \| ___|          |_   _| |__   ___  / ___|_      _____  ___| |_  / ___| _ __   ___ | |_ 
-##  |_ \ / _ (_) | | |___ \   _____    | | | '_ \ / _ \ \___ \ \ /\ / / _ \/ _ \ __| \___ \| '_ \ / _ \| __|
-## ___) | (_) || |_| |___) | |_____|   | | | | | |  __/  ___) \ V  V /  __/  __/ |_   ___) | |_) | (_) | |_ 
-##|____/ \___( )\___/|____/            |_| |_| |_|\___| |____/ \_/\_/ \___|\___|\__| |____/| .__/ \___/ \__|
-##           |/                                                                            |_|              
+### ____   ___     ___  _____            _______ _             _____                  _      _____             _   
+###|___ \ / _ \ _ / _ \| ____|          |__   __| |           / ____|                | |    / ____|           | |  
+###  __) | (_) (_) | | | |__    ______     | |  | |__   ___  | (_____      _____  ___| |_  | (___  _ __   ___ | |_ 
+### |__ < > _ <  | | | |___ \  |______|    | |  | '_ \ / _ \  \___ \ \ /\ / / _ \/ _ \ __|  \___ \| '_ \ / _ \| __|
+### ___) | (_) |_| |_| |___) |             | |  | | | |  __/  ____) \ V  V /  __/  __/ |_   ____) | |_) | (_) | |_ 
+###|____/ \___/( )\___/|____/              |_|  |_| |_|\___| |_____/ \_/\_/ \___|\___|\__| |_____/| .__/ \___/ \__|
+###            |/                                                                                 | |              
+###                                                                                               |_|              
+
 There are also numbers that produce color that are not included in the standard chart (for example, 38 which I marked as a sweet spot)
 
 #	THE SWEET SPOT IS = 38;05;{1..255}
@@ -1179,32 +1103,37 @@ To see all these colors
 
 You can change the first two numbers and preview all the color combinations across 255 permutations.
 
-####  _____           _   _                ___             ______ _ _        __  __                                                   _   
-#### / ____|         | | (_)              / _ \           |  ____(_) |      |  \/  |                                                 | |  
-####| (___   ___  ___| |_ _  ___  _ __   | (_) |  ______  | |__   _| | ___  | \  / | __ _ _ __   __ _  __ _  ___ _ __ ___   ___ _ __ | |_ 
-#### \___ \ / _ \/ __| __| |/ _ \| '_ \   \__, | |______| |  __| | | |/ _ \ | |\/| |/ _` | '_ \ / _` |/ _` |/ _ \ '_ ` _ \ / _ \ '_ \| __|
-#### ____) |  __/ (__| |_| | (_) | | | |    / /           | |    | | |  __/ | |  | | (_| | | | | (_| | (_| |  __/ | | | | |  __/ | | | |_ 
-####|_____/ \___|\___|\__|_|\___/|_| |_|   /_/            |_|    |_|_|\___| |_|  |_|\__,_|_| |_|\__,_|\__, |\___|_| |_| |_|\___|_| |_|\__|
-####                                                                                                   __/ |                              
-####                                                                                                  |___/                               
+##  _____           _   _                ___             ______ _ _        __  __                                                   _   
+## / ____|         | | (_)              / _ \           |  ____(_) |      |  \/  |                                                 | |  
+##| (___   ___  ___| |_ _  ___  _ __   | (_) |  ______  | |__   _| | ___  | \  / | __ _ _ __   __ _  __ _  ___ _ __ ___   ___ _ __ | |_ 
+## \___ \ / _ \/ __| __| |/ _ \| '_ \   \__, | |______| |  __| | | |/ _ \ | |\/| |/ _` | '_ \ / _` |/ _` |/ _ \ '_ ` _ \ / _ \ '_ \| __|
+## ____) |  __/ (__| |_| | (_) | | | |    / /           | |    | | |  __/ | |  | | (_| | | | | (_| | (_| |  __/ | | | | |  __/ | | | |_ 
+##|_____/ \___|\___|\__|_|\___/|_| |_|   /_/            |_|    |_|_|\___| |_|  |_|\__,_|_| |_|\__,_|\__, |\___|_| |_| |_|\___|_| |_|\__|
+##                                                                                                   __/ |                              
+##                                                                                                  |___/                               
 
-##               _       
-## ___ _   _  __| | ___  
-##/ __| | | |/ _` |/ _ \ 
-##\__ \ |_| | (_| | (_) |
-##|___/\__,_|\__,_|\___/ 
-##                       
+###               _       
+###              | |      
+### ___ _   _  __| | ___  
+###/ __| | | |/ _` |/ _ \ 
+###\__ \ |_| | (_| | (_) |
+###|___/\__,_|\__,_|\___/ 
+###                       
+###                       
+
 sudo allows a permitted user to execute a command as the superuser or another user, as specified in the sudoers file.
 The real and effective uid and gid are set to match those of the target user as specified in the passwd file (the group vector is also initialized when the target user is not root).
 By default, sudo requires that users authenticate themselves with a password (NOTE: by default this is the user's password, not the root password).
 Once a user has been authenticated, a timestamp is updated and the user may then use sudo without a password for a short period of time (5 minutes unless overridden in sudoers).
 
-## __  __       _    _                                                       _                     
-##|  \/  | __ _| | _(_)_ __   __ _   _   _ ___  ___ _ __ ___   ___ _   _  __| | ___   ___ _ __ ___ 
-##| |\/| |/ _` | |/ / | '_ \ / _` | | | | / __|/ _ \ '__/ __| / __| | | |/ _` |/ _ \ / _ \ '__/ __|
-##| |  | | (_| |   <| | | | | (_| | | |_| \__ \  __/ |  \__ \ \__ \ |_| | (_| | (_) |  __/ |  \__ \
-##|_|  |_|\__,_|_|\_\_|_| |_|\__, |  \__,_|___/\___|_|  |___/ |___/\__,_|\__,_|\___/ \___|_|  |___/
-##                           |___/                                                                 
+### __  __       _    _                                         _       _                        _                     
+###|  \/  |     | |  (_)                                       (_)     | |                      | |                    
+###| \  / | __ _| | ___ _ __   __ _   _   _ ___  ___ _ __ ___   _ _ __ | |_ ___    ___ _   _  __| | ___   ___ _ __ ___ 
+###| |\/| |/ _` | |/ / | '_ \ / _` | | | | / __|/ _ \ '__/ __| | | '_ \| __/ _ \  / __| | | |/ _` |/ _ \ / _ \ '__/ __|
+###| |  | | (_| |   <| | | | | (_| | | |_| \__ \  __/ |  \__ \ | | | | | || (_) | \__ \ |_| | (_| | (_) |  __/ |  \__ \
+###|_|  |_|\__,_|_|\_\_|_| |_|\__, |  \__,_|___/\___|_|  |___/ |_|_| |_|\__\___/  |___/\__,_|\__,_|\___/ \___|_|  |___/
+###                            __/ |                                                                                   
+###                           |___/                                                  
 
 Users are not given sudo on initial install. To fix this, open Terminal, then load the sudoers file.
 #	su
@@ -1218,12 +1147,15 @@ It should look like this after you are done:
 	root        ALL=(ALL:ALL) ALL
 	newuser    ALL=(ALL:ALL) ALL
 
-##    _    _ _         _                 _          _                         _ 
-##   / \  | | |   __ _| |__   ___  _   _| |_    ___| |__  _ __ ___   ___   __| |
-##  / _ \ | | |  / _` | '_ \ / _ \| | | | __|  / __| '_ \| '_ ` _ \ / _ \ / _` |
-## / ___ \| | | | (_| | |_) | (_) | |_| | |_  | (__| | | | | | | | | (_) | (_| |
-##/_/   \_\_|_|  \__,_|_.__/ \___/ \__,_|\__|  \___|_| |_|_| |_| |_|\___/ \__,_|
-##                                                                              
+###          _ _         _                 _          _                         _ 
+###    /\   | | |       | |               | |        | |                       | |
+###   /  \  | | |   __ _| |__   ___  _   _| |_    ___| |__  _ __ ___   ___   __| |
+###  / /\ \ | | |  / _` | '_ \ / _ \| | | | __|  / __| '_ \| '_ ` _ \ / _ \ / _` |
+### / ____ \| | | | (_| | |_) | (_) | |_| | |_  | (__| | | | | | | | | (_) | (_| |
+###/_/    \_\_|_|  \__,_|_.__/ \___/ \__,_|\__|  \___|_| |_|_| |_| |_|\___/ \__,_|
+###                                                                               
+###                                                                               
+
 You can see file permissions by typing
 #	ls -l
 
@@ -1246,12 +1178,14 @@ You can also you binary coding to set permissions. The code is split the followi
 So to give a file full access permissions for anyone use:
 #	chmod 777 [file]
 
-##                           
-## _ __ ___ _   _ _ __   ___ 
-##| '__/ __| | | | '_ \ / __|
-##| |  \__ \ |_| | | | | (__ 
-##|_|  |___/\__, |_| |_|\___|
-##          |___/            
+###                           
+###                           
+### _ __ ___ _   _ _ __   ___ 
+###| '__/ __| | | | '_ \ / __|
+###| |  \__ \ |_| | | | | (__ 
+###|_|  |___/\__, |_| |_|\___|
+###           __/ |           
+###          |___/            
 
 rsync stands for remote sync. First time, rsync replicates the whole content between the source and destination directories. Next time, rsync transfers only the changed blocks or bytes to the destination location, which makes the transfer really fast.
 #	rsync [options] source destination
@@ -1269,12 +1203,15 @@ Use -i to view the difference between the source and destination files before tr
 Use the --dry-run option for testing. This won’t transfer files but will simulate the transfer
 #	rsync -zvrdop --dry-run source destination
 
-##  ____         _____ ____   ____ _  __ __   __                        _  __ 
-## / ___| ___   |  ___/ ___| / ___| |/ / \ \ / /__  _   _ _ __ ___  ___| |/ _|
-##| |  _ / _ \  | |_  \___ \| |   | ' /   \ V / _ \| | | | '__/ __|/ _ \ | |_ 
-##| |_| | (_) | |  _|  ___) | |___| . \    | | (_) | |_| | |  \__ \  __/ |  _|
-## \____|\___/  |_|   |____/ \____|_|\_\   |_|\___/ \__,_|_|  |___/\___|_|_|  
-##                                                                            
+###  _____         ______ _____  _____ _  __ __     __                       _  __ 
+### / ____|       |  ____/ ____|/ ____| |/ / \ \   / /                      | |/ _|
+###| |  __  ___   | |__ | (___ | |    | ' /   \ \_/ /__  _   _ _ __ ___  ___| | |_ 
+###| | |_ |/ _ \  |  __| \___ \| |    |  <     \   / _ \| | | | '__/ __|/ _ \ |  _|
+###| |__| | (_) | | |    ____) | |____| . \     | | (_) | |_| | |  \__ \  __/ | |  
+### \_____|\___/  |_|   |_____/ \_____|_|\_\    |_|\___/ \__,_|_|  |___/\___|_|_|  
+###                                                                                
+###                                                                            
+
 If you want to reboot and have the computer perform an FSCK on the next reboot, then open the Terminal and type:
 #	sudo shutdown -rF now
 OR…
@@ -1290,12 +1227,14 @@ Second: Unmount the drive (Replace /dev/??? with the correct address from step 1
 Now start the FSCK (Replace /dev/??? with the correct address from step 1 and 2)
 #	sudo fsck -t ext4 /dev/???
 	
-## ____            _   ____            _                   ____                  
-##| __ )  __ _  __| | / ___|  ___  ___| |_ ___  _ __ ___  / ___|  ___ __ _ _ __  
-##|  _ \ / _` |/ _` | \___ \ / _ \/ __| __/ _ \| '__/ __| \___ \ / __/ _` | '_ \ 
-##| |_) | (_| | (_| |  ___) |  __/ (__| || (_) | |  \__ \  ___) | (_| (_| | | | |
-##|____/ \__,_|\__,_| |____/ \___|\___|\__\___/|_|  |___/ |____/ \___\__,_|_| |_|
-##                                                                               
+### ____            _    _____           _                    _____                 
+###|  _ \          | |  / ____|         | |                  / ____|                
+###| |_) | __ _  __| | | (___   ___  ___| |_ ___  _ __ ___  | (___   ___ __ _ _ __  
+###|  _ < / _` |/ _` |  \___ \ / _ \/ __| __/ _ \| '__/ __|  \___ \ / __/ _` | '_ \ 
+###| |_) | (_| | (_| |  ____) |  __/ (__| || (_) | |  \__ \  ____) | (_| (_| | | | |
+###|____/ \__,_|\__,_| |_____/ \___|\___|\__\___/|_|  |___/ |_____/ \___\__,_|_| |_|
+###                                                                                 
+###                                                                                 
 To scan a computer for bad sectors, you can either use the Drive Utility tool or the badblocks Terminal command.
 First: Locate the drive you are going to FSCK
 #	sudo fdisk -l
@@ -1308,21 +1247,24 @@ First you have to write the location of the bad sectors to a flat file
 After that, we need to feed the flat file into the FSCK command to mark these sectors as unusable
 #	sudo fsck -l bad-blocks /dev/sda
 
-####  _____           _   _               __  ___             _____                                    _     
-#### / ____|         | | (_)             /_ |/ _ \           |  __ \                                  | |    
-####| (___   ___  ___| |_ _  ___  _ __    | | | | |  ______  | |__) |_ _ ___ _____      _____  _ __ __| |___ 
-#### \___ \ / _ \/ __| __| |/ _ \| '_ \   | | | | | |______| |  ___/ _` / __/ __\ \ /\ / / _ \| '__/ _` / __|
-#### ____) |  __/ (__| |_| | (_) | | | |  | | |_| |          | |  | (_| \__ \__ \\ V  V / (_) | | | (_| \__ \
-####|_____/ \___|\___|\__|_|\___/|_| |_|  |_|\___/           |_|   \__,_|___/___/ \_/\_/ \___/|_|  \__,_|___/
-####                                                                                                         
-####                                                                                                         
+##  _____           _   _               __  ___             _____                                    _     
+## / ____|         | | (_)             /_ |/ _ \           |  __ \                                  | |    
+##| (___   ___  ___| |_ _  ___  _ __    | | | | |  ______  | |__) |_ _ ___ _____      _____  _ __ __| |___ 
+## \___ \ / _ \/ __| __| |/ _ \| '_ \   | | | | | |______| |  ___/ _` / __/ __\ \ /\ / / _ \| '__/ _` / __|
+## ____) |  __/ (__| |_| | (_) | | | |  | | |_| |          | |  | (_| \__ \__ \\ V  V / (_) | | | (_| \__ \
+##|_____/ \___|\___|\__|_|\___/|_| |_|  |_|\___/           |_|   \__,_|___/___/ \_/\_/ \___/|_|  \__,_|___/
+##                                                                                                         
+##                                                                                                         
 
-## ____        _             _          __  __       _          ____                             ____                                     _     
-##|  _ \ _   _| | ___  ___  | |_ ___   |  \/  | __ _| | _____  / ___|  ___  ___ _   _ _ __ ___  |  _ \ __ _ ___ _____      _____  _ __ __| |___ 
-##| |_) | | | | |/ _ \/ __| | __/ _ \  | |\/| |/ _` | |/ / _ \ \___ \ / _ \/ __| | | | '__/ _ \ | |_) / _` / __/ __\ \ /\ / / _ \| '__/ _` / __|
-##|  _ <| |_| | |  __/\__ \ | || (_) | | |  | | (_| |   <  __/  ___) |  __/ (__| |_| | | |  __/ |  __/ (_| \__ \__ \\ V  V / (_) | | | (_| \__ \
-##|_| \_\\__,_|_|\___||___/  \__\___/  |_|  |_|\__,_|_|\_\___| |____/ \___|\___|\__,_|_|  \___| |_|   \__,_|___/___/ \_/\_/ \___/|_|  \__,_|___/
-##                                                                                                                                              
+### _____       _             _          __  __       _           _____                            _____                                    _     
+###|  __ \     | |           | |        |  \/  |     | |         / ____|                          |  __ \                                  | |    
+###| |__) |   _| | ___  ___  | |_ ___   | \  / | __ _| | _____  | (___   ___  ___ _   _ _ __ ___  | |__) |_ _ ___ _____      _____  _ __ __| |___ 
+###|  _  / | | | |/ _ \/ __| | __/ _ \  | |\/| |/ _` | |/ / _ \  \___ \ / _ \/ __| | | | '__/ _ \ |  ___/ _` / __/ __\ \ /\ / / _ \| '__/ _` / __|
+###| | \ \ |_| | |  __/\__ \ | || (_) | | |  | | (_| |   <  __/  ____) |  __/ (__| |_| | | |  __/ | |  | (_| \__ \__ \\ V  V / (_) | | | (_| \__ \
+###|_|  \_\__,_|_|\___||___/  \__\___/  |_|  |_|\__,_|_|\_\___| |_____/ \___|\___|\__,_|_|  \___| |_|   \__,_|___/___/ \_/\_/ \___/|_|  \__,_|___/
+###                                                                                                                                               
+###                                                                                                                                              
+
 A strong password has at least 16 characters
 A strong password uses uppercase letters.
 A strong password is NOT made up of only uppercase letters.
@@ -1358,31 +1300,15 @@ A strong password is NOT a password that unlocks a bunch of stored passwords.
 
 A strong password is NEVER used as a login ID somewhere else.
 
-##  ____                           _         ____                                     _     
-## / ___| ___ _ __   ___ _ __ __ _| |_ ___  |  _ \ __ _ ___ _____      _____  _ __ __| |___ 
-##| |  _ / _ \ '_ \ / _ \ '__/ _` | __/ _ \ | |_) / _` / __/ __\ \ /\ / / _ \| '__/ _` / __|
-##| |_| |  __/ | | |  __/ | | (_| | ||  __/ |  __/ (_| \__ \__ \\ V  V / (_) | | | (_| \__ \
-## \____|\___|_| |_|\___|_|  \__,_|\__\___| |_|   \__,_|___/___/ \_/\_/ \___/|_|  \__,_|___/
-##                                                                                          
-Many passwords can be created effortlessly using makepasswd
+### _____                _     _               _     _    _ _                 _           _____                                    _ 
+###|  __ \              | |   | |             | |   | |  | | |               | |         |  __ \                                  | |
+###| |__) |___  ___  ___| |_  | |     ___  ___| |_  | |  | | |__  _   _ _ __ | |_ _   _  | |__) |_ _ ___ _____      _____  _ __ __| |
+###|  _  // _ \/ __|/ _ \ __| | |    / _ \/ __| __| | |  | | '_ \| | | | '_ \| __| | | | |  ___/ _` / __/ __\ \ /\ / / _ \| '__/ _` |
+###| | \ \  __/\__ \  __/ |_  | |___| (_) \__ \ |_  | |__| | |_) | |_| | | | | |_| |_| | | |  | (_| \__ \__ \\ V  V / (_) | | | (_| |
+###|_|  \_\___||___/\___|\__| |______\___/|___/\__|  \____/|_.__/ \__,_|_| |_|\__|\__,_| |_|   \__,_|___/___/ \_/\_/ \___/|_|  \__,_|
+###                                                                                                                                  
+###                                                                                                                                  
 
-#	sudo aptitude install makepasswd
-
-#	man makepasswd
-
-I like using makepasswd this way
-#	touch FILE
-#	(Enter a password into the file)
-#	makepasswd --clearfrom FILE --repeatpass 30 --crypt >> passwordfile
-#	makepasswd --clearfrom FILE --repeatpass 30 --crypt-md5 >> passwordfile
-
-## ____                _     _              _     _   _ _                 _           ____                                     _ 
-##|  _ \ ___  ___  ___| |_  | |    ___  ___| |_  | | | | |__  _   _ _ __ | |_ _   _  |  _ \ __ _ ___ _____      _____  _ __ __| |
-##| |_) / _ \/ __|/ _ \ __| | |   / _ \/ __| __| | | | | '_ \| | | | '_ \| __| | | | | |_) / _` / __/ __\ \ /\ / / _ \| '__/ _` |
-##|  _ <  __/\__ \  __/ |_  | |__| (_) \__ \ |_  | |_| | |_) | |_| | | | | |_| |_| | |  __/ (_| \__ \__ \\ V  V / (_) | | | (_| |
-##|_| \_\___||___/\___|\__| |_____\___/|___/\__|  \___/|_.__/ \__,_|_| |_|\__|\__,_| |_|   \__,_|___/___/ \_/\_/ \___/|_|  \__,_|
-##                                                                                                                               
-No idea if this still works or not...
 Boot from a live CD
 Mount the computer’s hard drive
 Open Terminal.
@@ -1400,17 +1326,16 @@ Scroll down to the username in question and replace the encrypted password with:
 #	U6aMy0wojraho
 Reboot
 
-## ____                                     _  __        __   _         _ _            
-##|  _ \ __ _ ___ _____      _____  _ __ __| | \ \      / /__| |__  ___(_) |_ ___  ___ 
-##| |_) / _` / __/ __\ \ /\ / / _ \| '__/ _` |  \ \ /\ / / _ \ '_ \/ __| | __/ _ \/ __|
-##|  __/ (_| \__ \__ \\ V  V / (_) | | | (_| |   \ V  V /  __/ |_) \__ \ | ||  __/\__ \
-##|_|   \__,_|___/___/ \_/\_/ \___/|_|  \__,_|    \_/\_/ \___|_.__/|___/_|\__\___||___/
-##                                                                                     
-If you're too lazy to use some of the commands above to make passwords, there are websites that can do it as well.
-#	http://maord.com/
-		I highly recommend this site for generating passwords as it can generate up to 2500 passwords at a time (viewable as a webpage, or downloadable in CSV format or plain text)
-		and includes features like MD5 and SHA1 hash values for encryption.
+### _____                                    _  __          __  _         _ _            
+###|  __ \                                  | | \ \        / / | |       (_) |           
+###| |__) |_ _ ___ _____      _____  _ __ __| |  \ \  /\  / /__| |__  ___ _| |_ ___  ___ 
+###|  ___/ _` / __/ __\ \ /\ / / _ \| '__/ _` |   \ \/  \/ / _ \ '_ \/ __| | __/ _ \/ __|
+###| |  | (_| \__ \__ \\ V  V / (_) | | | (_| |    \  /\  /  __/ |_) \__ \ | ||  __/\__ \
+###|_|   \__,_|___/___/ \_/\_/ \___/|_|  \__,_|     \/  \/ \___|_.__/|___/_|\__\___||___/
+###                                                                                      
+###                                                                                      
 
+If you're too lazy to use some of the commands above to make passwords, there are websites that can do it as well.
 #	www.passwordcard.org/en
 		For those of you who feel the need to have your passwords in print, Password Card does just that.
 		It prints multiple secure passwords on a wallet-sized card for you to print, laminate, and save.
@@ -1421,34 +1346,49 @@ If you're too lazy to use some of the commands above to make passwords, there ar
 		Then using substitution you can then make other secure passwords from simple words and phrases. Don’t lose the card though, or password you have will be lost!
 		Includes options to generate charts with numbers and symbols.
 
+#	https://github.com/exarobibliologist/Password_Chart
+		This is my take on passwordchart.com above. This program is written in Python and allows you to take the password program with you anywhere.
+		You can use the program to generate and print a password chart, or type in a key and it will convert it for you.
+		Does not require access to the internet or access to passwordchart.com in order to use.
+
+#	http://maord.com/
+		I highly recommend this site for generating passwords as it can generate up to 2500 passwords at a time (viewable as a webpage, or downloadable in CSV format or plain text)
+		and includes features like MD5 and SHA1 hash values for encryption.
+
 I highly recommend the following sites for telling if the password you are using is secure:
 #	www.passfault.com
 #	www.howsecureismypassword.net
 
-####  _____           _   _               __ __             _____ _____  _    _            __  __                                 
-#### / ____|         | | (_)             /_ /_ |           / ____|  __ \| |  | |   ___    |  \/  |                                
-####| (___   ___  ___| |_ _  ___  _ __    | || |  ______  | |    | |__) | |  | |  ( _ )   | \  / | ___ _ __ ___   ___  _ __ _   _ 
-#### \___ \ / _ \/ __| __| |/ _ \| '_ \   | || | |______| | |    |  ___/| |  | |  / _ \/\ | |\/| |/ _ \ '_ ` _ \ / _ \| '__| | | |
-#### ____) |  __/ (__| |_| | (_) | | | |  | || |          | |____| |    | |__| | | (_>  < | |  | |  __/ | | | | | (_) | |  | |_| |
-####|_____/ \___|\___|\__|_|\___/|_| |_|  |_||_|           \_____|_|     \____/   \___/\/ |_|  |_|\___|_| |_| |_|\___/|_|   \__, |
-####                                                                                                                         __/ |
-####                                                                                                                        |___/ 
+##  _____           _   _               __ __             _____ _____  _    _            __  __                                 
+## / ____|         | | (_)             /_ /_ |           / ____|  __ \| |  | |   ___    |  \/  |                                
+##| (___   ___  ___| |_ _  ___  _ __    | || |  ______  | |    | |__) | |  | |  ( _ )   | \  / | ___ _ __ ___   ___  _ __ _   _ 
+## \___ \ / _ \/ __| __| |/ _ \| '_ \   | || | |______| | |    |  ___/| |  | |  / _ \/\ | |\/| |/ _ \ '_ ` _ \ / _ \| '__| | | |
+## ____) |  __/ (__| |_| | (_) | | | |  | || |          | |____| |    | |__| | | (_>  < | |  | |  __/ | | | | | (_) | |  | |_| |
+##|_____/ \___|\___|\__|_|\___/|_| |_|  |_||_|           \_____|_|     \____/   \___/\/ |_|  |_|\___|_| |_| |_|\___/|_|   \__, |
+##                                                                                                                         __/ |
+##                                                                                                                        |___/ 
 
-##    _             _ _       _     _        __  __                                 
-##   / \__   ____ _(_) | __ _| |__ | | ___  |  \/  | ___ _ __ ___   ___  _ __ _   _ 
-##  / _ \ \ / / _` | | |/ _` | '_ \| |/ _ \ | |\/| |/ _ \ '_ ` _ \ / _ \| '__| | | |
-## / ___ \ V / (_| | | | (_| | |_) | |  __/ | |  | |  __/ | | | | | (_) | |  | |_| |
-##/_/   \_\_/ \__,_|_|_|\__,_|_.__/|_|\___| |_|  |_|\___|_| |_| |_|\___/|_|   \__, |
-##                                                                            |___/ 
+###                   _ _       _     _        __  __                                 
+###    /\            (_) |     | |   | |      |  \/  |                                
+###   /  \__   ____ _ _| | __ _| |__ | | ___  | \  / | ___ _ __ ___   ___  _ __ _   _ 
+###  / /\ \ \ / / _` | | |/ _` | '_ \| |/ _ \ | |\/| |/ _ \ '_ ` _ \ / _ \| '__| | | |
+### / ____ \ V / (_| | | | (_| | |_) | |  __/ | |  | |  __/ | | | | | (_) | |  | |_| |
+###/_/    \_\_/ \__,_|_|_|\__,_|_.__/|_|\___| |_|  |_|\___|_| |_| |_|\___/|_|   \__, |
+###                                                                              __/ |
+###                                                                             |___/ 
+
 To see more information on memory, open Terminal and type in the following command:
 #	cat /proc/meminfo
 
-## _   _                 _          _   _                      
-##| | | | _____      __ | |_ ___   | | | |___  ___   _ __  ___ 
-##| |_| |/ _ \ \ /\ / / | __/ _ \  | | | / __|/ _ \ | '_ \/ __|
-##|  _  | (_) \ V  V /  | || (_) | | |_| \__ \  __/ | |_) \__ \
-##|_| |_|\___/ \_/\_/    \__\___/   \___/|___/\___| | .__/|___/
-##                                                  |_|        
+### _    _                 _                                     
+###| |  | |               | |                                    
+###| |__| | _____      __ | |_ ___    _   _ ___  ___   _ __  ___ 
+###|  __  |/ _ \ \ /\ / / | __/ _ \  | | | / __|/ _ \ | '_ \/ __|
+###| |  | | (_) \ V  V /  | || (_) | | |_| \__ \  __/ | |_) \__ \
+###|_|  |_|\___/ \_/\_/    \__\___/   \__,_|___/\___| | .__/|___/
+###                                                   | |        
+###                                                   |_|        
+
 ps displays information about a selection of the active processes.
 If you want a repetitive update of the selection and the displayed information, use "htop" or “top” instead. Or you can use the directions above to see memory infos.
 
@@ -1465,21 +1405,24 @@ To list processes in a hierarchy, tree format
 To list all threads in a particular process
 #	ps -C [process] -L -o pid,tid,pcpu,state
 
-####  _____           _   _               __ ___             __  __ _                           __ _    __          ___           _                   
-#### / ____|         | | (_)             /_ |__ \           |  \/  (_)                         / _| |   \ \        / (_)         | |                  
-####| (___   ___  ___| |_ _  ___  _ __    | |  ) |  ______  | \  / |_  ___ _ __ ___  ___  ___ | |_| |_   \ \  /\  / / _ _ __   __| | _____      _____ 
-#### \___ \ / _ \/ __| __| |/ _ \| '_ \   | | / /  |______| | |\/| | |/ __| '__/ _ \/ __|/ _ \|  _| __|   \ \/  \/ / | | '_ \ / _` |/ _ \ \ /\ / / __|
-#### ____) |  __/ (__| |_| | (_) | | | |  | |/ /_           | |  | | | (__| | | (_) \__ \ (_) | | | |_     \  /\  /  | | | | | (_| | (_) \ V  V /\__ \
-####|_____/ \___|\___|\__|_|\___/|_| |_|  |_|____|          |_|  |_|_|\___|_|  \___/|___/\___/|_|  \__|     \/  \/   |_|_| |_|\__,_|\___/ \_/\_/ |___/
-####                                                                                                                                                  
-####                                                                                                                                                  
+##  _____           _   _               __ ___             __  __ _                           __ _    __          ___           _                   
+## / ____|         | | (_)             /_ |__ \           |  \/  (_)                         / _| |   \ \        / (_)         | |                  
+##| (___   ___  ___| |_ _  ___  _ __    | |  ) |  ______  | \  / |_  ___ _ __ ___  ___  ___ | |_| |_   \ \  /\  / / _ _ __   __| | _____      _____ 
+## \___ \ / _ \/ __| __| |/ _ \| '_ \   | | / /  |______| | |\/| | |/ __| '__/ _ \/ __|/ _ \|  _| __|   \ \/  \/ / | | '_ \ / _` |/ _ \ \ /\ / / __|
+## ____) |  __/ (__| |_| | (_) | | | |  | |/ /_           | |  | | | (__| | | (_) \__ \ (_) | | | |_     \  /\  /  | | | | | (_| | (_) \ V  V /\__ \
+##|_____/ \___|\___|\__|_|\___/|_| |_|  |_|____|          |_|  |_|_|\___|_|  \___/|___/\___/|_|  \__|     \/  \/   |_|_| |_|\__,_|\___/ \_/\_/ |___/
+##                                                                                                                                                  
+##                                                                                                                                                  
 
-##__        ___           _                        _    ____ ____ ___   ____       _   _   _                 
-##\ \      / (_)_ __   __| | _____      _____     / \  / ___|  _ \_ _| / ___|  ___| |_| |_(_)_ __   __ _ ___ 
-## \ \ /\ / /| | '_ \ / _` |/ _ \ \ /\ / / __|   / _ \| |   | |_) | |  \___ \ / _ \ __| __| | '_ \ / _` / __|
-##  \ V  V / | | | | | (_| | (_) \ V  V /\__ \  / ___ \ |___|  __/| |   ___) |  __/ |_| |_| | | | | (_| \__ \
-##   \_/\_/  |_|_| |_|\__,_|\___/ \_/\_/ |___/ /_/   \_\____|_|  |___| |____/ \___|\__|\__|_|_| |_|\__, |___/
-##                                                                                                 |___/     
+###__          ___           _                              _____ _____ _____    _____      _   _   _                 
+###\ \        / (_)         | |                       /\   / ____|  __ \_   _|  / ____|    | | | | (_)                
+### \ \  /\  / / _ _ __   __| | _____      _____     /  \ | |    | |__) || |   | (___   ___| |_| |_ _ _ __   __ _ ___ 
+###  \ \/  \/ / | | '_ \ / _` |/ _ \ \ /\ / / __|   / /\ \| |    |  ___/ | |    \___ \ / _ \ __| __| | '_ \ / _` / __|
+###   \  /\  /  | | | | | (_| | (_) \ V  V /\__ \  / ____ \ |____| |    _| |_   ____) |  __/ |_| |_| | | | | (_| \__ \
+###    \/  \/   |_|_| |_|\__,_|\___/ \_/\_/ |___/ /_/    \_\_____|_|   |_____| |_____/ \___|\__|\__|_|_| |_|\__, |___/
+###                                                                                                          __/ |    
+###                                                                                                         |___/     
+
 Windows PCs typically operate in a number of Advanced Configuration and Power Interface (ACPI) power states. An S0 power state, for example, is when your PC is running and ready to respond to your input.
 There are a number of power states, including S1, S2, and S3, and there's also a HYBRID SLEEP state where hibernation is used in tandem with a sleep state.
 
@@ -1491,12 +1434,15 @@ An S5 power state (soft off) is when your PC is shut down and rebooted completel
 
 There is also a G3 power state, which is when your PC consumes absolutely no power and is by all means off.
 
-## ____       _            __        __          _ _     __  __                   _     ___         _     _                  
-##|  _ \ _ __(_)_   _____  \ \      / /__  _ __ ( ) |_  |  \/  | ___  _   _ _ __ | |_  |_ _|_ __   | |   (_)_ __  _   ___  __
-##| | | | '__| \ \ / / _ \  \ \ /\ / / _ \| '_ \|/| __| | |\/| |/ _ \| | | | '_ \| __|  | || '_ \  | |   | | '_ \| | | \ \/ /
-##| |_| | |  | |\ V /  __/   \ V  V / (_) | | | | | |_  | |  | | (_) | |_| | | | | |_   | || | | | | |___| | | | | |_| |>  < 
-##|____/|_|  |_| \_/ \___|    \_/\_/ \___/|_| |_|  \__| |_|  |_|\___/ \__,_|_| |_|\__| |___|_| |_| |_____|_|_| |_|\__,_/_/\_\
-##                                                                                                                           
+### _____       _            __          __         _ _     __  __                   _     _         _      _                  
+###|  __ \     (_)           \ \        / /        ( ) |   |  \/  |                 | |   (_)       | |    (_)                 
+###| |  | |_ __ ___   _____   \ \  /\  / /__  _ __ |/| |_  | \  / | ___  _   _ _ __ | |_   _ _ __   | |     _ _ __  _   ___  __
+###| |  | | '__| \ \ / / _ \   \ \/  \/ / _ \| '_ \  | __| | |\/| |/ _ \| | | | '_ \| __| | | '_ \  | |    | | '_ \| | | \ \/ /
+###| |__| | |  | |\ V /  __/    \  /\  / (_) | | | | | |_  | |  | | (_) | |_| | | | | |_  | | | | | | |____| | | | | |_| |>  < 
+###|_____/|_|  |_| \_/ \___|     \/  \/ \___/|_| |_|  \__| |_|  |_|\___/ \__,_|_| |_|\__| |_|_| |_| |______|_|_| |_|\__,_/_/\_\
+###                                                                                                                            
+###                                                                                                                            
+
 The only way that Linux can easily access files on a Windows hard drive is if the computer turns off completely and doesn't leave the drive partially hibernating.
 
 This is especially annoying if you're trying to rescue files from a hard drive that Windows has corrupted. And you try to mount the drive, and it won't mount!
@@ -1521,21 +1467,24 @@ Using a Linux Mint Live ISO, open Terminal and type:
 #	sudo ntfsfix /dev/sdXY
 where XY is the partition. For example sdA2
 
-####  _____           _   _               __ ____              _____                     _                 _   _      _           
-#### / ____|         | | (_)             /_ |___ \            / ____|                   | |     /\        | | (_)    | |          
-####| (___   ___  ___| |_ _  ___  _ __    | | __) |  ______  | (___   __ ___   _____  __| |    /  \   _ __| |_ _  ___| | ___  ___ 
-#### \___ \ / _ \/ __| __| |/ _ \| '_ \   | ||__ <  |______|  \___ \ / _` \ \ / / _ \/ _` |   / /\ \ | '__| __| |/ __| |/ _ \/ __|
-#### ____) |  __/ (__| |_| | (_) | | | |  | |___) |           ____) | (_| |\ V /  __/ (_| |  / ____ \| |  | |_| | (__| |  __/\__ \
-####|_____/ \___|\___|\__|_|\___/|_| |_|  |_|____/           |_____/ \__,_| \_/ \___|\__,_| /_/    \_\_|   \__|_|\___|_|\___||___/
-####                                                                                                                              
-####                                                                                                                              
+##  _____           _   _               __ ____              _____                     _                 _   _      _           
+## / ____|         | | (_)             /_ |___ \            / ____|                   | |     /\        | | (_)    | |          
+##| (___   ___  ___| |_ _  ___  _ __    | | __) |  ______  | (___   __ ___   _____  __| |    /  \   _ __| |_ _  ___| | ___  ___ 
+## \___ \ / _ \/ __| __| |/ _ \| '_ \   | ||__ <  |______|  \___ \ / _` \ \ / / _ \/ _` |   / /\ \ | '__| __| |/ __| |/ _ \/ __|
+## ____) |  __/ (__| |_| | (_) | | | |  | |___) |           ____) | (_| |\ V /  __/ (_| |  / ____ \| |  | |_| | (__| |  __/\__ \
+##|_____/ \___|\___|\__|_|\___/|_| |_|  |_|____/           |_____/ \__,_| \_/ \___|\__,_| /_/    \_\_|   \__|_|\___|_|\___||___/
+##                                                                                                                              
+##                                                                                                                              
 
-##__        ___            __   __            _   _               _            ____      _                 _          
-##\ \      / / |__  _   _  \ \ / /__  _   _  | \ | | ___  ___  __| |   __ _   / ___|_ __(_)_ __ ___   ___ (_)_ __ ___ 
-## \ \ /\ / /| '_ \| | | |  \ V / _ \| | | | |  \| |/ _ \/ _ \/ _` |  / _` | | |  _| '__| | '_ ` _ \ / _ \| | '__/ _ \
-##  \ V  V / | | | | |_| |   | | (_) | |_| | | |\  |  __/  __/ (_| | | (_| | | |_| | |  | | | | | | | (_) | | | |  __/
-##   \_/\_/  |_| |_|\__, |   |_|\___/ \__,_| |_| \_|\___|\___|\__,_|  \__,_|  \____|_|  |_|_| |_| |_|\___/|_|_|  \___|
-##                  |___/                                                                                             
+###__          ___            __     __           _   _               _            _____      _                 _          
+###\ \        / / |           \ \   / /          | \ | |             | |          / ____|    (_)               (_)         
+### \ \  /\  / /| |__  _   _   \ \_/ /__  _   _  |  \| | ___  ___  __| |   __ _  | |  __ _ __ _ _ __ ___   ___  _ _ __ ___ 
+###  \ \/  \/ / | '_ \| | | |   \   / _ \| | | | | . ` |/ _ \/ _ \/ _` |  / _` | | | |_ | '__| | '_ ` _ \ / _ \| | '__/ _ \
+###   \  /\  /  | | | | |_| |    | | (_) | |_| | | |\  |  __/  __/ (_| | | (_| | | |__| | |  | | | | | | | (_) | | | |  __/
+###    \/  \/   |_| |_|\__, |    |_|\___/ \__,_| |_| \_|\___|\___|\__,_|  \__,_|  \_____|_|  |_|_| |_| |_|\___/|_|_|  \___|
+###                     __/ |                                                                                              
+###                    |___/                                                                                               
+
 ### This article was published in Volume Twenty-Seven, Number Two, Summer 2010 article of 2600 The Hacker Quarterly.
 ### by Leviathan
 
@@ -1554,12 +1503,14 @@ If you accumulate as much information as I have (my grimoire is about 12 years o
 And if, saints forbid, you should ever be in an embaressing legal situation and you have to get rid of its evidence quickly, tear out the offending pages, shed a few tears, then flick your Bic. Let's see you clean up a hard drive that cleanly. Privacy, my friends; it is priceless. If your dealing are not quite that dramatic, your grimiore is a good reference at review time or when preparing your resume.
 So spend a few wise dollars and obtain a good quality, bound notebook with lined archive paper, and start filling it with your accumulated IT wisdom. You and your grimoire will make history.
 
-##  ____ _               _     _          _       _                   
-## / ___| |__   ___  ___| |__ (_)_ __ ___( )___  | |    __ ___      __
-##| |   | '_ \ / _ \/ __| '_ \| | '__/ _ \// __| | |   / _` \ \ /\ / /
-##| |___| | | |  __/\__ \ | | | | | |  __/ \__ \ | |__| (_| |\ V  V / 
-## \____|_| |_|\___||___/_| |_|_|_|  \___| |___/ |_____\__,_| \_/\_/  
-##                                                                    
+###  _____ _               _     _          _       _                    
+### / ____| |             | |   (_)        ( )     | |                   
+###| |    | |__   ___  ___| |__  _ _ __ ___|/ ___  | |     __ ___      __
+###| |    | '_ \ / _ \/ __| '_ \| | '__/ _ \ / __| | |    / _` \ \ /\ / /
+###| |____| | | |  __/\__ \ | | | | | |  __/ \__ \ | |___| (_| |\ V  V / 
+### \_____|_| |_|\___||___/_| |_|_|_|  \___| |___/ |______\__,_| \_/\_/  
+###                                                                      
+###                                                                      
 ### Adapted from http://CheshireCatalyst.Com/CheshiresLaw.html
 
 # You can't break the rules, but once you know what they are, you can abuse the crap out of them!
@@ -1573,12 +1524,15 @@ Now your mother wasn't trying to be racist here. She simply didn't want your shi
 We don't really care whether we seperate out the white clothes from the color clothing, the problem here really is that you DON'T WANT to seperate the wash, and (probably more important), you don't want to have to do two loads! So if the application of the rules say, "mix the underwear with the rest of the laundry, but don't include white clothing", then the application of the Law is really saying, "wear colored underwear, or better yet use color-safe clothing, and you won't have to seperate the wash"!
 Remember that the underlying idea behind Cheshire's Law is to look at The Rules with a new eye. Look for non-traditional methods to abuse the intent of the rule in such a way that might allow you to show how what you want to do is not only allowed, but is the way it's suppossed to to be done! After all, colored underwear are suppossed to be washed with the rest of the colored clothes.
 
-##__        ___           _     _       _   _            _    _                ___     ____                                _____             _                      _             
-##\ \      / / |__   __ _| |_  (_)___  | | | | __ _  ___| | _(_)_ __   __ _   ( _ )   |  _ \ _____   _____ _ __ ___  ___  | ____|_ __   __ _(_)_ __   ___  ___ _ __(_)_ __   __ _ 
-## \ \ /\ / /| '_ \ / _` | __| | / __| | |_| |/ _` |/ __| |/ / | '_ \ / _` |  / _ \/\ | |_) / _ \ \ / / _ \ '__/ __|/ _ \ |  _| | '_ \ / _` | | '_ \ / _ \/ _ \ '__| | '_ \ / _` |
-##  \ V  V / | | | | (_| | |_  | \__ \ |  _  | (_| | (__|   <| | | | | (_| | | (_>  < |  _ <  __/\ V /  __/ |  \__ \  __/ | |___| | | | (_| | | | | |  __/  __/ |  | | | | | (_| |
-##   \_/\_/  |_| |_|\__,_|\__| |_|___/ |_| |_|\__,_|\___|_|\_\_|_| |_|\__, |  \___/\/ |_| \_\___| \_/ \___|_|  |___/\___| |_____|_| |_|\__, |_|_| |_|\___|\___|_|  |_|_| |_|\__, |
-##                                                                    |___/                                                            |___/                                |___/ 
+###__          ___           _     _____       _    _            _    _                        _____                                ______             _                      _            ___  
+###\ \        / / |         | |   |_   _|     | |  | |          | |  (_)               ___    |  __ \                              |  ____|           (_)                    (_)          |__ \ 
+### \ \  /\  / /| |__   __ _| |_    | |  ___  | |__| | __ _  ___| | ___ _ __   __ _   ( _ )   | |__) |_____   _____ _ __ ___  ___  | |__   _ __   __ _ _ _ __   ___  ___ _ __ _ _ __   __ _  ) |
+###  \ \/  \/ / | '_ \ / _` | __|   | | / __| |  __  |/ _` |/ __| |/ / | '_ \ / _` |  / _ \/\ |  _  // _ \ \ / / _ \ '__/ __|/ _ \ |  __| | '_ \ / _` | | '_ \ / _ \/ _ \ '__| | '_ \ / _` |/ / 
+###   \  /\  /  | | | | (_| | |_   _| |_\__ \ | |  | | (_| | (__|   <| | | | | (_| | | (_>  < | | \ \  __/\ V /  __/ |  \__ \  __/ | |____| | | | (_| | | | | |  __/  __/ |  | | | | | (_| |_|  
+###    \/  \/   |_| |_|\__,_|\__| |_____|___/ |_|  |_|\__,_|\___|_|\_\_|_| |_|\__, |  \___/\/ |_|  \_\___| \_/ \___|_|  |___/\___| |______|_| |_|\__, |_|_| |_|\___|\___|_|  |_|_| |_|\__, (_)  
+###                                                                            __/ |                                                              __/ |                                __/ |    
+###                                                                           |___/                                                              |___/                                |___/     
+
 It is amazing, and rather disconcerting, to realize how much software we run without knowing for sure what it does. We buy software off the shelf in shrink wrapped packages. We run setup utilities that install numerous files, change system settings, delete or disable older versions and superseded utilities, and modify critical registry files. Every time we access a Web site, we may invoke or interact with dozens of programs and code segments that are necessary to give us the intended look, feel, and behavior. We purchase CD's with hundreds of games and utilities or download them as shareware. We exchange useful programs with colleagues and friends when we have tried only a fraction of each program’s features.
 Then, we download updates and install patches, trusting that the vendors are sure that the changes are correct and complete. We blindly hope that the latest change to each program keeps it compatible with all of the rest of the programs on our system. We rely on much software that we do not understand and do not know very well at all.
 Many people fear hackers because they have been instilled with a negative view from the press, however, you owe many advancements made in computer software and hardware to hacking.
@@ -1635,45 +1589,55 @@ Hacking and reverse-engineering should not be illegal when used to benefit other
 
 -------------------------------------------------------------------
 
-####  _____           _   _               __ _  _               _____ _                _      _____          _           
-#### / ____|         | | (_)             /_ | || |             / ____| |              | |    / ____|        | |          
-####| (___   ___  ___| |_ _  ___  _ __    | | || |_   ______  | |    | |__   ___  __ _| |_  | |     ___   __| | ___  ___ 
-#### \___ \ / _ \/ __| __| |/ _ \| '_ \   | |__   _| |______| | |    | '_ \ / _ \/ _` | __| | |    / _ \ / _` |/ _ \/ __|
-#### ____) |  __/ (__| |_| | (_) | | | |  | |  | |            | |____| | | |  __/ (_| | |_  | |___| (_) | (_| |  __/\__ \
-####|_____/ \___|\___|\__|_|\___/|_| |_|  |_|  |_|             \_____|_| |_|\___|\__,_|\__|  \_____\___/ \__,_|\___||___/
-####                                                                                                                     
-####                                                                                                                     
+##  _____           _   _               __ _  _               _____ _                _      _____          _           
+## / ____|         | | (_)             /_ | || |             / ____| |              | |    / ____|        | |          
+##| (___   ___  ___| |_ _  ___  _ __    | | || |_   ______  | |    | |__   ___  __ _| |_  | |     ___   __| | ___  ___ 
+## \___ \ / _ \/ __| __| |/ _ \| '_ \   | |__   _| |______| | |    | '_ \ / _ \/ _` | __| | |    / _ \ / _` |/ _ \/ __|
+## ____) |  __/ (__| |_| | (_) | | | |  | |  | |            | |____| | | |  __/ (_| | |_  | |___| (_) | (_| |  __/\__ \
+##|_____/ \___|\___|\__|_|\___/|_| |_|  |_|  |_|             \_____|_| |_|\___|\__,_|\__|  \_____\___/ \__,_|\___||___/
+##                                                                                                                     
+##                                                                                                                     
 
 Most of these cheat codes are for really old games, but the cheats were passed around by word-of-mouth and most are next to impossible to find on the net now. I've backed a few up here, so I can use them as long as the games continue working.
 
-## ____  _     _   __  __      _           _       ____  _              ____       _  __ 
-##/ ___|(_) __| | |  \/  | ___(_) ___ _ __( )___  / ___|(_)_ __ ___    / ___| ___ | |/ _|
-##\___ \| |/ _` | | |\/| |/ _ \ |/ _ \ '__|// __| \___ \| | '_ ` _ \  | |  _ / _ \| | |_ 
-## ___) | | (_| | | |  | |  __/ |  __/ |    \__ \  ___) | | | | | | | | |_| | (_) | |  _|
-##|____/|_|\__,_| |_|  |_|\___|_|\___|_|    |___/ |____/|_|_| |_| |_|  \____|\___/|_|_|  
-##                                                                                       
+###  _____ _     _   __  __      _           _        _____ _              _____       _  __ 
+### / ____(_)   | | |  \/  |    (_)         ( )      / ____(_)            / ____|     | |/ _|
+###| (___  _  __| | | \  / | ___ _  ___ _ __|/ ___  | (___  _ _ __ ___   | |  __  ___ | | |_ 
+### \___ \| |/ _` | | |\/| |/ _ \ |/ _ \ '__| / __|  \___ \| | '_ ` _ \  | | |_ |/ _ \| |  _|
+### ____) | | (_| | | |  | |  __/ |  __/ |    \__ \  ____) | | | | | | | | |__| | (_) | | |  
+###|_____/|_|\__,_| |_|  |_|\___|_|\___|_|    |___/ |_____/|_|_| |_| |_|  \_____|\___/|_|_|  
+###                                                                                          
+###                                                                                          
+
 During gameplay Press Ctrl + S then type in bombsheep
 
 During gameplay Press Shift + = to get more money
 
 Save the game. Open the save file in a hex editor. You can edit your golfer stats by tweaking the entries at offset 1C18B
 
-## ____       _                           __  __       _               ____  
-##|  _ \ _ __(_)_ __   ___ ___  ___ ___  |  \/  | __ _| | _____ _ __  |___ \ 
-##| |_) | '__| | '_ \ / __/ _ \/ __/ __| | |\/| |/ _` | |/ / _ \ '__|   __) |
-##|  __/| |  | | | | | (_|  __/\__ \__ \ | |  | | (_| |   <  __/ |     / __/ 
-##|_|   |_|  |_|_| |_|\___\___||___/___/ |_|  |_|\__,_|_|\_\___|_|    |_____|
+### _____      _                           __  __       _               ___  
+###|  __ \    (_)                         |  \/  |     | |             |__ \ 
+###| |__) | __ _ _ __   ___ ___  ___ ___  | \  / | __ _| | _____ _ __     ) |
+###|  ___/ '__| | '_ \ / __/ _ \/ __/ __| | |\/| |/ _` | |/ / _ \ '__|   / / 
+###| |   | |  | | | | | (_|  __/\__ \__ \ | |  | | (_| |   <  __/ |     / /_ 
+###|_|   |_|  |_|_| |_|\___\___||___/___/ |_|  |_|\__,_|_|\_\___|_|    |____|
+###                                                                          
+###                                                                          
+
 Go to town.
 Press F12-R-N-Q.
 Go back home.
 Go to town.
 
-## _____   _                _                     _ 
-##|__  /  / \   _ __   __ _| |__   __ _ _ __   __| |
-##  / /  / _ \ | '_ \ / _` | '_ \ / _` | '_ \ / _` |
-## / /_ / ___ \| | | | (_| | |_) | (_| | | | | (_| |
-##/____/_/   \_\_| |_|\__, |_.__/ \__,_|_| |_|\__,_|
-##                    |___/                         
+### ______                     _                     _ 
+###|___  /   /\               | |                   | |
+###   / /   /  \   _ __   __ _| |__   __ _ _ __   __| |
+###  / /   / /\ \ | '_ \ / _` | '_ \ / _` | '_ \ / _` |
+### / /__ / ____ \| | | | (_| | |_) | (_| | | | | (_| |
+###/_____/_/    \_\_| |_|\__, |_.__/ \__,_|_| |_|\__,_|
+###                       __/ |                        
+###                      |___/                         
+
 You can access Debugging mode, without that unsightly WIZARD mark on the screen, by enabling cheats in the menu. Press = then "i", and select f. This will allow you to cheat death, and enables all Debugging commands.
 
 === Debugging mode ===
@@ -1685,23 +1649,26 @@ To enter a command count: type '0', enter the number desired, and press enter. W
 Wizard mode does nothing else except keep your character alive, provide verbose information on all damage you do to monsters, and explain why an object disappears.
 To enter wizard mode, hold down the ctrl key and press 'w'.
 
-## ____                                        ____                    _   ____  _                     ____                    
-##|  _ \ _   _ _ __   __ _  ___  ___  _ __    / ___|_ __ __ ___      _| | / ___|| |_ ___  _ __   ___  / ___|  ___  _   _ _ __  
-##| | | | | | | '_ \ / _` |/ _ \/ _ \| '_ \  | |   | '__/ _` \ \ /\ / / | \___ \| __/ _ \| '_ \ / _ \ \___ \ / _ \| | | | '_ \ 
-##| |_| | |_| | | | | (_| |  __/ (_) | | | | | |___| | | (_| |\ V  V /| |  ___) | || (_) | | | |  __/  ___) | (_) | |_| | |_) |
-##|____/ \__,_|_| |_|\__, |\___|\___/|_| |_|  \____|_|  \__,_| \_/\_/ |_| |____/ \__\___/|_| |_|\___| |____/ \___/ \__,_| .__/ 
-##                   |___/                                                                                              |_|    
+### _____                                        _____                    _    _____ _                      _____                   
+###|  __ \                                      / ____|                  | |  / ____| |                    / ____|                  
+###| |  | |_   _ _ __   __ _  ___  ___  _ __   | |     _ __ __ ___      _| | | (___ | |_ ___  _ __   ___  | (___   ___  _   _ _ __  
+###| |  | | | | | '_ \ / _` |/ _ \/ _ \| '_ \  | |    | '__/ _` \ \ /\ / / |  \___ \| __/ _ \| '_ \ / _ \  \___ \ / _ \| | | | '_ \ 
+###| |__| | |_| | | | | (_| |  __/ (_) | | | | | |____| | | (_| |\ V  V /| |  ____) | || (_) | | | |  __/  ____) | (_) | |_| | |_) |
+###|_____/ \__,_|_| |_|\__, |\___|\___/|_| |_|  \_____|_|  \__,_| \_/\_/ |_| |_____/ \__\___/|_| |_|\___| |_____/ \___/ \__,_| .__/ 
+###                     __/ |                                                                                                | |    
+###                    |___/                                                                                                 |_|    
+
 Press & in game to access Wizard Mode
 Press ? to see possible cheats
 
-####  _____           _   _               __ _____             ____              _                              _   _    _                            
-#### / ____|         | | (_)             /_ | ____|           / __ \            | |                            | | | |  | |                           
-####| (___   ___  ___| |_ _  ___  _ __    | | |__    ______  | |  | |_   _  ___ | |_ ___  ___    __ _ _ __   __| | | |__| |_   _ _ __ ___   ___  _ __ 
-#### \___ \ / _ \/ __| __| |/ _ \| '_ \   | |___ \  |______| | |  | | | | |/ _ \| __/ _ \/ __|  / _` | '_ \ / _` | |  __  | | | | '_ ` _ \ / _ \| '__|
-#### ____) |  __/ (__| |_| | (_) | | | |  | |___) |          | |__| | |_| | (_) | ||  __/\__ \ | (_| | | | | (_| | | |  | | |_| | | | | | | (_) | |   
-####|_____/ \___|\___|\__|_|\___/|_| |_|  |_|____/            \___\_\\__,_|\___/ \__\___||___/  \__,_|_| |_|\__,_| |_|  |_|\__,_|_| |_| |_|\___/|_|   
-####                                                                                                                                                  
-####                                                                                                                                                  
+##  _____           _   _               __ _____             ____              _                              _   _    _                            
+## / ____|         | | (_)             /_ | ____|           / __ \            | |                            | | | |  | |                           
+##| (___   ___  ___| |_ _  ___  _ __    | | |__    ______  | |  | |_   _  ___ | |_ ___  ___    __ _ _ __   __| | | |__| |_   _ _ __ ___   ___  _ __ 
+## \___ \ / _ \/ __| __| |/ _ \| '_ \   | |___ \  |______| | |  | | | | |/ _ \| __/ _ \/ __|  / _` | '_ \ / _` | |  __  | | | | '_ ` _ \ / _ \| '__|
+## ____) |  __/ (__| |_| | (_) | | | |  | |___) |          | |__| | |_| | (_) | ||  __/\__ \ | (_| | | | | (_| | | |  | | |_| | | | | | | (_) | |   
+##|_____/ \___|\___|\__|_|\___/|_| |_|  |_|____/            \___\_\\__,_|\___/ \__\___||___/  \__,_|_| |_|\__,_| |_|  |_|\__,_|_| |_| |_|\___/|_|   
+##                                                                                                                                                  
+##                                                                                                                                                  
 
 Carry me always, carry me well.
 I am thy teacher of Linux and shell.
