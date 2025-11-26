@@ -1,7 +1,5 @@
 ![](https://i.imgur.com/OKroi5L.png)<br>![](https://i.imgur.com/k67VjAZ.png)<br>![](https://i.imgur.com/bMVIk0p.png)
 
-<b>APT Preferences will also be heavily modified.</b> This will help to control the extra sources so things stay stable while giving you extra access to packages far beyond stable.
-
 To run these scripts you will need:
 <blockquote><b>Expert</b> level Debian Linux knowledge. Don't attempt to run these scripts without brains.</blockquote>
 <blockquote><b>God-Level</b> knowledge, if attempting to rewrite or modify these scripts for another Linux operating system.</blockquote>
@@ -18,6 +16,8 @@ These scripts will <b>permanently hybridize</b> your Debian setup. converting it
 <b>You will get a modified sources.list that includes extra sources (for testing, unstable, and experimental).</b>
 The sources use deb.debian.org so that you will always be on the fastest Debian server.
 Generic version names are used to allow rolling release upgrades and updates.
+
+<b>APT Preferences will also be heavily modified.</b> This will help to control the extra sources so things stay stable while giving you extra access to packages far beyond stable.
 
 These scripts are not designed for beginning Debian users.
 If you are uncomfortable with learning new things, and want to stick with the standard methods of using/customizing Linux, this repo <b>IS NOT</b> for you. <b>Walk away now!</b>
