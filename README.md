@@ -1,16 +1,12 @@
-![](https://i.imgur.com/OKroi5L.png)<br>![](https://i.imgur.com/k67VjAZ.png)<br>![](https://i.imgur.com/bMVIk0p.png)
+\![](https://i.imgur.com/OKroi5L.png)<br>![](https://i.imgur.com/k67VjAZ.png)<br>![](https://i.imgur.com/bMVIk0p.png)
 
 To run these scripts you will need:
-<blockquote><b>Expert</b> level Debian knowledge.<p><b>God-Level</b> Linux knowledge, especially if attempting to rewrite or modify these scripts for another Linux operating system.</blockquote>
-<blockquote><b>Moderate</b> BASH scripting experience.</b> Many scripts are extensively layered to produce the unique TTY look I like.</blockquote>
-<blockquote><b>Beginner to Moderate</b> Conky scripting experience.</blockquote>
-<blockquote><b>Be willing to learn and experiment</b></blockquote>
-<blockquote><b>And a sense of humor.</b></blockquote>
+<blockquote><b>Expert</b> level Debian knowledge.<p><p><b>God-Level</b> Linux knowledge, especially if attempting to rewrite or modify these scripts for another Linux operating system.<p><p><b>Moderate</b> BASH scripting experience.</b> Many scripts are extensively layered to produce the unique TTY look I like.<p><p><b>Beginner to Moderate</b> Conky scripting experience.<p><p><b>Be willing to learn and experiment</b><p><p><b>And a sense of humor.</b></blockquote>
 
-<h1>THIS IS ONLY FOR DEBIAN!!</h1>
-<h2>This will cause <u>unrecoverable</u> changes to your Debian setup.</h2>
+<h1>THIS IS <b><i><u>ONLY</b></i></u> FOR DEBIAN!!</h1>
+<h2>These scripts will <b>permanently hybridize</b> your Debian setup.</h2>
 
-These scripts will <b>permanently hybridize</b> your Debian setup. converting it into a Debian setup that is incredibly versatile, without sacrificing stability.
+It will convert a Debian Stable install into a hybrid Debian setup that is incredibly versatile, without sacrificing stability.
 
 <b>You will get a modified sources.list that includes extra sources (for testing, unstable, and experimental).</b>
 The sources use deb.debian.org so that you will always be on the fastest Debian server.
