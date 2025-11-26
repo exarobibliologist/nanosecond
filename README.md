@@ -1,9 +1,8 @@
 ![](https://i.imgur.com/OKroi5L.png)<br>![](https://i.imgur.com/k67VjAZ.png)<br>![](https://i.imgur.com/bMVIk0p.png)
 
 To run these scripts you will need:
-<blockquote><b>Expert</b> level Debian Linux knowledge. Don't attempt to run these scripts without brains.</blockquote>
-<blockquote><b>God-Level</b> knowledge, if attempting to rewrite or modify these scripts for another Linux operating system.</blockquote>
-<blockquote><b>Moderate</b> BASH scripting experience.</b> Many scripts are extensively layered to produce the unique look I like in the Terminal interface.</blockquote>
+<blockquote><b>Expert</b> level Debian knowledge.<p><b>God-Level</b> Linux knowledge, especially if attempting to rewrite or modify these scripts for another Linux operating system.</blockquote>
+<blockquote><b>Moderate</b> BASH scripting experience.</b> Many scripts are extensively layered to produce the unique TTY look I like.</blockquote>
 <blockquote><b>Beginner to Moderate</b> Conky scripting experience.</blockquote>
 <blockquote><b>Be willing to learn and experiment</b></blockquote>
 <blockquote><b>And a sense of humor.</b></blockquote>
