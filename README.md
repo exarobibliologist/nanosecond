@@ -1,4 +1,4 @@
-\![](https://i.imgur.com/OKroi5L.png)<br>![](https://i.imgur.com/k67VjAZ.png)<br>![](https://i.imgur.com/bMVIk0p.png)
+![](https://i.imgur.com/OKroi5L.png)<br>![](https://i.imgur.com/k67VjAZ.png)<br>![](https://i.imgur.com/bMVIk0p.png)
 
 To run these scripts you will need:
 <blockquote><b>Expert</b> level Debian knowledge.<p><p><b>God-Level</b> Linux knowledge, especially if attempting to rewrite or modify these scripts for another Linux operating system.<p><p><b>Moderate</b> BASH scripting experience.</b> Many scripts are extensively layered to produce the unique TTY look I like.<p><p><b>Beginner to Moderate</b> Conky scripting experience.<p><p><b>Be willing to learn and experiment</b><p><p><b>And a sense of humor.</b></blockquote>
