@@ -8,7 +8,7 @@ To run these scripts you will need:
 <blockquote><b>Be willing to learn and experiment</b></blockquote>
 <blockquote><b>And a sense of humor.</b></blockquote>
 
-<h1>THIS IS ONLY FOR DEBIAN!!<br><br>Additionally, it will work with the Debian package for WSL (Windows Subsystem for Linux) on Windows.</h1>
+<h1>THIS IS ONLY FOR DEBIAN!!</h1>
 <h2>This will cause <u>unrecoverable</u> changes to your Debian setup.</h2>
 
 These scripts will <b>permanently hybridize</b> your Debian setup. converting it into a Debian setup that is incredibly versatile, without sacrificing stability.
