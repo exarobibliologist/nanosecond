@@ -1,10 +1,12 @@
 ![](https://i.imgur.com/OKroi5L.png)<br>![](https://i.imgur.com/k67VjAZ.png)<br>![](https://i.imgur.com/bMVIk0p.png)
 
 <h1>To run these scripts you will need:</h1>
-<blockquote><b>Expert</b> level Debian knowledge.<p><p><b>God-Level</b> Linux know-how, if modifying this for a different Linux OS. If you want this script on Ubuntu or Mint, you are welcome to write your own, but if you use this script, there is a 99.99999% chance you will destroy your system without ever knowing what went wrong.<p><p><b>Moderate</b> BASH scripting experience.</b> Many scripts are extensively layered to produce the unique TTY look I like.<p><p><b>Beginner to Moderate</b> Conky scripting experience.<p><p><b>Be willing to learn and experiment</b><p><p><b>And a sense of humor.</b></blockquote>
+<blockquote><b>Expert</b> level Debian knowledge.<p><p><b>God-Level</b> Linux know-how, if modifying this for a different Linux OS.<p><p><b>Moderate</b> BASH scripting experience.</b><p><p><b>Moderate</b> Python scripting experience.</b><p><p><b>Moderate</b> LS and PS1 scripting knowledge. While this part of the script is the easiest to modify and tweak, many scripts are extensively layered to produce the unique TTY look I like.<p><p><b>Moderate</b> Conky scripting experience if using the fluxbox-conky script<p><p><b>Be willing to learn and experiment</b><p><p><b>And a sense of humor.</b></blockquote>
 
 <h1>THIS IS <b><i><u>ONLY</b></i></u> FOR DEBIAN!!</h1>
-<h2>These scripts will <b>permanently hybridize</b> your Debian setup.</h2>
+<h2>If you want this script on Ubuntu or Mint, you are welcome to write your own, but if you use this script, there is a 99.99999% chance you will destroy your system without ever knowing what went wrong.</h2>
+
+<h3>These scripts will <b>permanently hybridize</b> your Debian setup.</h3>
 
 It will convert a Debian Stable install into a hybrid Debian setup that is incredibly versatile, without sacrificing stability.
 
