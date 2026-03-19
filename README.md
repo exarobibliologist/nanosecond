@@ -1,7 +1,7 @@
 ![](https://i.imgur.com/OKroi5L.png)<br>![](https://i.imgur.com/k67VjAZ.png)<br>![](https://i.imgur.com/bMVIk0p.png)
 
-To run these scripts you will need:
-<blockquote><b>Expert</b> level Debian knowledge.<p><p><b>God-Level</b> Linux knowledge, especially if attempting to rewrite or modify these scripts for another Linux operating system.<p><p><b>Moderate</b> BASH scripting experience.</b> Many scripts are extensively layered to produce the unique TTY look I like.<p><p><b>Beginner to Moderate</b> Conky scripting experience.<p><p><b>Be willing to learn and experiment</b><p><p><b>And a sense of humor.</b></blockquote>
+<h1>To run these scripts you will need:</h1>
+<blockquote><b>Expert</b> level Debian knowledge.<p><p><b>God-Level</b> Linux know-how, if modifying this for a different Linux OS. If you want this script on Ubuntu or Mint, you are welcome to write your own, but if you use this script, there is a 99.99999% chance you will destroy your system without ever knowing what went wrong.<p><p><b>Moderate</b> BASH scripting experience.</b> Many scripts are extensively layered to produce the unique TTY look I like.<p><p><b>Beginner to Moderate</b> Conky scripting experience.<p><p><b>Be willing to learn and experiment</b><p><p><b>And a sense of humor.</b></blockquote>
 
 <h1>THIS IS <b><i><u>ONLY</b></i></u> FOR DEBIAN!!</h1>
 <h2>These scripts will <b>permanently hybridize</b> your Debian setup.</h2>
