@@ -72,7 +72,6 @@ fi
 . ~/GIT/nanosecond/lamer
 . ~/GIT/nanosecond/lsabcd
 . ~/GIT/nanosecond/mkcd
-. ~/GIT/nanosecond/namechanger
 . ~/GIT/nanosecond/networkinfo
 . ~/GIT/nanosecond/owned
 . ~/GIT/nanosecond/passwordmaker
@@ -82,6 +81,7 @@ fi
 . ~/GIT/nanosecond/rebash
 . ~/GIT/nanosecond/reconk
 . ~/GIT/nanosecond/refont
+. ~/GIT/nanosecond/renamer
 . ~/GIT/nanosecond/rgb2cmyk
 . ~/GIT/nanosecond/slideshower
 . ~/GIT/nanosecond/soundfix
