@@ -1,15 +1,24 @@
-#! /bin/bash
-
 # USAGE:
 # apt-show [package]
+# Now it should autocomplete package names to make this script more user-friendly
 
-function apt-show()
-{
-	apt-cache showpkg $1
-pressanykey
-	apt-cache policy $1
-pressanykey
-	apt-cache depends $1
-pressanykey
-	apt-cache rdepends $1
+function apt-show() {
+    # 1. Check if a package name was actually provided
+    if [ -z "$1" ]; then
+        echo "Usage: apt-show [package]"
+        return 1
+    fi
+
+    # 2. Run the apt-show commands
+		apt-cache showpkg "$1"
+	pressanykey
+		apt-cache policy "$1"
+    pressanykey
+		apt-cache depends "$1"
+	pressanykey
+		apt-cache rdepends "$1"
 }
+
+# 3. The Magic: Bind 'apt-cache' tab-completion to 'apt-show'
+# I use 2>/dev/null to hide errors just in case the bash-completion package hasn't loaded yet.
+complete -F _apt_cache apt-show 2>/dev/null || complete -F _apt apt-show 2>/dev/null
