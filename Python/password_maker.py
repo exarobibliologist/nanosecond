@@ -12,7 +12,6 @@ def generate_memorable():
 
     try:
         with open(word_file, 'r', encoding='utf-8') as f:
-            # We strip whitespace and filter out words with apostrophes to keep passwords clean
             words = [word.strip() for word in f if word.strip() and "'" not in word]
         
         if not words:
@@ -21,7 +20,6 @@ def generate_memorable():
 
         print("\n--- Memorable Passwords ---")
         for _ in range(4):
-            # secrets.choice() is cryptographically secure
             print(secrets.choice(words))
             
     except Exception as e:
@@ -30,9 +28,7 @@ def generate_memorable():
 def generate_password_sheet():
     """Generates 14 batches of passwords using different character sets."""
     print("\n--- Large Password Sheet Generator ---")
-    print("(This generates 14 different combinations of character sets.)")
     
-    # 1. Get user input with basic error checking
     try:
         num = int(input("How many passwords per set? (Keep under 20 recommended): "))
         min_len = int(input("Minimum length of each password?: "))
@@ -48,7 +44,17 @@ def generate_password_sheet():
         print("Error: Length must be at least 1.")
         return
 
-    # 2. Define the exact character sets from your bash script
+    # Ask for Guarantee Mode
+    guarantee_input = input("Enable 'Guarantee Mode' (Ensures at least one char from each set)? [Y/n]: ").strip().lower()
+    is_guarantee = guarantee_input != 'n'
+
+    # If Guarantee Mode is on, the absolute minimum length must be 4 to support 
+    # the "Numbers, Lowercase, Uppercase, Symbols" combination.
+    if is_guarantee and min_len < 4:
+        print("\nNotice: Minimum length increased to 4 to support Guarantee Mode requirements.")
+        min_len = max(min_len, 4)
+        max_len = max(max_len, 4)
+
     char_sets = {
         "Numbers": "1234567890",
         "Lowercase": "qwertyuiopasdfghjklzxcvbnm",
@@ -56,7 +62,6 @@ def generate_password_sheet():
         "Symbols": "!@#$%^&*();:<>/?",
     }
 
-    # 3. Define the 14 combinations (matching your bash script's exact order)
     combinations = [
         ("Numbers, Lowercase, Uppercase, Symbols", ["Numbers", "Lowercase", "Uppercase", "Symbols"]),
         ("Numbers, Lowercase, Symbols", ["Numbers", "Lowercase", "Symbols"]),
@@ -76,22 +81,33 @@ def generate_password_sheet():
 
     output_file = Path("password_sheet.txt")
     
-    # 4. Generate the passwords and write to the file
+    # We use SystemRandom for cryptographically secure shuffling
+    secure_random = random.SystemRandom()
+    
     try:
-        # Using 'w' mode overwrites the file each time. Change to 'a' if you want to append.
         with open(output_file, 'w', encoding='utf-8') as f:
             for label, sets in combinations:
                 f.write(f"\n--- {label} ---\n")
                 
-                # Combine the chosen character sets into one giant string pool
                 pool = "".join(char_sets[s] for s in sets)
                 
                 for _ in range(num):
-                    # Pick a random length between min and max
                     length = random.randint(min_len, max_len)
                     
-                    # Generate the password using cryptographically secure random choices
-                    password = "".join(secrets.choice(pool) for _ in range(length))
+                    if is_guarantee:
+                        # 1. Guarantee one character from each required set
+                        chars = [secrets.choice(char_sets[s]) for s in sets]
+                        
+                        # 2. Fill the rest of the password length from the combined pool
+                        chars += [secrets.choice(pool) for _ in range(length - len(sets))]
+                        
+                        # 3. Securely shuffle the list so the guaranteed chars aren't at the front
+                        secure_random.shuffle(chars)
+                        password = "".join(chars)
+                    else:
+                        # Standard fully random generation
+                        password = "".join(secrets.choice(pool) for _ in range(length))
+                        
                     f.write(f"{password}\n")
         
         print(f"\nSuccess! Generated {num * 14} passwords.")
