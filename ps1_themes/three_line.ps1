@@ -1,0 +1,1 @@
+PS1="$(bold 154)╓╥─$(reset)$(color 166)\u$(color 196)@$(color 166)\h\n$(bold 154)╟─$(reset)$(color 196)in$(reset) $(color 166)\w \n$(bold 154)╙╨─$(color 154)Enter Your Command Here$(reset)"
