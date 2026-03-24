@@ -3,35 +3,54 @@
 # Local Modified Julian Date Clock
 # This realtime clock converts the current local date to Modified JD and displays both in realtime.				
 
-function juliantime-original()
-{
-	# Infinite loop for real-time conversion
-	while true
-	do
-		# Fetch EVERYTHING inside the loop so midnight rollovers are caught!
-		todayis=$(date +"%F")
-		hourtime=$(date +"%H")
-		minutetime=$(date +"%M")
-		secondtime=$(date +"%S.%N" | head -c10)
+#!/bin/bash
 
-		# Compute Julian Day dynamically inside the loop
-		let julian=($(date +%s -d $todayis)-$(date +%s -d 1968-05-24))/86400+40000
+#################################################################################################################################
+# Local Modified Julian Date Clock
+# This realtime clock converts the current local date to a custom Modified JD and displays both in realtime.					
+#################################################################################################################################
 
-		# Compute Julian time as a float
-		juliantime=$(echo "scale=9; ($hourtime / 24) + ($minutetime / 1440) + ($secondtime / 86400) + $julian" | bc -l)
+function juliantime-original() {
+    # Catch Ctrl+C (SIGINT) to exit gracefully and push the cursor down safely
+    trap 'printf "\n\n\n\n\n\nClock stopped. Have a great day!\n"; return' INT
 
-		# Clear the screen and display results
-		clear
-		echo "Standard Gregorian Date"
-		echo "$todayis $hourtime:$minutetime:$secondtime"
-		echo "Local Modified Julian"
-		echo "$juliantime"
+    # 1. Clear the screen ONCE and print the static header
+    clear
+    echo "--- Realtime Terminal Clock ---"
 
-		# Sleep for a fraction of a second (20fps refresh rate to save CPU)
-		sleep 0.05
-	done
+    # Infinite loop for real-time conversion
+    while true; do
+        # Fetch EVERYTHING inside the loop so midnight rollovers are caught!
+        todayis=$(date +"%F")
+        hourtime=$(date +"%H")
+        minutetime=$(date +"%M")
+        secondtime=$(date +"%S.%N" | head -c10)
+
+        # Compute Julian Day dynamically inside the loop
+        let julian=($(date +%s -d $todayis)-$(date +%s -d 1968-05-24))/86400+40000
+
+        # Compute Julian time as a float
+        juliantime=$(echo "scale=9; ($hourtime / 24) + ($minutetime / 1440) + ($secondtime / 86400) + $julian" | bc -l)
+
+        # 2. Print the dynamic lines
+        # \e[K acts as our line-eraser so no ghost characters are left behind
+        echo -e "Standard Gregorian Date:\e[K"
+        echo -e "$todayis $hourtime:$minutetime:$secondtime\e[K"
+        echo -e "\e[K"
+        echo -e "Local Modified Julian:\e[K"
+        echo -e "$juliantime\e[K"
+        echo -e "\e[K"
+        
+        # Use -n to prevent a newline on the last text line
+        echo -ne "(Press Ctrl+C to exit)\e[K"
+
+        # 3. The Magic Move: Tell the cursor to go UP 6 lines for the next loop
+        echo -ne "\e[6F"
+
+        # Sleep for a fraction of a second (20fps refresh rate to save CPU)
+        sleep 0.05
+    done
 }
-
 function juliantime()
 {
 python3 ~/GIT/nanosecond/Python/julian_clock.py
