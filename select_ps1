@@ -31,7 +31,7 @@ function select_ps1() {
         local preview=$( (source "$theme" >/dev/null 2>&1; echo -e "${PS1@P}") )
         
         echo "$i) $theme_name"
-        echo -e "   Preview: $preview\n"
+        echo -e "$preview\n"
         ((i++))
     done
 
