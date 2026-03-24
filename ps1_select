@@ -5,56 +5,88 @@
 ########################
 
 function ps1_select() {
-    # 1. Define your paths
     local THEME_DIR="$HOME/GIT/nanosecond/ps1_themes"
     local ACTIVE_THEME="$HOME/.active_ps1"
 
-    # Load all theme files into an array
     local themes=("$THEME_DIR"/*.ps1)
+    local total_themes=${#themes[@]}
     
     if [ ! -e "${themes[0]}" ]; then
         echo "No themes found in $THEME_DIR! Please drop some .ps1 files in there."
         return 1
     fi
 
-    clear
-    echo -e "=== Terminal Theme Selector ===\n"
+    # Pagination Settings
+    local page_size=5 # Number of themes to show per page
+    local current_page=0
+    # Calculate total pages (ceiling division)
+    local total_pages=$(( (total_themes + page_size - 1) / page_size ))
 
-    local i=1
-    for theme in "${themes[@]}"; do
-        # Strip the path and extension to get a clean display name
-        local theme_name=$(basename "$theme" .ps1)
+    while true; do
+        clear
+        echo -e "=== Terminal Theme Selector (Page $((current_page + 1)) of $total_pages) ===\n"
+
+        # Calculate which themes to show on this specific page
+        local start_idx=$((current_page * page_size))
+        local end_idx=$((start_idx + page_size))
         
-        # THE MAGIC TRICK: 
-        # We run this in a subshell (...) so we can source the theme.
-        # ${PS1@P} tells Bash to render the prompt string exactly as it would look live!
-        local preview=$( (source "$theme" >/dev/null 2>&1; echo -e "${PS1@P}") )
-        
-        echo "$i) $theme_name"
-        echo -e "$preview\n"
-        ((i++))
+        # Ensure we don't try to print beyond the array length on the last page
+        if [ $end_idx -gt $total_themes ]; then
+            end_idx=$total_themes
+        fi
+
+        # Loop through just the themes for this page
+        for (( i=$start_idx; i<$end_idx; i++ )); do
+            local theme="${themes[$i]}"
+            local theme_name=$(basename "$theme" .ps1)
+            local display_num=$((i + 1))
+            
+            # The Magic Render Trick
+            local preview=$( (source "$theme" >/dev/null 2>&1; echo -e "${PS1@P}") )
+            
+            echo "$display_num) $theme_name"
+            echo -e "   Preview: $preview\n"
+        done
+
+        # Build the dynamic prompt text
+        local prompt_text="Select a theme ($((start_idx + 1))-$end_idx)"
+        if [ $total_pages -gt 1 ]; then
+            prompt_text+=", [N]ext, [P]revious"
+        fi
+        prompt_text+=", or 0 to exit: "
+
+        # Get user input
+        read -p "$prompt_text" choice
+
+        # Handle the user's choice
+        # ${choice,,} automatically converts their input to lowercase so 'N' and 'n' both work
+        if [[ "${choice,,}" == "n" ]]; then
+            if [ $((current_page + 1)) -lt $total_pages ]; then
+                ((current_page++))
+            fi
+        elif [[ "${choice,,}" == "p" ]]; then
+            if [ $current_page -gt 0 ]; then
+                ((current_page--))
+            fi
+        elif [[ "$choice" == "0" ]]; then
+            echo "Exited without changes."
+            break
+        elif [[ "$choice" =~ ^[0-9]+$ ]] && [ "$choice" -ge 1 ] && [ "$choice" -le "$total_themes" ]; then
+            # Valid theme number selected
+            local selected_theme="${themes[$((choice-1))]}"
+            local theme_name=$(basename "$selected_theme" .ps1)
+            
+            ln -sf "$selected_theme" "$ACTIVE_THEME"
+            echo -e "\nSuccess! Theme '$theme_name' applied."
+            
+            source "$selected_theme"
+            break
+        else
+            echo -e "\nInvalid choice."
+            sleep 1
+        fi
     done
-
-    # 2. User Selection
-    read -p "Select a theme (1-$((i-1))) or 0 to exit: " choice
-
-    if [[ "$choice" -ge 1 && "$choice" -lt "$i" ]]; then
-        local selected_theme="${themes[$((choice-1))]}"
-        local theme_name=$(basename "$selected_theme" .ps1)
-        
-        # 3. Apply the Theme
-        # We use a symlink so ~/.active_ps1 always points to your chosen file
-        ln -sf "$selected_theme" "$ACTIVE_THEME"
-        
-        echo -e "\nSuccess! Theme '$theme_name' applied."
-        
-        # Apply it immediately to the current session so you don't have to reload
-        source "$selected_theme"
-    else
-        echo "Exited without changes."
-    fi
 }
-
 # ==============================================================================
 # THE LOADER HOOK
 # Automatically applies the active theme every time a new terminal is opened
