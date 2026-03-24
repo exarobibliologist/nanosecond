@@ -1,1 +1,1 @@
-PS1="$(bold 154)╓╥─$(reset)$(color 166)\u$(color 196)@$(color 166)\h\ $(color 196)in$(reset)\n$$(bold 154)╙╨─  $(color 166)\w$(color 196):::::::::$(reset)"
+PS1="$(bold 154)╓╥─$(reset)$(color 166)\u$(color 196)@$(color 166)\h\ $(color 196)in$(reset)\n$(bold 154)╙╨─  $(color 166)\w$(color 196):::::::::$(reset)"
