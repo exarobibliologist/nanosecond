@@ -1,1 +1,1 @@
-PS1="$(bold 166)╓╥─$(reset)$(color 240)\u$(color 196)@$(color 240)\h $(color 196)in $(color 240)\w$(reset)\n$(bold 166)╙╨─ Enter Your Command Here:\ $(reset)"
+PS1="\[$(bold 166)\]╓╥─\[$(reset)\]\[$(color 240)\]\u\[$(color 196)\]@\[$(color 240)\]\h \[$(color 196)\]in \[$(color 240)\]\w\[$(reset)\]\n\[$(bold 166)\]╙╨─ Enter Your Command Here:\ \[$(reset)\]"
