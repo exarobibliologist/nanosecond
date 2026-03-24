@@ -1,0 +1,2 @@
+# Deus Ex: Mankind Divided - Task Force 29 (Interpol)
+PS1="\[$(bold 255)\]TF29 \[$(color 240)\]// \[$(bold 245)\]\u \[$(color 240)\]@ \[$(bold 255)\]\h \[$(bold 226)\][\[$(color 255)\]\w\[$(bold 226)\]] \[$(bold 226)\]◬ \[$(reset)\]"
