@@ -1,39 +1,70 @@
 #!/bin/bash
 
 # Function to install package if not already installed
-function InstallPackageIfNotExist()
-{
-	local package=$1
-	local installer=${2:-"apt"}  # Default to apt if not provided
-	local package_manager="sudo $installer install -y"
+# ==============================================================================
+# USAGE: InstallPackageIfNotExist <package_name> [installer]
+#
+# DESCRIPTION:
+#   Checks if a specific package is installed using a high-speed dpkg query. 
+#   If the package is missing, it installs it. If it already exists, it 
+#   skips it and prints a status message.
+#
+# PARAMETERS:
+#   $1 (Required) - The exact name of the package to check/install.
+#   $2 (Optional) - The package manager to use. Defaults to "apt". 
+#                   Can be explicitly set to "aptitude" for forced installs.
+#
+# EXAMPLES:
+#   InstallPackageIfNotExist "htop"             # Uses default apt
+#   InstallPackageIfNotExist "conky" "aptitude" # Uses aptitude
+# ==============================================================================
 
-    # Check if the package is installed
-	if ! dpkg -l | awk '{print $2}' | grep -wq "^$package$"; then
-		echo -e "Working on $(color 196)$package$(reset)..."
+function InstallPackageIfNotExist() {
+    local package=$1
+    local installer=${2:-"apt"}
+
+    # High-speed check: dpkg -s is much faster than piping dpkg -l
+    if ! dpkg -s "$package" &> /dev/null; then
+        echo -e "Working on $(color 196)$package$(reset)..."
+        
         # Install the package
-			if [[ "$installer" == "aptitude" ]]; then
-				sudo aptitude install -Pry "$package"   # Use aptitude for forced install
-			else
-				sudo apt install "$package"           # Use apt as default
-			fi
-		else
-			echo -e "$(color 196)$package$(reset) is already installed."
-		fi
+        if [[ "$installer" == "aptitude" ]]; then
+            sudo aptitude install -Pry "$package"
+        else
+            sudo apt install -y "$package" 
+        fi
+    else
+        echo -e "$(color 196)$package$(reset) is already installed."
+    fi
 }
-
 # Function for menu-driven installation
 function installstuff()
 {
-	if ! dpkg -l | grep -q aptitude; then sudo apt install aptitude; else echo "aptitude already installed. Skipping."; fi
-	if ! dpkg -l | grep -q apt-transport-https; then sudo apt install apt-transport-https; else echo "apt-transport-https already installed. Skipping."; fi
-	if ! dpkg -l | grep -q apt; then sudo apt install apt; else echo "apt already installed. Skipping."; fi
-	if ! dpkg -l | grep -q bash-completion; then sudo apt install bash-completion; else echo "bash-completion already installed. Skipping."; fi
-	if ! dpkg -l | grep -q curl; then sudo apt install curl; else echo "curl already installed. Skipping."; fi
-	if ! dpkg -l | grep -q dirmngr; then sudo apt install dirmngr; else echo "dirmngr already installed. Skipping."; fi
-	if ! dpkg -l | grep -q inxi; then sudo apt install inxi; else echo "inxi already installed. Skipping."; fi
-	if ! dpkg -l | grep -q wget; then sudo apt install wget; else echo "wget already installed. Skipping."; fi
-	if ! dpkg -l | grep -q systemd-timesyncd; then sudo apt install systemd-timesyncd; else echo "systemd-timesyncd already installed. Skipping."; fi
-	pressanykey
+# Define packages list in a neat, easy-to-read array
+PACKAGES=(
+    aptitude
+    apt-transport-https
+    apt
+    bash-completion
+    curl
+    dirmngr
+    inxi
+    wget
+    systemd-timesyncd
+)
+
+# Loop through each package in the array
+for pkg in "${PACKAGES[@]}"; do
+    # dpkg -s silently checks if the exact package is installed
+    if dpkg -s "$pkg" &> /dev/null; then
+        echo "$pkg already installed. Skipping."
+    else
+        echo "Installing $pkg..."
+        sudo apt install -y "$pkg"
+    fi
+done
+
+pressanykey
 	clear
 	echo -e "Showing you your sources.list. $(color 196)If anything looks off, abort the script immediately and fix it!$(reset)\n"
 	# 1. Highlight the blue set of patterns (main, contrib, non-free, etc.)
@@ -44,185 +75,139 @@ function installstuff()
 	KeepInstallingMoreStuff
 }
 
-# Function to continue installation after source check
-function KeepInstallingMoreStuff()
-{
-	clear
-	echo -e "Options:\n"
-# List of installation options
-	local options=(
-	"Compressed Files = gzip p7zip-full tar unrar-free unzip"
-	"Conky"
-	"Documents = kate libreoffice"
-	"Drive Management = brasero gnome-disk-utility k3b smartmontools xfburn"
-	"File Browsers = caja dolphin krusader nautilus nemo spacefm"
-	"FlatPak"
-	"Snap Store"
-	"Fluxbox Setup"
-	"Font Managers = figlet font-manager gucharmap"
-	"Fonts"
-	"Fortunes"
-	"Games = angrydd ardentryst asylum atanks bsdgames dopewars dosbox flare ksudoku kobodeluxe manaplus meritous runescape zangband"
-	"Games = Steam"
-	"GNOME Boxes"
-	"Internet = chromium htop mtr namebench netselect-apt strace speedtest-cli telegram-desktop torbrowser-launcher"
-	"IRC = hexchat konversation"
-	"Media = flac lame moc smplayer vlc"
-	"Mintstick"
-	"Pictures = feh inkscape luminance-hdr gimp gimp-data-extras gimp-gap gimp-lensfun gimp-ufraw gimp-texturiz gwenview kde-spectacle ufraw ufraw-batch"
-	"Python Setup"
-	"Terminal = btop konsole terminator"
-	"Torrents = amule deluge ktorrent qbittorrent transmission-gtk"
-	"Virtualbox"
-	"WINE"
-	"XFCE Desktop"
-	"X Screensavers"
-	"Exit"
-)
+# ==============================================================================
+# USAGE: KeepInstallingMoreStuff
+#
+# DESCRIPTION:
+#   Launches an interactive, menu-driven installation wizard for setting up a 
+#   fresh Linux environment. It categorizes software into logical groups.
+#
+# HOW TO ADD NEW SOFTWARE:
+#   To add standard packages, simply find the appropriate category in the 
+#   'options' array below and add the package name to the end of the string.
+#   (e.g., "Terminal = btop konsole terminator NEW_PACKAGE")
+#   The script will automatically parse the string and install it.
+#
+#   For complex installations (like Flatpaks or Steam), add a title without 
+#   an equals sign (e.g., "Custom Setup") and add a matching block to the 
+#   'case' statement below.
+# ==============================================================================
 
-	# Display options dynamically
-	PS3="Please select an option: "
-	select installmenuchoice in "${options[@]}"; do
-		case "$installmenuchoice" in
-			"Compressed Files = gzip p7zip-full tar unrar-free unzip")
-				for pkg in gzip p7zip-full tar unrar-free unzip; do
-					InstallPackageIfNotExist "$pkg"
-				done
-				;;
-			"Conky")
-				InstallPackageIfNotExist conky-all "aptitude"
-				;;
-			"Documents = kate libreoffice")
-				for pkg in kate libreoffice; do
-					InstallPackageIfNotExist "$pkg"
-				done
-				;;
-			"Drive Management = apper brasero furiusisomount gnome-disk-utility k3b smartmontools xfburn")
-				for pkg in brasero gnome-disk-utility k3b smartmontools xfburn; do
-					InstallPackageIfNotExist "$pkg"
-				done
-				;;
-			"File Browsers = caja dolphin krusader nautilus nemo spacefm")
-				for pkg in caja dolphin krusader nautilus nemo spacefm; do
-					InstallPackageIfNotExist "$pkg"
-				done
-				;;
-			"FlatPak")
-				sudo apt update
-				for pkg in flatpak gnome-software-plugin-flatpak; do
-					InstallPackageIfNotExist "$pkg"
-				done
-				flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-				sudo apt update
-				;;
-			"Snap Store")
-				sudo apt update
-				InstallPackageIfNotExist snapd
-				sudo snap install snapd
-				;;
-			"Fluxbox Setup")
-				InstallPackageIfNotExist conky-all "aptitude"
-				for pkg in compton deluge fluxbox hexchat hpanel network-manager-gnome suckless-tools spacefm terminator xfce4-power-manager; do
-					InstallPackageIfNotExist "$pkg"
-				done
-				;;
-			"Font Managers = figlet font-manager gucharmap")
-				for pkg in figlet font-manager gucharmap; do
-					InstallPackageIfNotExist "$pkg"
-				done
-				;;
-			"Fonts")
-				for pkg in fonts-arkpandora fonts-averia-gwf fonts-averia-sans-gwf fonts-averia-serif-gwf fonts-cabin fonts-cantarell fonts-cardo fonts-century-catalogue fonts-comfortaa fonts-dejavu fonts-dkg-handwriting fonts-droid-fallback fonts-dosis fonts-ebgaramond fonts-essays1743 fonts-freefont-ttf fonts-gnutypewriter fonts-go fonts-hack-ttf fonts-junicode fonts-jura fonts-lato fonts-linex fonts-liberation fonts-lobster fonts-lobstertwo fonts-noto fonts-play fonts-roboto fonts-unifont fonts-wine ttf-mscorefonts-installer; do
-					InstallPackageIfNotExist "$pkg"
-				done
-				;;
-			"Fortunes")
-				for pkg in fortunes fortune-mod fortunes-spam; do
-					InstallPackageIfNotExist "$pkg"
-				done
-				;;
-			"Games = angrydd ardentryst asylum atanks bsdgames dopewars dosbox flare ksudoku kobodeluxe manaplus meritous runescape zangband")
-				for pkg in angrydd ardentryst asylum atanks bsdgames dopewars dosbox flare ksudoku kobodeluxe manaplus meritous runescape zangband; do
-					InstallPackageIfNotExist "$pkg"
-				done
-				;;
-			"Games = Steam")
-				sudo dpkg --add-architecture i386
-				sudo apt update
-				InstallPackageIfNotExist steam-installer "aptitude"
-				sudo apt install mesa-vulkan-drivers libglx-mesa0:i386 mesa-vulkan-drivers:i386 libgl1-mesa-dri:i386
-				;;
-			"GNOME Boxes")
-				InstallPackageIfNotExist gnome-boxes "aptitude"
-				;;
-			"Internet = chromium htop mtr namebench netselect-apt strace speedtest-cli telegram-desktop torbrowser-launcher")
-				for pkg in chromium htop mtr namebench netselect-apt strace speedtest-cli telegram-desktop torbrowser-launcher; do
-					InstallPackageIfNotExist "$pkg"
-				done
-				;;
-			"IRC = hexchat konversation")
-				for pkg in hexchat konversation; do
-					InstallPackageIfNotExist "$pkg"
-				done
-				;;
-			"Media = flac lame moc smplayer vlc")
-				for pkg in flac lame moc smplayer vlc; do
-					InstallPackageIfNotExist "$pkg"
-				done
-				;;
-			"Mintstick")
-				# Firefox download for Mintstick
-				firefox http://packages.linuxmint.com/pool/main/m/mintstick/
-				;;
-			"Pictures = feh inkscape luminance-hdr gimp gimp-data-extras gimp-gap gimp-lensfun gimp-ufraw gimp-texturiz gwenview kde-spectacle ufraw ufraw-batch")
-				for pkg in feh inkscape luminance-hdr gimp gimp-data-extras gimp-gap gimp-lensfun gimp-ufraw gimp-texturiz gwenview kde-spectacle ufraw ufraw-batch; do
-					InstallPackageIfNotExist "$pkg"
-				done
-				;;
-			"Python Setup")
-				for pkg in python3 python3-pip3 python3-tk; do
-					InstallPackageIfNotExist "$pkg"
-				pip3 install Pillow --break-system-packages
-				done
-				;;
-			"Terminal = btop konsole terminator")
-				for pkg in btop konsole terminator; do
-					InstallPackageIfNotExist "$pkg"
-				done
-				;;
-			"Torrents = amule deluge ktorrent qbittorrent transmission-gtk")
-				for pkg in amule deluge ktorrent qbittorrent transmission-gtk; do
-					InstallPackageIfNotExist "$pkg"
-				done
-				;;
-			"Virtualbox")
-				InstallPackageIfNotExist virtualbox-nonfree "aptitude"
-				;;
-			"WINE")
-				sudo dpkg --add-architecture i386
-				sudo apt update
-				for pkg in wine wine32 wine64 libwine libwine:i386 fonts-wine; do
-					InstallPackageIfNotExist "$pkg" "aptitude"
-				done
-				;;
-			"XFCE Desktop")
-				for pkg in xfce4 xfce4-goodies; do
-					InstallPackageIfNotExist "$pkg" "aptitude"
-				done
-				;;
-			"X Screensavers")
-				for pkg in xscreensaver xscreensaver-data xscreensaver-data-extra xscreensaver-screensaver-bsod xscreensaver-gl xscreensaver-gl-extra rss-glx; do
-					InstallPackageIfNotExist "$pkg"
-				done
-				;;
-			"Exit")
-				break
-				;;
-			*)
-				echo "Invalid choice, please try again."
-				;;
-		esac
-	pressanykey
-	clear
-done
+function KeepInstallingMoreStuff() {
+    clear
+    echo -e "Options:\n"
+
+    # 1. The Master Array
+    local options=(
+        "Compressed Files = gzip p7zip-full tar unrar-free unzip"
+        "Conky"
+        "Documents = kate libreoffice"
+        "Drive Management = apper brasero furiusisomount gnome-disk-utility k3b smartmontools xfburn"
+        "File Browsers = caja dolphin krusader nautilus nemo spacefm"
+        "FlatPak"
+        "Snap Store"
+        "Fluxbox Setup"
+        "Font Managers = figlet font-manager gucharmap"
+        "Fonts = fonts-arkpandora fonts-averia-gwf fonts-averia-sans-gwf fonts-averia-serif-gwf fonts-cabin fonts-cantarell fonts-cardo fonts-century-catalogue fonts-comfortaa fonts-dejavu fonts-dkg-handwriting fonts-droid-fallback fonts-dosis fonts-ebgaramond fonts-essays1743 fonts-freefont-ttf fonts-gnutypewriter fonts-go fonts-hack-ttf fonts-junicode fonts-jura fonts-lato fonts-linex fonts-liberation fonts-lobster fonts-lobstertwo fonts-noto fonts-play fonts-roboto fonts-unifont fonts-wine ttf-mscorefonts-installer"
+        "Fortunes = fortunes fortune-mod fortunes-spam"
+        "Games = angrydd ardentryst asylum atanks bsdgames dopewars dosbox flare ksudoku kobodeluxe manaplus meritous runescape zangband"
+        "GNOME Boxes"
+        "Internet = chromium htop mtr namebench netselect-apt strace speedtest-cli telegram-desktop torbrowser-launcher"
+        "IRC = hexchat konversation"
+        "Media = flac lame moc smplayer vlc"
+        "Mintstick"
+        "Pictures = feh inkscape luminance-hdr gimp gimp-data-extras gimp-gap gimp-lensfun gimp-ufraw gimp-texturiz gwenview kde-spectacle ufraw ufraw-batch"
+        "Python Setup"
+        "Steam"
+        "Terminal = btop konsole terminator"
+        "Torrents = amule deluge ktorrent qbittorrent transmission-gtk"
+        "Virtualbox"
+        "WINE"
+        "XFCE Desktop"
+        "X Screensavers = xscreensaver xscreensaver-data xscreensaver-data-extra xscreensaver-screensaver-bsod xscreensaver-gl xscreensaver-gl-extra rss-glx"
+        "Exit"
+    )
+
+    PS3="Please select an option: "
+    select installmenuchoice in "${options[@]}"; do
+        
+        # 2. Check for the Auto-Parser first!
+        if [[ "$installmenuchoice" == *" = "* ]]; then
+            packages="${installmenuchoice#* = }"
+            
+            for pkg in $packages; do
+                InstallPackageIfNotExist "$pkg"
+            done
+
+        # 3. The Special Cases
+        else
+            case "$installmenuchoice" in
+                "Conky")
+                    InstallPackageIfNotExist conky-all "aptitude"
+                    ;;
+                "FlatPak")
+                    sudo apt update
+                    for pkg in flatpak gnome-software-plugin-flatpak; do
+                        InstallPackageIfNotExist "$pkg"
+                    done
+                    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+                    sudo apt update
+                    ;;
+                "Snap Store")
+                    sudo apt update
+                    InstallPackageIfNotExist snapd
+                    sudo snap install snapd
+                    ;;
+                "Fluxbox Setup")
+                    InstallPackageIfNotExist conky-all "aptitude"
+                    for pkg in compton deluge fluxbox hexchat hpanel network-manager-gnome suckless-tools spacefm terminator xfce4-power-manager; do
+                        InstallPackageIfNotExist "$pkg"
+                    done
+                    ;;
+                "GNOME Boxes")
+                    InstallPackageIfNotExist gnome-boxes "aptitude"
+                    ;;
+                "Mintstick")
+                    firefox http://packages.linuxmint.com/pool/main/m/mintstick/
+                    ;;
+                "Python Setup")
+                    for pkg in python3 python3-pip3 python3-tk; do
+                        InstallPackageIfNotExist "$pkg"
+                    done
+                    pip3 install Pillow --break-system-packages
+                    ;;
+                "Steam")
+                    sudo dpkg --add-architecture i386
+                    sudo apt update
+                    InstallPackageIfNotExist steam-installer "aptitude"
+                    sudo apt install mesa-vulkan-drivers libglx-mesa0:i386 mesa-vulkan-drivers:i386 libgl1-mesa-dri:i386
+                    ;;
+                "Virtualbox")
+                    InstallPackageIfNotExist virtualbox-nonfree "aptitude"
+                    ;;
+                "WINE")
+                    sudo dpkg --add-architecture i386
+                    sudo apt update
+                    for pkg in wine wine32 wine64 libwine libwine:i386 fonts-wine; do
+                        InstallPackageIfNotExist "$pkg" "aptitude"
+                    done
+                    ;;
+                "XFCE Desktop")
+                    for pkg in xfce4 xfce4-goodies; do
+                        InstallPackageIfNotExist "$pkg" "aptitude"
+                    done
+                    ;;
+                "Exit")
+                    break
+                    ;;
+                *)
+                    echo "Invalid choice, please try again."
+                    ;;
+            esac
+        fi
+        pressanykey
+        clear
+        echo -e "Options:\n"
+        REPLY= 
+    done
 }
