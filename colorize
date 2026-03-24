@@ -3,9 +3,9 @@
 ###################################
 # LOOK! IT'S A RAINBOW OF COLORS! #
 ###################################
-color() { echo -e "\e[38;05;$1m"; }  # Use color codes as arguments
-bold() { echo -e "\e[1;38;05;$1m"; } # Bold versions
-reset() { echo -e "\e[0m"; }         # Reset to default
+color() { printf "\e[38;5;%sm" "$1"; }  # Use color codes as arguments
+bold()  { printf "\e[1;38;5;%sm" "$1"; } # Bold versions
+reset() { printf "\e[0m"; }              # Reset to default
 
 function color_rainbow()
 {
