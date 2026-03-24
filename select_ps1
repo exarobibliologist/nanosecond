@@ -1,0 +1,64 @@
+#!/bin/bash/
+
+########################
+# PS1 Theme Management #
+########################
+
+function select_ps1() {
+    # 1. Define your paths
+    local THEME_DIR="$HOME/GIT/nanosecond/ps1_themes"
+    local ACTIVE_THEME="$HOME/.active_ps1"
+
+    # Load all theme files into an array
+    local themes=("$THEME_DIR"/*.ps1)
+    
+    if [ ! -e "${themes[0]}" ]; then
+        echo "No themes found in $THEME_DIR! Please drop some .ps1 files in there."
+        return 1
+    fi
+
+    clear
+    echo -e "=== Terminal Theme Selector ===\n"
+
+    local i=1
+    for theme in "${themes[@]}"; do
+        # Strip the path and extension to get a clean display name
+        local theme_name=$(basename "$theme" .ps1)
+        
+        # THE MAGIC TRICK: 
+        # We run this in a subshell (...) so we can source the theme.
+        # ${PS1@P} tells Bash to render the prompt string exactly as it would look live!
+        local preview=$( (source "$theme" >/dev/null 2>&1; echo -e "${PS1@P}") )
+        
+        echo "$i) $theme_name"
+        echo -e "   Preview: $preview\n"
+        ((i++))
+    done
+
+    # 2. User Selection
+    read -p "Select a theme (1-$((i-1))) or 0 to exit: " choice
+
+    if [[ "$choice" -ge 1 && "$choice" -lt "$i" ]]; then
+        local selected_theme="${themes[$((choice-1))]}"
+        local theme_name=$(basename "$selected_theme" .ps1)
+        
+        # 3. Apply the Theme
+        # We use a symlink so ~/.active_ps1 always points to your chosen file
+        ln -sf "$selected_theme" "$ACTIVE_THEME"
+        
+        echo -e "\nSuccess! Theme '$theme_name' applied."
+        
+        # Apply it immediately to the current session so you don't have to reload
+        source "$selected_theme"
+    else
+        echo "Exited without changes."
+    fi
+}
+
+# ==============================================================================
+# THE LOADER HOOK
+# Automatically applies the active theme every time a new terminal is opened
+# ==============================================================================
+if [ -f "$HOME/.active_ps1" ]; then
+    source "$HOME/.active_ps1"
+fi

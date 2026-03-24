@@ -83,6 +83,7 @@ fi
 . ~/GIT/nanosecond/refont
 . ~/GIT/nanosecond/renamer
 . ~/GIT/nanosecond/rgb2cmyk
+. ~/GIT/nanosecond/select_ps1
 . ~/GIT/nanosecond/slideshower
 . ~/GIT/nanosecond/soundfix
 . ~/GIT/nanosecond/subhead_figlet
