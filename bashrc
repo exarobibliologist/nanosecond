@@ -77,13 +77,13 @@ fi
 . ~/GIT/nanosecond/passwordmaker
 . ~/GIT/nanosecond/pressanykey
 . ~/GIT/nanosecond/progress-bar
+. ~/GIT/nanosecond/ps1_select
 . ~/GIT/nanosecond/psa
 . ~/GIT/nanosecond/rebash
 . ~/GIT/nanosecond/reconk
 . ~/GIT/nanosecond/refont
 . ~/GIT/nanosecond/renamer
 . ~/GIT/nanosecond/rgb2cmyk
-. ~/GIT/nanosecond/select_ps1
 . ~/GIT/nanosecond/slideshower
 . ~/GIT/nanosecond/soundfix
 . ~/GIT/nanosecond/subhead_figlet
