@@ -4,7 +4,7 @@
 # PS1 Theme Management #
 ########################
 
-function select_ps1() {
+function ps1_select() {
     # 1. Define your paths
     local THEME_DIR="$HOME/GIT/nanosecond/ps1_themes"
     local ACTIVE_THEME="$HOME/.active_ps1"
