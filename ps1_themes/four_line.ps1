@@ -1,1 +1,1 @@
-PS1="\[$(bold 154)\]╓╥─\[$(reset)\]\[$(color 166)\]\u\[$(color 196)\]@\[$(color 166)\]\h\n\[$(bold 154)\]║║\[$(reset)\]\[$(color 196)\] in\[$(reset)\] \[$(color 166)\]\w \n\[$(bold 154)\]║║ \[$(color 166)\]Enter Your Command Here\n\[$(bold 154)\]╙╨─\[$(reset)\] "
+PS1="\[$(bold 154)\]╓╥─\[$(reset)\]\[$(color 166)\]\u\[$(color 196)\]@\[$(color 166)\]\h\n\[$(bold 154)\]║║\[$(reset)\]\[$(color 196)\] in\[$(reset)\] \[$(color 166)\]\w \n\[$(bold 154)\]║║ \[$(color 166)\]Enter Your Command Here\n\[$(bold 154)\]╙╨─>\[$(reset)\] "
