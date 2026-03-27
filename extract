@@ -1,70 +1,105 @@
-#! /bin/bash
+extract() {
+    if [ $# -eq 0 ]; then
+        echo "Proper Usage: extract [FILE]..."
+        return 1
+    fi
 
-#Proper Usage: extract [FILE]
+    for archive in "$@"; do
+        if [ -f "$archive" ]; then
+            case "$archive" in
+                *.tar.bz2|*.tbz2)   tar xjf "$archive"               ;;
+                *.tar.gz|*.tgz)     tar xzf "$archive"               ;;
+                *.tar.xz)           tar xJf "$archive"               ;;
+                *.tar.lz)           
+                    InstallPackageIfNotExist lzip
+                    tar --lzip -xf "$archive"        ;;
+                *.tar.lzma)         tar --lzma -xf "$archive"        ;;
+                *.tar.zst|*.tar.zstd) 
+                    InstallPackageIfNotExist zstd
+                    tar -I zstd -xf "$archive"       ;;
+                *.bz2)              bunzip2 "$archive"               ;;
+                *.rar)              
+                    InstallPackageIfNotExist unrar
+                    unrar x "$archive"               ;;
+                *.gz)               gunzip "$archive"                ;;
+                *.xz)               unxz "$archive"                  ;;
+                *.lz)               
+                    InstallPackageIfNotExist lzip
+                    lzip -d "$archive"               ;;
+                *.zst|*.zstd)       
+                    InstallPackageIfNotExist zstd
+                    zstd -d "$archive"               ;;
+                *.tar)              tar xf "$archive"                ;;
+                *.zip)              unzip "$archive"                 ;;
+                *.Z)                uncompress "$archive"            ;;
+                *.7z|*.iso|*.cab)   7z x "$archive"                  ;;
+                *.deb)              ar x "$archive"                  ;;
+                *.rpm)              rpm2cpio "$archive" | cpio -idmv ;;
+                *)                  echo -e "$(color 3)Cannot determine the archival type$(reset) of '$archive'. Skipping." ;;
+            esac
+        else
+            echo "'$archive' is not a valid file"
+        fi
+    done
+}
 
-function extract()
-{
-if [ -f "$1" ]; then
-	case "$1" in
-		*.tar.bz2|*.tbz2)
-			tar xjf "$1"
-			;;
-		*.tar.gz|*.tgz)
-			tar xzf "$1"
-			;;
-		*.tar.xz)
-			tar xJf "$1"
-			;;
-		*.tar.lz)
-			tar --lzip -xf "$1"
-			;;
-		*.tar.lzma)
-			tar --lzma -xf "$1"
-			;;
-		*.bz2)
-			bunzip2 "$1"
-			;;
-		*.rar)
-			unrar x "$1"
-			;;
-		*.gz)
-			gunzip "$1"
-			;;
-		*.xz)
-			unxz "$1"
-			;;
-		*.lz)
-			lzip -d "$1"
-			;;
-		*.tar)
-			tar xf "$1"
-			;;
-		*.zip)
-			unzip "$1"
-			;;
-		*.Z)
-			uncompress "$1"
-			;;
-		*.7z)
-			7z x "$1"
-			;;
-		*.iso)
-			7z x "$1" # Alternatively: bsdtar -xf "$1"
-			;;
-		*.cab)
-			7z x "$1" ## Alternatively: cabextract "$1"
-			;;
-		*.deb)
-			ar x "$1"
-			;;
-		*.rpm)
-			rpm2cpio "$1" | cpio -idmv
-			;;
-		*)
-			echo -e "$(color 3)Cannot determine the archival type$(reset) of '$1'. Aborting."
-            		;;
-	esac
-else
-	echo "'$1' is not a valid file"
-fi
+function compress() {
+    # Check for at least two arguments: output name and at least one target
+    if [ $# -lt 2 ]; then
+        echo -e "$(color 3)Proper Usage: compress [ARCHIVE_NAME] [FILE/FOLDER]...$(reset)"
+        return 1
+    fi
+
+    local archive="$1"
+    shift # Removes the archive name from the argument list, leaving only the targets in "$@"
+
+    case "$archive" in
+        # Multi-file / Folder Archivers (Tarballs)
+        *.tar.bz2|*.tbz2)   tar cjf "$archive" "$@"               ;;
+        *.tar.gz|*.tgz)     tar czf "$archive" "$@"               ;;
+        *.tar.xz)           tar cJf "$archive" "$@"               ;;
+        *.tar.lz)           
+            InstallPackageIfNotExist lzip
+            tar --lzip -cf "$archive" "$@"               ;;
+        *.tar.lzma)         tar --lzma -cf "$archive" "$@"        ;;
+        *.tar.zst|*.tar.zstd) 
+            InstallPackageIfNotExist zstd
+            tar -I zstd -cf "$archive" "$@"              ;;
+        *.tar)              tar cf "$archive" "$@"                ;;
+        
+        # Dedicated Archive Formats
+        *.zip)              
+            InstallPackageIfNotExist zip
+            zip -r "$archive" "$@"                       ;;
+        *.7z)               
+            InstallPackageIfNotExist p7zip-full
+            7z a "$archive" "$@"                         ;;
+        *.rar)              
+            InstallPackageIfNotExist rar
+            rar a "$archive" "$@"                        ;;
+
+        # Single-file Compressors
+        # Note: We use -c and > to ensure the original file isn't deleted by the compressor
+        *.gz)
+            if [ $# -gt 1 ]; then echo -e "$(color 3)Warning: .gz only natively supports single files. Compressing '$1' only.$(reset)"; fi
+            gzip -c "$1" > "$archive"                    ;;
+        *.bz2)
+            if [ $# -gt 1 ]; then echo -e "$(color 3)Warning: .bz2 only natively supports single files. Compressing '$1' only.$(reset)"; fi
+            bzip2 -c "$1" > "$archive"                   ;;
+        *.xz)
+            if [ $# -gt 1 ]; then echo -e "$(color 3)Warning: .xz only natively supports single files. Compressing '$1' only.$(reset)"; fi
+            xz -c "$1" > "$archive"                      ;;
+        *.lz)
+            InstallPackageIfNotExist lzip
+            if [ $# -gt 1 ]; then echo -e "$(color 3)Warning: .lz only natively supports single files. Compressing '$1' only.$(reset)"; fi
+            lzip -c "$1" > "$archive"                    ;;
+        *.zst|*.zstd)
+            InstallPackageIfNotExist zstd
+            if [ $# -gt 1 ]; then echo -e "$(color 3)Warning: .zst only natively supports single files. Compressing '$1' only.$(reset)"; fi
+            zstd -c "$1" > "$archive"                    ;;
+        *)                  
+            echo -e "$(color 3)Cannot determine the archival type$(reset) of '$archive'. Aborting." 
+            return 1
+            ;;
+    esac
 }
