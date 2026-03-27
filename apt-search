@@ -1,8 +1,69 @@
-#! /bin/bash
+#!/bin/bash
 
-function apt-search()
-{
-	aptitude search "$1" | more -spd
-	pressanykey
-	apt-cache search "$1" | more -spd
+# ==============================================================================
+# USAGE: apt-search <search_term>
+#
+# DESCRIPTION:
+#   Searches for available Debian/Ubuntu packages using both aptitude and apt-cache.
+#   Includes dynamic tab-completion for known package names.
+# ==============================================================================
+function apt-search() {
+    # 1. Check if a search term was actually provided
+    if [ -z "$1" ]; then
+        echo "Usage: apt-search [search_term]"
+        return 1
+    fi
+
+    # 2. Run the searches with clear visual dividers
+    echo -e "\n--- Aptitude Search Results ---"
+    aptitude search "$1" | more -spd
+    
+    pressanykey
+    
+    echo -e "\n--- Apt-Cache Search Results ---"
+    apt-cache search "$1" | more -spd
 }
+
+# ==============================================================================
+# USAGE: apt-show <package_name>
+#
+# DESCRIPTION:
+#   Displays incredibly deep diagnostic info for a specific package, including
+#   version policies, dependencies, and reverse dependencies.
+#   Includes dynamic tab-completion for known package names.
+# ==============================================================================
+function apt-show() {
+    # 1. Check if a package name was actually provided
+    if [ -z "$1" ]; then
+        echo "Usage: apt-show [package]"
+        return 1
+    fi
+
+    # 2. Run the deep-dive diagnostic commands
+    echo -e "\n--- Package Info & Versions ---"
+    apt-cache showpkg "$1"
+    
+    pressanykey
+    
+    echo -e "\n--- Install Policy ---"
+    apt-cache policy "$1"
+    
+    pressanykey
+    
+    echo -e "\n--- Forward Dependencies ---"
+    apt-cache depends "$1"
+    
+    pressanykey
+    
+    echo -e "\n--- Reverse Dependencies ---"
+    apt-cache rdepends "$1"
+}
+
+# ------------------------------------------------------------------------------
+# TAB-COMPLETION BINDINGS
+# ------------------------------------------------------------------------------
+# Bind native 'apt-cache' or 'apt' tab-completion to both custom functions.
+# We use 2>/dev/null to hide errors just in case the bash-completion package 
+# hasn't loaded yet during the terminal startup sequence.
+complete -F _apt_cache apt-show 2>/dev/null || complete -F _apt apt-show 2>/dev/null
+complete -F _apt_cache apt-search 2>/dev/null || complete -F _apt apt-search 2>/dev/null
