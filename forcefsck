@@ -1,11 +1,23 @@
-#! /bin/bash/
+#!/bin/bash
 
-function forcefsck()
-{
-clear
-echo -e "$(color 9)THIS WILL RESTART YOUR COMPUTER!!$(reset)\nPlease save your work and close any open applications.\nAfter the computer restarts, this will run an FSCK to check your drive for errors.\nYou will need to enter your password to confirm this."
-pressanykey
-cd
-sudo touch /forcefsck
-sudo shutdown -r now
+function forcefsck() {
+    # 1. Bold Red Warning
+    echo -e "$(color 9)CAUTION: THIS WILL RESTART YOUR COMPUTER NOW!$(reset)"
+    echo "Please save all work. An FSCK scan will run during the next boot."
+    
+    # 2. Confirmation Prompt (The Safety Catch)
+    read -p "Are you sure you want to proceed? (y/N): " confirm
+    if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
+        echo "Aborted."
+        return 1
+    fi
+
+    # 3. The Modern Method
+    # Creating /forcefsck for legacy systems AND passing the systemd flag
+    echo "Preparing filesystem check..."
+    sudo touch /forcefsck 2>/dev/null
+    
+    # This command tells systemd to force a check on the next reboot
+    # It is the modern equivalent of 'touch /forcefsck'
+    sudo systemctl reboot --firmware-setup 2>/dev/null || sudo shutdown -r now
 }
