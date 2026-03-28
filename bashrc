@@ -57,8 +57,6 @@ fi
 ###################
 . ~/GIT/nanosecond/aliases
 . ~/GIT/nanosecond/apt-search
-. ~/GIT/nanosecond/apt-show
-. ~/GIT/nanosecond/apt-stuff
 . ~/GIT/nanosecond/catgrapple
 . ~/GIT/nanosecond/colorize
 . ~/GIT/nanosecond/debinstall

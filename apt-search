@@ -62,8 +62,16 @@ function apt-show() {
 # ------------------------------------------------------------------------------
 # TAB-COMPLETION BINDINGS
 # ------------------------------------------------------------------------------
-# Bind native 'apt-cache' or 'apt' tab-completion to both custom functions.
-# We use 2>/dev/null to hide errors just in case the bash-completion package 
-# hasn't loaded yet during the terminal startup sequence.
-complete -F _apt_cache apt-show 2>/dev/null || complete -F _apt apt-show 2>/dev/null
-complete -F _apt_cache apt-search 2>/dev/null || complete -F _apt apt-search 2>/dev/null
+# Instead of relying on internal bash-completion functions that load lazily,
+# we use a lightning-fast custom completer using 'apt-cache pkgnames'.
+
+_custom_apt_complete() {
+    # Capture the current word being typed
+    local cur="${COMP_WORDS[COMP_CWORD]}"
+    
+    # Generate the completion reply by asking apt-cache for packages starting with $cur
+    COMPREPLY=( $(apt-cache pkgnames "$cur" 2>/dev/null) )
+}
+
+# Bind our custom function to your aliases
+complete -F _custom_apt_complete apt-show apt-search
