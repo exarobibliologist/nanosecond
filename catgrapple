@@ -2,16 +2,36 @@
 
 #Proper usage: catgrapple [FILE] [SEARCH TERM]
 
-function catgrapple()
-{
-# Use awk once, storing line numbers in the `lines` array
-	mapfile -t lines < <(awk -v "search=$2" '$0 ~ search { print NR }' "$1")
-# Iterate over the `lines` array, opening each match in nano one at a time
-	for i in "${lines[@]}"
-		do
-# Open the file in nano at the specified line
-		terminator -x nano "+$i" "$1"
-# Prompt to continue to the next match
-		read -p "Press Enter to open the next match..."
-		done
+function catgrapple() {
+    local file="$1"
+    local search_term="${@:2}" # Captures all arguments from $2 onwards
+
+    # Validation
+    if [[ -z "$file" || -z "$search_term" ]]; then
+        echo "Usage: catgrapple [FILE] [SEARCH TERM]"
+        return 1
+    fi
+
+    if [[ ! -f "$file" ]]; then
+        echo "Error: File '$file' not found."
+        return 1
+    fi
+
+    # Use 'grep -n' to get line numbers efficiently
+    # The -F flag treats the search term as a literal string (better for complex commands)
+    local lines
+    lines=$(grep -niF "$search_term" "$file" | cut -d: -f1)
+
+    if [[ -z "$lines" ]]; then
+        echo "No matches found for '$search_term'."
+        return 0
+    fi
+
+    for i in $lines; do
+        echo "Opening match at line $i..."
+        terminator -x nano "+$i" "$file"
+        
+        # Use /dev/tty to ensure 'read' works even if the script is piped
+        read -p "Press Enter for next match (or Ctrl+C to stop)..." < /dev/tty
+    done
 }
