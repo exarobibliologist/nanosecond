@@ -74,6 +74,7 @@ fi
 . ~/GIT/nanosecond/mkcd
 . ~/GIT/nanosecond/networkinfo
 . ~/GIT/nanosecond/owned
+. ~/GIT/nanosecond/passwordchart-nano
 . ~/GIT/nanosecond/passwordmaker
 . ~/GIT/nanosecond/pressanykey
 . ~/GIT/nanosecond/progress-bar
