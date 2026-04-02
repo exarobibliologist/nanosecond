@@ -1,7 +1,0 @@
-#! /bin/bash
-
-function reconk()
-{
-killall conky
-conky -c ~/GIT/nanosecond/fluxbox-conky
-}
