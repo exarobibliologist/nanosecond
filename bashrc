@@ -79,12 +79,10 @@ fi
 . ~/GIT/nanosecond/ps1_select
 . ~/GIT/nanosecond/psa
 . ~/GIT/nanosecond/rebash
-. ~/GIT/nanosecond/reconk
 . ~/GIT/nanosecond/refont
 . ~/GIT/nanosecond/renamer
 . ~/GIT/nanosecond/rgb2cmyk
 . ~/GIT/nanosecond/slideshower
-. ~/GIT/nanosecond/soundfix
 . ~/GIT/nanosecond/subhead_figlet
 . ~/GIT/nanosecond/system_backup_and_restore
 . ~/GIT/nanosecond/title_figlet
