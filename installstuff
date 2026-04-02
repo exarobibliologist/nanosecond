@@ -29,9 +29,9 @@ function InstallPackageIfNotExist() {
         
         # Install the package
         if [[ "$installer" == "aptitude" ]]; then
-            sudo aptitude install -Pry "$package"
+            sudo aptitude install -Pr "$package"
         else
-            sudo apt install -y "$package" 
+            sudo apt install "$package" 
         fi
     else
         echo -e "$(color 196)$package$(reset) is already installed."
@@ -105,7 +105,7 @@ function KeepInstallingMoreStuff() {
         "Compressed Files = gzip p7zip-full tar unrar-free unzip"
         "Conky"
         "Documents = kate libreoffice"
-        "Drive Management = apper brasero furiusisomount gnome-disk-utility k3b smartmontools xfburn"
+        "Drive Management = apper brasero furiusisomount k3b smartmontools xfburn"
         "File Browsers = caja dolphin krusader nautilus nemo spacefm"
         "FlatPak"
         "Snap Store"
