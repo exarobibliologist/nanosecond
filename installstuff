@@ -102,33 +102,32 @@ function KeepInstallingMoreStuff() {
 
     # 1. The Master Array
     local options=(
-        "Compressed Files = gzip p7zip-full tar unrar-free unzip"
-        "Conky"
-        "Documents = kate libreoffice"
-        "Drive Management = apper brasero furiusisomount k3b smartmontools xfburn"
-        "File Browsers = caja dolphin krusader nautilus nemo spacefm"
-        "FlatPak"
-        "Snap Store"
-        "Fluxbox Setup"
-        "Font Managers = figlet font-manager gucharmap"
-        "Fonts = fonts-3270 fonts-averia-gwf fonts-averia-sans-gwf fonts-averia-serif-gwf fonts-cabin fonts-cantarell fonts-cardo fonts-century-catalogue fonts-comfortaa fonts-dejavu fonts-dkg-handwriting fonts-droid-fallback fonts-dosis fonts-ebgaramond fonts-ebgaramond-extra fonts-ebgaramond-initials fonts-ebgaramond-initials-extra fonts-elusive-icons fonts-essays1743 fonts-freefont-ttf fonts-gnutypewriter fonts-go fonts-hack-ttf fonts-junicode fonts-jura fonts-lato fonts-linex fonts-liberation fonts-lobster fonts-lobstertwo fonts-noto fonts-opendyslexic fonts-open-sans fonts-pc fonts-pc-extra fonts-play fonts-roboto fonts-sora fonts-terminus fonts-unifont fonts-wine fonts-xfree86-nonfree ttf-mscorefonts-installer"
-        "Fortunes = fortunes fortune-mod fortunes-spam"
-        "Games = angrydd ardentryst asylum atanks bsdgames dopewars dosbox flare-game ksudoku kobodeluxe manaplus meritous runescape zangband"
-        "GNOME Boxes"
-        "Internet = chromium htop mtr namebench netselect-apt strace speedtest-cli telegram-desktop torbrowser-launcher"
-        "IRC = hexchat konversation"
-        "Media = flac lame moc smplayer vlc"
-        "Mintstick"
-        "Pictures = feh inkscape luminance-hdr gimp gimp-data-extras gimp-gap gimp-lensfun gimp-ufraw gimp-texturiz gwenview kde-spectacle ufraw ufraw-batch"
-        "Python Setup"
-        "Steam"
-        "Terminal = btop konsole terminator"
-        "Torrents = amule deluge ktorrent qbittorrent transmission-gtk"
-        "Virtualbox"
-        "WINE"
-        "XFCE Desktop"
-        "X Screensavers = xscreensaver xscreensaver-data xscreensaver-data-extra xscreensaver-screensaver-bsod xscreensaver-gl xscreensaver-gl-extra rss-glx"
-        "Exit"
+        "$(color 1)Compressed Files$(reset) = gzip p7zip-full tar unrar-free unzip"
+        "$(color 1)Conky$(reset) = conky-all"
+        "$(color 1)Documents$(reset) = kate libreoffice"
+        "$(color 1)Drive Management$(reset) = apper brasero furiusisomount k3b smartmontools xfburn"
+        "$(color 1)File Browsers$(reset) = caja dolphin krusader nautilus nemo spacefm"
+        "$(color 1)Font Managers$(reset) = figlet font-manager gucharmap"
+        "$(color 1)Fonts$(reset) = fonts-3270 fonts-averia-gwf fonts-averia-sans-gwf fonts-averia-serif-gwf fonts-cabin fonts-cantarell fonts-cardo fonts-century-catalogue fonts-comfortaa fonts-dejavu fonts-dkg-handwriting fonts-droid-fallback fonts-dosis fonts-ebgaramond fonts-ebgaramond-extra fonts-ebgaramond-initials fonts-ebgaramond-initials-extra fonts-elusive-icons fonts-essays1743 fonts-freefont-ttf fonts-gnutypewriter fonts-go fonts-hack-ttf fonts-junicode fonts-jura fonts-lato fonts-linex fonts-liberation fonts-lobster fonts-lobstertwo fonts-noto fonts-opendyslexic fonts-open-sans fonts-pc fonts-pc-extra fonts-play fonts-roboto fonts-sora fonts-terminus fonts-unifont fonts-wine fonts-xfree86-nonfree ttf-mscorefonts-installer"
+        "$(color 1)Fortunes$(reset) = fortunes fortune-mod fortunes-spam"
+        "$(color 1)Games$(reset) = angrydd ardentryst asylum atanks bsdgames dopewars dosbox flare-game ksudoku kobodeluxe manaplus meritous runescape zangband"
+        "$(color 1)GNOME Boxes$(reset) = gnome-boxes"
+        "$(color 1)Internet$(reset) = chromium htop mtr namebench netselect-apt strace speedtest-cli telegram-desktop torbrowser-launcher"
+        "$(color 1)IRC$(reset) = hexchat konversation"
+        "$(color 1)Media$(reset) = flac lame moc smplayer vlc"
+        "$(color 1)Pictures$(reset) = feh inkscape luminance-hdr gimp gimp-data-extras gimp-gap gimp-lensfun gimp-ufraw gimp-texturiz gwenview kde-spectacle ufraw ufraw-batch"
+        "$(color 1)Terminal$(reset) = btop konsole terminator"
+        "$(color 1)Torrents$(reset) = amule deluge ktorrent qbittorrent transmission-gtk"
+        "$(color 1)Virtualbox$(reset) = virtualbox-nonfree"
+        "$(color 1)XFCE Desktop$(reset) = xfce4 xfce4-goodies"
+        "$(color 1)X Screensavers$(reset) = xscreensaver xscreensaver-data xscreensaver-data-extra xscreensaver-screensaver-bsod xscreensaver-gl xscreensaver-gl-extra rss-glx"
+        "$(color 1)FlatPak$(reset)"
+        "$(color 1)Mintstick$(reset)"
+        "$(color 1)Python Setup$(reset)"
+        "$(color 1)Snap Store$(reset)"
+        "$(color 1)Steam$(reset)"
+        "$(color 1)WINE$(reset)"
+        "$(color 1)Exit$(reset)"
     )
 
     PS3="Please select an option: "
@@ -145,10 +144,7 @@ function KeepInstallingMoreStuff() {
         # 3. The Special Cases
         else
             case "$installmenuchoice" in
-                "Conky")
-                    InstallPackageIfNotExist conky-all "aptitude"
-                    ;;
-                "FlatPak")
+                *"FlatPak"*)
                     sudo apt update
                     for pkg in flatpak gnome-software-plugin-flatpak; do
                         InstallPackageIfNotExist "$pkg"
@@ -156,51 +152,34 @@ function KeepInstallingMoreStuff() {
                     flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
                     sudo apt update
                     ;;
-                "Snap Store")
+                *"Snap Store"*)
                     sudo apt update
                     InstallPackageIfNotExist snapd
                     sudo snap install snapd
                     ;;
-                "Fluxbox Setup")
-                    InstallPackageIfNotExist conky-all "aptitude"
-                    for pkg in compton deluge fluxbox hexchat hpanel network-manager-gnome suckless-tools spacefm terminator xfce4-power-manager; do
-                        InstallPackageIfNotExist "$pkg"
-                    done
-                    ;;
-                "GNOME Boxes")
-                    InstallPackageIfNotExist gnome-boxes "aptitude"
-                    ;;
-                "Mintstick")
+                *"Mintstick"*)
                     firefox http://packages.linuxmint.com/pool/main/m/mintstick/
                     ;;
-                "Python Setup")
+                *"Python Setup"*)
                     for pkg in python3 python3-pip3 python3-tk; do
                         InstallPackageIfNotExist "$pkg"
                     done
                     pip3 install Pillow --break-system-packages
                     ;;
-                "Steam")
+                *"Steam"*)
                     sudo dpkg --add-architecture i386
                     sudo apt update
                     InstallPackageIfNotExist steam-installer "aptitude"
                     sudo apt install mesa-vulkan-drivers libglx-mesa0:i386 mesa-vulkan-drivers:i386 libgl1-mesa-dri:i386
                     ;;
-                "Virtualbox")
-                    InstallPackageIfNotExist virtualbox-nonfree "aptitude"
-                    ;;
-                "WINE")
+                *"WINE"*)
                     sudo dpkg --add-architecture i386
                     sudo apt update
                     for pkg in wine wine32 wine64 libwine libwine:i386 fonts-wine; do
                         InstallPackageIfNotExist "$pkg" "aptitude"
                     done
                     ;;
-                "XFCE Desktop")
-                    for pkg in xfce4 xfce4-goodies; do
-                        InstallPackageIfNotExist "$pkg" "aptitude"
-                    done
-                    ;;
-                "Exit")
+                *"Exit"*)
                     break
                     ;;
                 *)
