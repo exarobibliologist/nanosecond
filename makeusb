@@ -1,0 +1,122 @@
+#!/bin/bash
+
+function makeusb() {
+    echo -e "What would you like to do?"
+    
+    local options=(
+        "Format USB"
+        "Copy ISO to USB"
+        "Exit"
+    )
+
+    PS3="Please select an option: "
+    select action in "${options[@]}"; do
+        
+        if [[ "$action" == "Exit" ]]; then
+            return 0
+        fi
+
+        if [[ "$action" == "Format USB" || "$action" == "Copy ISO to USB" ]]; then
+            
+            # Safely gather only USB-connected drives (ignores internal hard drives)
+            local -a usb_drives
+            mapfile -t usb_drives < <(lsblk -d -p -n -o NAME,SIZE,MODEL,TRAN | awk '$4=="usb" {print $1"  |  "$2"  |  "$3}')
+            
+            if [ ${#usb_drives[@]} -eq 0 ]; then
+                echo -e "\n$(color 196)No USB drives detected! Please plug one in and try again.$(reset)"
+                return 1
+            fi
+            
+            echo -e "\n$(color 3)Select the target USB drive:$(reset)"
+            local PS3="Target USB: "
+            select usb_choice in "${usb_drives[@]}" "Cancel"; do
+                if [[ "$usb_choice" == "Cancel" ]]; then return 0; fi
+                if [[ -n "$usb_choice" ]]; then
+                    # Extract just the /dev/sdX part from the selection
+                    local target=$(echo "$usb_choice" | awk '{print $1}')
+                    break
+                else
+                    echo "Invalid selection."
+                fi
+            done
+
+            # ==========================================
+            # MODULE 1: FORMAT USB
+            # ==========================================
+            if [[ "$action" == "Format USB" ]]; then
+                echo -e "\nSelect File System format:"
+                local PS3="Format: "
+                select fs in "FAT32 (Compatible with everything)" "EXT4 (Linux only)" "Cancel"; do
+                    if [[ "$fs" == "Cancel" ]]; then return 0; fi
+                    if [[ -n "$fs" ]]; then
+                        
+                        echo -e "\n$(color 196)WARNING: ALL DATA ON $target WILL BE ERASED!$(reset)"
+                        read -p "Type YES to confirm: " confirm
+                        if [[ "$confirm" != "YES" ]]; then echo "Aborted."; return 1; fi
+                        
+                        InstallPackageIfNotExist parted
+                        InstallPackageIfNotExist dosfstools
+                        
+                        echo "Unmounting $target..."
+                        sudo umount ${target}* 2>/dev/null
+                        
+                        echo "Wiping drive..."
+                        sudo wipefs -a "$target"
+                        
+                        echo "Creating new partition table..."
+                        sudo parted -s "$target" mklabel msdos
+                        
+                        if [[ "$fs" == *"FAT32"* ]]; then
+                            sudo parted -s "$target" mkpart primary fat32 1MiB 100%
+                            sudo mkfs.vfat -F 32 "${target}1"
+                        else
+                            sudo parted -s "$target" mkpart primary ext4 1MiB 100%
+                            sudo mkfs.ext4 -F "${target}1"
+                        fi
+                        
+                        echo -e "$(color 46)Format complete! The USB is ready to use.$(reset)\n"
+                        return 0
+                    fi
+                done
+
+            # ==========================================
+            # MODULE 2: COPY ISO TO USB
+            # ==========================================
+            elif [[ "$action" == "Copy ISO to USB" ]]; then
+                echo -e "\n$(color 3)Enter the path to the ISO file:$(reset)"
+                
+                # Using 'read -e' enables native bash tab-autocompletion for the file path
+                read -e -p "> " iso_file
+                
+                if [ ! -f "$iso_file" ]; then
+                    echo -e "$(color 196)File not found: $iso_file$(reset)"
+                    return 1
+                fi
+                
+                echo -e "\n$(color 196)WARNING: ALL DATA ON $target WILL BE OVERWRITTEN BY THE ISO!$(reset)"
+                read -p "Type YES to confirm: " confirm
+                if [[ "$confirm" != "YES" ]]; then echo "Aborted."; return 1; fi
+                
+                InstallPackageIfNotExist pv
+                
+                echo "Unmounting $target..."
+                sudo umount ${target}* 2>/dev/null
+                
+                echo "Wiping filesystem signatures..."
+                sudo wipefs -a "$target"
+                
+                echo -e "Writing ISO to USB...\n"
+                
+                # By passing the file directly to pv, it automatically knows the file size 
+                # and generates a perfect progress bar before piping it to dd. 
+                # status=none stops dd from outputting its own text and ruining the pv bar.
+                pv "$iso_file" | sudo dd of="$target" bs=4M oflag=sync status=none
+                
+                echo -e "\n$(color 46)ISO successfully copied to $target!$(reset)\n"
+                return 0
+            fi
+        else
+            echo "Invalid selection."
+        fi
+    done
+}

@@ -70,10 +70,10 @@ fi
 . ~/GIT/nanosecond/lamer
 . ~/GIT/nanosecond/lsabcd
 . ~/GIT/nanosecond/mkcd
+. ~/GIT/nanosecond/makeusb
 . ~/GIT/nanosecond/networkinfo
 . ~/GIT/nanosecond/owned
-. ~/GIT/nanosecond/passwordchart-nano
-. ~/GIT/nanosecond/passwordmaker
+. ~/GIT/nanosecond/passwords
 . ~/GIT/nanosecond/pressanykey
 . ~/GIT/nanosecond/progress-bar
 . ~/GIT/nanosecond/ps1_select
