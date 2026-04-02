@@ -37,6 +37,9 @@ function InstallPackageIfNotExist() {
         echo -e "$(color 196)$package$(reset) is already installed."
     fi
 }
+
+complete -F _custom_apt_complete InstallPackageIfNotExist
+
 # Function for menu-driven installation
 function installstuff()
 {
