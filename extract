@@ -102,4 +102,12 @@ function compress() {
             return 1
             ;;
     esac
+
+    # Capture the exit status of the compression command
+    if [ $? -eq 0 ]; then
+        echo -e "$(color 46)Successfully created '$archive'!$(reset)"
+    else
+        echo -e "$(color 196)Failed to create '$archive'.$(reset)"
+        return 1
+    fi
 }
