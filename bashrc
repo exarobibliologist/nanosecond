@@ -98,7 +98,7 @@ fi
 . ~/GIT/nanosecond/zangmath
 
 ## LSandPS1 must be loaded after the other scripts, or PS1 colors will not display correctly.
-. ~/GIT/nanosecond/LSandPS1
+. ~/GIT/nanosecond/LSCOLORS
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
