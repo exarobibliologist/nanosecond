@@ -1,5 +1,3 @@
-#!/bin/bash
-
 function makeusb() {
     echo -e "What would you like to do?"
     
@@ -18,11 +16,12 @@ function makeusb() {
 
         if [[ "$action" == "Format USB" || "$action" == "Copy ISO to USB" ]]; then
             
-            # Safely gather only USB-connected drives (ignores internal hard drives)
+            # Safely gather only USB-connected drives (uses awk OFS and NF upgrades)
             local -a usb_drives
-            mapfile -t usb_drives < <(lsblk -d -p -n -o NAME,SIZE,MODEL,TRAN | awk '$4=="usb" {print $1"  |  "$2"  |  "$3}')
+            mapfile -t usb_drives < <(lsblk -dpno NAME,SIZE,MODEL,TRAN | awk -vOFS=' | ' '$4=="usb" { NF=3; print }')
             
-            if [ ${#usb_drives[@]} -eq 0 ]; then
+            # Uses modern arithmetic evaluation to check for an empty array
+            if (( ! ${#usb_drives[@]} )); then
                 echo -e "\n$(color 196)No USB drives detected! Please plug one in and try again.$(reset)"
                 return 1
             fi
@@ -85,16 +84,11 @@ function makeusb() {
             elif [[ "$action" == "Copy ISO to USB" ]]; then
                 echo -e "\n$(color 3)Enter the path to the ISO file:$(reset)"
                 
-				# Using 'read -e' enables native bash tab-autocompletion for the file path
+                # Using 'read -e' enables native bash tab-autocompletion for the file path
                 read -e -p "> " iso_file
                 
                 # Strip trailing spaces added by autocomplete
                 iso_file=$(echo "$iso_file" | sed 's/ *$//')
-                
-                if [ ! -f "$iso_file" ]; then
-                    echo -e "$(color 196)File not found: $iso_file$(reset)"
-                    return 1
-                fi
                 
                 if [ ! -f "$iso_file" ]; then
                     echo -e "$(color 196)File not found: $iso_file$(reset)"
@@ -115,9 +109,6 @@ function makeusb() {
                 
                 echo -e "Writing ISO to USB...\n"
                 
-                # By passing the file directly to pv, it automatically knows the file size 
-                # and generates a perfect progress bar before piping it to dd. 
-                # status=none stops dd from outputting its own text and ruining the pv bar.
                 pv "$iso_file" | sudo dd of="$target" bs=4M oflag=sync status=none
                 
                 echo -e "\n$(color 46)ISO successfully copied to $target!$(reset)\n"
