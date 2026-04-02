@@ -86,8 +86,12 @@ function rebash() {
             "Maintenance Menu")
                 local PS3="Select a Maintenance option: "
                 # Removed "Purge a Package" from this menu array
-                select maintchoice in "Clean Package Cache" "APT History" "Edit APT Preferences" "Edit Sources" "Install Build Dependencies" "Add Keys" "Back"; do
+                select maintchoice in "Make USB" "Clean Package Cache" "APT History" "Edit APT Preferences" "Edit Sources" "Install Build Dependencies" "Add Keys" "Back"; do
                     case "$maintchoice" in
+						"Make USB")
+							makeusb
+							return
+							;;
                         "Clean Package Cache")
                             echo -e "\n--- Clearing Outdated Local Packages ---"
                             sudo apt autoclean -y

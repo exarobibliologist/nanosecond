@@ -85,8 +85,16 @@ function makeusb() {
             elif [[ "$action" == "Copy ISO to USB" ]]; then
                 echo -e "\n$(color 3)Enter the path to the ISO file:$(reset)"
                 
-                # Using 'read -e' enables native bash tab-autocompletion for the file path
+				# Using 'read -e' enables native bash tab-autocompletion for the file path
                 read -e -p "> " iso_file
+                
+                # Strip trailing spaces added by autocomplete
+                iso_file=$(echo "$iso_file" | sed 's/ *$//')
+                
+                if [ ! -f "$iso_file" ]; then
+                    echo -e "$(color 196)File not found: $iso_file$(reset)"
+                    return 1
+                fi
                 
                 if [ ! -f "$iso_file" ]; then
                     echo -e "$(color 196)File not found: $iso_file$(reset)"

@@ -122,7 +122,6 @@ function KeepInstallingMoreStuff() {
         "$(color 1)XFCE Desktop$(reset) = xfce4 xfce4-goodies"
         "$(color 1)X Screensavers$(reset) = xscreensaver xscreensaver-data xscreensaver-data-extra xscreensaver-screensaver-bsod xscreensaver-gl xscreensaver-gl-extra rss-glx"
         "$(color 1)FlatPak$(reset)"
-        "$(color 1)Mintstick$(reset)"
         "$(color 1)Python Setup$(reset)"
         "$(color 1)Snap Store$(reset)"
         "$(color 1)Steam$(reset)"
@@ -156,9 +155,6 @@ function KeepInstallingMoreStuff() {
                     sudo apt update
                     InstallPackageIfNotExist snapd
                     sudo snap install snapd
-                    ;;
-                *"Mintstick"*)
-                    firefox http://packages.linuxmint.com/pool/main/m/mintstick/
                     ;;
                 *"Python Setup"*)
                     for pkg in python3 python3-pip3 python3-tk; do
