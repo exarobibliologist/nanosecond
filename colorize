@@ -7,17 +7,24 @@ color() { printf "\e[38;5;%sm" "$1"; }  # Use color codes as arguments
 bold()  { printf "\e[1;38;5;%sm" "$1"; } # Bold versions
 reset() { printf "\e[0m"; }              # Reset to default
 
-function color_rainbow()
-{
-for i in {0..255}; do echo -e "\e[38;05;${i}m color ${i}\e[0m"; done | less
+function color_rainbow() {
+    for i in {0..255}; do
+        printf "\e[38;5;%sm color %s\e[0m\n" "$i" "$i"
+    done | less -R
 }
 
-function bold_rainbow()
-{
-for i in {0..255}; do echo -e "\e[1;38;05;${i}m bold ${i}\e[0m"; done | less
+function bold_rainbow() {
+    for i in {0..255}; do
+        printf "\e[1;38;5;%sm bold %s\e[0m\n" "$i" "$i"
+    done | less -R
 }
 
-function color_waterfall()
-{
-while : ; do for i in {000..255}; do echo -e "\e[38;05;${i}m Color${i}\e[0m"; sleep .1 ; done ; done
+function color_waterfall() {
+    while : ; do
+        for i in {0..255}; do
+            # %s drops the variable $i into the ANSI code and the text string
+            printf "\e[38;5;%sm Color%s\e[0m\n" "$i" "$i"
+            sleep .1
+        done
+    done
 }
