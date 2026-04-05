@@ -1,2 +1,1 @@
-# Classic Monochrome Amber CRT
-PS1="\[$(bold 214)\]\u@\h:\w >\[$(reset)\] "
+PS1="\[$(bold 214)\]\u : \w >\[$(reset)\] "

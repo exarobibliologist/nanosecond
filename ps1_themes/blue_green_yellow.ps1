@@ -1,2 +1,1 @@
-# Blue Green Yellow
-PS1="\[$(color 39)\]\u\[$(color 81)\]@\[$(color 77)\]\h \[$(color 226)\]\w >\[$(reset)\] "
+PS1="\[$(color 39)\]\u : \[$(color 77)\]\w \[$(color 226)\]>\[$(reset)\] "
