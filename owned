@@ -1,3 +1,5 @@
+#!/bin/bash
+
 function owned() {
     # Fix 1 & 2: Check if input is empty, and use -e to support both files AND directories
     if [ -z "$1" ] || [ ! -e "$1" ]; then
