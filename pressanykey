@@ -1,3 +1,5 @@
+#!/bin/bash
+
 function pressanykey () {
     # Save the current terminal settings
     local oldstty=$(stty -g)
