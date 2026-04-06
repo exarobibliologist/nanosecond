@@ -34,13 +34,12 @@ function ps1_edit() {
     local selected_file="${themes[$((choice-1))]}"
     local theme_name=$(basename "$selected_file" .ps1)
     
-    # Read the first line of the file
+	# Read the first line of the file
     local raw_line=$(cat "$selected_file" | head -n 1)
     
-    # Strip away 'export PS1="' from the front, and the trailing '"' from the back
-    local current_ps1="${raw_line#export PS1=\"}"
-    current_ps1="${current_ps1%\"}"
-
+    # Extract only the content between the first and last double quote
+    local current_ps1="${raw_line#*\"}"
+    current_ps1="${current_ps1%\"*}"
     echo -e "\n$(color 46)Loaded: $theme_name$(reset)"
 
     # --- Generate Live Preview & Edit Loop ---
