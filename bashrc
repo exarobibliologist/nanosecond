@@ -76,6 +76,8 @@ fi
 . ~/GIT/nanosecond/passwords
 . ~/GIT/nanosecond/pressanykey
 . ~/GIT/nanosecond/progress-bar
+. ~/GIT/nanosecond/ps1_create
+. ~/GIT/nanosecond/ps1_edit
 . ~/GIT/nanosecond/ps1_select
 . ~/GIT/nanosecond/psa
 . ~/GIT/nanosecond/rebash

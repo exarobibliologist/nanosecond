@@ -1,0 +1,114 @@
+#!/bin/bash
+
+function ps1_create() {
+    echo -e "\n=== Interactive PS1 Creator ==="
+    echo "Let's build your prompt section by section."
+    
+    local final_ps1=""
+    local section_num=1
+
+    while true; do
+        echo -e "\n$(color 3)--- Section $section_num ---$(reset)"
+        
+        # Added -r to ALL read commands to prevent backslash stripping!
+        read -e -r -p "Beginning border (e.g., [[ or < ): " b_start
+        read -e -r -p "Ending border    (e.g., ]] or > ): " b_end
+        read -e -r -p "Section info     (e.g., \u@\h or \w): " s_info
+        read -e -r -p "Section color    (e.g., 'bold 196', leave blank for none): " s_color
+
+        # Construct the color block safely
+        local color_block=""
+        if [[ -n "$s_color" ]]; then
+            color_block="\[\$(${s_color})\]"
+        fi
+
+        # Assemble this specific segment
+        local segment="${color_block}${b_start}${s_info}${b_end}"
+
+        # Append to the main PS1 string. Add a space between sections if it's not the first one.
+        if [[ -n "$final_ps1" ]]; then
+            final_ps1="${final_ps1} ${segment}"
+        else
+            final_ps1="${segment}"
+        fi
+
+        # --- Generate Live Preview & Edit Loop ---
+        while true; do
+            # We append the reset code temporarily just for the preview rendering
+            local preview_code="${final_ps1}\[\$(reset)\] "
+            
+            # Using printf %s treats the PS1 code as raw text so \n doesn't break the line!
+            printf "\n%sCurrent Code:%s %s\n" "$(color 8)" "$(reset)" "${preview_code}"
+            
+            # The preview is safely dropped to the next line and expanded natively
+            printf "%sLive Preview:%s\n%s\n" "$(color 8)" "$(reset)" "${preview_code@P}"
+
+            echo ""
+            read -e -r -p "Would you like to edit the current code? (y/N): " edit_choice
+            if [[ "$edit_choice" =~ ^[Yy] ]]; then
+                echo -e "\n$(color 3)Make your changes and press Enter:$(reset)"
+                # The -i flag pre-fills the prompt with $final_ps1 so you can arrow through it!
+                read -e -r -p "> " -i "$final_ps1" final_ps1
+            else
+                break # Exit the edit loop and move on
+            fi
+        done
+
+        # Ask to continue
+        echo ""
+        read -e -r -p "Do you want to add another section? (Y/n): " add_more
+        if [[ "$add_more" =~ ^[Nn] ]]; then
+            break
+        fi
+        
+        ((section_num++))
+    done
+
+    # ==========================================
+    # FINALIZE AND SAVE
+    # ==========================================
+    # Permanently attach the reset code and a trailing space to the final string
+    final_ps1="${final_ps1}\[\$(reset)\] "
+    
+    # Swapped to printf here as well for bulletproof final rendering
+    printf "\n%s=== Final PS1 Theme ===%s\n" "$(color 46)" "$(reset)"
+    printf "%sCode:%s    export PS1=\"%s\"\n" "$(color 8)" "$(reset)" "${final_ps1}"
+    printf "%sPreview:%s\n%s\n\n" "$(color 8)" "$(reset)" "${final_ps1@P}"
+
+    # Define the active theme path to match ps1_select
+    local ACTIVE_THEME="$HOME/.active_ps1"
+    local file_saved=false
+    local file_path=""
+
+    read -e -r -p "Would you like to save this theme? (Y/n): " save_choice
+    if [[ ! "$save_choice" =~ ^[Nn] ]]; then
+        read -e -r -p "Enter a name for this theme (e.g., my_custom_theme): " theme_name
+        
+        # Hardcoded path to the nanosecond toolkit repository
+        local theme_dir="$HOME/GIT/nanosecond/ps1_themes"
+        mkdir -p "$theme_dir"
+        
+        # Saves the theme with the .ps1 extension for compatibility with ps1_select
+        file_path="${theme_dir}/${theme_name}.ps1"
+        echo "export PS1=\"${final_ps1}\"" > "$file_path"
+        echo -e "$(color 46)Saved successfully to $file_path$(reset)\n"
+        file_saved=true
+    fi
+
+    read -e -r -p "Apply this theme to your current session right now? (Y/n): " apply_choice
+    if [[ ! "$apply_choice" =~ ^[Nn] ]]; then
+        
+        if [ "$file_saved" = true ]; then
+            # If saved, create a symlink exactly like ps1_select does
+            ln -sf "$file_path" "$ACTIVE_THEME"
+        else
+            # If they just wanted to apply it without saving to the nanosecond repo, 
+            # write it directly into the active file
+            echo "export PS1=\"${final_ps1}\"" > "$ACTIVE_THEME"
+        fi
+        
+        # Source the active theme so it updates the current terminal screen immediately
+        source "$ACTIVE_THEME"
+        echo -e "$(color 46)Theme applied and set as active!$(reset)"
+    fi
+}
