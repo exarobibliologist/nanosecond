@@ -1,3 +1,5 @@
+#!/bin/bash
+
 function forcefsck() {
     # 1. Identify the Root Disk Type
     # We look for '0' (HDD) or '1' (SSD) in the queue rotational attribute
