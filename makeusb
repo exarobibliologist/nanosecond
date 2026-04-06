@@ -1,3 +1,5 @@
+#!/bin/bash
+
 function makeusb() {
     echo -e "What would you like to do?"
     
