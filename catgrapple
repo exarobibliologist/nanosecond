@@ -1,7 +1,6 @@
 #!/bin/bash
 
-#Proper usage: catgrapple [FILE] [SEARCH TERM]
-
+# Proper usage: catgrapple [FILE] [SEARCH TERM]
 function catgrapple() {
     local file="$1"
     local search_term="${@:2}" # Captures all arguments from $2 onwards
@@ -34,4 +33,41 @@ function catgrapple() {
         # Use /dev/tty to ensure 'read' works even if the script is piped
         read -p "Press Enter for next match (or Ctrl+C to stop)..." < /dev/tty
     done
+}
+
+# Proper usage: dirgrapple [DIRECTORY] [SEARCH TERM]
+function dirgrapple() {
+    local dir="$1"
+    local search_term="${@:2}"
+
+    # Validation
+    if [[ -z "$dir" || -z "$search_term" ]]; then
+        echo "Usage: dirgrapple [DIRECTORY] [SEARCH TERM]"
+        return 1
+    fi
+
+    if [[ ! -d "$dir" ]]; then
+        echo "Error: Directory '$dir' not found."
+        return 1
+    fi
+
+    local match_found=false
+
+    # -r: recursive, -n: line numbers, -F: literal string, -I: ignore binary files
+    # Process substitution < <(...) ensures the while loop runs in the current shell 
+    # so the match_found variable updates correctly.
+    # IFS=: splits grep's "file:line:content" output directly into variables.
+    while IFS=: read -r file line _; do
+        match_found=true
+        echo "Opening match in '$file' at line $line..."
+        terminator -x nano "+$line" "$file"
+        
+        # Use /dev/tty to ensure 'read' works even if the script is piped
+        read -p "Press Enter for next match (or Ctrl+C to stop)..." < /dev/tty
+    done < <(grep -rnFI "$search_term" "$dir")
+
+    if [[ "$match_found" == false ]]; then
+        echo "No matches found for '$search_term' in '$dir'."
+        return 0
+    fi
 }
