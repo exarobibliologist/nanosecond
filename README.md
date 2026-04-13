@@ -88,7 +88,7 @@ Then type:
 
 and follow the menu prompts to install other programs your system can use.
 
-#Screenshots
+# Screenshots
 
 ### Installstuff Interactive Menu
 ![](https://github.com/exarobibliologist/nanosecond/blob/master/Screenshots/Screenshot_20260413_120412.png?raw=true)
