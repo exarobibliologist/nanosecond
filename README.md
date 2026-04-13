@@ -43,8 +43,8 @@
 ###### Version names are used to allow rolling release upgrades and updates.
 ###### APT Preferences will be heavily modified to control the extra sources so things stay stable while giving you extra access to packages far beyond stable.
 
-####If you are uncomfortable with learning new things, and want to stick with the standard methods of using/customizing Linux, this repo IS NOT for you.
-Walk away now!</b>
+#### If you are uncomfortable with learning new things, and want to stick with the standard methods of using/customizing Linux, this repo IS NOT for you.
+#### Walk away now!
 
 # but.........
 ### if you are still here......
