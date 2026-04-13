@@ -17,7 +17,7 @@ function ps1_select() {
     fi
 
     # Pagination Settings
-    local page_size=5 # Number of themes to show per page
+    local page_size=10 # Number of themes to show per page
     local current_page=0
     # Calculate total pages (ceiling division)
     local total_pages=$(( (total_themes + page_size - 1) / page_size ))
