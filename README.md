@@ -58,11 +58,15 @@ You will need `git` installed beforehand, in order to fetch and use all the file
 
 Open a Terminal and type
 `cd`
+
 `mkdir ~/GIT/`
+
 `cd ~/GIT`
+
 `git clone https://github.com/exarobibliologist/nanosecond`
 
 Then navigate into the created folder like so:
+
 `cd ~/GIT/nanosecond`
 
 make the install script executable
