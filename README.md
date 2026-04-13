@@ -89,14 +89,15 @@ Then type:
 and follow the menu prompts to install other programs your system can use.
 
 #Screenshots
-###Installstuff Interactive Menu
+
+### Installstuff Interactive Menu
 ![](https://github.com/exarobibliologist/nanosecond/blob/master/Screenshots/Screenshot_20260413_120412.png?raw=true)
-###Interactive Easy-To-Use Terminal Based USB Formatting and Writing
+### Interactive Easy-To-Use Terminal Based USB Formatting and Writing
 ![](https://github.com/exarobibliologist/nanosecond/blob/master/Screenshots/Screenshot_20260413_125708.png?raw=true)
 ![](https://github.com/exarobibliologist/nanosecond/blob/master/Screenshots/Screenshot_20260413_130426.png?raw=true)
-###Apt-show Shows Everything!
+### Apt-show Shows Everything!
 ![](https://github.com/exarobibliologist/nanosecond/blob/master/Screenshots/Screenshot_20260413_120455.png?raw=true)
-###Over 5 pages of unique PS1 Terminal Themes!!
+### Over 5 pages of unique PS1 Terminal Themes!!
 ![](https://github.com/exarobibliologist/nanosecond/blob/master/Screenshots/Screenshot_20260413_120746.png?raw=true)
 ![](https://github.com/exarobibliologist/nanosecond/blob/master/Screenshots/Screenshot_20260413_120757.png?raw=true)
 ![](https://github.com/exarobibliologist/nanosecond/blob/master/Screenshots/Screenshot_20260413_120810.png?raw=true)
@@ -105,12 +106,12 @@ and follow the menu prompts to install other programs your system can use.
 ![](https://github.com/exarobibliologist/nanosecond/blob/master/Screenshots/Screenshot_20260413_120840.png?raw=true)
 ![](https://github.com/exarobibliologist/nanosecond/blob/master/Screenshots/Screenshot_20260413_120856.png?raw=true)
 ![](https://github.com/exarobibliologist/nanosecond/blob/master/Screenshots/Screenshot_20260413_120930.png?raw=true)
-###Easy Interactive PS1 Theme Designer! Lots of COLORS!!
+### Easy Interactive PS1 Theme Designer! Lots of COLORS!!
 ![](https://github.com/exarobibliologist/nanosecond/blob/master/Screenshots/Screenshot_20260413_121401.png?raw=true)
-###Password Makers
+### Password Makers
 ![](https://github.com/exarobibliologist/nanosecond/blob/master/Screenshots/Screenshot_20260413_124542.png?raw=true)
 ![](https://github.com/exarobibliologist/nanosecond/blob/master/Screenshots/Screenshot_20260413_124632.png?raw=true)
-###And More Fun Stuff
+### And More Fun Stuff
 **A real-time Julian clock**
 **File Renaming** scripts
 **Backup and Restore Script** - you can also use it to mirror your Debian installation to another computer
