@@ -13,15 +13,15 @@
 
 # To tweak these scripts for another Debian Linux distro, you must have:
 - **Expert level Debian knowledge.**
-- **Expert BASH scripting experience.**
-- **Moderate Python scripting experience.**
+- **Expert BASH scripting knowledge.**
+- **Moderate Python scripting knowledge.**
 - **Moderate LS and PS1 scripting knowledge. While this part of the script is the easiest to modify and tweak, many scripts are extensively layered to produce the unique TTY look I like.**
 - **A tested, verified, and physically disconnected backup drive. Seriously!**
 - **Enjoy the smell of crashing and burning**
 
 # To tweak these scripts to another non-Debian Linux OS, you must have:
-- **God-Level Linux knowledge, especially with apt and apt_preferences.**
-- **Expert-Level BASH scripting knowledge, especially for LS and PS1, and figuring out if your standard BASH terminal outputs `echo -e` correctly or not.**
+- **God-Level Linux knowledge, especially with apt and apt_preferences. (If those two systems do not exist on the Linux OS you choose, you MUST be God to rewrite and untangle all of this)**
+- **Expert-Level BASH scripting knowledge, especially when figuring out if your terminal outputs PS1 and BASH color codes correctly or not.**
 - **Like driving tractor trailers without breaks downhill on icy roads**
 - **Be willing to keep going after any/all accidents occur, and pretend the flames are just a new desktop feature.**
 - **As always, if you break things, you get to keep both halves.**
@@ -51,9 +51,9 @@ Walk away now!</b>
 
 ### To install these scripts, follow the directions below.</b>
 
-You will need `git-all` installed beforehand, in order to fetch and use all the files.
+You will need `git` installed beforehand, in order to fetch and use all the files.
 
-`sudo apt-get install git-all`
+`sudo apt install git`
 
 Open a Terminal and type
 `cd`
@@ -64,7 +64,12 @@ Open a Terminal and type
 Then navigate into the created folder like so:
 `cd ~/GIT/nanosecond`
 
-and type:
+make the install script executable
+
+`chmod +x installbash`
+
+then install:
+
 `bash installbash`
 
 The installer will not overwrite your .bashrc, but will copy a single line to end of your .bashrc to source the modified bashrc file I have included in the nanosecond repo.
