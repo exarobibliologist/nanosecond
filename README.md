@@ -11,7 +11,7 @@
 - **A willingness to experiment and learn new things**
 
 # To tweak these scripts for another Debian Linux distro, you must have:
-![](https://github.com/exarobibliologist/nanosecond/blob/master/Screenshots/warning-expert-level.png?raw=true) ![](https://github.com/exarobibliologist/nanosecond/blob/master/Screenshots/use-with-brains.png?raw=true)![](https://github.com/exarobibliologist/nanosecond/blob/master/Screenshots/60%25-of-the-time-works-every-time.png?raw=true)
+![](https://github.com/exarobibliologist/nanosecond/blob/master/Screenshots/warning-expert-level.png?raw=true) ![](https://github.com/exarobibliologist/nanosecond/blob/master/Screenshots/use-with-brains.png?raw=true) ![](https://github.com/exarobibliologist/nanosecond/blob/master/Screenshots/60%25-of-the-time-works-every-time.png?raw=true)
 - **Expert level Debian knowledge.**
 - **Expert BASH scripting knowledge.**
 - **Moderate Python scripting knowledge.**
