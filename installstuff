@@ -25,7 +25,7 @@ function InstallPackageIfNotExist() {
 
     # High-speed check: dpkg -s is much faster than piping dpkg -l
     if ! dpkg -s "$package" &> /dev/null; then
-        echo -e "Working on $(color 196)$package$(reset)..."
+        echo -e "Working on $(truecolor 255 0 0)$package$(reset)..."
         
         # Install the package
         if [[ "$installer" == "aptitude" ]]; then
@@ -34,7 +34,7 @@ function InstallPackageIfNotExist() {
             sudo apt install "$package" 
         fi
     else
-        echo -e "$(color 196)$package$(reset) is already installed."
+        echo -e "$(truecolor 255 0 0)$package$(reset) is already installed."
     fi
 }
 
@@ -60,7 +60,7 @@ PACKAGES=(
 for pkg in "${PACKAGES[@]}"; do
     # dpkg -s silently checks if the exact package is installed
     if dpkg -s "$pkg" &> /dev/null; then
-        echo "$pkg already installed. Skipping."
+        echo "$(truecolor 255 0 0)$pkg$(reset) already installed. Skipping."
     else
         echo "Installing $pkg..."
         sudo apt install -y "$pkg"
