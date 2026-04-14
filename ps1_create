@@ -14,9 +14,9 @@ function ps1_create() {
         read -e -r -p "Beginning border (e.g., [[ or < ): " b_start
         read -e -r -p "Ending border    (e.g., ]] or > ): " b_end
         read -e -r -p "Section info     (e.g., \u@\h or \w): " s_info
-        read -e -r -p "Section color    (e.g., 'bold 196', leave blank for none): " s_color
-
-        # Construct the color block safely
+		read -e -r -p "Section color    (e.g., 'bold 196' or 'truecolor 155 25 45'): " s_color
+        
+		# Construct the color block safely
         local color_block=""
         if [[ -n "$s_color" ]]; then
             color_block="\[\$(${s_color})\]"
