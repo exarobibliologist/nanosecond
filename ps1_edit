@@ -35,37 +35,38 @@ function ps1_edit() {
     local theme_name=$(basename "$selected_file" .ps1)
     
 	# Read the first line of the file
-    local raw_line=$(cat "$selected_file" | head -n 1)
-    
-    # Extract only the content between the first and last double quote
-    local current_ps1="${raw_line#*\"}"
-    current_ps1="${current_ps1%\"*}"
-    echo -e "\n$(color 46)Loaded: $theme_name$(reset)"
+	local raw_line=$(cat "$selected_file" | head -n 1)
 
-    # --- Generate Live Preview & Edit Loop ---
-    while true; do
-        printf "\n%sCurrent Code:%s %s\n" "$(color 8)" "$(reset)" "${current_ps1}"
-        printf "%sLive Preview:%s\n%s\n" "$(color 8)" "$(reset)" "${current_ps1@P}"
+	# Extract only the content between the first and last double quote
+	local current_ps1="${raw_line#*\"}"
+	current_ps1="${current_ps1%\"*}"
+	echo -e "\n$(color 46)Loaded: $theme_name$(reset)"
 
-        echo ""
-        read -e -r -p "Would you like to edit this code? (Y/n): " edit_choice
-        
-        # Default to Yes if they just press Enter
-        if [[ "$edit_choice" =~ ^[Nn] ]]; then
-            break
-        fi
+		# --- Generate Live Preview & Edit Loop ---
+		while true; do
+		printf "\n%sCurrent Code:%s %s\n" "$(color 8)" "$(reset)" "${current_ps1}"
+		printf "%sLive Preview:%s\n%s\n" "$(color 8)" "$(reset)" "${current_ps1@P}"
 
-        echo -e "\n$(color 3)Make your changes and press Enter:$(reset)"
-        # The -i flag pre-fills the prompt with the extracted PS1 string!
-        read -e -r -p "> " -i "$current_ps1" current_ps1
-    done
+		echo ""
+		read -e -r -p "Would you like to edit this code? (Y/n): " edit_choice
+
+		# Default to Yes if they just press Enter
+		if [[ "$edit_choice" =~ ^[Nn] ]]; then
+			break
+		fi
+
+		echo -e "\n$(color 3)Make your changes and press Enter:$(reset)"
+
+		# The -i flag pre-fills the prompt with the extracted PS1 string!
+		read -e -r -p "> " -i "$current_ps1" current_ps1
+		done
 
     # ==========================================
     # FINALIZE AND SAVE
     # ==========================================
-    printf "\n%s=== Final Edited Theme ===%s\n" "$(color 46)" "$(reset)"
-    printf "%sCode:%s    export PS1=\"%s\"\n" "$(color 8)" "$(reset)" "${current_ps1}"
-    printf "%sPreview:%s\n%s\n\n" "$(color 8)" "$(reset)" "${current_ps1@P}"
+	printf "\n%s=== Final Edited Theme ===%s\n" "$(color 46)" "$(reset)"
+	printf "%sCode:%s    export PS1=\"%s\"\n" "$(color 8)" "$(reset)" "${current_ps1}"
+	printf "%sPreview:%s\n%s\n\n" "$(color 8)" "$(reset)" "${current_ps1@P}"
 
     read -e -r -p "Save changes to $theme_name.ps1? (Y/n): " save_choice
     local file_saved=false

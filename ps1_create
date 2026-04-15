@@ -8,6 +8,7 @@ function ps1_create() {
     local section_num=1
 
     while true; do
+	clear
         echo -e "\n$(color 3)--- Section $section_num ---$(reset)"
         
         # Added -r to ALL read commands to prevent backslash stripping!
