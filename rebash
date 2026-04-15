@@ -1,3 +1,5 @@
+#!/bin/bash
+
 function rebash() {
     clear
     echo -e "Run Update BEFORE Upgrade"
