@@ -1,1 +1,1 @@
-PS1="\[$(color 250)\]<\[$(color 208)\]\u@\h\[$(color 250)\]>-<\[$(color 246)\]\w\[$(color 250)\]>-\[$(color 208)\]$ \[$(reset)\]"
+export PS1="\[$(truecolor 192 192 192)\]<\[$(truecolor 255 97 10)\]\u@\h\[$(truecolor 192 192 192)\]>-<\[$(truecolor 255 97 10)\]\w\[$(truecolor 192 192 192)\]>-\[$(truecolor 255 97 10)\]$ \[$(reset)\]"
