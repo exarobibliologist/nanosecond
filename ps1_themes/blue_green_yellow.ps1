@@ -1,1 +1,1 @@
-PS1="\[$(color 39)\]\u : \[$(color 77)\]\w \[$(color 226)\]>\[$(reset)\] "
+export PS1="\[$(truecolor 11 85 208)\]\u : \[$(truecolor 38 207 159)\]\w \[$(truecolor 255 255 94)\]>\[$(reset)\]"

@@ -1,1 +1,0 @@
-PS1="\[$(bold 161)\]╓╥─\[$(reset)\]\[$(color 226)\]\u\[$(color 255)\]@\[$(color 226)\]\h \[$(color 255)\]in \[$(color 226)\]\w\[$(reset)\]\n\[$(bold 161)\]╙╨─ Enter Your Command Here:\[$(reset)\] "

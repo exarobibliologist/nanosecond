@@ -1,1 +1,1 @@
-PS1="\[$(bold 214)\]\d \t : \u@\h : \! : \w >\[$(reset)\] "
+export PS1="\[$(truebold 249 132 4)\]\d \t : \u@\h : \! : \w >\[$(reset)\]"
