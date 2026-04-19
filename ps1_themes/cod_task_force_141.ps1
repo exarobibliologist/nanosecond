@@ -1,1 +1,1 @@
-PS1="\[$(color 67)\]TF-141:\[$(color 250)\]\u \[$(color 238)\]\w \[$(color 67)\]=> \[$(reset)\]"
+export PS1="\[$(truecolor 69 87 133)\]TF-141::\[$(truecolor 158 158 158)\]\u:: \[$(truecolor 80 80 80)\]\W \[$(truecolor 69 87 133)\]=> \[$(reset)\]"

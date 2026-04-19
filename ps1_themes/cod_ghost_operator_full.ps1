@@ -1,1 +1,1 @@
-PS1="\[$(color 236)\][\[$(color 250)\]\u@\h\[$(color 236)\]] \[$(color 240)\]\w \[$(color 255)\]> \[$(reset)\]"
+export PS1="\[$(truecolor 62 62 62)\][\[$(truecolor 170 170 170)\]\u@\h\[$(truecolor 62 62 62)\]] \[$(truecolor 60 60 60)\]\w \[$(truecolor 255 255 255)\]> \[$(reset)\]"
