@@ -1,1 +1,1 @@
-export PS1="\[$(truecolor 0 255 0)\]\u \[$(truecolor 80 80 80)\]| \[$(truecolor 0 255 0)\]\W \[$(truecolor 160 160 160)\]> \[$(reset)\]"
+export PS1="\[$(color 0 255 0)\]\u \[$(color 80 80 80)\]| \[$(color 0 255 0)\]\W \[$(color 160 160 160)\]> \[$(reset)\]"

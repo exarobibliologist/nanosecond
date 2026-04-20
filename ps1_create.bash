@@ -8,14 +8,13 @@ function ps1_create() {
     local section_num=1
 
     while true; do
-	clear
         echo -e "\n$(color 3)--- Section $section_num ---$(reset)"
         
         # Added -r to ALL read commands to prevent backslash stripping!
         read -e -r -p "Beginning border (e.g., [[ or < ): " b_start
         read -e -r -p "Ending border    (e.g., ]] or > ): " b_end
         read -e -r -p "Section info     (e.g., \u@\h or \w): " s_info
-		read -e -r -p "Section color    (e.g., 'bold 196' or 'truecolor 155 25 45'): " s_color
+		read -e -r -p "Section color    (use 'color' or 'bold' then choose (ANSI) '196', (RGB) '255 25 45', or (HEX) 'FF00FF'; e.g., 'color FF00FF' or 'bold 22 119 78'): " s_color
         
 		# Construct the color block safely
         local color_block=""
@@ -112,4 +111,6 @@ function ps1_create() {
         source "$ACTIVE_THEME"
         echo -e "$(color 46)Theme applied and set as active!$(reset)"
     fi
+	pressanykey
+	clear
 }

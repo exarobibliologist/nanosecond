@@ -71,11 +71,11 @@ Then navigate into the created folder like so:
 
 make the install script executable
 
-`chmod +x installbash`
+`chmod +x installbash.bash`
 
 then install:
 
-`bash installbash`
+`bash installbash.bash`
 
 The installer will not overwrite your .bashrc, but will copy a single line to end of your .bashrc to source the modified bashrc file I have included in the nanosecond repo.
 
