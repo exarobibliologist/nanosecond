@@ -16,109 +16,6 @@
 ##                                                                                    
 ##                                                                                    
 
-### _____              _ _     ____                 _      _____       _     _             
-###|  __ \            ( ) |   |  _ \               | |    |  __ \     | |   (_)            
-###| |  | | ___  _ __ |/| |_  | |_) |_ __ ___  __ _| | __ | |  | | ___| |__  _  __ _ _ __  
-###| |  | |/ _ \| '_ \  | __| |  _ <| '__/ _ \/ _` | |/ / | |  | |/ _ \ '_ \| |/ _` | '_ \ 
-###| |__| | (_) | | | | | |_  | |_) | | |  __/ (_| |   <  | |__| |  __/ |_) | | (_| | | | |
-###|_____/ \___/|_| |_|  \__| |____/|_|  \___|\__,_|_|\_\ |_____/ \___|_.__/|_|\__,_|_| |_|
-###                                                                                        
-###                    
-
-The Debian Wiki @ https://wiki.debian.org/DontBreakDebian advises against making FrankenDebian. It states unequivocally, "Debian Stable should not be combined with other releases carelessly.
-If you're trying to install software that isn't available in the current Debian Stable release, it's not a good idea to add repositories for other Debian releases."
-
-My studies of this have found other results though. I'd like to say that I didn't approach this trying to destroy my system, and most of the time, I didn't have any crashes at all.
-The reason I even started experimenting with FrankenDebian is because of the purists who would only respond with "RTFM!@!" and link me to the Wiki instead of explaining the answers to specific questions, leaving me with more questions and a desire to answer those questions.
-
-First off, The Wiki leads us to believe that adding anything to the sources will create a FrankenDebian!
-	#Debian testing release ## Absolutely NOT true
-	#Debian unstable release (also known as sid) ## Absolutely NOT true
-	#Ubuntu PPAs and other repositories created to distribute single applications. ## Almost never true. Single applications distributed by PPA are much easier to run with Debian than configuring an entire derivative repo.
-	#Ubuntu, Mint or other derivative repositories are not compatible with Debian! ## Only partially true. It would be more accurate to say "They weren't designed with Debian in mind." Most of them are completely compatiable with Debian.
-	### However, derivative repos can introduce an element of unpredictabless to a system, so probably don't do this unless you ABSOLUTELY know what you are doing.
-
-The biggest problem with this advice is that it ASSUMES that all Debian users have the same needs, and like doing things the hard way.
-It also PRESUMES that adding sources to the Debian system will AUTOMATICALLY result in a broken system.
-
-Here's the problem with this thinking. Debian Stable is admittedly the most stable flavor of Debian, but if you need more up-to-date drivers or support for your system, you won't find it on Stable.
-So, the Debian purists say "Then install Testing." The problem with Testing is that packages move in and out of Testing so rapidly at times, it can be hard to hold on to any stability at all, especially if you're tracking a package under active development. It's also not unlikely that you will find a package in Testing, but none of the dependencies are available (because they only exist in Stable or Sid).
-So, the Debian purists say "then install Sid." While it's true that packages don't move in and out of Sid with as much rapidity as they do on Testing, you're still one system update away from a brick if you're not careful.
-
-This is why blending Debian sources into a hybrid installation is superior. I found a way to "blend" the sources, without creating chaos.
-
-Here's how it works. In my sources.list, I change all the places where the version is named (i.e; squeeze, wheezy, stretch, buster, bullseye, bookworm, trixie, forky, duke, etc) to their generic name (stable, testing, unstable, experimental)
-Then, I add all the sources to my sources.list
-
-#	deb http://deb.debian.org/debian/ stable main contrib non-free non-free-firmware
-#	deb-src http://deb.debian.org/debian/ stable main contrib non-free non-free-firmware
-#
-#	deb http://deb.debian.org/debian/ stable-updates main contrib non-free non-free-firmware
-#	deb-src http://deb.debian.org/debian/ stable-updates main contrib non-free non-free-firmware
-#
-#	deb http://security.debian.org/debian-security stable-security main contrib non-free
-#	deb-src http://security.debian.org/debian-security stable-security main contrib non-free
-#
-#	deb http://deb.debian.org/debian/ testing main contrib non-free non-free-firmware
-#	deb-src http://deb.debian.org/debian/ testing main contrib non-free non-free-firmware
-#
-#	deb http://deb.debian.org/debian/ testing-updates main contrib non-free non-free-firmware
-#	deb-src http://deb.debian.org/debian/ testing-updates main contrib non-free non-free-firmware
-#
-#	deb http://deb.debian.org/debian/ unstable main contrib non-free non-free-firmware
-#	deb-src http://deb.debian.org/debian/ unstable main contrib non-free non-free-firmware
-#
-#	deb http://deb.debian.org/debian/ experimental main contrib non-free
-#	deb-src http://deb.debian.org/debian/ experimental main contrib non-free
-
-If this was all I did to my system, then the purists would be absolutely correct that editing the sources.list leads to a broken system.
-This, JUST BY ITSELF, would be absolute chaos!! It would almost certinaly not work well, or for very long.
-
-What you need to do now is tweak apt_preferences so you force stability on the other sources by deprioritizing them. For more information on how this works, look at the section about APT Preferences below, or open a Terminal and type # man apt_preferences
-My completed sourcestopper file looks like this. It change the priority of testing, unstable, and experimental to -10
-
-#	Package: *
-#	Pin: release o=testing
-#	Pin-Priority: -10
-#
-#	Package: *
-#	Pin: release a=testing
-#	Pin-Priority: -10
-#
-#	Package: *
-#	Pin: release n=testing
-#	Pin-Priority: -10
-#
-#	Package: *
-#	Pin: release o=unstable
-#	Pin-Priority: -10
-#
-#	Package: *
-#	Pin: release a=unstable
-#	Pin-Priority: -10
-#
-#	Package: *
-#	Pin: release n=unstable
-#	Pin-Priority: -10
-#
-#	Package: *
-#	Pin: release o=experimental
-#	Pin-Priority: -10
-#
-#	Package: *
-#	Pin: release a=experimental
-#	Pin-Priority: -10
-#
-#	Package: *
-#	Pin: release n=experimental
-#	Pin-Priority: -10
-
-By using generic names for the version names, you can actually create a rolling Debian system that REMAINS Stable, but gives you access to other sources as well. Whenever version names change, apt update will show a message that versions have changed, and it will automatically roll into the next version with no difficulty.
-
-This file when placed in /etc/apt/preferences.d allows you to maintain the system at the Stable level, while tracking Testing, Unstable, and Experimental.
-
-Stable is automatically maintained at a pin-priority of 100 as a default, so none of the new sources will impact the system, but you can still install new drivers and programs (packages in Testing will not be automatically installed, and Stable will always have higher priority)
-This type of hybridized Debian setup is ridiculously stable, while allowing the most up-to-date software to be accessed and installed. If a particular package only exists in Sid, but the dependencies exist in Testing, all of them will install correctly and only those packages will have any impact on the system. And when the packages migrate from Sid to Testing, or Testing to Stable, it will not have any effect on the stability of your system as you can track the packages wherever they are.
 
 ### ______ _           _   _   _            ______        _            _      _____                          
 ###|  ____(_)         | | | | | |          |  ____|      | |          | |    / ____|                         
@@ -176,22 +73,6 @@ In order to change the hostname of the computer, you need to change the old host
 #	/etc/ssmtp/ssmtp.conf
 Then reboot the computer. The new hostname should be used immediately.
 
-###           _       _       _   _      _                    _____       _     _             
-###          (_)     | |     | | (_)    | |                  |  __ \     | |   (_)            
-### _ __ ___  _ _ __ | |_ ___| |_ _  ___| | __   ___  _ __   | |  | | ___| |__  _  __ _ _ __  
-###| '_ ` _ \| | '_ \| __/ __| __| |/ __| |/ /  / _ \| '_ \  | |  | |/ _ \ '_ \| |/ _` | '_ \ 
-###| | | | | | | | | | |_\__ \ |_| | (__|   <  | (_) | | | | | |__| |  __/ |_) | | (_| | | | |
-###|_| |_| |_|_|_| |_|\__|___/\__|_|\___|_|\_\  \___/|_| |_| |_____/ \___|_.__/|_|\__,_|_| |_|
-###                                                                                           
-###                      
-
-Mintstick is a handy tool to use for formatting and creating USB sticks. It's so much easier to use this tool than use fdisk or mkfs
-It also includes an imagewriter that makes creating Live Linux USB drives a snap!
-However, this package is only included on Linux Mint distros. If you're not using Mint, you'll need to follow the steps below.
-#        firefox http://packages.linuxmint.com/pool/main/m/mintstick/
-#        sudo dpkg -i mintstick*
-It probably won't install because of missing packages, so...
-#        sudo apt-get install -f
 
 ### _____              _ _     _____               _____                                                _____                                          _     
 ###|  __ \            ( ) |   |  __ \             |  __ \                                              / ____|                                        | |    
@@ -277,6 +158,8 @@ It is possible to edit the file in /boot/grub/grub.cfg but this should be the ab
 ###|_|  \_\___|\___\___/ \_/ \___|_|  |_|_| |_|\__, |  \_____|_|  \_\\____/|____/ 
 ###                                             __/ |                             
 ###                                            |___/                    
+
+# This is an old entry. Will update soon with new info.
 
 Boot into your Linux LiveCD (use the same version as the one you are recovering, if possible).
 Open Terminal and type:
@@ -375,7 +258,10 @@ Show line numbers and file names in results
 Use pv to add a loading bar.
 #	sudo aptitude install pv
 Then use the following piped command:
-#	dd if=/path/to/source | pv | dd of=/path/to/write
+#	pv "$iso_file" | sudo dd of="$target" bs=4M oflag=sync status=none
+	## where "$iso_file" = iso file
+	## where "$target" = USB drive
+
 
 ### ____                       ______                            _             
 ###|  _ \                     |  ____|                          (_)            
@@ -807,16 +693,109 @@ The following command will cause APT to upgrade the specified package to the lat
 
 #	apt-get install package/sid
 
-FILES
-       /etc/apt/preferences
-           Version preferences file. This is where you would specify
-           "pinning", i.e. a preference to get certain packages from a
-           separate source or from a different version of a distribution.
-           Configuration Item: Dir::Etc::Preferences.
 
-       /etc/apt/preferences.d/
-           File fragments for the version preferences. Configuration Item:
-           Dir::Etc::PreferencesParts.
+## _____ _            _____           _   _          _    _                 _     _____ _           _    __        ___ _    _           ____              _ _     ____                 _      ____       _     _
+##|_   _| |__   ___  |_   _| __ _   _| |_| |__      / \  | |__   ___  _   _| |_  |_   _| |__   __ _| |_  \ \      / (_) | _(_)         |  _ \  ___  _ __ ( ) |_  | __ ) _ __ ___  __ _| | __ |  _ \  ___| |__ (_) __ _ _ __
+##  | | | '_ \ / _ \   | || '__| | | | __| '_ \    / _ \ | '_ \ / _ \| | | | __|   | | | '_ \ / _` | __|  \ \ /\ / /| | |/ / |  _____  | | | |/ _ \| '_ \|/| __| |  _ \| '__/ _ \/ _` | |/ / | | | |/ _ \ '_ \| |/ _` | '_ \
+##  | | | | | |  __/   | || |  | |_| | |_| | | |  / ___ \| |_) | (_) | |_| | |_    | | | | | | (_| | |_    \ V  V / | |   <| | |_____| | |_| | (_) | | | | | |_  | |_) | | |  __/ (_| |   <  | |_| |  __/ |_) | | (_| | | | |
+##  |_| |_| |_|\___|   |_||_|   \__,_|\__|_| |_| /_/   \_\_.__/ \___/ \__,_|\__|   |_| |_| |_|\__,_|\__|    \_/\_/  |_|_|\_\_|         |____/ \___/|_| |_|  \__| |____/|_|  \___|\__,_|_|\_\ |____/ \___|_.__/|_|\__,_|_| |_|
+##
+
+The Debian Wiki @ https://wiki.debian.org/DontBreakDebian advises against making FrankenDebian. It states unequivocally, "Debian Stable should not be combined with other releases carelessly.
+If you're trying to install software that isn't available in the current Debian Stable release, it's not a good idea to add repositories for other Debian releases."
+
+My studies of this have found other results though. I'd like to say that I didn't approach this trying to destroy my system, and most of the time, I didn't have any crashes at all.
+The reason I even started experimenting with FrankenDebian is because of the purists who would only respond with "RTFM!@!" and link me to the Wiki instead of explaining the answers to specific questions, leaving me with more questions and a desire to answer those questions.
+
+First off, The Wiki leads us to believe that adding anything to the sources will create a FrankenDebian!
+	#Debian testing release ## Absolutely NOT true
+	#Debian unstable release (also known as sid) ## Absolutely NOT true
+	#Ubuntu PPAs and other repositories created to distribute SINGLE applications. ## Almost never true. Single applications are much easier to run with Debian than configuring an entire derivative repo.
+	#Ubuntu, Mint or other derivative repositories are not compatible with Debian! ## Only partially true. It would be more accurate to say "They weren't designed with Debian in mind." Most of them are completely compatiable with Debian.
+	### However, derivative repos can introduce an element of unpredictabless to a system, so probably don't do this unless you ABSOLUTELY know what you are doing.
+
+The biggest problem with this advice is that it ASSUMES that all Debian users have the same needs, and like doing things the hard way.
+It also PRESUMES that adding sources to the Debian system will AUTOMATICALLY result in a broken system.
+
+Here's the problem with this thinking. Debian Stable is admittedly the most stable flavor of Debian, but if you need more up-to-date drivers or support for your system, you won't find it on Stable.
+So, the Debian purists say "Then install Testing." The problem with Testing is that packages move in and out of Testing so rapidly at times, it can be hard to hold on to any stability at all, especially if you're tracking a package under active development. It's also not unlikely that you will find a package in Testing, but none of the dependencies are available (because they only exist in Stable or Sid).
+So, the Debian purists say "then install Sid." While it's true that packages don't move in and out of Sid with as much rapidity as they do on Testing, you're still one system update away from a brick if you're not careful.
+
+This is why blending Debian sources into a hybrid installation is superior. I found a way to "blend" the sources, without creating chaos.
+
+Here's how it works. In my sources.list, I change all the places where the version is named (i.e; squeeze, wheezy, stretch, buster, bullseye, bookworm, trixie, forky, duke, etc) to their generic name (stable, testing, unstable, experimental)
+Then, I add all the sources to my sources.list
+
+#	deb http://deb.debian.org/debian/ stable main contrib non-free non-free-firmware
+#	deb-src http://deb.debian.org/debian/ stable main contrib non-free non-free-firmware
+#
+#	deb http://deb.debian.org/debian/ stable-updates main contrib non-free non-free-firmware
+#	deb-src http://deb.debian.org/debian/ stable-updates main contrib non-free non-free-firmware
+#
+#	deb http://security.debian.org/debian-security stable-security main contrib non-free
+#	deb-src http://security.debian.org/debian-security stable-security main contrib non-free
+#
+#	deb http://deb.debian.org/debian/ testing main contrib non-free non-free-firmware
+#	deb-src http://deb.debian.org/debian/ testing main contrib non-free non-free-firmware
+#
+#	deb http://deb.debian.org/debian/ testing-updates main contrib non-free non-free-firmware
+#	deb-src http://deb.debian.org/debian/ testing-updates main contrib non-free non-free-firmware
+#
+#	deb http://deb.debian.org/debian/ unstable main contrib non-free non-free-firmware
+#	deb-src http://deb.debian.org/debian/ unstable main contrib non-free non-free-firmware
+#
+#	deb http://deb.debian.org/debian/ experimental main contrib non-free
+#	deb-src http://deb.debian.org/debian/ experimental main contrib non-free
+
+If this was all I did to my system, then the purists would be absolutely correct that editing the sources.list leads to a broken system.
+This, JUST BY ITSELF, would be absolute chaos!! It would almost certinaly not work well, or for very long.
+
+What you need to do now is tweak apt_preferences so you force stability on the other sources by deprioritizing them. For more information on how this works, look at the section about APT Preferences below, or open a Terminal and type # man apt_preferences
+My completed sourcestopper file looks like this. It change the priority of testing, unstable, and experimental to -10
+
+#	Package: *
+#	Pin: release o=testing
+#	Pin-Priority: -10
+#
+#	Package: *
+#	Pin: release a=testing
+#	Pin-Priority: -10
+#
+#	Package: *
+#	Pin: release n=testing
+#	Pin-Priority: -10
+#
+#	Package: *
+#	Pin: release o=unstable
+#	Pin-Priority: -10
+#
+#	Package: *
+#	Pin: release a=unstable
+#	Pin-Priority: -10
+#
+#	Package: *
+#	Pin: release n=unstable
+#	Pin-Priority: -10
+#
+#	Package: *
+#	Pin: release o=experimental
+#	Pin-Priority: -10
+#
+#	Package: *
+#	Pin: release a=experimental
+#	Pin-Priority: -10
+#
+#	Package: *
+#	Pin: release n=experimental
+#	Pin-Priority: -10
+
+By using generic names for the version names, you can actually create a rolling Debian system that REMAINS Stable, but gives you access to other sources as well. Whenever version names change, apt update will show a message that versions have changed, and it will automatically roll into the next version with no difficulty.
+
+This file when placed in /etc/apt/preferences.d allows you to maintain the system at the Stable level, while tracking Testing, Unstable, and Experimental.
+
+Stable is automatically maintained at a pin-priority of 100 as a default, so none of the new sources will impact the system, but you can still install new drivers and programs (packages in Testing will not be automatically installed, and Stable will always have higher priority)
+This type of hybridized Debian setup is ridiculously stable, while allowing the most up-to-date software to be accessed and installed. If a particular package only exists in Sid, but the dependencies exist in Testing, all of them will install correctly and only those packages will have any impact on the system. And when the packages migrate from Sid to Testing, or Testing to Stable, it will not have any effect on the stability of your system as you can track the packages wherever they are.
+
 
 ##  _____           _   _                 __             _   _      _                      _    
 ## / ____|         | | (_)               / /            | \ | |    | |                    | |   

@@ -1,1 +1,1 @@
-export PS1="\[$(truebold 244 199 108)\]\u\[$(truebold 255 0 0)\]@\[$(truebold 236 97 10)\]\h \[$(truebold 195 84 68)\]:\w: \[$(truebold 250 250 250)\]❯\[$(reset)\] "
+export PS1="\[$(bold 244 199 108)\]\u\[$(bold 255 0 0)\]@\[$(bold 236 97 10)\]\h \[$(bold 195 84 68)\]:\w: \[$(bold 250 250 250)\]❯\[$(reset)\]"

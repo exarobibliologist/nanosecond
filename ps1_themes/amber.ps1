@@ -1,1 +1,1 @@
-export PS1="\[$(truebold 249 132 4)\]\u : \w >\[$(reset)\]"
+export PS1="\[$(bold 249 132 4)\]\u : \w >\[$(reset)\]"
