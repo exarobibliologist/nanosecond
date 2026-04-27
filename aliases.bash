@@ -14,6 +14,9 @@ alias mem='free -m -h'            # Displays memory in human-readable format
 # ------------------------------------------------------------------------------
 # DIRECTORY NAVIGATION
 # ------------------------------------------------------------------------------
+alias ls='ls --color=auto'
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
 alias .1='cd ..'
 alias .2='cd ../..'
 alias .3='cd ../../..'
@@ -25,7 +28,6 @@ alias dus='du -shc * | sort -hr'  # Incredibly useful for finding space hogs
 alias disks='sudo fdisk -l'
 alias mkdir='mkdir -pv' # Make directories recursively and tell you what it did
 alias path='echo -e ${PATH//:/\\n}' #Prints system path into a clean, readable, vertical list
-#alias less='more -spd'            # Overrides 'less' to use the 'more' pager 
 
 # ------------------------------------------------------------------------------
 # SAFETY NETS (Interactive Prompts)
