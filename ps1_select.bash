@@ -42,8 +42,8 @@ function ps1_select() {
             local display_num=$((i + 1))
             
             # The Magic Render Trick
-            local preview=$( (source "$theme" >/dev/null 2>&1; echo -e "${PS1@P}") )
-            
+            local preview=$( (source "$theme"; echo -e "${PS1@P}") )
+
             echo "$display_num) $theme_name"
             echo -e "$preview\n"
         done

@@ -34,8 +34,19 @@ function ps1_edit() {
     local selected_file="${themes[$((choice-1))]}"
     local theme_name=$(basename "$selected_file" .ps1)
     
-	# Read the first line of the file
-	local raw_line=$(cat "$selected_file" | head -n 1)
+    # Hunt down the actual PS1 declaration, ignoring comments or empty lines
+    local raw_line=$(grep -E '^(export )?PS1=' "$selected_file" | head -n 1)
+
+    # Catch the error if the file is completely broken or empty
+    if [ -z "$raw_line" ]; then
+        echo -e "\n$(color 196)Error: Could not find a PS1 declaration in $theme_name$(reset)"
+        sleep 2
+    return 1
+    fi
+
+# Extract only the content between the first and last double quote
+local current_ps1="${raw_line#*\"}"
+current_ps1="${current_ps1%\"*}"
 
 	# Extract only the content between the first and last double quote
 	local current_ps1="${raw_line#*\"}"
