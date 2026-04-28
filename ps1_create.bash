@@ -3,7 +3,6 @@
 function ps1_create() {
     echo -e "\n=== Interactive PS1 Creator ==="
     echo "Let's build your prompt section by section."
-    
     local final_ps1=""
     local section_num=1
 
@@ -14,16 +13,26 @@ function ps1_create() {
         read -e -r -p "Beginning border (e.g., [[ or < ): " b_start
         read -e -r -p "Ending border    (e.g., ]] or > ): " b_end
         read -e -r -p "Section info     (e.g., \u@\h or \w): " s_info
-		read -e -r -p "Section color    (use 'color' or 'bold' then choose (ANSI) '196', (RGB) '255 25 45', or (HEX) 'FF00FF'; e.g., 'color FF00FF' or 'bold 22 119 78'): " s_color
+        read -e -r -p "Section color    (use 'color' or 'bold' ; e.g., 'color FF00FF' or 'bold 22 119 78' or 'color 255 0 0 0 0 255'): " s_color
         
-		# Construct the color block safely
+        # Construct the color block safely
         local color_block=""
+        local reset_block=""
+        
         if [[ -n "$s_color" ]]; then
             color_block="\[\$(${s_color})\]"
+            
+            # Detect background colors by counting the arguments
+            # 1 cmd + 2 args (ANSI/Hex bg) = 3 words
+            # 1 cmd + 6 args (RGB bg) = 7 words
+            read -r -a color_args <<< "$s_color"
+            if [[ "${#color_args[@]}" -eq 3 || "${#color_args[@]}" -eq 7 ]]; then
+                reset_block="\[\$(reset)\]"
+            fi
         fi
 
-        # Assemble this specific segment
-        local segment="${color_block}${b_start}${s_info}${b_end}"
+        # Assemble this specific segment with the optional reset block
+        local segment="${color_block}${b_start}${s_info}${b_end}${reset_block}"
 
         # Append to the main PS1 string. Add a space between sections if it's not the first one.
         if [[ -n "$final_ps1" ]]; then
@@ -111,6 +120,6 @@ function ps1_create() {
         source "$ACTIVE_THEME"
         echo -e "$(color 46)Theme applied and set as active!$(reset)"
     fi
-	pressanykey
-	clear
+    pressanykey
+    clear
 }
