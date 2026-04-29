@@ -1017,6 +1017,7 @@ Find the minimum
 When your running Linux and do a "ls -al --color" in your Bash shell,  on some systems the directory color is so dark you can barely make out the directory names? This is surprisingly a common problem. Here’s the solution:
 You can change both the intensity and the color, along with the background color on lots of things.
 
+If you use ANSI coding, then you are limited to 16 colors.
 Your color choices are:
 
 Effects
@@ -1054,9 +1055,6 @@ After you alter your .bashrc file, to put the changes in effect you will have to
 
 You can have color combinations with 2, 3, 4, or more color tags. Experiment.
 
-Here's some colors I want to save:
-Black Text on Red Background = 38;05;0;41
-White Blinking Test on Red Background = 01;05;41
 
 ### ____   ___     ___  _____            _______ _             _____                  _      _____             _   
 ###|___ \ / _ \ _ / _ \| ____|          |__   __| |           / ____|                | |    / ____|           | |  
