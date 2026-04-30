@@ -88,6 +88,7 @@ fi
 . ~/GIT/nanosecond/system_backup_and_restore.bash
 . ~/GIT/nanosecond/title_figlet.bash
 . ~/GIT/nanosecond/toplag.bash
+. ~/GIT/nanosecond/trade_tycoon.bash
 . ~/GIT/nanosecond/unlockdpkg.bash
 . ~/GIT/nanosecond/wallchange.bash
 . ~/GIT/nanosecond/welcome.bash

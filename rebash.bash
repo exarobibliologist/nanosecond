@@ -46,7 +46,7 @@ function rebash() {
             "Upgrade/Remove/Purge Menu")
                 local PS3="Select an Upgrade option: "
                 # Added "Purge a Package" right next to "Autoremove Unrequired"
-                select upgradechoice in "List Upgrades" "List Upgrades with Detail" "Run Safe-Upgrade" "Run Full-Upgrade" "Autoremove Unrequired" "Purge a Package" "Back"; do
+                select upgradechoice in "List Upgrades" "List Upgrades with Detail" "Run Safe-Upgrade" "Run Full-Upgrade" "Purge a Package" "Back"; do
                     case "$upgradechoice" in
                         "List Upgrades")
                             apt list --upgradable 2>/dev/null | cut -d/ -f1 | sort | column
@@ -62,10 +62,6 @@ function rebash() {
                             ;;
                         "Run Full-Upgrade")
                             sudo apt full-upgrade || return
-                            return
-                            ;;
-                        "Autoremove Unrequired")
-                            sudo apt autoremove || return
                             return
                             ;;
                         "Purge a Package")
@@ -88,12 +84,12 @@ function rebash() {
             "Maintenance Menu")
                 local PS3="Select a Maintenance option: "
                 # Removed "Purge a Package" from this menu array
-                select maintchoice in "Make USB" "Clean Package Cache" "APT History" "Edit APT Preferences" "Edit Sources" "Install Build Dependencies" "Add Keys" "Back"; do
+                select maintchoice in "Autoremove Unrequired" "Clean Package Cache" "APT History" "Edit APT Preferences" "Edit Sources" "Install Build Dependencies" "Add Keys" "Back"; do
                     case "$maintchoice" in
-						"Make USB")
-							makeusb
-							return
-							;;
+                        "Autoremove Unrequired")
+				sudo apt autoremove || return
+			return
+			;;
                         "Clean Package Cache")
                             echo -e "\n--- Clearing Outdated Local Packages ---"
                             sudo apt autoclean -y
