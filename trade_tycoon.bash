@@ -1,3 +1,5 @@
+#!/bin/bash
+
 trade_tycoon() {
     # --- Initialize Local Game Variables ---
     local money=10000
@@ -10,16 +12,18 @@ trade_tycoon() {
     local active_items=(
         "Wood" "Iron" "Wheat" "Cloth" "Leather"
         "Coal" "Copper" "Stone" "Salt" "Glass"
-        "Ale" "Rations" "Torches" "Herbs" "Arrows"
+        "Beer" "Rations" "Torches" "Herbs" "Arrows"
     )
 
     # Expanded DnD Locked Items
     local locked_items=(
-        "Silver" "Gold" "Gems" "Potions" "Scrolls"
-        "Holy Water" "Mithril" "Adamantine" "Elven Silk"
-        "Dragon Scales" "Magic Wands" "Spellbooks"
-        "Troll Blood" "Phoenix Feathers" "Unicorn Horns"
-        "Vorpal Blades" "Philosopher's Stone"
+        "tobacco" "Silver" "Gold" "Gems" "Potions" "Scrolls"
+	"Holy Water" "Mithril" "Adamantine" "Elven Silk"
+	"Dragon Scales" "Magic Wands" "Spellbooks"
+	"Troll Blood" "Phoenix Feathers" "Unicorn Horns" "Superman's Cape"
+	"Vorpal Blades" "Philosopher Stones" "Crystal Balls" "Bags of Holding"
+	"Invisibility Cloak" "Lucky Dice" "Everlasting Gobstopper" "Romulan Ale"
+	"Lightsabers" "Political Favors" "Cryptocurrency" "Time Machine"
     )
 
     # Local associative arrays
