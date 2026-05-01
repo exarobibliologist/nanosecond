@@ -8,22 +8,22 @@ trade_tycoon() {
     local unlocked_count=0
     local current_event=""
 
-    # Expanded DnD Active Items
+    # Expanded DnD Active Items (From your custom list)
     local active_items=(
         "Wood" "Iron" "Wheat" "Cloth" "Leather"
         "Coal" "Copper" "Stone" "Salt" "Glass"
         "Beer" "Rations" "Torches" "Herbs" "Arrows"
     )
 
-    # Expanded DnD Locked Items
+    # Expanded DnD Locked Items (From your custom list)
     local locked_items=(
-        "tobacco" "Silver" "Gold" "Gems" "Potions" "Scrolls"
-	"Holy Water" "Mithril" "Adamantine" "Elven Silk"
-	"Dragon Scales" "Magic Wands" "Spellbooks"
-	"Troll Blood" "Phoenix Feathers" "Unicorn Horns" "Superman's Cape"
-	"Vorpal Blades" "Philosopher Stones" "Crystal Balls" "Bags of Holding"
-	"Invisibility Cloak" "Lucky Dice" "Everlasting Gobstopper" "Romulan Ale"
-	"Lightsabers" "Political Favors" "Cryptocurrency" "Time Machine"
+        "Tobacco" "Silver" "Gold" "Gems" "Potions" "Scrolls"
+        "Holy Water" "Mithril" "Adamantine" "Elven Silk"
+        "Dragon Scales" "Magic Wands" "Spellbooks"
+        "Troll Blood" "Phoenix Feathers" "Unicorn Horns" "Superman's Cape"
+        "Vorpal Blades" "Philosopher Stones" "Crystal Balls" "Bags of Holding"
+        "Invisibility Cloak" "Lucky Dice" "Everlasting Gobstopper" "Romulan Ale"
+        "Lightsabers" "Political Favors" "Cryptocurrency" "Time Machine"
     )
 
     # Local associative arrays
@@ -31,7 +31,7 @@ trade_tycoon() {
     local -A market_prices
     local -A average_cost
     local -a current_market
-    local -a sorted_inventory_keys # New array for sorting UI
+    local -a sorted_inventory_keys
 
     # Local loop and input variables
     local item price qty cost revenue action new_item item_idx max_qty
@@ -55,14 +55,23 @@ trade_tycoon() {
         local random_range=$(( 20 + (unlocked_count * 5) ))
         local base_price=$(( 10 + (unlocked_count * 5) ))
 
-        for i in {0..5}; do
+        # --- DYNAMIC MARKET SIZE (5 to 12 items) ---
+        local market_size=$(( (RANDOM % 8) + 5 ))
+
+        # Safety check: Don't try to pull more items than exist in the active pool
+        if [ "$market_size" -gt "${#active_items[@]}" ]; then
+            market_size="${#active_items[@]}"
+        fi
+
+        # Generate the random items for the week
+        for (( i=0; i<market_size; i++ )); do
             item="${shuffled[$i]}"
             current_market+=("$item")
             price=$(( (RANDOM % random_range) + base_price ))
             market_prices["$item"]=$price
         done
 
-        # --- THE FIX: Sort the market alphabetically ---
+        # Sort the market alphabetically
         mapfile -t current_market < <(printf "%s\n" "${current_market[@]}" | sort)
     }
 
@@ -71,22 +80,42 @@ trade_tycoon() {
         current_event=""
         local roll=$(( RANDOM % 100 ))
 
-        if [ $roll -lt 40 ]; then
+        if [ $roll -lt 30 ]; then
+            # 30% chance of nothing happening
             return
-        # 20% chance of prices skyrocketing
+
+        elif [ $roll -lt 40 ]; then
+            # 10% chance: GRAND MARKET DAY (Every unlocked item is available!)
+            current_market=()
+            market_prices=()
+
+            local random_range=$(( 20 + (unlocked_count * 5) ))
+            local base_price=$(( 10 + (unlocked_count * 5) ))
+
+            for item in "${active_items[@]}"; do
+                current_market+=("$item")
+                market_prices["$item"]=$(( (RANDOM % random_range) + base_price ))
+            done
+
+            mapfile -t current_market < <(printf "%s\n" "${current_market[@]}" | sort)
+            current_event="GRAND MARKET DAY! Merchants from all realms have gathered. Everything is available!"
+
         elif [ $roll -lt 60 ]; then
+            # 20% chance of prices skyrocketing
             local idx=$(( RANDOM % ${#current_market[@]} ))
             local e_item="${current_market[$idx]}"
             market_prices["$e_item"]=$(( market_prices["$e_item"] * "$week" ))
             current_event="MARKET BOOM! A local lord is hoarding $e_item. Prices are sky high!"
-        # 20% chance of prices bottoming out
+
         elif [ $roll -lt 80 ]; then
+            # 20% chance of prices bottoming out
             local idx=$(( RANDOM % ${#current_market[@]} ))
             local e_item="${current_market[$idx]}"
             market_prices["$e_item"]=$(( (market_prices["$e_item"] / "$week") + 1 ))
             current_event="MARKET CRASH! A massive surplus of $e_item has flooded the streets!"
-        # 15% chance of finding either gold or free inventory
+
         elif [ $roll -lt 95 ]; then
+            # 15% chance of finding either gold or free inventory
             if [ $(( RANDOM % 2 )) -eq 0 ]; then
                 local found=$(( (RANDOM % 500) + "$week" + (unlocked_count * 200) ))
                 money=$(( money + found ))
@@ -106,8 +135,9 @@ trade_tycoon() {
 
                 current_event="FORTUNE! You discovered an overturned wagon and salvaged $f_qty $f_item!"
             fi
-        # 5% of robbers stealing some money
+
         else
+            # 5% of robbers stealing some money
             local lost=$(( (RANDOM % 300) + 100 + (unlocked_count * 200) ))
             if [ "$money" -lt "$lost" ]; then
                 lost=$money
@@ -132,17 +162,18 @@ trade_tycoon() {
             echo "========================================="
         fi
 
-        echo " Gold Pieces: $money GP"
+        # Make large numbers easier to read
+        printf " Gold Pieces: %'d GP\n" "$money"
         echo "-----------------------------------------"
         echo " YOUR WAGON (Inventory):"
         local has_items=0
 
-        # --- THE FIX: Sort the wagon inventory alphabetically ---
+        # Sort the wagon inventory alphabetically
         mapfile -t sorted_inventory_keys < <(printf "%s\n" "${!inventory[@]}" | sort)
 
         for item in "${sorted_inventory_keys[@]}"; do
             if [ "${inventory[$item]}" -gt 0 ]; then
-                echo "  - $item: ${inventory[$item]} (Avg Paid: ${average_cost[$item]} GP)"
+                printf "  - %s: %'d (Avg Paid: %'d GP)\n" "$item" "${inventory[$item]}" "${average_cost[$item]}"
                 has_items=1
             fi
         done
@@ -153,12 +184,13 @@ trade_tycoon() {
         echo " THIS WEEK'S LOCAL MARKET:"
         local i=1
         for item in "${current_market[@]}"; do
-            echo "  [$i] $item: ${market_prices[$item]} GP"
+            printf "  [%d] %s: %'d GP\n" "$i" "$item" "${market_prices[$item]}"
             ((i++))
         done
         echo "========================================="
 
-        echo "Actions: [B]uy | [S]ell | [N]ext Week | [U]nlock Item ($unlock_cost GP) | [Q]uit"
+        # Format the unlock cost so it has commas (e.g. 1,000,000)
+        printf "Actions: [B]uy | [S]ell | [N]ext Week | [U]nlock Item (%'d GP) | [Q]uit\n" "$unlock_cost"
         read -p "What would you like to do? " action
 
         case ${action,,} in
@@ -263,7 +295,9 @@ trade_tycoon() {
                         locked_items=("${locked_items[@]:1}")
 
                         unlocked_count=$(( unlocked_count + 1 ))
-                        unlock_cost=$(( unlock_cost + 1000000 ))
+
+                        # --- EXΡΟΝΕΝΤIAL INFLATION ---
+                        unlock_cost=$(( unlock_cost * 2 ))
 
                         echo "GUILD PERMIT SECURED: $new_item added to market rotation!"
                         echo "The Kingdom's economy grows more volatile..."
