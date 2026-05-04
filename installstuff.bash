@@ -108,9 +108,9 @@ function KeepInstallingMoreStuff() {
         "$(color 255 255 255)Drive Management$(reset) = apper brasero furiusisomount k3b smartmontools xfburn"
         "$(color 255 255 255)File Browsers$(reset) = caja dolphin krusader nautilus nemo spacefm"
         "$(color 255 255 255)Font Managers$(reset) = figlet font-manager gucharmap"
-        "$(color 255 255 255)Fonts$(reset) = fonts-3270 fonts-averia-gwf fonts-averia-sans-gwf fonts-averia-serif-gwf fonts-cabin fonts-cantarell fonts-cardo fonts-century-catalogue fonts-comfortaa fonts-dejavu fonts-dkg-handwriting fonts-droid-fallback fonts-dosis fonts-ebgaramond fonts-ebgaramond-extra fonts-ebgaramond-initials fonts-ebgaramond-initials-extra fonts-elusive-icons fonts-essays1743 fonts-freefont-ttf fonts-gnutypewriter fonts-go fonts-hack-ttf fonts-junicode fonts-jura fonts-lato fonts-linex fonts-liberation fonts-lobster fonts-lobstertwo fonts-noto fonts-opendyslexic fonts-open-sans fonts-pc fonts-pc-extra fonts-play fonts-roboto fonts-sora fonts-terminus fonts-unifont fonts-wine fonts-xfree86-nonfree ttf-mscorefonts-installer"
+        "$(color 255 255 255)Fonts$(reset) = fonts-recommended fonts-3270 fonts-averia-gwf fonts-averia-sans-gwf fonts-averia-serif-gwf fonts-cabin fonts-cantarell fonts-cardo fonts-century-catalogue fonts-comfortaa fonts-dejavu fonts-dkg-handwriting fonts-droid-fallback fonts-dosis fonts-ebgaramond fonts-ebgaramond-extra fonts-elusive-icons fonts-essays1743 fonts-freefont-ttf fonts-gnutypewriter fonts-go fonts-hack-ttf fonts-junicode fonts-jura fonts-lato fonts-linex fonts-liberation fonts-lobster fonts-lobstertwo fonts-noto fonts-opendyslexic fonts-open-sans fonts-pc fonts-pc-extra fonts-play fonts-roboto fonts-sora fonts-terminus fonts-ubuntu* fonts-unifont fonts-wine fonts-xfree86-nonfree ttf-mscorefonts-installer"
         "$(color 255 255 255)Fortunes$(reset) = fortunes fortune-mod fortunes-spam"
-        "$(color 255 255 255)Games$(reset) = angrydd ardentryst asylum atanks bsdgames dopewars dosbox flare-game ksudoku kobodeluxe manaplus meritous runescape zangband"
+        "$(color 255 255 255)Games$(reset) = games-adventure games-arcade games-board games-card games-chess games-console games-education games-emulator games-finest games-fps games-minesweeper games-mud games-platform games-puzzle games-racing games-rogue games-rpg games-shootemup games-simulation games-sport games-strategy games-tetris games-toys games-typing angrydd atanks kobodeluxe manaplus zangband"
         "$(color 255 255 255)GNOME Boxes$(reset) = gnome-boxes"
         "$(color 255 255 255)Internet$(reset) = chromium htop mtr namebench netselect-apt strace speedtest-cli telegram-desktop torbrowser-launcher"
         "$(color 255 255 255)IRC$(reset) = hexchat konversation"
@@ -157,10 +157,10 @@ function KeepInstallingMoreStuff() {
                     sudo snap install snapd
                     ;;
                 *"Python Setup"*)
-                    for pkg in python3 python3-pip3 python3-tk; do
+                    for pkg in python3 python3-pip python3-tk; do
                         InstallPackageIfNotExist "$pkg"
                     done
-                    pip3 install Pillow --break-system-packages
+                    pip install Pillow --break-system-packages
                     ;;
                 *"Steam"*)
                     sudo dpkg --add-architecture i386
