@@ -52,8 +52,8 @@ trade_tycoon() {
         mapfile -t shuffled < <(shuf -e "${active_items[@]}")
 
         local i
-        local random_range=$(( 20 + (unlocked_count * 5) ))
-        local base_price=$(( 10 + (unlocked_count * 5) ))
+        local random_range=$(( 5 + (unlocked_count * 5) ))
+        local base_price=$(( 20 + (unlocked_count * 5) ))
 
         # --- DYNAMIC MARKET SIZE (5 to 12 items) ---
         local market_size=$(( (RANDOM % 8) + 5 ))
@@ -80,12 +80,12 @@ trade_tycoon() {
         current_event=""
         local roll=$(( RANDOM % 100 ))
 
-        if [ $roll -lt 30 ]; then
-            # 30% chance of nothing happening
+        if [ $roll -lt 50 ]; then
+            # 50% chance of nothing happening
             return
 
-        elif [ $roll -lt 40 ]; then
-            # 10% chance: GRAND MARKET DAY (Every unlocked item is available!)
+        elif [ $roll -lt 61 ]; then
+            # 11% chance: GRAND MARKET DAY (Every unlocked item is available!)
             current_market=()
             market_prices=()
 
@@ -99,23 +99,20 @@ trade_tycoon() {
 
             mapfile -t current_market < <(printf "%s\n" "${current_market[@]}" | sort)
             current_event="GRAND MARKET DAY! Merchants from all realms have gathered. Everything is available!"
-
-        elif [ $roll -lt 60 ]; then
-            # 20% chance of prices skyrocketing
+        elif [ $roll -lt 72 ]; then
+            # 11% chance of prices skyrocketing
             local idx=$(( RANDOM % ${#current_market[@]} ))
             local e_item="${current_market[$idx]}"
             market_prices["$e_item"]=$(( market_prices["$e_item"] * "$week" ))
             current_event="MARKET BOOM! A local lord is hoarding $e_item. Prices are sky high!"
-
-        elif [ $roll -lt 80 ]; then
-            # 20% chance of prices bottoming out
+        elif [ $roll -lt 83 ]; then
+            # 11% chance of prices bottoming out
             local idx=$(( RANDOM % ${#current_market[@]} ))
             local e_item="${current_market[$idx]}"
             market_prices["$e_item"]=$(( (market_prices["$e_item"] / "$week") + 1 ))
             current_event="MARKET CRASH! A massive surplus of $e_item has flooded the streets!"
-
-        elif [ $roll -lt 95 ]; then
-            # 15% chance of finding either gold or free inventory
+        elif [ $roll -lt 94 ]; then
+            # 11% chance of finding either gold or free inventory
             if [ $(( RANDOM % 2 )) -eq 0 ]; then
                 local found=$(( (RANDOM % 500) + "$week" + (unlocked_count * 200) ))
                 money=$(( money + found ))
@@ -127,6 +124,7 @@ trade_tycoon() {
 
                 local current_qty=${inventory["$f_item"]}
                 local current_avg=${average_cost["$f_item"]}
+
                 local current_total_value=$(( current_qty * current_avg ))
                 local new_qty=$(( current_qty + f_qty ))
 
@@ -137,7 +135,7 @@ trade_tycoon() {
             fi
 
         else
-            # 5% of robbers stealing some money
+            # 6% of robbers stealing some money
             local lost=$(( (RANDOM % 300) + 100 + (unlocked_count * 200) ))
             if [ "$money" -lt "$lost" ]; then
                 lost=$money
@@ -165,7 +163,16 @@ trade_tycoon() {
         # Make large numbers easier to read
         printf " Gold Pieces: %'d GP\n" "$money"
         echo "-----------------------------------------"
-        echo " YOUR WAGON (Inventory):"
+
+        # Calculate total invested value
+        local total_inv_value=0
+        for item in "${!inventory[@]}"; do
+            if [ "${inventory[$item]}" -gt 0 ]; then
+                total_inv_value=$(( total_inv_value + (inventory[$item] * average_cost[$item]) ))
+            fi
+        done
+
+        printf " YOUR WAGON (Inventory) (Total Value: %'d GP):\n" "$total_inv_value"
         local has_items=0
 
         # Sort the wagon inventory alphabetically
@@ -213,11 +220,13 @@ trade_tycoon() {
                                 local current_avg=${average_cost["$item"]}
                                 local current_total_value=$(( current_qty * current_avg ))
                                 local new_total_value=$(( current_total_value + cost ))
+
                                 local new_qty=$(( current_qty + qty ))
 
                                 average_cost["$item"]=$(( new_total_value / new_qty ))
 
                                 money=$(( money - cost ))
+
                                 inventory["$item"]=$new_qty
                                 echo "Bought $qty $item for $cost GP!"
                                 sleep 1
@@ -253,6 +262,7 @@ trade_tycoon() {
                             if [ "$qty" -le "$max_qty" ]; then
                                 revenue=$(( price * qty ))
                                 money=$(( money + revenue ))
+
                                 inventory["$item"]=$(( inventory["$item"] - qty ))
 
                                 if [ "${inventory["$item"]}" -eq 0 ]; then
@@ -290,6 +300,7 @@ trade_tycoon() {
 
                         new_item="${locked_items[0]}"
                         active_items+=("$new_item")
+
                         inventory["$new_item"]=0
                         average_cost["$new_item"]=0
                         locked_items=("${locked_items[@]:1}")
@@ -304,11 +315,11 @@ trade_tycoon() {
                         sleep 2
                     else
                         echo "You have already unlocked all the realm's items!"
-                        sleep 1
+                        sleep 2
                     fi
                 else
                     echo "You need $unlock_cost GP to unlock a new item!"
-                    sleep 1
+                    sleep 2
                 fi
                 ;;
             q)
