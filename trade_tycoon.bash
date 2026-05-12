@@ -6,35 +6,28 @@ trade_tycoon() {
     local week=1
     local unlock_cost=1000000
     local unlocked_count=0
+    local total_score=0 # Tracks total revenue from sold items
     local current_event=""
 
-    # Expanded DnD Active Items (From your custom list)
-    local active_items=(
-        "Wood" "Iron" "Wheat" "Cloth" "Leather"
-        "Coal" "Copper" "Stone" "Salt" "Glass"
-        "Beer" "Rations" "Torches" "Herbs" "Arrows"
+    # Expanded DnD Active Items
+    local active_items=( "Wood" "Iron" "Wheat" "Flour" "Cloth" "Leather" "Coal" "Copper" "Stone" "Salt" "Glass" "Waterskin" "Rope" "Beer" "Rations" "Torches" "Herbs" "Arrows" "Silver" "Gold" "Flint" )
+
+    # Expanded DnD Locked Items
+    local locked_items=( "Cheese" "Toxin Vials" "Antitoxin Vials" "Arrows" "Shortbows" "Longbows" "Daggers" "Shortswords" "Longswords" "Chain Mail" "Plate Armor" "Tobacco" "Gems" "Potions" "Scrolls" "Holy Water" "Mithril" "Adamantine"
+            "Elven Silk" "Dragon Scales" "Shadow Lanterns" "Whisperwind Cloaks" "Compass of True North" "Troll Blood" "Phoenix Feathers" "Unicorn Horns" "Superman's Cape" "Vorpal Blades" "Philosopher Stones" "Bags of Holding"
+            "Invisibility Cloak" "Lucky Dice" "Everlasting Gobstoppers" "Romulan Ale" "Lightsabers" "Political Favors" "Cryptocurrency" "Time Machines"
     )
 
-    # Expanded DnD Locked Items (From your custom list)
-    local locked_items=(
-        "Tobacco" "Silver" "Gold" "Gems" "Potions" "Scrolls"
-        "Holy Water" "Mithril" "Adamantine" "Elven Silk"
-        "Dragon Scales" "Magic Wands" "Spellbooks"
-        "Troll Blood" "Phoenix Feathers" "Unicorn Horns" "Superman's Cape"
-        "Vorpal Blades" "Philosopher Stones" "Crystal Balls" "Bags of Holding"
-        "Invisibility Cloak" "Lucky Dice" "Everlasting Gobstopper" "Romulan Ale"
-        "Lightsabers" "Political Favors" "Cryptocurrency" "Time Machine"
-    )
-
-    # Local associative arrays
+    # Local associative arrays and arrays
     local -A inventory
     local -A market_prices
     local -A average_cost
     local -a current_market
     local -a sorted_inventory_keys
+    local -a owned_items # New array for filtering the inventory
 
     # Local loop and input variables
-    local item price qty cost revenue action new_item item_idx max_qty
+    local item price qty cost revenue action new_item item_idx max_qty input_qty
     local -a shuffled
 
     # Populate starting inventory and average cost with 0
@@ -52,8 +45,8 @@ trade_tycoon() {
         mapfile -t shuffled < <(shuf -e "${active_items[@]}")
 
         local i
-        local random_range=$(( 5 + (unlocked_count * 5) ))
-        local base_price=$(( 20 + (unlocked_count * 5) ))
+        local random_range=$(( 20 + (unlocked_count * 5) ))
+        local base_price=$(( 10 + (unlocked_count * 5) ))
 
         # --- DYNAMIC MARKET SIZE (5 to 12 items) ---
         local market_size=$(( (RANDOM % 8) + 5 ))
@@ -84,8 +77,8 @@ trade_tycoon() {
             # 50% chance of nothing happening
             return
 
-        elif [ $roll -lt 61 ]; then
-            # 11% chance: GRAND MARKET DAY (Every unlocked item is available!)
+        elif [ $roll -lt 59 ]; then
+            # 9% chance: GRAND MARKET DAY
             current_market=()
             market_prices=()
 
@@ -98,25 +91,56 @@ trade_tycoon() {
             done
 
             mapfile -t current_market < <(printf "%s\n" "${current_market[@]}" | sort)
-            current_event="GRAND MARKET DAY! Merchants from all realms have gathered. Everything is available!"
-        elif [ $roll -lt 72 ]; then
-            # 11% chance of prices skyrocketing
+
+            # --- RANDOMIZED GRAND MARKET FLAVOR TEXT ---
+            local grand_msgs=(
+                "GRAND MARKET DAY! Merchants from all realms have gathered. Everything is available!"
+                "FESTIVAL OF COINS! The King declared a tax-free holiday! All goods are trading today!"
+                "TRADE FLEET ARRIVES! Hundreds of ships just docked. The market is completely flooded with goods!"
+            )
+            current_event="${grand_msgs[$(( RANDOM % ${#grand_msgs[@]} ))]}"
+
+        elif [ $roll -lt 68 ]; then
+            # 9% chance of prices skyrocketing
             local idx=$(( RANDOM % ${#current_market[@]} ))
             local e_item="${current_market[$idx]}"
             market_prices["$e_item"]=$(( market_prices["$e_item"] * "$week" ))
-            current_event="MARKET BOOM! A local lord is hoarding $e_item. Prices are sky high!"
-        elif [ $roll -lt 83 ]; then
-            # 11% chance of prices bottoming out
+
+            # --- RANDOMIZED BOOM FLAVOR TEXT ---
+            local boom_msgs=(
+                "MARKET BOOM! A local lord is hoarding $e_item. Prices are sky high!"
+                "MARKET BOOM! 'Castle's Got Talent' bought all the $e_item! Prices are sky high!"
+                "MARKET BOOM! Doomsday predictions caused a sudden shortage of $e_item! Prices are sky high!"
+            )
+            current_event="${boom_msgs[$(( RANDOM % ${#boom_msgs[@]} ))]}"
+
+        elif [ $roll -lt 76 ]; then
+            # 8% chance of prices bottoming out
             local idx=$(( RANDOM % ${#current_market[@]} ))
             local e_item="${current_market[$idx]}"
             market_prices["$e_item"]=$(( (market_prices["$e_item"] / "$week") + 1 ))
-            current_event="MARKET CRASH! A massive surplus of $e_item has flooded the streets!"
-        elif [ $roll -lt 94 ]; then
-            # 11% chance of finding either gold or free inventory
+
+            # --- RANDOMIZED CRASH FLAVOR TEXT ---
+            local crash_msgs=(
+                "MARKET CRASH! A massive surplus of $e_item has flooded the streets!"
+                "MARKET CRASH! The King suddenly outlawed $e_item! Merchants are dumping their stock!"
+                "MARKET CRASH! Someone found a cheaper substitute for $e_item. Prices plummeted!"
+            )
+            current_event="${crash_msgs[$(( RANDOM % ${#crash_msgs[@]} ))]}"
+
+        elif [ $roll -lt 87 ]; then
+            # 9% chance of finding either gold or free active inventory
             if [ $(( RANDOM % 2 )) -eq 0 ]; then
-                local found=$(( (RANDOM % 500) + "$week" + (unlocked_count * 200) ))
+                local found=$(( (RANDOM % 500) * "$week" + (unlocked_count * 200) ))
                 money=$(( money + found ))
-                current_event="FORTUNE! You found a discarded coin purse containing $found GP on the trail."
+
+                # --- RANDOMIZED GOLD FORTUNE FLAVOR TEXT ---
+                local gold_msgs=(
+                    "FORTUNE! You found a discarded coin purse containing $found GP on the trail."
+                    "FORTUNE! A grateful noble tipped you $found GP for giving them directions."
+                    "FORTUNE! You won a tavern bet against a drunken knight and walked away with $found GP!"
+                )
+                current_event="${gold_msgs[$(( RANDOM % ${#gold_msgs[@]} ))]}"
             else
                 local idx=$(( RANDOM % ${#active_items[@]} ))
                 local f_item="${active_items[$idx]}"
@@ -131,17 +155,104 @@ trade_tycoon() {
                 average_cost["$f_item"]=$(( current_total_value / new_qty ))
                 inventory["$f_item"]=$new_qty
 
-                current_event="FORTUNE! You discovered an overturned wagon and salvaged $f_qty $f_item!"
+                # --- RANDOMIZED ITEM FORTUNE FLAVOR TEXT ---
+                local item_msgs=(
+                    "FORTUNE! You discovered an overturned wagon and salvaged $f_qty $f_item!"
+                    "FORTUNE! A retiring merchant gifted you $f_qty $f_item for good luck!"
+                    "FORTUNE! You found a hidden smuggler's cache containing $f_qty $f_item!"
+                )
+                current_event="${item_msgs[$(( RANDOM % ${#item_msgs[@]} ))]}"
             fi
 
-        else
-            # 6% of robbers stealing some money
-            local lost=$(( (RANDOM % 300) + 100 + (unlocked_count * 200) ))
-            if [ "$money" -lt "$lost" ]; then
-                lost=$money
+        elif [ $roll -lt 95 ]; then
+            # 8% chance: MAGIC (Fairy gives you locked/untradeable items)
+            local f_item=""
+            if [ ${#locked_items[@]} -gt 0 ]; then
+                local idx=$(( RANDOM % ${#locked_items[@]} ))
+                f_item="${locked_items[$idx]}"
+            else
+                local idx=$(( RANDOM % ${#active_items[@]} ))
+                f_item="${active_items[$idx]}"
             fi
-            money=$(( money - lost ))
-            current_event="AMBUSH! Highwaymen raided your camp in the night. You lost $lost GP."
+
+            local f_qty=$(( (RANDOM % 15) + "$week" + (unlocked_count * 2) ))
+
+            if [ -z "${inventory["$f_item"]}" ]; then
+                inventory["$f_item"]=0
+                average_cost["$f_item"]=0
+            fi
+
+            local current_qty=${inventory["$f_item"]}
+            local current_avg=${average_cost["$f_item"]}
+
+            local current_total_value=$(( current_qty * current_avg ))
+            local new_qty=$(( current_qty + f_qty ))
+
+            average_cost["$f_item"]=$(( current_total_value / new_qty ))
+            inventory["$f_item"]=$new_qty
+
+            # --- RANDOMIZED MAGIC FLAVOR TEXT ---
+            local magic_msgs=(
+                "MAGIC! A mischievous forest fairy gifted you $f_qty $f_item... but you can't sell them here!"
+                "MAGIC! You rubbed a strange lamp and a Djinn granted you $f_qty $f_item!"
+                "MAGIC! A dying wizard handed you a glowing satchel containing $f_qty $f_item."
+            )
+            current_event="${magic_msgs[$(( RANDOM % ${#magic_msgs[@]} ))]}"
+
+        else
+            # 5% chance: AMBUSH (50% chance to lose Gold, 50% chance to lose Items)
+
+            # First, compile a list of items the player actually owns
+            local -a owned_items=()
+            for item in "${!inventory[@]}"; do
+                if [ "${inventory[$item]}" -gt 0 ]; then
+                    owned_items+=("$item")
+                fi
+            done
+
+            # If they own items AND the 50/50 coin toss hits tails, steal items!
+            if [ ${#owned_items[@]} -gt 0 ] && [ $(( RANDOM % 2 )) -eq 1 ]; then
+                local idx=$(( RANDOM % ${#owned_items[@]} ))
+                local s_item="${owned_items[$idx]}"
+                local current_qty=${inventory["$s_item"]}
+
+                # Scale the theft amount slightly so it stings, but cap it at whatever they currently own
+                local lost_qty=$(( (RANDOM % 50) + "$week" + (unlocked_count * 10) ))
+                if [ "$lost_qty" -gt "$current_qty" ]; then
+                    lost_qty=$current_qty
+                fi
+
+                inventory["$s_item"]=$(( current_qty - lost_qty ))
+
+                # If they were wiped clean of that item, reset average cost
+                if [ "${inventory["$s_item"]}" -eq 0 ]; then
+                    average_cost["$s_item"]=0
+                fi
+
+                # --- RANDOMIZED ITEM AMBUSH FLAVOR TEXT ---
+                local item_ambush_msgs=(
+                    "AMBUSH! Bandits raided your wagon and made off with $lost_qty $s_item!"
+                    "AMBUSH! A corrupt toll inspector confiscated $lost_qty $s_item from your shop."
+                    "AMBUSH! Rats got into your supplies and ruined $lost_qty $s_item!"
+                )
+                current_event="${item_ambush_msgs[$(( RANDOM % ${#item_ambush_msgs[@]} ))]}"
+
+            else
+                # Steal Gold (Fallback if they have no items, or if the coin toss lands heads)
+                local lost=$(( (RANDOM % 300) + 100 + (unlocked_count * 200) ))
+                if [ "$money" -lt "$lost" ]; then
+                    lost=$money
+                fi
+                money=$(( money - lost ))
+
+                # --- RANDOMIZED GOLD AMBUSH FLAVOR TEXT ---
+                local gold_ambush_msgs=(
+                    "AMBUSH! Highwaymen raided your camp in the night. You lost $lost GP."
+                    "AMBUSH! A corrupt town guard fined you for a fake infraction. You paid $lost GP."
+                    "AMBUSH! Pickpockets swarmed you in the crowded town square! You lost $lost GP."
+                )
+                current_event="${gold_ambush_msgs[$(( RANDOM % ${#gold_ambush_msgs[@]} ))]}"
+            fi
         fi
     }
 
@@ -154,6 +265,8 @@ trade_tycoon() {
         echo "========================================="
         echo "   MEDIEVAL MERCHANT - Week $week        "
         echo "========================================="
+        printf "   SCORE: %'d\n" "$total_score"
+        echo "========================================="
 
         if [ -n "$current_event" ]; then
             echo " *** $current_event ***"
@@ -161,42 +274,122 @@ trade_tycoon() {
         fi
 
         # Make large numbers easier to read
-        printf " Gold Pieces: %'d GP\n" "$money"
+        printf " Money: %'d GP\n" "$money"
         echo "-----------------------------------------"
 
         # Calculate total invested value
         local total_inv_value=0
+
         for item in "${!inventory[@]}"; do
             if [ "${inventory[$item]}" -gt 0 ]; then
                 total_inv_value=$(( total_inv_value + (inventory[$item] * average_cost[$item]) ))
             fi
         done
 
-        printf " YOUR WAGON (Inventory) (Total Value: %'d GP):\n" "$total_inv_value"
-        local has_items=0
+        printf " YOUR SHOP (Total Value: %'d GP):\n" "$total_inv_value"
 
         # Sort the wagon inventory alphabetically
         mapfile -t sorted_inventory_keys < <(printf "%s\n" "${!inventory[@]}" | sort)
 
+        # Filter out items we don't own to prep for column math
+        owned_items=()
         for item in "${sorted_inventory_keys[@]}"; do
             if [ "${inventory[$item]}" -gt 0 ]; then
-                printf "  - %s: %'d (Avg Paid: %'d GP)\n" "$item" "${inventory[$item]}" "${average_cost[$item]}"
-                has_items=1
+                owned_items+=("$item")
             fi
         done
-        if [ $has_items -eq 0 ]; then
+
+        local num_owned=${#owned_items[@]}
+        if [ "$num_owned" -eq 0 ]; then
             echo "  (Empty)"
+        else
+            # --- DOWN-THEN-OVER SHOP INVENTORY UI ---
+            local inv_rows=$(( (num_owned + 1) / 2 ))
+
+            for (( r=0; r<inv_rows; r++ )); do
+                # Left Column Item
+                local idx1=$r
+                local item1="${owned_items[$idx1]}"
+                # MODIFIED TO SHOW QUANTITY THEN ITEM NAME
+                local str1=$(printf -- "- %'d %s (Avg: %'d GP)" "${inventory[$item1]}" "$item1" "${average_cost[$item1]}")
+
+                # Right Column Item
+                local idx2=$(( r + inv_rows ))
+                if [ $idx2 -lt $num_owned ]; then
+                    local item2="${owned_items[$idx2]}"
+                    local str2=$(printf -- "- %'d %s (Avg: %'d GP)" "${inventory[$item2]}" "$item2" "${average_cost[$item2]}")
+
+                    # Print both columns padded to 50 characters
+                    printf "  %-50s %s\n" "$str1" "$str2"
+                else
+                    # Print only the left column
+                    printf "  %s\n" "$str1"
+                fi
+            done
         fi
+
         echo "-----------------------------------------"
         echo " THIS WEEK'S LOCAL MARKET:"
-        local i=1
-        for item in "${current_market[@]}"; do
-            printf "  [%d] %s: %'d GP\n" "$i" "$item" "${market_prices[$item]}"
-            ((i++))
+
+        # --- DOWN-THEN-OVER MARKET UI WITH COLOR CODING ---
+        local num_items=${#current_market[@]}
+        local rows=$(( (num_items + 1) / 2 ))
+
+        for (( r=0; r<rows; r++ )); do
+            # Left Column Item
+            local idx1=$r
+            local i1=$(( idx1 + 1 ))
+            local item1="${current_market[$idx1]}"
+
+            # Left Column Color Logic
+            local c1_start="" c1_end=""
+            if [ "${inventory[$item1]}" -gt 0 ]; then
+                if [ "${average_cost[$item1]}" -lt "${market_prices[$item1]}" ]; then
+                    c1_start="\033[32m" # Green
+                    c1_end="\033[0m"
+                elif [ "${average_cost[$item1]}" -gt "${market_prices[$item1]}" ]; then
+                    c1_start="\033[31m" # Red
+                    c1_end="\033[0m"
+                fi
+            fi
+
+            # Format raw string, pad it, THEN apply color
+            local raw1=$(printf "[%d] %s: %'d GP" "$i1" "$item1" "${market_prices[$item1]}")
+            local pad1=$(printf "%-50s" "$raw1")
+            local str1="${c1_start}${pad1}${c1_end}"
+
+            # Right Column Item
+            local idx2=$(( r + rows ))
+            if [ $idx2 -lt $num_items ]; then
+                local i2=$(( idx2 + 1 ))
+                local item2="${current_market[$idx2]}"
+
+                # Right Column Color Logic
+                local c2_start="" c2_end=""
+                if [ "${inventory[$item2]}" -gt 0 ]; then
+                    if [ "${average_cost[$item2]}" -lt "${market_prices[$item2]}" ]; then
+                        c2_start="\033[32m" # Green
+                        c2_end="\033[0m"
+                    elif [ "${average_cost[$item2]}" -gt "${market_prices[$item2]}" ]; then
+                        c2_start="\033[31m" # Red
+                        c2_end="\033[0m"
+                    fi
+                fi
+
+                local raw2=$(printf "[%d] %s: %'d GP" "$i2" "$item2" "${market_prices[$item2]}")
+                local str2="${c2_start}${raw2}${c2_end}"
+
+                # Print both columns
+                printf "  %b%b\n" "$str1" "$str2"
+            else
+                # Print only the left column
+                printf "  %b\n" "$str1"
+            fi
         done
+
         echo "========================================="
 
-        # Format the unlock cost so it has commas (e.g. 1,000,000)
+        # Format the unlock cost so it has commas
         printf "Actions: [B]uy | [S]ell | [N]ext Week | [U]nlock Item (%'d GP) | [Q]uit\n" "$unlock_cost"
         read -p "What would you like to do? " action
 
@@ -210,7 +403,15 @@ trade_tycoon() {
                     max_qty=$(( money / price ))
 
                     if [ "$max_qty" -gt 0 ]; then
-                        read -p "How many? (Max: $max_qty): " qty
+                        read -p "How many ($item) would you like to buy? (Max: $max_qty, [A]ll/[H]alf/[Q]uarter): " input_qty
+
+                        # --- QUICK SELECT PARSER ---
+                        case ${input_qty,,} in
+                            a|all) qty=$max_qty ;;
+                            h|half) qty=$(( max_qty / 2 )) ;;
+                            q|quarter) qty=$(( max_qty / 4 )) ;;
+                            *) qty="$input_qty" ;;
+                        esac
 
                         if [[ "$qty" =~ ^[0-9]+$ ]] && [ "$qty" -gt 0 ]; then
                             if [ "$qty" -le "$max_qty" ]; then
@@ -256,12 +457,23 @@ trade_tycoon() {
                     max_qty=${inventory["$item"]}
 
                     if [ "$max_qty" -gt 0 ]; then
-                        read -p "How many? (Max: $max_qty): " qty
+                        read -p "How many ($item) would you like to sell? (Max: $max_qty, [A]ll/[H]alf/[Q]uarter): " input_qty
+
+                        # --- QUICK SELECT PARSER ---
+                        case ${input_qty,,} in
+                            a|all) qty=$max_qty ;;
+                            h|half) qty=$(( max_qty / 2 )) ;;
+                            q|quarter) qty=$(( max_qty / 4 )) ;;
+                            *) qty="$input_qty" ;;
+                        esac
 
                         if [[ "$qty" =~ ^[0-9]+$ ]] && [ "$qty" -gt 0 ]; then
                             if [ "$qty" -le "$max_qty" ]; then
                                 revenue=$(( price * qty ))
                                 money=$(( money + revenue ))
+
+                                # --- ADD TO TOTAL SCORE ---
+                                total_score=$(( total_score + revenue ))
 
                                 inventory["$item"]=$(( inventory["$item"] - qty ))
 
@@ -323,7 +535,7 @@ trade_tycoon() {
                 fi
                 ;;
             q)
-                echo "Safe travels, Merchant!"
+                printf "\nSafe travels, Merchant! Your score for this game was %'d\n" "$total_score"
                 unset -f __tycoon_generate_market
                 unset -f __tycoon_trigger_event
                 return 0
