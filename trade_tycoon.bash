@@ -2,7 +2,7 @@
 
 trade_tycoon() {
     # --- Initialize Local Game Variables ---
-    local money=10000
+    local money=1000
     local week=1
     local unlock_cost=1000000
     local unlocked_count=0
@@ -13,7 +13,7 @@ trade_tycoon() {
     local active_items=( "Wood" "Iron" "Wheat" "Flour" "Cloth" "Leather" "Coal" "Copper" "Stone" "Salt" "Glass" "Waterskin" "Rope" "Beer" "Rations" "Torches" "Herbs" "Arrows" "Silver" "Gold" "Flint" )
 
     # Expanded DnD Locked Items
-    local locked_items=( "Cheese" "Toxin Vials" "Antitoxin Vials" "Arrows" "Shortbows" "Longbows" "Daggers" "Shortswords" "Longswords" "Chain Mail" "Plate Armor" "Tobacco" "Gems" "Potions" "Scrolls" "Holy Water" "Mithril" "Adamantine"
+    local locked_items=( "Cheese" "Toxin Vials" "Antitoxin Vials" "Fire Arrows" "Shortbows" "Longbows" "Daggers" "Shortswords" "Longswords" "Chain Mail" "Plate Armor" "Tobacco" "Gems" "Potions" "Scrolls" "Holy Water" "Mithril" "Adamantine"
             "Elven Silk" "Dragon Scales" "Shadow Lanterns" "Whisperwind Cloaks" "Compass of True North" "Troll Blood" "Phoenix Feathers" "Unicorn Horns" "Superman's Cape" "Vorpal Blades" "Philosopher Stones" "Bags of Holding"
             "Invisibility Cloak" "Lucky Dice" "Everlasting Gobstoppers" "Romulan Ale" "Lightsabers" "Political Favors" "Cryptocurrency" "Time Machines"
     )
@@ -136,8 +136,9 @@ trade_tycoon() {
 
                 # --- RANDOMIZED GOLD FORTUNE FLAVOR TEXT ---
                 local gold_msgs=(
-                    "FORTUNE! You found a discarded coin purse containing $found GP on the trail."
+                    "FORTUNE! You found a discarded coin purse containing $found GP on the floor of your store."
                     "FORTUNE! A grateful noble tipped you $found GP for giving them directions."
+                    "FORTUNE! A grateful noble tipped you $found GP for giving them good financial advice."
                     "FORTUNE! You won a tavern bet against a drunken knight and walked away with $found GP!"
                 )
                 current_event="${gold_msgs[$(( RANDOM % ${#gold_msgs[@]} ))]}"
@@ -231,7 +232,7 @@ trade_tycoon() {
 
                 # --- RANDOMIZED ITEM AMBUSH FLAVOR TEXT ---
                 local item_ambush_msgs=(
-                    "AMBUSH! Bandits raided your wagon and made off with $lost_qty $s_item!"
+                    "AMBUSH! Bandits raided your shop and made off with $lost_qty $s_item!"
                     "AMBUSH! A corrupt toll inspector confiscated $lost_qty $s_item from your shop."
                     "AMBUSH! Rats got into your supplies and ruined $lost_qty $s_item!"
                 )
@@ -310,20 +311,36 @@ trade_tycoon() {
                 # Left Column Item
                 local idx1=$r
                 local item1="${owned_items[$idx1]}"
-                # MODIFIED TO SHOW QUANTITY THEN ITEM NAME
-                local str1=$(printf -- "- %'d %s (Avg: %'d GP)" "${inventory[$item1]}" "$item1" "${average_cost[$item1]}")
+
+                local c1_start="" c1_end=""
+                if [ -z "${market_prices[$item1]}" ]; then
+                    c1_start="\033[38;5;236m" # Even Darker Gray (ANSI 256-color)
+                    c1_end="\033[0m"
+                fi
+
+                local raw1=$(printf -- "- %'d %s (Avg: %'d GP)" "${inventory[$item1]}" "$item1" "${average_cost[$item1]}")
+                local pad1=$(printf "%-50s" "$raw1")
+                local str1="${c1_start}${pad1}${c1_end}"
 
                 # Right Column Item
                 local idx2=$(( r + inv_rows ))
                 if [ $idx2 -lt $num_owned ]; then
                     local item2="${owned_items[$idx2]}"
-                    local str2=$(printf -- "- %'d %s (Avg: %'d GP)" "${inventory[$item2]}" "$item2" "${average_cost[$item2]}")
 
-                    # Print both columns padded to 50 characters
-                    printf "  %-50s %s\n" "$str1" "$str2"
+                    local c2_start="" c2_end=""
+                    if [ -z "${market_prices[$item2]}" ]; then
+                        c2_start="\033[38;5;236m" # Even Darker Gray (ANSI 256-color)
+                        c2_end="\033[0m"
+                    fi
+
+                    local raw2=$(printf -- "- %'d %s (Avg: %'d GP)" "${inventory[$item2]}" "$item2" "${average_cost[$item2]}")
+                    local str2="${c2_start}${raw2}${c2_end}"
+
+                    # Print both columns.
+                    printf "  %b %b\n" "$str1" "$str2"
                 else
                     # Print only the left column
-                    printf "  %s\n" "$str1"
+                    printf "  %b\n" "$str1"
                 fi
             done
         fi
@@ -350,6 +367,9 @@ trade_tycoon() {
                 elif [ "${average_cost[$item1]}" -gt "${market_prices[$item1]}" ]; then
                     c1_start="\033[31m" # Red
                     c1_end="\033[0m"
+                elif [ "${average_cost[$item1]}" -eq "${market_prices[$item1]}" ]; then
+                    c1_start="\033[33m" # Yellow
+                    c1_end="\033[0m"
                 fi
             fi
 
@@ -372,6 +392,9 @@ trade_tycoon() {
                         c2_end="\033[0m"
                     elif [ "${average_cost[$item2]}" -gt "${market_prices[$item2]}" ]; then
                         c2_start="\033[31m" # Red
+                        c2_end="\033[0m"
+                    elif [ "${average_cost[$item2]}" -eq "${market_prices[$item2]}" ]; then
+                        c2_start="\033[33m" # Yellow
                         c2_end="\033[0m"
                     fi
                 fi
@@ -520,11 +543,25 @@ trade_tycoon() {
                         unlocked_count=$(( unlocked_count + 1 ))
 
                         # --- EXΡΟΝΕΝΤIAL INFLATION ---
-                        unlock_cost=$(( unlock_cost * 2 ))
+                        unlock_cost=$(( unlock_cost + (unlock_cost / 2) ))
 
                         echo "GUILD PERMIT SECURED: $new_item added to market rotation!"
                         echo "The Kingdom's economy grows more volatile..."
-                        sleep 2
+
+                        # --- NEW: IMMEDIATE MARKET SHOCKWAVE ---
+                        current_market+=("$new_item")
+
+                        local random_range=$(( 20 + (unlocked_count * 5) ))
+                        local base_price=$(( 10 + (unlocked_count * 5) ))
+
+                        for m_item in "${current_market[@]}"; do
+                            market_prices["$m_item"]=$(( (RANDOM % random_range) + base_price ))
+                        done
+
+                        # Re-sort the market so the new item falls into the correct alphabetical slot
+                        mapfile -t current_market < <(printf "%s\n" "${current_market[@]}" | sort)
+
+                        sleep 3
                     else
                         echo "You have already unlocked all the realm's items!"
                         sleep 2
