@@ -1,6 +1,6 @@
-#! /bin/bash
+#!/bin/bash
 
-function slideshower()
-{
-feh --recursive --randomize --auto-zoom --fullscreen --draw-filename --draw-tinted "$1"
+function slideshower() {
+    local target_dir="${1:-.}"
+    feh --geometry +0+0 --recursive --randomize --auto-zoom --fullscreen --draw-filename --draw-tinted "$target_dir"
 }
