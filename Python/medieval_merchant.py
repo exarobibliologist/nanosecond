@@ -12,7 +12,7 @@ class Colors:
 class TradeTycoon:
     def __init__(self):
         # --- Initialize Local Game Variables ---
-        self.money = 1000
+        self.money = 10000
         self.week = 1
         self.unlock_cost = 1000000
         self.unlocked_count = 0
