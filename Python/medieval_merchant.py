@@ -51,9 +51,9 @@ class TradeTycoon:
             self.market_prices[self.current_low_item] = random.randint(0, low_random_range - 1) + low_base_price
             
             # Apply High pricing math
-            high_random_range = 60 + (self.unlocked_count * 15)
-            high_base_price = 30 + (self.unlocked_count * 15)
-            self.market_prices[self.current_high_item] = random.randint(0, high_random_range - 1) + high_base_price
+            high_random_range = 40 + (self.unlocked_count * 10)
+            high_base_price = 20 + (self.unlocked_count * 10)
+            self.market_prices[self.current_high_item] = random.randint(30, high_random_range - 1) + high_base_price
 
     def generate_market(self):
         self.current_market = []
@@ -292,7 +292,7 @@ class TradeTycoon:
             overall_total = self.money + total_inv_value
 
             self.clear_screen()
-            print("=" * 150)
+            print("=" * 170)
             
             # --- Updated Header Logic ---
             if self.current_event:
@@ -304,10 +304,10 @@ class TradeTycoon:
             if self.current_low_item and self.current_high_item:
                 print(f"   MARKET ANCHORS: {Colors.RED}[ LOW: {self.current_low_item} ] --- [ HIGH: {self.current_high_item} ]{Colors.RESET}")
                 
-            print("=" * 150)
+            print("=" * 170)
 
             print(f" Current Money: {Colors.YELLOW}{self.money:,} GP{Colors.RESET}    ||    Inventory Value: {total_inv_value:,} GP    ||    Total Value: {overall_total:,} GP    ||    Current Score: {self.total_score:,}")
-            print("=" * 150)
+            print("=" * 170)
             print(" YOUR SHOP:")
 
             owned_items = sorted([item for item in self.inventory.keys() if self.inventory[item] > 0])
@@ -341,7 +341,7 @@ class TradeTycoon:
 
             self.print_3_columns(self.current_market, format_market)
 
-            print("=" * 150)
+            print("=" * 170)
             # Updated the text here to show GP/Score as options
             print(f"Actions: [B]uy | [S]ell | [N]ext Week | [U]nlock Item ({self.unlock_cost:,} GP/Score) | [Q]uit")
             action = input("What would you like to do? ").strip().lower()
