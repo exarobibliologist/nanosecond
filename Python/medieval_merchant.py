@@ -12,7 +12,7 @@ class Colors:
 class TradeTycoon:
     def __init__(self):
         # --- Initialize Local Game Variables ---
-        self.money = 10000
+        self.money = 1000
         self.week = 1
         self.unlock_cost = 1000000
         self.unlocked_count = 0
@@ -20,7 +20,7 @@ class TradeTycoon:
         self.current_event = ""
 
         self.active_items = ["Wood", "Iron", "Wheat", "Flour", "Cloth", "Leather", "Coal", "Copper", "Stone", "Salt", "Glass", "Waterskin", "Rope", "Beer", "Rations", "Torches", "Herbs", "Arrows", "Silver", "Gold", "Flint"]
-
+        
         self.locked_items = [
             "Cheese", "Toxin Vials", "Antitoxin Vials", "Fire Arrows", "Shortbows", "Longbows", "Daggers", "Shortswords", "Longswords", "Chain Mail", "Plate Armor", "Tobacco", "Gems", "Potions", "Scrolls", "Holy Water", "Mithril", "Adamantine",
             "Elven Silk", "Dragon Scales", "Shadow Lanterns", "Whisperwind Cloaks", "Compass of True North", "Troll Blood", "Phoenix Feathers", "Unicorn Horns", "Superman's Cape", "Vorpal Blades", "Philosopher Stones", "Bags of Holding",
@@ -31,30 +31,54 @@ class TradeTycoon:
         self.average_cost = {item: 0 for item in self.active_items}
         self.current_market = []
         self.market_prices = {}
+        
+        # --- Market Anchors ---
+        self.current_low_item = ""
+        self.current_high_item = ""
 
     def clear_screen(self):
         os.system('cls' if os.name == 'nt' else 'clear')
+
+    # --- NEW HELPER FUNCTION ---
+    def apply_market_anchors(self):
+        """Applies the guaranteed high and low prices to the current market."""
+        if len(self.current_market) >= 2:
+            self.current_low_item, self.current_high_item = random.sample(self.current_market, 2)
+            
+            # Apply Low pricing math
+            low_random_range = 2 + (self.unlocked_count * 2)
+            low_base_price = 1 + (self.unlocked_count * 2)
+            self.market_prices[self.current_low_item] = random.randint(0, low_random_range - 1) + low_base_price
+            
+            # Apply High pricing math
+            high_random_range = 60 + (self.unlocked_count * 15)
+            high_base_price = 30 + (self.unlocked_count * 15)
+            self.market_prices[self.current_high_item] = random.randint(0, high_random_range - 1) + high_base_price
 
     def generate_market(self):
         self.current_market = []
         self.market_prices = {}
 
         shuffled = random.sample(self.active_items, len(self.active_items))
-
-        random_range = 20 + (self.unlocked_count * 5)
-        base_price = 10 + (self.unlocked_count * 5)
+        
+        # Standard pricing ranges
+        std_random_range = 20 + (self.unlocked_count * 5)
+        std_base_price = 10 + (self.unlocked_count * 5)
 
         # Dynamic market size (8 to 16 items)
-        market_size = random.randint(8, 15) # RANDOM % 8 + 8 equivalent is 8 to 15
-
+        market_size = random.randint(8, 15) 
+        
         if market_size > len(self.active_items):
             market_size = len(self.active_items)
 
         for i in range(market_size):
             item = shuffled[i]
             self.current_market.append(item)
-            price = random.randint(0, random_range - 1) + base_price
-            self.market_prices[item] = price
+            # Apply standard pricing first
+            self.market_prices[item] = random.randint(0, std_random_range - 1) + std_base_price
+
+        # Apply market anchors after standard pricing
+        self.apply_market_anchors()
 
         self.current_market.sort()
 
@@ -75,6 +99,9 @@ class TradeTycoon:
             for item in self.active_items:
                 self.current_market.append(item)
                 self.market_prices[item] = random.randint(0, random_range - 1) + base_price
+            
+            # Re-apply anchors so they aren't lost in the festival reset
+            self.apply_market_anchors()
 
             self.current_market.sort()
 
@@ -112,7 +139,7 @@ class TradeTycoon:
         elif roll < 79:
             # 8% chance of finding either gold or free active inventory
             if random.randint(0, 1) == 0:
-                found = (random.randint(0, 499) * self.week) + (self.unlocked_count * 200)
+                found = (random.randint(10, 499) * self.week) + (self.unlocked_count * 200)
                 self.money += found
 
                 gold_msgs = [
@@ -124,7 +151,7 @@ class TradeTycoon:
                 self.current_event = random.choice(gold_msgs)
             else:
                 f_item = random.choice(self.active_items)
-                f_qty = (random.randint(0, 29) * self.week) + (self.unlocked_count * 5)
+                f_qty = (random.randint(10, 20) * self.week) + (self.unlocked_count * 5)
 
                 current_qty = self.inventory[f_item]
                 current_avg = self.average_cost[f_item]
@@ -148,7 +175,7 @@ class TradeTycoon:
             else:
                 f_item = random.choice(self.active_items)
 
-            f_qty = (random.randint(0, 14) * self.week) + (self.unlocked_count * 2)
+            f_qty = (random.randint(10, 14) * self.week) + (self.unlocked_count * 2)
 
             if f_item not in self.inventory:
                 self.inventory[f_item] = 0
@@ -163,9 +190,9 @@ class TradeTycoon:
             self.inventory[f_item] = new_qty
 
             magic_msgs = [
-                f"BONUS! A mischievous forest fairy gifted you {f_qty} {f_item}... but you can't sell them here!",
-                f"BONUS! You rubbed a strange lamp and were granted {f_qty} {f_item}!",
-                f"BONUS! An adventurer handed you a glowing satchel containing {f_qty} {f_item}."
+                f"BONUS! A mischievous forest fairy gifted you {f_qty} {f_item}!",
+                f"BONUS! You rubbed a strange lamp and you got {f_qty} {f_item}!",
+                f"BONUS! A man handed you a glowing satchel containing {f_qty} {f_item}."
             ]
             self.current_event = random.choice(magic_msgs)
 
@@ -176,7 +203,7 @@ class TradeTycoon:
                     self.unlock_cost = self.unlock_cost // 3
                     if self.unlock_cost < 10000:
                         self.unlock_cost = 10000
-
+                    
                     guild_good_msgs = [
                         "GUILD SUBSIDY! The Merchant's Guild is subsidizing permits. Unlock costs reduced!",
                         "ROYAL DECREE! The King wants more trade! Guild permit fees are slashed!",
@@ -186,8 +213,8 @@ class TradeTycoon:
                 else:
                     self.unlock_cost *= 2
                     guild_bad_msgs = [
-                        "GUILD MONOPOLY! The Merchant's Guild has restricted trade. Guild permit unlock costs have surged!",
-                        "GREEDY LORDS! The local lords are demanding a larger cut. Guild permit unlock fees have skyrocketed!",
+                        "GUILD MONOPOLY! The Merchant's Guild has restricted trade. Unlock costs have surged!",
+                        "GREEDY LORDS! The local lords are demanding a larger cut. Permit fees have skyrocketed!",
                         "INFLATION! A poor harvest has driven up the price of everything, including guild permits!"
                     ]
                     self.current_event = random.choice(guild_bad_msgs)
@@ -197,7 +224,7 @@ class TradeTycoon:
         else:
             # 5% chance: AMBUSH
             owned_items = [item for item, qty in self.inventory.items() if qty > 0]
-
+            
             if owned_items and random.randint(0, 1) == 1:
                 s_item = random.choice(owned_items)
                 current_qty = self.inventory[s_item]
@@ -221,9 +248,9 @@ class TradeTycoon:
                 lost = random.randint(0, 299) + 100 + (self.unlocked_count * 200)
                 if self.money < lost:
                     lost = self.money
-
+                
                 self.money -= lost
-
+                
                 gold_ambush_msgs = [
                     f"AMBUSH! Highwaymen raided your camp in the night. You lost {lost} GP.",
                     f"AMBUSH! A corrupt town guard fined you for a fake infraction. You paid {lost} GP.",
@@ -265,19 +292,26 @@ class TradeTycoon:
             overall_total = self.money + total_inv_value
 
             self.clear_screen()
-            print("=" * 138)
+            print("=" * 150)
+            
+            # --- Updated Header Logic ---
             if self.current_event:
                 print(f"   MEDIEVAL MERCHANT - Week {self.week}  {Colors.YELLOW}( *** {self.current_event} *** ){Colors.RESET}")
             else:
                 print(f"   MEDIEVAL MERCHANT - Week {self.week}")
-            print("=" * 138)
+                
+            # Always print the anchors on the next line
+            if self.current_low_item and self.current_high_item:
+                print(f"   MARKET ANCHORS: {Colors.RED}[ LOW: {self.current_low_item} ] --- [ HIGH: {self.current_high_item} ]{Colors.RESET}")
+                
+            print("=" * 150)
 
             print(f" Current Money: {Colors.YELLOW}{self.money:,} GP{Colors.RESET}    ||    Inventory Value: {total_inv_value:,} GP    ||    Total Value: {overall_total:,} GP    ||    Current Score: {self.total_score:,}")
-            print("=" * 138)
+            print("=" * 150)
             print(" YOUR SHOP:")
 
             owned_items = sorted([item for item in self.inventory.keys() if self.inventory[item] > 0])
-
+            
             def format_inventory(idx, item):
                 color = Colors.GRAY if item not in self.market_prices else ""
                 end_color = Colors.RESET if item not in self.market_prices else ""
@@ -286,7 +320,7 @@ class TradeTycoon:
 
             self.print_3_columns(owned_items, format_inventory)
 
-            print("-" * 138)
+            print("-" * 150)
             print(" THIS WEEK'S LOCAL MARKET:")
 
             def format_market(idx, item):
@@ -301,14 +335,15 @@ class TradeTycoon:
                         color, end_color = Colors.RED, Colors.RESET
                     else:
                         color, end_color = Colors.YELLOW, Colors.RESET
-
+                
                 raw_str = f"[{idx + 1}] {item}: {self.market_prices[item]:,} GP"
                 return f"{color}{raw_str:<45}{end_color}"
 
             self.print_3_columns(self.current_market, format_market)
 
-            print("=" * 138)
-            print(f"Actions: [B]uy | [S]ell | [N]ext Week | [U]nlock New Guild Permit ({self.unlock_cost:,} GP) | [Q]uit")
+            print("=" * 150)
+            # Updated the text here to show GP/Score as options
+            print(f"Actions: [B]uy | [S]ell | [N]ext Week | [U]nlock Item ({self.unlock_cost:,} GP/Score) | [Q]uit")
             action = input("What would you like to do? ").strip().lower()
 
             if action == 'b':
@@ -328,10 +363,10 @@ class TradeTycoon:
                                 current_qty = self.inventory[item]
                                 current_avg = self.average_cost[item]
                                 new_qty = current_qty + qty
-
+                                
                                 new_total_value = (current_qty * current_avg) + cost
                                 self.average_cost[item] = new_total_value // new_qty
-
+                                
                                 self.money -= cost
                                 self.inventory[item] = new_qty
                                 print(f"Bought {qty} {item} for {cost} GP!")
@@ -391,16 +426,28 @@ class TradeTycoon:
                 self.trigger_event()
 
             elif action == 'u':
-                if self.money >= self.unlock_cost:
-                    if self.locked_items:
+                # --- NEW LOGIC: Check both Money and Score ---
+                if self.locked_items:
+                    can_unlock = False
+                    paid_with = ""
+                    
+                    if self.money >= self.unlock_cost:
                         self.money -= self.unlock_cost
+                        can_unlock = True
+                        paid_with = "Gold"
+                    elif self.total_score >= self.unlock_cost:
+                        self.total_score -= self.unlock_cost
+                        can_unlock = True
+                        paid_with = "Score"
+                        
+                    if can_unlock:
                         new_item = self.locked_items.pop(0)
                         self.active_items.append(new_item)
 
                         self.inventory[new_item] = 0
                         self.average_cost[new_item] = 0
                         self.unlocked_count += 1
-
+                        
                         self.unlock_cost = self.unlock_cost + (self.unlock_cost // 2)
 
                         self.current_market.append(new_item)
@@ -409,14 +456,17 @@ class TradeTycoon:
 
                         for m_item in self.current_market:
                             self.market_prices[m_item] = random.randint(0, random_range - 1) + base_price
+                        
+                        # Re-apply anchors so they aren't lost in the shockwave
+                        self.apply_market_anchors()
 
                         self.current_market.sort()
-                        self.current_event = f"GUILD PERMIT SECURED: {new_item} - The Kingdom's economy grows more volatile..."
+                        self.current_event = f"GUILD PERMIT SECURED: {new_item} (Paid with {paid_with}) - The Kingdom's economy grows more volatile..."
                     else:
-                        print("You have already unlocked all the realm's items!")
+                        print(f"You need {self.unlock_cost:,} GP or Score to unlock a new item!")
                         time.sleep(2)
                 else:
-                    print(f"You need {self.unlock_cost:,} GP to unlock a new item!")
+                    print("You have already unlocked all the realm's items!")
                     time.sleep(2)
 
             elif action == 'q':
