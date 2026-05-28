@@ -1,6 +1,37 @@
 #!/bin/bash
 
 trade_tycoon() {
+	echo -e "Which version would you like to run?\n"
+
+	local options=(
+		"Version 2.01 - BASH"
+		"Version 4 - Python"
+		"Exit"
+	)
+
+	PS3="Please select an option: "
+		select choice in "${options[@]}"; do
+			case "$choice" in
+				"Version 2.01 - BASH")
+					___trade_tycoon
+			                return 0
+			                ;;
+				"Version 4 - Python")
+					python3 ~/GIT/nanosecond/Python/trade_tycoon_master.py
+					return 0
+					;;
+				"Exit")
+					return 0
+					;;
+				*)
+					echo -e "Invalid selection, please try again."
+					;;
+			esac
+		done
+}
+
+
+___trade_tycoon() {
     # --- Initialize Local Game Variables ---
     local money=1000
     local week=1
