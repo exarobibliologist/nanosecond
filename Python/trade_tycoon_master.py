@@ -2,6 +2,7 @@ import random
 import os
 import time
 import hashlib
+import sys
 
 class Colors:
     RED = '\033[31m'
@@ -14,7 +15,7 @@ class Colors:
 class TradeTycoon:
     def __init__(self):
         # --- Initialize Local Game Variables ---
-        self.money = 1000
+        self.money = 10000
         self.week = 1
         self.unlock_cost = 1000000
         self.unlocked_count = 0
@@ -23,13 +24,14 @@ class TradeTycoon:
 
         self.active_items = ["Wood", "Iron", "Wheat", "Flour", "Cloth", "Leather", "Coal", "Copper", "Stone", "Salt", "Glass", "Waterskin", "Rope", "Beer", "Rations", "Torches", "Herbs", "Arrows", "Silver", "Gold", "Flint"]
 
+        # Removed "Political Favors" from this list
         self.locked_items = [
-            "Cheese", "Toxin Vials", "Antitoxin Vials", "Fire Arrows", "Shortbows", "Longbows", "Daggers", "Shortswords", "Longswords", "Chain Mail", "Plate Armor", "Tobacco", "Gems", "Potions", "Scrolls", "Holy Water", "Mithril", "Adamantine",
+            "Gunpowder" "Cheese", "Toxin Vials", "Antitoxin Vials", "Fire Arrows", "Shortbows", "Longbows", "Daggers", "Shortswords", "Longswords", "Chain Mail", "Plate Armor", "Tobacco", "Gems", "Potions", "Scrolls", "Holy Water", "Mithril", "Adamantine",
             "Elven Silk", "Dragon Scales", "Shadow Lanterns", "Whisperwind Cloaks", "Compass of True North", "Troll Blood", "Phoenix Feathers", "Unicorn Horns", "Superman's Cape", "Vorpal Blades", "Philosopher Stones", "Bags of Holding",
-            "Invisibility Cloak", "Lucky Dice", "Everlasting Gobstoppers", "Romulan Ale", "Lightsabers", "Safety Deposit Boxes", "Political Favors", "Cryptocurrency", "Crown Jewels", "Time Machines"
+            "Invisibility Cloak", "Lucky Dice", "Everlasting Gobstoppers", "Romulan Ale", "Lightsabers", "Safety Deposit Boxes", "Cryptocurrency", "Crown Jewels", "Time Machines"
         ]
 
-        self.artifacts = ["Smuggler's Writ", "Black Swan Catalyst"]
+        self.artifacts = ["Smuggler's Writ", "Black Swan Catalyst", "Political Favors"]
 
         self.inventory = {item: 0 for item in self.active_items}
         self.average_cost = {item: 0 for item in self.active_items}
@@ -46,22 +48,39 @@ class TradeTycoon:
         os.system('cls' if os.name == 'nt' else 'clear')
 
     def get_price_color(self, price):
-        p = min(max(int(price), 1), 255)
-        if p <= 128:
-            r = int((p / 128.0) * 255)
+        # Dynamically calculate the maximum normal price based on progression
+        max_price = 255 + (self.unlocked_count * 5)
+        halfway = max_price / 2.0
+
+        # Clamp the price at the new dynamic maximum so Booms/Artifacts stay pure red
+        p = min(max(int(price), 1), max_price)
+
+        if p <= halfway:
+            # Green to Yellow: Red scales up, Green is max
+            r = int((p / halfway) * 255)
             g = 255
         else:
+            # Yellow to Red: Red is max, Green scales down
             r = 255
-            g = int(255 - (((p - 128) / 127.0) * 255))
+            g = int(255 - (((p - halfway) / (max_price - halfway)) * 255))
+
         b = 0
+
+        # Returns a 24-bit true color ANSI string
         return f"\033[38;2;{r};{g};{b}m"
 
     def generate_market(self):
+        self.current_events = [] # Clear the board for the new week. Don't put it where you had it before. Legendary artifacts are generated; they aren't triggers.
+
         self.current_market = []
         self.market_prices = {}
 
         seed_string = f"week_{self.week}_score_{self.total_score}_unlocked_{self.unlocked_count}"
         market_hash = hashlib.sha512(seed_string.encode()).hexdigest()
+
+        # --- DEBUG OUPUT ---
+        print(f"Week {self.week} Seed: {seed_string}", file=sys.stderr)
+        print(f"Week {self.week} Hash: {market_hash}\n", file=sys.stderr)
 
         shuffled = random.sample(self.active_items, len(self.active_items))
         market_size = random.randint(8, 15)
@@ -77,8 +96,8 @@ class TradeTycoon:
             self.market_prices[item] = max(1, raw_hash_price + scaling_bonus)
 
         # --- SEED-LOCKED ARTIFACT GENERATION ---
-        # 1/256 chance: Triggers if the first 3 hash characters are identical (e.g. 000, 111, aaa)
-        if market_hash[0] == market_hash[1] == market_hash[2]:
+        # 20/256 chance (~7.8%): Triggers roughly 4 times per 52-week year on average.
+        if int(market_hash[0:2], 16) < 20:
             spawned_artifact = random.choice(self.artifacts)
             # Price is the exact sum of all other items currently on the board
             artifact_price = sum(self.market_prices.values())
@@ -90,7 +109,6 @@ class TradeTycoon:
         self.current_market.sort()
 
     def trigger_event(self):
-        self.current_events = []
         num_events = random.randint(0, 3)
         if num_events == 0:
             return
@@ -255,6 +273,20 @@ class TradeTycoon:
                     line += formatter(idx, items[idx]) + "    "
             print(line.rstrip())
 
+    def print_3_columns(self, items, formatter):
+        num_items = len(items)
+        if num_items == 0:
+            print("  (Empty)")
+            return
+        rows = (num_items + 2) // 3
+        for r in range(rows):
+            line = "  "
+            for col in range(3):
+                idx = r + (col * rows)
+                if idx < num_items:
+                    line += formatter(idx, items[idx]) + " "
+            print(line.rstrip())
+
     def parse_qty(self, user_input, max_qty):
         val = user_input.lower().strip()
         if val in ['a', 'all']: return max_qty
@@ -323,8 +355,13 @@ class TradeTycoon:
                 else:
                     mkt_color = Colors.GRAY
                     mkt_str = "[Market: N/A]"
-                    inv_color = Colors.GRAY
-                    idx_color = Colors.GRAY
+
+                    if item in self.artifacts:
+                        inv_color = Colors.MAGENTA
+                        idx_color = Colors.MAGENTA
+                    else:
+                        inv_color = Colors.GRAY
+                        idx_color = Colors.GRAY
 
                 raw_inv_str = f"[{idx + 1:<2}] {item}: ({qty:,} @ {avg:,} GP)"
                 visible_text = f"{raw_inv_str} --- {mkt_str}"
@@ -392,14 +429,15 @@ class TradeTycoon:
                     if 0 <= item_idx < len(display_items):
                         item = display_items[item_idx]
 
-                        # --- NEW ARTIFACT LOGIC ---
                         if item in self.artifacts:
                             if self.inventory.get(item, 0) > 0:
                                 print(f"\n{Colors.MAGENTA}*** ARTIFACT SELECTED: {item} ***{Colors.RESET}")
                                 if item == "Smuggler's Writ":
                                     print("POWER: Bypass local tariffs and force the market to accept ANY item from your inventory!")
-                                else:
+                                elif item == "Black Swan Catalyst":
                                     print("POWER: Triggers a geopolitical crisis! (Crashes one market commodity, skyrockets another)")
+                                elif item == "Political Favors":
+                                    print("POWER: Call in a massive favor from the Crown! Instantly receive 1,000 of ANY item (even locked ones) for free!")
 
                                 confirm = input(f"Do you want to invoke this artifact? (Y/N): ").strip().lower()
                                 if confirm == 'y':
@@ -419,7 +457,6 @@ class TradeTycoon:
                                                     qty = self.parse_qty(input_qty, max_qty)
 
                                                     if 0 < qty <= max_qty:
-                                                        # Valid input, consume artifact
                                                         self.inventory[item] -= 1
                                                         if self.inventory[item] == 0:
                                                             self.average_cost[item] = 0
@@ -453,7 +490,6 @@ class TradeTycoon:
                                             time.sleep(1)
 
                                     elif item == "Black Swan Catalyst":
-                                        # Consume artifact immediately for Black Swan
                                         self.inventory[item] -= 1
                                         if self.inventory[item] == 0:
                                             self.average_cost[item] = 0
@@ -466,6 +502,48 @@ class TradeTycoon:
                                             self.current_events.append(f"ARTIFACT INVOKED: {item} - {moon} skyrocketed while {crash} collapsed!")
                                         else:
                                             self.current_events.append(f"ARTIFACT INVOKED: {item} - The market was too small for a crisis.")
+
+                                    elif item == "Political Favors":
+                                        all_possible = sorted(self.active_items + self.locked_items)
+                                        self.clear_screen()
+                                        print("=" * 170)
+                                        print(f"   {Colors.MAGENTA}*** ROYAL ARMORY (Political Favors) ***{Colors.RESET}")
+                                        print("=" * 170)
+
+                                        def format_armory(idx, it):
+                                            return f"[{idx + 1:<2}] {it:<25}"
+
+                                        self.print_3_columns(all_possible, format_armory)
+                                        print("=" * 170)
+
+                                        try:
+                                            fav_idx = int(input(f"Enter the number of the item you want 1,000 of (1-{len(all_possible)}): ")) - 1
+                                            if 0 <= fav_idx < len(all_possible):
+                                                target_item = all_possible[fav_idx]
+
+                                                self.inventory[item] -= 1
+                                                if self.inventory[item] == 0:
+                                                    self.average_cost[item] = 0
+
+                                                if target_item not in self.inventory:
+                                                    self.inventory[target_item] = 0
+                                                    self.average_cost[target_item] = 0
+
+                                                current_qty = self.inventory.get(target_item, 0)
+                                                current_avg = self.average_cost.get(target_item, 0)
+                                                current_total_value = current_qty * current_avg
+                                                new_qty = current_qty + 1000
+
+                                                self.average_cost[target_item] = current_total_value // new_qty if new_qty > 0 else 0
+                                                self.inventory[target_item] = new_qty
+
+                                                self.current_events.append(f"ARTIFACT INVOKED: Political Favors - The Crown granted you 1,000 {target_item}!")
+                                            else:
+                                                print("Invalid selection. Invocation cancelled.")
+                                                time.sleep(1)
+                                        except ValueError:
+                                            print("Invalid input. Invocation cancelled.")
+                                            time.sleep(1)
                                 else:
                                     print("Artifact invocation cancelled.")
                                     time.sleep(1)
@@ -473,7 +551,6 @@ class TradeTycoon:
                                 print(f"You don't possess a {item} to use!")
                                 time.sleep(1)
 
-                        # --- NORMAL SELL LOGIC ---
                         else:
                             if item not in self.market_prices:
                                 print(f"ERROR: No merchants are buying {item} this week!")
@@ -541,7 +618,6 @@ class TradeTycoon:
                         market_hash = hashlib.sha512(seed_string.encode()).hexdigest()
 
                         for i, m_item in enumerate(self.current_market):
-                            # Skip recalculating artifacts so their unique pricing isn't overwritten
                             if m_item in self.artifacts:
                                 continue
                             hex_pair = market_hash[i*2 : (i*2)+2]
