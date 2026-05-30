@@ -111,6 +111,7 @@ class TradeTycoon:
         self.current_market.sort()
 
     def trigger_event(self):
+        # Don't put self.current_events here. It defintely doesn't work.
         num_events = random.randint(0, 3)
         if num_events == 0:
             return
