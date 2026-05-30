@@ -9,7 +9,7 @@ class Colors:
     GREEN = '\033[32m'
     YELLOW = '\033[33m'
     MAGENTA = '\033[35m' # Legendary Artifact Color
-    GRAY = '\033[38;5;236m'
+    GRAY = '\033[38;5;239m'
     RESET = '\033[0m'
 
 class TradeTycoon:
@@ -24,15 +24,15 @@ class TradeTycoon:
 
         self.active_items = ["Wood", "Iron", "Wheat", "Flour", "Cloth", "Leather", "Coal", "Copper", "Stone", "Salt", "Glass", "Waterskin", "Rope", "Beer", "Rations", "Torches", "Herbs", "Arrows", "Silver", "Gold", "Flint"]
 
-        # Removed "Political Favors" from this list
         self.locked_items = [
-            "Gunpowder" "Cheese", "Toxin Vials", "Antitoxin Vials", "Fire Arrows", "Shortbows", "Longbows", "Daggers", "Shortswords", "Longswords", "Chain Mail", "Plate Armor", "Tobacco", "Gems", "Potions", "Scrolls", "Holy Water", "Mithril", "Adamantine",
+            "Gunpowder", "Cheese", "Toxin Vials", "Antitoxin Vials", "Fire Arrows", "Shortbows", "Longbows", "Daggers", "Shortswords", "Longswords", "Chain Mail", "Plate Armor", "Tobacco", "Gems", "Potions", "Scrolls", "Holy Water", "Mithril", "Adamantine",
             "Elven Silk", "Dragon Scales", "Shadow Lanterns", "Whisperwind Cloaks", "Compass of True North", "Troll Blood", "Phoenix Feathers", "Unicorn Horns", "Superman's Cape", "Vorpal Blades", "Philosopher Stones", "Bags of Holding",
             "Invisibility Cloak", "Lucky Dice", "Everlasting Gobstoppers", "Romulan Ale", "Lightsabers", "Safety Deposit Boxes", "Cryptocurrency", "Crown Jewels", "Time Machines"
         ]
 
         self.artifacts = ["Smuggler's Writ", "Black Swan Catalyst", "Political Favors"]
-
+        self.current_hash = "" # <--- This is the nuclear solution I'm going to try to debug the hash key because stderr isn't working the way I wanted it to.
+        
         self.inventory = {item: 0 for item in self.active_items}
         self.average_cost = {item: 0 for item in self.active_items}
 
@@ -77,6 +77,8 @@ class TradeTycoon:
 
         seed_string = f"week_{self.week}_score_{self.total_score}_unlocked_{self.unlocked_count}"
         market_hash = hashlib.sha512(seed_string.encode()).hexdigest()
+        
+        self.current_hash = market_hash # <--- Nuclear solution. Saving market hash as a variable so it can be displayed in the program.
 
         # --- DEBUG OUPUT ---
         print(f"Week {self.week} Seed: {seed_string}", file=sys.stderr)
@@ -323,6 +325,9 @@ class TradeTycoon:
             print("=" * 170)
 
             print(f" Current Money: {Colors.YELLOW}{self.money:,} GP{Colors.RESET}    ||    Inventory Value: {total_inv_value:,} GP    ||    Total Value: {overall_total:,} GP    ||    Current Score: {self.total_score:,}")
+            # --- TEMPORARY DEBUG HASH DISPLAY ---
+            print(f" Active Hash: {Colors.GRAY}{self.current_hash}{Colors.RESET}")
+            
             print("=" * 170)
             print(" COMBINED DASHBOARD (Inventory & Local Market):")
 
