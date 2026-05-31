@@ -22,17 +22,27 @@ class TradeTycoon:
         self.total_score = 0
         self.current_events = []
 
-        self.active_items = ["Wood", "Iron", "Wheat", "Flour", "Cloth", "Leather", "Coal", "Copper", "Stone", "Salt", "Glass", "Waterskin", "Rope", "Beer", "Rations", "Torches", "Herbs", "Arrows", "Silver", "Gold", "Flint"]
+        self.active_items = ["Wood", "Iron", "Wheat", "Flour", "Cloth", "Leather", "Coal", "Copper", "Stone", "Salt",
+                             "Glass", "Waterskin", "Rope", "Beer", "Rations", "Torches", "Herbs", "Arrows", "Silver", "Gold",
+                             "Flint", "Tin", "Lead"]
 
         self.locked_items = [
-            "Gunpowder", "Cheese", "Toxin Vials", "Antitoxin Vials", "Fire Arrows", "Shortbows", "Longbows", "Daggers", "Shortswords", "Longswords", "Chain Mail", "Plate Armor", "Tobacco", "Gems", "Potions", "Scrolls", "Holy Water", "Mithril", "Adamantine",
-            "Elven Silk", "Dragon Scales", "Shadow Lanterns", "Whisperwind Cloaks", "Compass of True North", "Troll Blood", "Phoenix Feathers", "Unicorn Horns", "Superman's Cape", "Vorpal Blades", "Philosopher Stones", "Bags of Holding",
-            "Invisibility Cloak", "Lucky Dice", "Everlasting Gobstoppers", "Romulan Ale", "Lightsabers", "Safety Deposit Boxes", "Cryptocurrency", "Crown Jewels", "Time Machines"
+            "Pork", "Beef", "Lamb", "Gunpowder", "Poison",
+            "Antitoxin", "Cheese", "Pepper", "Cinnamon", "Fish",
+            "Honey", "Beeswax", "Olives", "Olive Oil", "Daggers",
+            "Swords", "Pottery", "Armor", "Tobacco", "Gems",
+            "Mercury", "Ivory", "Potions", "Frankincense", "Myrrh",
+            "Scrolls", "Indigo", "Mithril", "Adamantine", "Silk",
+            "Dragon Scales", "Shadow Lanterns", "Whisperwind Cloaks", "Compass of True North", "Dream Dust",
+            "Phoenix Feathers", "Parchment", "Cat Memes", "Vorpal Blades", "Philosopher Stones",
+            "Bags of Holding", "Invisibility Cloak", "Lucky Dice", "Everlasting Gobstoppers", "Romulan Ale",
+            "Lightsabers", "Safety Deposit Boxes", "Cryptocurrency", "Crown Jewels", "Time Machines"
         ]
 
         self.artifacts = ["Smuggler's Writ", "Black Swan Catalyst", "Political Favors"]
         self.current_hash = "" # <--- This is the nuclear solution I'm going to try to debug the hash key because stderr isn't working the way I wanted it to.
-        
+
+
         self.inventory = {item: 0 for item in self.active_items}
         self.average_cost = {item: 0 for item in self.active_items}
 
@@ -69,6 +79,12 @@ class TradeTycoon:
         # Returns a 24-bit true color ANSI string
         return f"\033[38;2;{r};{g};{b}m"
 
+    def get_market_hash(self, seed_string):
+        # Creates a 256-character hex string (Supports 128 items)
+        hash1 = hashlib.sha512(seed_string.encode()).hexdigest()
+        hash2 = hashlib.sha512((seed_string + "_expansion").encode()).hexdigest()
+        return hash1 + hash2
+
     def generate_market(self):
         self.current_events = [] # Clear the board for the new week. Don't put it where you had it before. Legendary artifacts are generated; they aren't triggers.
 
@@ -76,13 +92,9 @@ class TradeTycoon:
         self.market_prices = {}
 
         seed_string = f"week_{self.week}_score_{self.total_score}_unlocked_{self.unlocked_count}"
-        market_hash = hashlib.sha512(seed_string.encode()).hexdigest()
-        
-        self.current_hash = market_hash # <--- Nuclear solution. Saving market hash as a variable so it can be displayed in the program.
+        market_hash = self.get_market_hash(seed_string) <--- Nuclear solution. Saving market hash as a variable so it can be displayed in the program.
 
-        # --- DEBUG OUPUT ---
-        print(f"Week {self.week} Seed: {seed_string}", file=sys.stderr)
-        print(f"Week {self.week} Hash: {market_hash}\n", file=sys.stderr)
+        self.current_hash = market_hash
 
         shuffled = random.sample(self.active_items, len(self.active_items))
         market_size = random.randint(8, 15)
@@ -123,7 +135,7 @@ class TradeTycoon:
                 self.current_market = [item for item in self.current_market if item in self.artifacts]
 
                 seed_string = f"grand_week_{self.week}_score_{self.total_score}_unlocked_{self.unlocked_count}"
-                market_hash = hashlib.sha512(seed_string.encode()).hexdigest()
+                market_hash = self.get_market_hash(seed_string)
 
                 for i, item in enumerate(self.active_items):
                     if item not in self.current_market:
@@ -328,7 +340,7 @@ class TradeTycoon:
             print(f" Current Money: {Colors.YELLOW}{self.money:,} GP{Colors.RESET}    ||    Inventory Value: {total_inv_value:,} GP    ||    Total Value: {overall_total:,} GP    ||    Current Score: {self.total_score:,}")
             # --- TEMPORARY DEBUG HASH DISPLAY ---
             print(f" Active Hash: {Colors.GRAY}{self.current_hash}{Colors.RESET}")
-            
+
             print("=" * 170)
             print(" COMBINED DASHBOARD (Inventory & Local Market):")
 
@@ -621,7 +633,7 @@ class TradeTycoon:
                         self.current_market.append(new_item)
 
                         seed_string = f"week_{self.week}_score_{self.total_score}_unlocked_{self.unlocked_count}"
-                        market_hash = hashlib.sha512(seed_string.encode()).hexdigest()
+                        market_hash = self.get_market_hash(seed_string)
 
                         for i, m_item in enumerate(self.current_market):
                             if m_item in self.artifacts:
