@@ -92,7 +92,7 @@ class TradeTycoon:
         self.market_prices = {}
 
         seed_string = f"week_{self.week}_score_{self.total_score}_unlocked_{self.unlocked_count}"
-        market_hash = self.get_market_hash(seed_string) <--- Nuclear solution. Saving market hash as a variable so it can be displayed in the program.
+        market_hash = self.get_market_hash(seed_string) # <--- Nuclear solution. Saving market hash as a variable so it can be displayed in the program.
 
         self.current_hash = market_hash
 
@@ -137,6 +137,8 @@ class TradeTycoon:
                 seed_string = f"grand_week_{self.week}_score_{self.total_score}_unlocked_{self.unlocked_count}"
                 market_hash = self.get_market_hash(seed_string)
 
+                self.current_hash = market_hash
+
                 for i, item in enumerate(self.active_items):
                     if item not in self.current_market:
                         self.current_market.append(item)
@@ -172,7 +174,7 @@ class TradeTycoon:
                     e_item = random.choice(targets)
                     self.market_prices[e_item] = (self.market_prices[e_item] // self.week) + 1
                     crash_msgs = [
-                        f"MARKET CRASH! A massive surplus of {e_item} has flooded the streets!",
+                        f"MARKET CRASH! A massive surplus of {e_item} has flooded the market!",
                         f"MARKET CRASH! The King suddenly outlawed {e_item}! Merchants are dumping their stock!",
                         f"MARKET CRASH! Someone found a cheaper substitute for {e_item}. Prices plummeted!"
                     ]
@@ -180,7 +182,7 @@ class TradeTycoon:
 
             elif roll < 79:
                 if random.randint(0, 1) == 0:
-                    found = (random.randint(10, 499) * self.week) + (self.unlocked_count * 200)
+                    found = (random.randint(10, 999) * self.week) + (self.unlocked_count * 200)
                     self.money += found
                     gold_msgs = [
                         f"FORTUNE! You found a discarded coin purse containing {found} GP on the floor of your store.",
@@ -393,10 +395,14 @@ class TradeTycoon:
             self.print_2_columns(display_items, format_combined)
 
             print("=" * 170)
-            gp_text = f"{Colors.RED}GP{Colors.RESET}" if self.money >= self.unlock_cost else "GP"
-            score_text = f"{Colors.RED}Score{Colors.RESET}" if self.total_score >= self.unlock_cost else "Score"
+            if self.locked_items:
+                gp_text = f"{Colors.RED}GP{Colors.RESET}" if self.money >= self.unlock_cost else "GP"
+                score_text = f"{Colors.RED}Score{Colors.RESET}" if self.total_score >= self.unlock_cost else "Score"
+                unlock_prompt = f"[{Colors.YELLOW}U{Colors.RESET}]nlock Item ({self.unlock_cost:,} {gp_text}/{score_text})"
+            else:
+                unlock_prompt = f"{Colors.MAGENTA}*** YOU WON! Everything Is Unlocked! ***{Colors.RESET}"
 
-            print(f"Actions: [{Colors.YELLOW}B{Colors.RESET}]uy | [{Colors.YELLOW}S{Colors.RESET}]ell/Use | [{Colors.YELLOW}N{Colors.RESET}]ext Week | [{Colors.YELLOW}U{Colors.RESET}]nlock Item ({self.unlock_cost:,} {gp_text}/{score_text}) | [{Colors.YELLOW}Q{Colors.RESET}]uit")
+            print(f"Actions: [{Colors.YELLOW}B{Colors.RESET}]uy | [{Colors.YELLOW}S{Colors.RESET}]ell/Use | [{Colors.YELLOW}N{Colors.RESET}]ext Week | {unlock_prompt} | [{Colors.YELLOW}Q{Colors.RESET}]uit")
             action = input("What would you like to do? ").strip().lower()
 
             if action == 'b':
@@ -453,9 +459,9 @@ class TradeTycoon:
                                 if item == "Smuggler's Writ":
                                     print("POWER: Bypass local tariffs and force the market to accept ANY item from your inventory!")
                                 elif item == "Black Swan Catalyst":
-                                    print("POWER: Triggers a geopolitical crisis! (Crashes one market commodity, skyrockets another)")
+                                    print("POWER: Triggers a geopolitical crisis! (Crashes 1/4 of the market commodities, skyrockets another 1/4)")
                                 elif item == "Political Favors":
-                                    print("POWER: Call in a massive favor from the Crown! Instantly receive 1,000 of ANY item (even locked ones) for free!")
+                                    print("POWER: Call in a massive favor from the Crown! Instantly receive 10,000 of ANY item (even locked ones) for free!")
 
                                 confirm = input(f"Do you want to invoke this artifact? (Y/N): ").strip().lower()
                                 if confirm == 'y':
@@ -513,11 +519,31 @@ class TradeTycoon:
                                             self.average_cost[item] = 0
 
                                         targets = [m for m in self.current_market if m not in self.artifacts]
-                                        if len(targets) >= 2:
-                                            crash, moon = random.sample(targets, 2)
-                                            self.market_prices[crash] = 1
-                                            self.market_prices[moon] = 255 + (self.unlocked_count * 10)
-                                            self.current_events.append(f"ARTIFACT INVOKED: {item} - {moon} skyrocketed while {crash} collapsed!")
+                                        impact_qty = len(targets) // 4
+
+                                        # Fallback just in case the market is tiny (e.g. 2 or 3 items)
+                                        if impact_qty < 1 and len(targets) >= 2:
+                                            impact_qty = 1
+
+                                        if impact_qty >= 1 and len(targets) >= (impact_qty * 2):
+                                            affected = random.sample(targets, impact_qty * 2)
+                                            moons = affected[:impact_qty]
+                                            crashes = affected[impact_qty:]
+
+                                            for moon in moons:
+                                                # Multiply the current price by 4x to 8x, plus a baseline
+                                                # to ensure even cheap goods completely skyrocket!
+                                                multiplier = random.randint(5, 20)
+                                                baseline = 100 + (self.unlocked_count * 10)
+                                                self.market_prices[moon] = (self.market_prices[moon] * multiplier) + baseline
+
+                                            for crash in crashes:
+                                                self.market_prices[crash] = 1
+
+                                            moon_str = ", ".join(moons)
+                                            crash_str = ", ".join(crashes)
+
+                                            self.current_events.append(f"ARTIFACT INVOKED: {item} - {moon_str} skyrocketed while {crash_str} collapsed!")
                                         else:
                                             self.current_events.append(f"ARTIFACT INVOKED: {item} - The market was too small for a crisis.")
 
@@ -535,7 +561,7 @@ class TradeTycoon:
                                         print("=" * 170)
 
                                         try:
-                                            fav_idx = int(input(f"Enter the number of the item you want 1,000 of (1-{len(all_possible)}): ")) - 1
+                                            fav_idx = int(input(f"Enter the number of the item you want 10,000 of (1-{len(all_possible)}): ")) - 1
                                             if 0 <= fav_idx < len(all_possible):
                                                 target_item = all_possible[fav_idx]
 
@@ -550,12 +576,12 @@ class TradeTycoon:
                                                 current_qty = self.inventory.get(target_item, 0)
                                                 current_avg = self.average_cost.get(target_item, 0)
                                                 current_total_value = current_qty * current_avg
-                                                new_qty = current_qty + 1000
+                                                new_qty = current_qty + 10000
 
                                                 self.average_cost[target_item] = current_total_value // new_qty if new_qty > 0 else 0
                                                 self.inventory[target_item] = new_qty
 
-                                                self.current_events.append(f"ARTIFACT INVOKED: Political Favors - The Crown granted you 1,000 {target_item}!")
+                                                self.current_events.append(f"ARTIFACT INVOKED: Political Favors - The Crown granted you 10,000 {target_item}!")
                                             else:
                                                 print("Invalid selection. Invocation cancelled.")
                                                 time.sleep(1)
@@ -634,6 +660,8 @@ class TradeTycoon:
 
                         seed_string = f"week_{self.week}_score_{self.total_score}_unlocked_{self.unlocked_count}"
                         market_hash = self.get_market_hash(seed_string)
+
+                        self.current_hash = market_hash
 
                         for i, m_item in enumerate(self.current_market):
                             if m_item in self.artifacts:
