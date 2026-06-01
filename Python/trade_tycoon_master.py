@@ -652,8 +652,12 @@ class TradeTycoon:
                     if can_unlock:
                         new_item = self.locked_items.pop(0)
                         self.active_items.append(new_item)
-                        self.inventory[new_item] = 0
-                        self.average_cost[new_item] = 0
+
+                        # --- BUG FIX: Only set to 0 if the fairy hasn't already gifted it! ---
+                        if new_item not in self.inventory:
+                            self.inventory[new_item] = 0
+                            self.average_cost[new_item] = 0
+                            
                         self.unlocked_count += 1
                         self.unlock_cost = self.unlock_cost + (self.unlock_cost // 2)
                         self.current_market.append(new_item)
