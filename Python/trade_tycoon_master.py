@@ -130,21 +130,23 @@ class TradeTycoon:
 
         for roll in rolls:
             if roll < 57:
-                self.current_market = []
+                # Damn market keeps breaking things... I'm going to fix this if it's the last thing I do!
+                # Find all items that aren't already in the market
+                missing_items = [item for item in self.active_items if item not in self.current_market]
 
-                seed_string = f"grand_week_{self.week}_score_{self.total_score}_unlocked_{self.unlocked_count}"
-                market_hash = self.get_market_hash(seed_string)
+                # Count how many normal items are already in the market to know where to resume slicing the hash
+                normal_item_count = len([m for m in self.current_market if m not in self.artifacts])
 
-                self.current_hash = market_hash
-
-                for i, item in enumerate(self.active_items):
+                for item in missing_items:
                     self.current_market.append(item)
-                    hex_pair = market_hash[i*2 : (i*2)+2]
+
+                    # Grab the next available hex pair from the current week's hash
+                    hex_pair = self.current_hash[normal_item_count*2 : (normal_item_count*2)+2]
                     raw_hash_price = int(hex_pair, 16)
                     scaling_bonus = self.unlocked_count * 5
                     self.market_prices[item] = max(1, raw_hash_price + scaling_bonus)
 
-                self.roll_for_artifact(market_hash, is_grand_market=True)
+                    normal_item_count += 1
 
                 self.current_market.sort()
                 grand_msgs = [
@@ -229,7 +231,7 @@ class TradeTycoon:
             elif roll < 95:
                 if self.locked_items:
                     if random.randint(0, 99) < 60:
-                        self.unlock_cost = self.unlock_cost // 3
+                        self.unlock_cost = self.unlock_cost // 5
                         if self.unlock_cost < 10000:
                             self.unlock_cost = 10000
                         guild_good_msgs = [
