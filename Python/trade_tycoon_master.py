@@ -3,6 +3,7 @@ import os
 import time
 import hashlib
 import sys
+import json  # <--- Added for Save/Load support
 
 class Colors:
     RED = '\033[31m'
@@ -17,7 +18,7 @@ class TradeTycoon:
         # --- Initialize Local Game Variables ---
         self.money = 10000
         self.week = 1
-        self.unlock_cost = 1000000
+        self.unlock_cost = 500000
         self.unlocked_count = 0
         self.total_score = 0
         self.current_events = []
@@ -33,14 +34,15 @@ class TradeTycoon:
             "Swords", "Pottery", "Armor", "Tobacco", "Gems",
             "Mercury", "Ivory", "Potions", "Frankincense", "Myrrh",
             "Scrolls", "Indigo", "Mithril", "Adamantine", "Silk",
-            "Dragon Scales", "Shadow Lanterns", "Whisperwind Cloaks", "Compass of True North", "Dream Dust",
-            "Phoenix Feathers", "Parchment", "Cat Memes", "Vorpal Blades", "Philosopher Stones",
-            "Bags of Holding", "Invisibility Cloak", "Lucky Dice", "Everlasting Gobstoppers", "Romulan Ale",
-            "Lightsabers", "Safety Deposit Boxes", "Cryptocurrency", "Crown Jewels", "Time Machines"
+            "Dragon Scales", "Shadow Lantern", "Whisperwind Cloak", "Compass of True North", "Dream Dust",
+            "Phoenix Feather", "Parchment", "Cat Memes", "Vorpal Blades", "Philosopher Stones",
+            "Bag of Holding", "Invisibility Cloak", "Lucky Dice", "Everlasting Gobstopper", "Romulan Ale",
+            "Lightsaber", "Safety Deposit Box", "Cryptocurrency", "Crown Jewel", "Time Machine"
         ]
 
-        self.artifacts = ["Smuggler's Writ", "Black Swan Catalyst", "Political Favors"]
-        self.current_hash = "" # <--- This is the nuclear solution I'm going to try to debug the hash key because stderr isn't working the way I wanted it to.
+        self.artifacts = ["Smuggler's Writ", "Black Swan Catalyst", "Political Favor"]
+        self.current_hash = ""
+        self.artifact_stock = {}
 
 
         self.inventory = {item: 0 for item in self.active_items}
@@ -58,41 +60,48 @@ class TradeTycoon:
         os.system('cls' if os.name == 'nt' else 'clear')
 
     def get_price_color(self, price):
-        # Dynamically calculate the maximum normal price based on progression
         max_price = 255 + (self.unlocked_count * 5)
         halfway = max_price / 2.0
 
-        # Clamp the price at the new dynamic maximum so Booms/Artifacts stay pure red
         p = min(max(int(price), 1), max_price)
 
         if p <= halfway:
-            # Green to Yellow: Red scales up, Green is max
             r = int((p / halfway) * 255)
             g = 255
         else:
-            # Yellow to Red: Red is max, Green scales down
             r = 255
             g = int(255 - (((p - halfway) / (max_price - halfway)) * 255))
 
         b = 0
-
-        # Returns a 24-bit true color ANSI string
         return f"\033[38;2;{r};{g};{b}m"
 
     def get_market_hash(self, seed_string):
-        # Creates a 256-character hex string (Supports 128 items)
         hash1 = hashlib.sha512(seed_string.encode()).hexdigest()
         hash2 = hashlib.sha512((seed_string + "_expansion").encode()).hexdigest()
         return hash1 + hash2
 
+    def roll_for_artifact(self, market_hash, is_grand_market=False):
+        # --- SEED-LOCKED ARTIFACT GENERATION ---
+        if int(market_hash[0:2], 16) < 48:
+            spawned_artifact = random.choice(self.artifacts)
+            artifact_price = sum(self.market_prices.values())
+
+            self.current_market.append(spawned_artifact)
+            self.market_prices[spawned_artifact] = artifact_price
+            self.artifact_stock[spawned_artifact] = 10
+
+            market_type = "GRAND MARKET" if is_grand_market else "MARKET"
+            self.current_events.append(f"A LEGENDARY ARTIFACT HAS APPEARED IN THE {market_type}: {spawned_artifact}")
+
     def generate_market(self):
-        self.current_events = [] # Clear the board for the new week. Don't put it where you had it before. Legendary artifacts are generated; they aren't triggers.
+        self.current_events = []
 
         self.current_market = []
         self.market_prices = {}
+        self.artifact_stock = {}
 
         seed_string = f"week_{self.week}_score_{self.total_score}_unlocked_{self.unlocked_count}"
-        market_hash = self.get_market_hash(seed_string) # <--- Nuclear solution. Saving market hash as a variable so it can be displayed in the program.
+        market_hash = self.get_market_hash(seed_string)
 
         self.current_hash = market_hash
 
@@ -109,21 +118,10 @@ class TradeTycoon:
             scaling_bonus = self.unlocked_count * 5
             self.market_prices[item] = max(1, raw_hash_price + scaling_bonus)
 
-        # --- SEED-LOCKED ARTIFACT GENERATION ---
-        # 20/256 chance (~7.8%): Triggers roughly 4 times per 52-week year on average.
-        if int(market_hash[0:2], 16) < 20:
-            spawned_artifact = random.choice(self.artifacts)
-            # Price is the exact sum of all other items currently on the board
-            artifact_price = sum(self.market_prices.values())
-
-            self.current_market.append(spawned_artifact)
-            self.market_prices[spawned_artifact] = artifact_price
-            self.current_events.append(f"A LEGENDARY ARTIFACT HAS APPEARED IN THE MARKET: {spawned_artifact}")
-
+        self.roll_for_artifact(market_hash)
         self.current_market.sort()
 
     def trigger_event(self):
-        # Don't put self.current_events here. It defintely doesn't work.
         num_events = random.randint(0, 3)
         if num_events == 0:
             return
@@ -132,7 +130,7 @@ class TradeTycoon:
 
         for roll in rolls:
             if roll < 57:
-                self.current_market = [item for item in self.current_market if item in self.artifacts]
+                self.current_market = []
 
                 seed_string = f"grand_week_{self.week}_score_{self.total_score}_unlocked_{self.unlocked_count}"
                 market_hash = self.get_market_hash(seed_string)
@@ -140,12 +138,13 @@ class TradeTycoon:
                 self.current_hash = market_hash
 
                 for i, item in enumerate(self.active_items):
-                    if item not in self.current_market:
-                        self.current_market.append(item)
+                    self.current_market.append(item)
                     hex_pair = market_hash[i*2 : (i*2)+2]
                     raw_hash_price = int(hex_pair, 16)
                     scaling_bonus = self.unlocked_count * 5
                     self.market_prices[item] = max(1, raw_hash_price + scaling_bonus)
+
+                self.roll_for_artifact(market_hash, is_grand_market=True)
 
                 self.current_market.sort()
                 grand_msgs = [
@@ -156,7 +155,6 @@ class TradeTycoon:
                 self.current_events.append(random.choice(grand_msgs))
 
             elif roll < 64:
-                # Exclude artifacts from normal crashes/booms
                 targets = [m for m in self.current_market if m not in self.artifacts]
                 if targets:
                     e_item = random.choice(targets)
@@ -174,7 +172,7 @@ class TradeTycoon:
                     e_item = random.choice(targets)
                     self.market_prices[e_item] = (self.market_prices[e_item] // self.week) + 1
                     crash_msgs = [
-                        f"MARKET CRASH! A massive surplus of {e_item} has flooded the market!",
+                        f"MARKET CRASH! A massive surplus of {e_item} has flooded the streets!",
                         f"MARKET CRASH! The King suddenly outlawed {e_item}! Merchants are dumping their stock!",
                         f"MARKET CRASH! Someone found a cheaper substitute for {e_item}. Prices plummeted!"
                     ]
@@ -182,7 +180,7 @@ class TradeTycoon:
 
             elif roll < 79:
                 if random.randint(0, 1) == 0:
-                    found = (random.randint(10, 999) * self.week) + (self.unlocked_count * 200)
+                    found = (random.randint(10, 499) * self.week) + (self.unlocked_count * 200)
                     self.money += found
                     gold_msgs = [
                         f"FORTUNE! You found a discarded coin purse containing {found} GP on the floor of your store.",
@@ -315,6 +313,58 @@ class TradeTycoon:
         except ValueError:
             return 0
 
+    # --- SAVE / LOAD METHODS ---
+    def save_game(self):
+        save_data = {
+            "money": self.money,
+            "week": self.week,
+            "unlock_cost": self.unlock_cost,
+            "unlocked_count": self.unlocked_count,
+            "total_score": self.total_score,
+            "active_items": self.active_items,
+            "locked_items": self.locked_items,
+            "inventory": self.inventory,
+            "average_cost": self.average_cost,
+            "artifact_stock": self.artifact_stock,
+            "current_market": self.current_market,
+            "market_prices": self.market_prices,
+            "current_hash": self.current_hash,
+            "current_events": self.current_events
+        }
+        try:
+            with open("trade_tycoon_save.json", "w") as f:
+                json.dump(save_data, f, indent=4)
+            self.current_events.append("GAME SAVED SUCCESSFULLY!")
+        except Exception as e:
+            self.current_events.append(f"ERROR SAVING GAME: {e}")
+
+    def load_game(self):
+        try:
+            with open("trade_tycoon_save.json", "r") as f:
+                save_data = json.load(f)
+
+            self.money = save_data.get("money", self.money)
+            self.week = save_data.get("week", self.week)
+            self.unlock_cost = save_data.get("unlock_cost", self.unlock_cost)
+            self.unlocked_count = save_data.get("unlocked_count", self.unlocked_count)
+            self.total_score = save_data.get("total_score", self.total_score)
+            self.active_items = save_data.get("active_items", self.active_items)
+            self.locked_items = save_data.get("locked_items", self.locked_items)
+            self.inventory = save_data.get("inventory", self.inventory)
+            self.average_cost = save_data.get("average_cost", self.average_cost)
+            self.artifact_stock = save_data.get("artifact_stock", self.artifact_stock)
+            self.current_market = save_data.get("current_market", self.current_market)
+            self.market_prices = save_data.get("market_prices", self.market_prices)
+            self.current_hash = save_data.get("current_hash", self.current_hash)
+            self.current_events = save_data.get("current_events", [])
+
+            self.current_events.append("GAME LOADED SUCCESSFULLY!")
+            return True
+        except Exception as e:
+            print(f"Error loading game: {e}")
+            time.sleep(2)
+            return False
+
     def run(self):
         self.generate_market()
 
@@ -332,8 +382,12 @@ class TradeTycoon:
                         print(f"   {Colors.GREEN}( {event} ){Colors.RESET}")
                     elif event.startswith("GUILD PERMIT"):
                         print(f"   {Colors.GREEN}( +++ {event} +++ ){Colors.RESET}")
-                    elif event.startswith("A LEGENDARY") or event.startswith("ARTIFACT"):
+                    elif event.startswith("A LEGENDARY") or event.startswith("ARTIFACT") or event.startswith("PRESTIGE"):
                         print(f"   {Colors.MAGENTA}( !!! {event} !!! ){Colors.RESET}")
+                    elif event.startswith("MARKET UPDATE:"):
+                        print(f"   {Colors.RED}( {event} ){Colors.RESET}")
+                    elif event.startswith("GAME SAVED") or event.startswith("GAME LOADED"):
+                        print(f"   {Colors.MAGENTA}( *** {event} *** ){Colors.RESET}")
                     else:
                         print(f"   {Colors.YELLOW}( *** {event} *** ){Colors.RESET}")
 
@@ -395,14 +449,15 @@ class TradeTycoon:
             self.print_2_columns(display_items, format_combined)
 
             print("=" * 170)
+
             if self.locked_items:
                 gp_text = f"{Colors.RED}GP{Colors.RESET}" if self.money >= self.unlock_cost else "GP"
                 score_text = f"{Colors.RED}Score{Colors.RESET}" if self.total_score >= self.unlock_cost else "Score"
                 unlock_prompt = f"[{Colors.YELLOW}U{Colors.RESET}]nlock Item ({self.unlock_cost:,} {gp_text}/{score_text})"
             else:
-                unlock_prompt = f"{Colors.MAGENTA}*** YOU WON! Everything Is Unlocked! ***{Colors.RESET}"
+                unlock_prompt = f"{Colors.MAGENTA}*** YOU WON! Everything Is Unlocked! [{Colors.YELLOW}P{Colors.MAGENTA}]restige? ***{Colors.RESET}"
 
-            print(f"Actions: [{Colors.YELLOW}B{Colors.RESET}]uy | [{Colors.YELLOW}S{Colors.RESET}]ell/Use | [{Colors.YELLOW}N{Colors.RESET}]ext Week | {unlock_prompt} | [{Colors.YELLOW}Q{Colors.RESET}]uit")
+            print(f"Actions: [{Colors.YELLOW}B{Colors.RESET}]uy | [{Colors.YELLOW}S{Colors.RESET}]ell/Use | [{Colors.YELLOW}N{Colors.RESET}]ext Week | {unlock_prompt} | [{Colors.YELLOW}W{Colors.RESET}]rite Save | [{Colors.YELLOW}L{Colors.RESET}]oad | [{Colors.YELLOW}Q{Colors.RESET}]uit")
             action = input("What would you like to do? ").strip().lower()
 
             if action == 'b':
@@ -417,6 +472,12 @@ class TradeTycoon:
                         else:
                             price = self.market_prices[item]
                             max_qty = self.money // price
+
+                            # --- NEW LIMIT LOGIC: Tracking actual stock per week ---
+                            if item in self.artifacts:
+                                stock = self.artifact_stock.get(item, 10)
+                                if max_qty > stock:
+                                    max_qty = stock
 
                             if max_qty > 0:
                                 input_qty = input(f"How many {item} would you like to buy? (Max: {max_qty}, [A]ll/[H]alf/[Q]uarter): ")
@@ -434,11 +495,23 @@ class TradeTycoon:
                                     self.money -= cost
                                     self.inventory[item] = new_qty
                                     self.current_events.append(f"BOUGHT: {qty:,} {item} for {cost:,} GP")
+
+                                    # --- STOCK DEPLETION ---
+                                    if item in self.artifacts:
+                                        self.artifact_stock[item] -= qty
+                                        if self.artifact_stock[item] <= 0:
+                                            self.current_market.remove(item)
+                                            del self.market_prices[item]
+                                            self.current_events.append(f"MARKET UPDATE: The market has sold out of {item} for this week!")
+
                                 else:
                                     print("Invalid quantity or not enough Gold Pieces!")
                                     time.sleep(1)
                             else:
-                                print(f"You can't even afford one {item}!")
+                                if item in self.artifacts and self.artifact_stock.get(item, 10) <= 0:
+                                    print(f"The market is sold out of {item}!")
+                                else:
+                                    print(f"You can't even afford one {item}!")
                                 time.sleep(1)
                     else:
                         print("Invalid item number!")
@@ -460,7 +533,7 @@ class TradeTycoon:
                                     print("POWER: Bypass local tariffs and force the market to accept ANY item from your inventory!")
                                 elif item == "Black Swan Catalyst":
                                     print("POWER: Triggers a geopolitical crisis! (Crashes 1/4 of the market commodities, skyrockets another 1/4)")
-                                elif item == "Political Favors":
+                                elif item == "Political Favor":
                                     print("POWER: Call in a massive favor from the Crown! Instantly receive 10,000 of ANY item (even locked ones) for free!")
 
                                 confirm = input(f"Do you want to invoke this artifact? (Y/N): ").strip().lower()
@@ -521,7 +594,6 @@ class TradeTycoon:
                                         targets = [m for m in self.current_market if m not in self.artifacts]
                                         impact_qty = len(targets) // 4
 
-                                        # Fallback just in case the market is tiny (e.g. 2 or 3 items)
                                         if impact_qty < 1 and len(targets) >= 2:
                                             impact_qty = 1
 
@@ -531,8 +603,6 @@ class TradeTycoon:
                                             crashes = affected[impact_qty:]
 
                                             for moon in moons:
-                                                # Multiply the current price by 4x to 8x, plus a baseline
-                                                # to ensure even cheap goods completely skyrocket!
                                                 multiplier = random.randint(5, 20)
                                                 baseline = 100 + (self.unlocked_count * 10)
                                                 self.market_prices[moon] = (self.market_prices[moon] * multiplier) + baseline
@@ -547,7 +617,7 @@ class TradeTycoon:
                                         else:
                                             self.current_events.append(f"ARTIFACT INVOKED: {item} - The market was too small for a crisis.")
 
-                                    elif item == "Political Favors":
+                                    elif item == "Political Favor":
                                         all_possible = sorted(self.active_items + self.locked_items)
                                         self.clear_screen()
                                         print("=" * 170)
@@ -653,11 +723,10 @@ class TradeTycoon:
                         new_item = self.locked_items.pop(0)
                         self.active_items.append(new_item)
 
-                        # --- BUG FIX: Only set to 0 if the fairy hasn't already gifted it! ---
                         if new_item not in self.inventory:
                             self.inventory[new_item] = 0
                             self.average_cost[new_item] = 0
-                            
+
                         self.unlocked_count += 1
                         self.unlock_cost = self.unlock_cost + (self.unlock_cost // 2)
                         self.current_market.append(new_item)
@@ -676,12 +745,110 @@ class TradeTycoon:
                             self.market_prices[m_item] = max(1, raw_hash_price + scaling_bonus)
 
                         self.current_market.sort()
-                        self.current_events.append(f"GUILD PERMIT SECURED: {new_item} (Paid with {paid_with})")
+                        self.current_events.append(f"GUILD PERMIT SECURED: {new_item} (Paid with {paid_with}). The market fluctuates.")
                     else:
                         print(f"You need {self.unlock_cost:,} GP or Score to unlock a new item!")
                         time.sleep(2)
                 else:
                     print("You have already unlocked all the realm's items!")
+                    time.sleep(2)
+
+            elif action == 'w':
+                self.save_game()
+
+            elif action == 'l':
+                if os.path.exists("trade_tycoon_save.json"):
+                    confirm = input(" Are you sure you want to load? Any unsaved progress will be lost! (Y/N): ").strip().lower()
+                    if confirm == 'y':
+                        self.load_game()
+                    else:
+                        print(" Load cancelled.")
+                        time.sleep(1)
+                else:
+                    print(" No save file found!")
+                    time.sleep(1)
+
+            elif action == 'p':
+                if not self.locked_items:
+                    self.clear_screen()
+                    print("=" * 170)
+                    print(f"   {Colors.MAGENTA}*** PRESTIGE ***{Colors.RESET}")
+                    print("=" * 170)
+
+                    bonus_gp = int(self.total_score ** (1/3.0))
+
+                    print(f" You have cornered the market and unlocked every good in the realm!")
+                    print(f" If you Prestige, your empire will reset, but you will retain the following perks:")
+                    print(f"   - {Colors.YELLOW}Extra Starting Wealth:{Colors.RESET} +{bonus_gp:,} GP (Cube root of your {self.total_score:,} final score)")
+                    print(f"   - {Colors.MAGENTA}Legendary Heirloom:{Colors.RESET} Keep your entire collected stack of 1 Artifact type (minimum 1)")
+                    print("\n Are you ready to pass the torch to the next generation?")
+
+                    confirm = input("\n (Y/N): ").strip().lower()
+                    if confirm == 'y':
+                        print("\n Which artifact would you like to keep?")
+                        for idx, art in enumerate(self.artifacts):
+                            print(f" [{idx + 1}] {art}")
+
+                        try:
+                            art_choice = int(input(" Enter number (1-3): ")) - 1
+                            if 0 <= art_choice < len(self.artifacts):
+                                chosen_art = self.artifacts[art_choice]
+                            else:
+                                print(" Invalid selection. The Guild assigns you a Smuggler's Writ.")
+                                chosen_art = self.artifacts[0]
+                                time.sleep(1)
+                        except ValueError:
+                            print(" Invalid input. The Guild assigns you a Smuggler's Writ.")
+                            chosen_art = self.artifacts[0]
+                            time.sleep(1)
+
+                        # --- CAPTURE HOARDED ARTIFACTS BEFORE RESET ---
+                        # Gives you the full stack you saved up, but defaults to at least 1 so you don't get punished for picking something you ran out of!
+                        kept_qty = max(1, self.inventory.get(chosen_art, 0))
+
+                        # --- RESET THE GAME STATE ---
+                        self.money = 10000 + bonus_gp
+                        self.week = 1
+                        self.unlock_cost = 500000
+                        self.unlocked_count = 0
+                        self.total_score = 0
+                        self.artifact_stock = {}
+
+                        self.active_items = ["Wood", "Iron", "Wheat", "Flour", "Cloth", "Leather", "Coal", "Copper", "Stone", "Salt",
+                                             "Glass", "Waterskin", "Rope", "Beer", "Rations", "Torches", "Herbs", "Arrows", "Silver", "Gold",
+                                             "Flint", "Tin", "Lead"]
+
+                        self.locked_items = [
+                            "Pork", "Beef", "Lamb", "Gunpowder", "Fire Arrows",
+                            "Antitoxin", "Cheese", "Pepper", "Cinnamon", "Fish",
+                            "Honey", "Beeswax", "Olives", "Olive Oil", "Daggers",
+                            "Swords", "Pottery", "Armor", "Tobacco", "Gems",
+                            "Mercury", "Ivory", "Potions", "Frankincense", "Myrrh",
+                            "Scrolls", "Indigo", "Mithril", "Adamantine", "Silk",
+                            "Dragon Scales", "Shadow Lanterns", "Whisperwind Cloaks", "Compass of True North", "Dream Dust",
+                            "Phoenix Feathers", "Parchment", "Cat Memes", "Vorpal Blades", "Philosopher Stones",
+                            "Bags of Holding", "Invisibility Cloak", "Lucky Dice", "Everlasting Gobstoppers", "Romulan Ale",
+                            "Lightsabers", "Safety Deposit Boxes", "Cryptocurrency", "Crown Jewels", "Time Machines"
+                        ]
+
+                        self.inventory = {item: 0 for item in self.active_items}
+                        self.average_cost = {item: 0 for item in self.active_items}
+
+                        for art in self.artifacts:
+                            self.inventory[art] = 0
+                            self.average_cost[art] = 0
+
+                        # Inject the hoarded stack into the new inventory
+                        self.inventory[chosen_art] = kept_qty
+
+                        self.generate_market()
+                        self.current_events = [f"PRESTIGE SECURED! You start anew with {bonus_gp:,} extra GP and {kept_qty:,}x {chosen_art}."]
+
+                    else:
+                        print(" Prestige cancelled.")
+                        time.sleep(1)
+                else:
+                    print(" ERROR: You must unlock every item in the realm before you can Prestige!")
                     time.sleep(2)
 
             elif action == 'q':
