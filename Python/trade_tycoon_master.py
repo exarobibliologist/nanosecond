@@ -148,7 +148,7 @@ class TradeTycoon:
 
                 seed_string = f"run_{self.run_id}_week_{self.week}_score_{self.total_score}_unlocked_{self.unlocked_count}"
                 seed_string_two = f"money_{self.money}_week_{self.week}_score_{self.total_score}_unlocked_{self.unlocked_count}_run_{self.run_id}"
-                market_hash = self.get_market_hash(seed_string)
+                market_hash = self.get_market_hash(seed_string, seed_string_two)
 
                 self.current_hash = market_hash
 
