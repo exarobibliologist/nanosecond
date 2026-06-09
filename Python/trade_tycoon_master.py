@@ -33,18 +33,11 @@ class TradeTycoon:
                              "Coal", "Stone", "Salt", "Glass", "Waterskin",
                              "Beer", "Rations", "Torches", "Herbs", "Arrows"]
 
-        self.locked_items = [
-            "Pork", "Beef", "Lamb", "Gunpowder", "Cheese", "Honey", "Beeswax", "Olives", "Olive Oil",
-            "Pepper", "Cinnamon", "Paprika", "Coffee", "Cocoa", "Tobacco",
-            "Flint & Steel", "Iron", "Silver", "Gold", "Tin", "Lead", "Glowcopper", "Mercury", "Obsidian", "Meteorite", "Mithril", "Adamantine", "Lavastone", "Orichalum", "Palladium", "Titanium", "Chlorophyte",
-            "Daggers", "Swords", "Armor", "Antitoxin", "Poison", "Pottery", "Rope",
-            "Amber", "Topaz", "Sapphire", "Amethyst", "Emerald", "Ivory", "Ruby", "Sunstone", "Diamond", "Potions", "Frankincense", "Myrrh", "Indigo",
-            "Scrolls", "Silk", "Dragon Scales", "Shadow Lantern", "Whisperwind Cloak", "Compass of True North",
-            "Dream Dust", "Glitterstim", "Phoenix Feather", "Parchment", "Cat Memes", "Vorpal Blades",
-            "Philosopher Stones", "Sleeper Agents", "Bag of Holding", "Invisibility Cloak", "Lucky Dice", "Nanites",
-            "Dimensional Pinball Machine", "Everlasting Gobstopper", "Romulan Ale", "Lightsaber", "Safety Deposit Box",
-            "Cryptocurrency", "Crown Jewel", "Time Machine"
-        ]
+        self.locked_items = ["Adamantine", "Amber", "Amethyst", "Antitoxin", "Armor", "Bag of Holding", "Beef", "Beeswax", "Cat Memes", "Cheese", "Chlorophyte", "Cinnamon", "Cocoa", "Coffee", "Compass of True North", "Crown Jewel", "Cryptocurrency", "Daggers", "Diamond", "Dimensional Pinball Machine", "Dragon Scales", "Dream Dust", "Emerald", "Everlasting Gobstopper", "Flint & Steel", "Frankincense", "Glitterstim", "Glowcopper", "Gold", "Gunpowder", "Honey", "Indigo", "Invisibility Cloak", "Iron", "Ivory", "Lamb", "Lavastone", "Lead", "Lightsaber", "Lucky Dice", "Mercury", "Meteorite", "Mithril", "Myrrh", "Nanites", "Obsidian", "Olive Oil", "Olives", "Orichalum", "Palladium", "Paprika", "Parchment", "Pepper", "Philosopher Stones", "Phoenix Feather", "Poison", "Pork", "Potions", "Pottery", "Romulan Ale", "Rope", "Ruby", "Safety Deposit Box", "Sapphire", "Scrolls", "Shadow Lantern", "Silk", "Silver", "Sleeper Agents", "Sunstone", "Swords", "Time Machine", "Tin", "Titanium", "Tobacco", "Topaz", "Vorpal Blades", "Whisperwind Cloak"]
+
+
+        # Auto-alphabetize the locked items
+        self.locked_items.sort()
 
         self.artifacts = ["Smuggler's Writ", "Black Swan Catalyst", "Political Favors"]
         self.current_hash = ""
@@ -92,13 +85,13 @@ class TradeTycoon:
 
     def roll_for_artifact(self, market_hash, is_grand_market=False):
         # --- SEED-LOCKED ARTIFACT GENERATION ---
-        if int(market_hash[0:2], 16) < 48:
+        if int(market_hash[0:2], 16) < 64: # <-- Controls how often artifacts spawn
             spawned_artifact = random.choice(self.artifacts)
             artifact_price = sum(self.market_prices.values())
 
             self.current_market.append(spawned_artifact)
             self.market_prices[spawned_artifact] = artifact_price
-            self.artifact_stock[spawned_artifact] = 10
+            self.artifact_stock[spawned_artifact] = 20 # <-- Controls the number of artifacts in each spawn
 
             market_type = "GRAND MARKET" if is_grand_market else "MARKET"
             self.current_events.append(f"A LEGENDARY ARTIFACT HAS APPEARED IN THE {market_type}: {spawned_artifact}")
@@ -338,7 +331,7 @@ class TradeTycoon:
             "unlock_cost": self.unlock_cost,
             "unlocked_count": self.unlocked_count,
             "total_score": self.total_score,
-            # Removed the active/locked items lists from here. Going to attempt to make the game saves forward-compatible
+            "active_items": self.active_items, # Included back in to support randomized unlocks
             "inventory": self.inventory,
             "average_cost": self.average_cost,
             "artifact_stock": self.artifact_stock,
@@ -365,17 +358,14 @@ class TradeTycoon:
             self.week = save_data.get("week", self.week)
             self.unlock_cost = save_data.get("unlock_cost", self.unlock_cost)
             self.total_score = save_data.get("total_score", self.total_score)
+            self.unlocked_count = save_data.get("unlocked_count", self.unlocked_count)
 
-            # 2. Reconstruct the active/locked lists dynamically based on the unlocked count
-            saved_unlocked_count = save_data.get("unlocked_count", 0)
+            # 2. Preserve Randomized Unlocks & Forward Compatibility
+            self.active_items = save_data.get("active_items", self.active_items)
 
-            # Safeguard: Ensure we don't try to unlock more items than exist in the script
-            actual_unlocks = min(saved_unlocked_count, len(self.locked_items))
-            self.unlocked_count = actual_unlocks
-
-            for _ in range(actual_unlocks):
-                new_item = self.locked_items.pop(0)
-                self.active_items.append(new_item)
+            # Filter the master script list so any item we already unlocked is erased from locked_items
+            self.locked_items = [item for item in self.locked_items if item not in self.active_items]
+            self.locked_items.sort()
 
             # 3. Load the dictionaries and market state
             self.inventory = save_data.get("inventory", self.inventory)
@@ -476,7 +466,7 @@ class TradeTycoon:
                 visible_text = f"{raw_inv_str} --- {mkt_str}"
                 visible_len = len(visible_text)
 
-                padding = " " * max(0, 80 - visible_len)
+                padding = " " * max(0, 100 - visible_len) # <-- Controls the space between the columns
 
                 colored_inv_str = f"{idx_color}[{idx + 1:<2}]{Colors.RESET} {inv_color}{item}: ({qty:,} @ {avg:,} GP){Colors.RESET}"
                 return f"{colored_inv_str} {Colors.GRAY}---{Colors.RESET} {mkt_color}{mkt_str}{Colors.RESET}{padding}"
@@ -658,7 +648,7 @@ class TradeTycoon:
                                         print("=" * 200)
 
                                         def format_armory(idx, it):
-                                            return f"[{idx + 1:<2}] {it:<25}"
+                                            return f"[{idx + 1:<2}] {it:<45}"
 
                                         self.print_3_columns(all_possible, format_armory)
                                         print("=" * 200)
@@ -753,7 +743,15 @@ class TradeTycoon:
                         paid_with = "Score"
 
                     if can_unlock:
-                        new_item = self.locked_items.pop(0)
+                        # --- NEW RANDOM UNLOCK LOGIC ---
+                        # Grab the last 2 characters of the current week's hash
+                        unlock_hex = self.current_hash[-2:]
+                        unlock_val = int(unlock_hex, 16)
+
+                        # Use Modulo (%) to wrap the hash value around the exact length of the list
+                        unlock_index = unlock_val % len(self.locked_items)
+
+                        new_item = self.locked_items.pop(unlock_index)
                         self.active_items.append(new_item)
 
                         if new_item not in self.inventory:
