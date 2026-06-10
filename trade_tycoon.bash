@@ -1,7 +1,7 @@
 #!/bin/bash
 
 trade_tycoon() {
-    python3 ~/GIT/nanosecond/Python/trade_tycoon_master.py
+    python3 ~/GIT/nanosecond/Python/trade_tycoon.py
 }
 
 

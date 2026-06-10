@@ -28,12 +28,12 @@ class TradeTycoon:
         self.total_score = 0
         self.current_events = []
 
-        self.active_items = ["Wood", "Fish", "Wheat", "Flour", "Mirrors",
+        self.active_items = ["Wood", "Wheat", "Flour", "Mirrors", "Minnows",
                              "Candles", "Cloth", "Leather", "Slaves", "Blankets",
-                             "Coal", "Stone", "Salt", "Glass", "Waterskin",
+                             "Coal", "Stone", "Sea Salt", "Glass", "Waterskin",
                              "Beer", "Rations", "Torches", "Herbs", "Arrows"]
 
-        self.locked_items = ["Adamantine", "Amber", "Amethyst", "Antitoxin", "Armor", "Bag of Holding", "Beef", "Beeswax", "Cat Memes", "Cheese", "Chlorophyte", "Cinnamon", "Cocoa", "Coffee", "Compass of True North", "Crown Jewel", "Cryptocurrency", "Daggers", "Diamond", "Dimensional Pinball Machine", "Dragon Scales", "Dream Dust", "Emerald", "Everlasting Gobstopper", "Flint & Steel", "Frankincense", "Glitterstim", "Glowcopper", "Gold", "Gunpowder", "Honey", "Indigo", "Invisibility Cloak", "Iron", "Ivory", "Lamb", "Lavastone", "Lead", "Lightsaber", "Lucky Dice", "Mercury", "Meteorite", "Mithril", "Myrrh", "Nanites", "Obsidian", "Olive Oil", "Olives", "Orichalum", "Palladium", "Paprika", "Parchment", "Pepper", "Philosopher Stones", "Phoenix Feather", "Poison", "Pork", "Potions", "Pottery", "Romulan Ale", "Rope", "Ruby", "Safety Deposit Box", "Sapphire", "Scrolls", "Shadow Lantern", "Silk", "Silver", "Sleeper Agents", "Sunstone", "Swords", "Time Machine", "Tin", "Titanium", "Tobacco", "Topaz", "Vorpal Blades", "Whisperwind Cloak"]
+        self.locked_items = ["Adamantine", "Amber", "Amethyst", "Antitoxin", "Armor", "Bag of Holding", "Banana", "Beef", "Beeswax", "Berries", "Cassava", "Cattle", "Cat Memes", "Cheese", "Chlorophyte", "Cinnamon", "Cocoa", "Cod", "Coffee", "Compass of True North", "Coral", "Crown Jewel", "Cryptocurrency", "Daggers", "Diamond", "Dimensional Pinball Machine", "Dragon Scales", "Dream Dust", "Emerald", "Everlasting Gobstopper", "Flint & Steel", "Frankincense", "Fur", "Glitterstim", "Glowcopper", "Gold", "Gunpowder", "Honey", "Horses", "Indigo", "Invisibility Cloak", "Iron", "Ivory", "Lamb", "Lavastone", "Lead", "Lightsaber", "Lucky Dice", "Mackerel", "Mango", "Mercury", "Meteorite", "Mithril", "Myrrh", "Nanites", "Oats", "Obsidian", "Olive Oil", "Olives", "Orichalum", "Palladium", "Paprika", "Parchment", "Pearls", "Pepper", "Philosopher Stones", "Phoenix Feather", "Poison", "Pork", "Potions", "Pottery", "Romulan Ale", "Rope", "Ruby", "Safety Deposit Box", "Sapphire", "Scrolls", "Shadow Lantern", "Sheep", "Silk", "Silver", "Sleeper Agents", "Sunstone", "Swordfish", "Swords", "Time Machine", "Tin", "Titanium", "Tobacco", "Topaz", "Tuna", "Vorpal Blades", "Whisperwind Cloak"]
 
 
         # Auto-alphabetize the locked items
@@ -400,7 +400,7 @@ class TradeTycoon:
             self.clear_screen()
             print("=" * 200)
 
-            print(f"   MEDIEVAL MERCHANT - Week {self.week}")
+            print(f"   TRADE TYCOON - Week {self.week}")
             if self.current_events:
                 for event in self.current_events:
                     if event.startswith("BOUGHT") or event.startswith("SOLD"):
@@ -478,7 +478,7 @@ class TradeTycoon:
             if self.locked_items:
                 gp_text = f"{Colors.RED}GP{Colors.RESET}" if self.money >= self.unlock_cost else "GP"
                 score_text = f"{Colors.RED}Score{Colors.RESET}" if self.total_score >= self.unlock_cost else "Score"
-                unlock_prompt = f"[{Colors.YELLOW}U{Colors.RESET}]nlock Item ({self.unlock_cost:,} {gp_text}/{score_text})"
+                unlock_prompt = f"[{Colors.YELLOW}U{Colors.RESET}]nlock Item ({len(self.locked_items)} Left) ({self.unlock_cost:,} {gp_text}/{score_text})"
             else:
                 unlock_prompt = f"{Colors.MAGENTA}*** YOU WON! Everything Is Unlocked! [{Colors.YELLOW}P{Colors.MAGENTA}]restige? ***{Colors.RESET}"
 
