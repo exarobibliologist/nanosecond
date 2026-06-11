@@ -15,6 +15,9 @@ class Colors:
 
 class TradeTycoon:
     def __init__(self):
+        # Force the save file to always be in the exact same folder as this python script
+        self.save_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "trade_tycoon_save.json")
+
         # Trigger the initial state on load with default values
         self.reset_game_state()
 
@@ -378,7 +381,7 @@ class TradeTycoon:
             "current_events": self.current_events
         }
         try:
-            with open("trade_tycoon_save.json", "w") as f:
+            with open(self.save_file, "w") as f:
                 json.dump(save_data, f, indent=4)
             self.current_events.append("GAME SAVED SUCCESSFULLY!")
         except Exception as e:
@@ -386,7 +389,7 @@ class TradeTycoon:
 
     def load_game(self):
         try:
-            with open("trade_tycoon_save.json", "r") as f:
+            with open(self.save_file, "r") as f:
                 save_data = json.load(f)
 
             # 1. Load the base numerical variables
@@ -905,7 +908,7 @@ class TradeTycoon:
                 self.save_game()
 
             elif action == 'l':
-                if os.path.exists("trade_tycoon_save.json"):
+                if os.path.exists(self.save_file):
                     confirm = input(" Are you sure you want to load? Any unsaved progress will be lost! (Y/N): ").strip().lower()
                     if confirm == 'y':
                         self.load_game()
