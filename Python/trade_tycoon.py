@@ -27,14 +27,11 @@ class TradeTycoon:
         self.unlocked_count = 0
         self.total_score = 0
         self.current_events = []
+        self.current_page = 0 # <-- Added for Pagination
 
-        self.active_items = ["Wood", "Wheat", "Flour", "Mirrors", "Minnows",
-                             "Candles", "Cloth", "Leather", "Slaves", "Blankets",
-                             "Coal", "Stone", "Sea Salt", "Glass", "Waterskin",
-                             "Beer", "Rations", "Torches", "Herbs", "Arrows"]
+        self.active_items = ["Arrows", "Beer", "Blankets", "Candles", "Cloth", "Coal", "Flour", "Glass", "Herbs", "Leather", "Mirrors", "Rations", "Sardines", "Sea Salt", "Slaves", "Stone", "Torches", "Waterskin", "Wheat", "Wood"]
 
         self.locked_items = ["Adamantine", "Amber", "Amethyst", "Antitoxin", "Armor", "Bag of Holding", "Banana", "Beef", "Beeswax", "Berries", "Cassava", "Cattle", "Cat Memes", "Cheese", "Chlorophyte", "Cinnamon", "Cocoa", "Cod", "Coffee", "Compass of True North", "Coral", "Crown Jewel", "Cryptocurrency", "Daggers", "Diamond", "Dimensional Pinball Machine", "Dragon Scales", "Dream Dust", "Emerald", "Everlasting Gobstopper", "Flint & Steel", "Frankincense", "Fur", "Glitterstim", "Glowcopper", "Gold", "Gunpowder", "Honey", "Horses", "Indigo", "Invisibility Cloak", "Iron", "Ivory", "Lamb", "Lavastone", "Lead", "Lightsaber", "Lucky Dice", "Mackerel", "Mango", "Mercury", "Meteorite", "Mithril", "Myrrh", "Nanites", "Oats", "Obsidian", "Olive Oil", "Olives", "Orichalum", "Palladium", "Paprika", "Parchment", "Pearls", "Pepper", "Philosopher Stones", "Phoenix Feather", "Poison", "Pork", "Potions", "Pottery", "Romulan Ale", "Rope", "Ruby", "Safety Deposit Box", "Sapphire", "Scrolls", "Shadow Lantern", "Sheep", "Silk", "Silver", "Sleeper Agents", "Sunstone", "Swordfish", "Swords", "Time Machine", "Tin", "Titanium", "Tobacco", "Topaz", "Tuna", "Vorpal Blades", "Whisperwind Cloak"]
-
 
         # Auto-alphabetize the locked items
         self.locked_items.sort()
@@ -59,6 +56,39 @@ class TradeTycoon:
 
     def clear_screen(self):
         os.system('cls' if os.name == 'nt' else 'clear')
+
+    def get_keypress(self):
+        """ Silently captures a single keypress (including arrow keys) cross-platform. """
+        if os.name == 'nt': # Windows handling
+            import msvcrt
+            key = msvcrt.getch()
+            if key in (b'\x00', b'\xe0'):
+                special = msvcrt.getch()
+                if special == b'K': return 'left'
+                if special == b'M': return 'right'
+                return ''
+            try:
+                return key.decode('utf-8').lower()
+            except:
+                return ''
+        else: # Unix/Linux/Mac handling
+            import tty, termios
+            fd = sys.stdin.fileno()
+            old_settings = termios.tcgetattr(fd)
+            try:
+                tty.setraw(sys.stdin.fileno())
+                ch = sys.stdin.read(1)
+                # Arrow keys send an escape sequence starting with \x1b
+                if ch == '\x1b':
+                    ch2 = sys.stdin.read(2)
+                    if ch2 == '[D': return 'left'
+                    if ch2 == '[C': return 'right'
+                    return ''
+                if ch == '\x03': # Safely handle Ctrl+C to exit
+                    raise KeyboardInterrupt
+            finally:
+                termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+            return ch.lower()
 
     def get_price_color(self, price):
         max_price = 255 + (self.unlocked_count * 5)
@@ -157,10 +187,10 @@ class TradeTycoon:
 
                 self.current_market.sort()
                 grand_msgs = [
-                    	"GRAND MARKET DAY! Merchants from all realms have gathered. Everything is available!",
-                    	"FESTIVAL OF COINS! The King declared a tax-free holiday! All goods are trading today!",
-                    	"TRADE FLEET ARRIVES! Hundreds of ships just docked. The market is completely flooded with goods!"
-                	]
+                        "GRAND MARKET DAY! Merchants from all realms have gathered. Everything is available!",
+                        "FESTIVAL OF COINS! The King declared a tax-free holiday! All goods are trading today!",
+                        "TRADE FLEET ARRIVES! Hundreds of ships just docked. The market is completely flooded with goods!"
+                    ]
                 self.current_events.append(random.choice(grand_msgs))
 
             elif roll < 64:
@@ -189,12 +219,12 @@ class TradeTycoon:
 
             elif roll < 79:
                 if random.randint(0, 1) == 0:
-                    found = (random.randint(10, 1499) * self.week) + (self.unlocked_count * 200)
+                    found = (random.randint(100, 1500) * self.week) + (self.unlocked_count * 200)
                     self.money += found
                     gold_msgs = [
-                        f"FORTUNE! You found a discarded coin purse containing {found} GP on the floor of your store.",
-                        f"FORTUNE! A grateful noble tipped you {found} GP for giving them good financial advice.",
-                        f"FORTUNE! You won a tavern bet against a drunken knight and walked away with {found} GP!"
+                        f"FORTUNE! You found a discarded coin purse containing ${found:,} on the floor of your store.",
+                        f"FORTUNE! A grateful noble tipped you ${found:,} for giving them good financial advice.",
+                        f"FORTUNE! You won a tavern bet against a drunken knight and walked away with ${found:,}!"
                     ]
                     self.current_events.append(random.choice(gold_msgs))
                 else:
@@ -207,8 +237,8 @@ class TradeTycoon:
                     self.average_cost[f_item] = current_total_value // new_qty if new_qty > 0 else 0
                     self.inventory[f_item] = new_qty
                     item_msgs = [
-                        f"FORTUNE! You discovered an overturned wagon and salvaged {f_qty} {f_item}!",
-                        f"FORTUNE! You found a hidden smuggler's cache containing {f_qty} {f_item}!"
+                        f"CHANCE! You discovered an overturned wagon and salvaged {f_qty} {f_item}!",
+                        f"CHANCE! You found a hidden smuggler's cache containing {f_qty} {f_item}!"
                     ]
                     self.current_events.append(random.choice(item_msgs))
 
@@ -278,12 +308,12 @@ class TradeTycoon:
                         lost = self.money
                     self.money -= lost
                     gold_ambush_msgs = [
-                        f"AMBUSH! Bandits raided your shop in the night. You lost {lost} GP.",
-                        f"AMBUSH! Pickpockets swarmed you in the crowded town square! You lost {lost} GP."
+                        f"AMBUSH! Bandits raided your shop in the night. You lost ${lost:,}.",
+                        f"AMBUSH! Pickpockets swarmed you in the crowded town square! You lost ${lost:,}."
                     ]
                     self.current_events.append(random.choice(gold_ambush_msgs))
 
-    def print_2_columns(self, items, formatter):
+    def print_2_columns(self, items, formatter, start_idx=0):
         num_items = len(items)
         if num_items == 0:
             print("  (Empty)")
@@ -294,7 +324,8 @@ class TradeTycoon:
             for col in range(2):
                 idx = r + (col * rows)
                 if idx < num_items:
-                    line += formatter(idx, items[idx]) + "    "
+                    # Pass the absolute index (start_idx + idx) so the numbering is always correct!
+                    line += formatter(start_idx + idx, items[idx]) + "    "
             print(line.rstrip())
 
     def print_3_columns(self, items, formatter):
@@ -331,7 +362,7 @@ class TradeTycoon:
             "unlock_cost": self.unlock_cost,
             "unlocked_count": self.unlocked_count,
             "total_score": self.total_score,
-            "active_items": self.active_items, # Included back in to support randomized unlocks
+            "active_items": self.active_items,
             "inventory": self.inventory,
             "average_cost": self.average_cost,
             "artifact_stock": self.artifact_stock,
@@ -359,6 +390,7 @@ class TradeTycoon:
             self.unlock_cost = save_data.get("unlock_cost", self.unlock_cost)
             self.total_score = save_data.get("total_score", self.total_score)
             self.unlocked_count = save_data.get("unlocked_count", self.unlocked_count)
+            self.current_page = 0 # Reset pagination on load
 
             # 2. Preserve Randomized Unlocks & Forward Compatibility
             self.active_items = save_data.get("active_items", self.active_items)
@@ -377,7 +409,6 @@ class TradeTycoon:
             self.current_events = save_data.get("current_events", [])
 
             # 4. FORWARD COMPATIBILITY SWEEP!
-            # If the script has brand new items that were not in the old save inventory dictionary, safely initialize them to 0.
             for item in self.active_items + self.artifacts:
                 if item not in self.inventory:
                     self.inventory[item] = 0
@@ -418,14 +449,30 @@ class TradeTycoon:
 
             print("=" * 200)
 
-            print(f" Current Money: {Colors.YELLOW}{self.money:,} GP{Colors.RESET}    ||    Inventory Value: {total_inv_value:,} GP    ||    Total Value: {overall_total:,} GP    ||    Current Score: {self.total_score:,}")
+            print(f" Current Money: {Colors.YELLOW}${self.money:,}{Colors.RESET}    ||    Inventory Value: ${total_inv_value:,}    ||    Total Value: ${overall_total:,}    ||    Current Score: {self.total_score:,}")
             # --- TEMPORARY DEBUG HASH DISPLAY ---
             print(f" Active Hash: {Colors.GRAY}{self.current_hash}{Colors.RESET}")
 
             print("=" * 200)
-            print(" COMBINED DASHBOARD (Inventory & Local Market):")
 
             display_items = sorted(list(set(self.active_items + [item for item, qty in self.inventory.items() if qty > 0] + self.current_market)))
+
+            # --- PAGINATION MATH ---
+            total_items = len(display_items)
+            items_per_page = 40
+            total_pages = max(1, (total_items + items_per_page - 1) // items_per_page)
+
+            # Safety clamp just in case the list shrinks or expands dynamically
+            if self.current_page >= total_pages:
+                self.current_page = total_pages - 1
+            if self.current_page < 0:
+                self.current_page = 0
+
+            start_idx = self.current_page * items_per_page
+            end_idx = start_idx + items_per_page
+            page_items = display_items[start_idx:end_idx]
+
+            print(f" COMBINED DASHBOARD (Page {self.current_page + 1} of {total_pages}):")
 
             def format_combined(idx, item):
                 qty = self.inventory.get(item, 0)
@@ -433,7 +480,7 @@ class TradeTycoon:
 
                 if item in self.market_prices:
                     m_price = self.market_prices[item]
-                    mkt_str = f"[Market: {m_price:,} GP]"
+                    mkt_str = f"[Market: ${m_price:,}]"
 
                     if item in self.artifacts:
                         mkt_color = Colors.MAGENTA
@@ -462,30 +509,60 @@ class TradeTycoon:
                         inv_color = Colors.GRAY
                         idx_color = Colors.GRAY
 
-                raw_inv_str = f"[{idx + 1:<2}] {item}: ({qty:,} @ {avg:,} GP)"
+                raw_inv_str = f"[{idx + 1:<2}] {item}: ({qty:,} @ ${avg:,})"
                 visible_text = f"{raw_inv_str} --- {mkt_str}"
                 visible_len = len(visible_text)
 
-                padding = " " * max(0, 100 - visible_len) # <-- Controls the space between the columns
+                padding = " " * max(0, 95 - visible_len) # <-- Controls the space between the columns
 
-                colored_inv_str = f"{idx_color}[{idx + 1:<2}]{Colors.RESET} {inv_color}{item}: ({qty:,} @ {avg:,} GP){Colors.RESET}"
+                colored_inv_str = f"{idx_color}[{idx + 1:<2}]{Colors.RESET} {inv_color}{item}: ({qty:,} @ ${avg:,}){Colors.RESET}"
                 return f"{colored_inv_str} {Colors.GRAY}---{Colors.RESET} {mkt_color}{mkt_str}{Colors.RESET}{padding}"
 
-            self.print_2_columns(display_items, format_combined)
+            # Pass the page slice and tell the printer where the absolute index starts
+            self.print_2_columns(page_items, format_combined, start_idx=start_idx)
 
             print("=" * 200)
 
             if self.locked_items:
-                gp_text = f"{Colors.RED}GP{Colors.RESET}" if self.money >= self.unlock_cost else "GP"
+                # Wrap BOTH the $ and the number inside the color formatting
+                cost_text = f"{Colors.RED}${self.unlock_cost:,}{Colors.RESET}" if self.money >= self.unlock_cost else f"${self.unlock_cost:,}"
                 score_text = f"{Colors.RED}Score{Colors.RESET}" if self.total_score >= self.unlock_cost else "Score"
-                unlock_prompt = f"[{Colors.YELLOW}U{Colors.RESET}]nlock Item ({len(self.locked_items)} Left) ({self.unlock_cost:,} {gp_text}/{score_text})"
+
+                unlock_prompt = f"[{Colors.YELLOW}U{Colors.RESET}]nlock Item ({len(self.locked_items)} Left) ({cost_text} / {score_text})"
             else:
                 unlock_prompt = f"{Colors.MAGENTA}*** YOU WON! Everything Is Unlocked! [{Colors.YELLOW}P{Colors.MAGENTA}]restige? ***{Colors.RESET}"
 
-            print(f"Actions: [{Colors.YELLOW}B{Colors.RESET}]uy | [{Colors.YELLOW}S{Colors.RESET}]ell/Use | [{Colors.YELLOW}N{Colors.RESET}]ext Week | {unlock_prompt} | [{Colors.YELLOW}W{Colors.RESET}]rite Save | [{Colors.YELLOW}L{Colors.RESET}]oad | [{Colors.YELLOW}Q{Colors.RESET}]uit")
-            action = input("What would you like to do? ").strip().lower()
+            page_prompt = ""
+            if total_pages > 1:
+                page_prompt = f"[{Colors.YELLOW}←{Colors.RESET}] Prev Page | [{Colors.YELLOW}→{Colors.RESET}] Next Page | "
 
-            if action == 'b':
+            print(f"Actions: [{Colors.YELLOW}B{Colors.RESET}]uy | [{Colors.YELLOW}S{Colors.RESET}]ell/Use | [{Colors.YELLOW}N{Colors.RESET}]ext Week | {page_prompt}{unlock_prompt} | [{Colors.YELLOW}W{Colors.RESET}]rite Save | [{Colors.YELLOW}L{Colors.RESET}]oad | [{Colors.YELLOW}Q{Colors.RESET}]uit")
+
+            # --- NEW KEYPRESS CAPTURE ---
+            print("What would you like to do? ", end="", flush=True)
+            action = self.get_keypress()
+
+            # Raw input doesn't print the key you pressed, so we manually print it back
+            # so the terminal looks completely normal (unless it was an arrow key)
+            if action not in ['left', 'right'] and action != '':
+                print(action.upper())
+            else:
+                print()
+
+            if action == 'left':
+                if total_pages > 1:
+                    if self.current_page > 0:
+                        self.current_page -= 1
+                    else:
+                        self.current_page = total_pages - 1 # Wrap around to the last page
+            elif action == 'right':
+                if total_pages > 1:
+                    if self.current_page < total_pages - 1:
+                        self.current_page += 1
+                    else:
+                        self.current_page = 0 # Wrap around to the first page
+
+            elif action == 'b':
                 try:
                     item_idx = int(input(f"Enter item number to buy (1-{len(display_items)}): ")) - 1
                     if 0 <= item_idx < len(display_items):
@@ -518,7 +595,7 @@ class TradeTycoon:
 
                                     self.money -= cost
                                     self.inventory[item] = new_qty
-                                    self.current_events.append(f"BOUGHT: {qty:,} {item} for {cost:,} GP")
+                                    self.current_events.append(f"BOUGHT: {qty:,} {item} for ${cost:,}")
 
                                     if item in self.artifacts:
                                         self.artifact_stock[item] -= qty
@@ -528,7 +605,7 @@ class TradeTycoon:
                                             self.current_events.append(f"MARKET UPDATE: The market has sold out of {item} for this week!")
 
                                 else:
-                                    print("Invalid quantity or not enough Gold Pieces!")
+                                    print("Invalid quantity or not enough money!")
                                     time.sleep(1)
                             else:
                                 if item in self.artifacts and self.artifact_stock.get(item, 10) <= 0:
@@ -593,9 +670,9 @@ class TradeTycoon:
                                                             self.current_market.append(smuggle_item)
                                                             self.market_prices[smuggle_item] = sell_price
                                                             self.current_market.sort()
-                                                            self.current_events.append(f"ARTIFACT INVOKED: Sold {qty:,} {smuggle_item} for {revenue:,} GP. The market now accepts {smuggle_item}!")
+                                                            self.current_events.append(f"ARTIFACT INVOKED: Sold {qty:,} {smuggle_item} for ${revenue:,}. The market now accepts {smuggle_item}!")
                                                         else:
-                                                            self.current_events.append(f"ARTIFACT INVOKED: Sold {qty:,} {smuggle_item} for {revenue:,} GP.")
+                                                            self.current_events.append(f"ARTIFACT INVOKED: Sold {qty:,} {smuggle_item} for ${revenue:,}.")
                                                     else:
                                                         print("Invalid quantity. Invocation cancelled.")
                                                         time.sleep(1)
@@ -709,7 +786,7 @@ class TradeTycoon:
                                         if self.inventory[item] == 0:
                                             self.average_cost[item] = 0
 
-                                        self.current_events.append(f"SOLD: {qty:,} {item} for {revenue:,} GP")
+                                        self.current_events.append(f"SOLD: {qty:,} {item} for ${revenue:,}")
                                     else:
                                         print(f"Invalid quantity or you don't have that many {item}!")
                                         time.sleep(1)
@@ -736,7 +813,7 @@ class TradeTycoon:
                     if self.money >= self.unlock_cost:
                         self.money -= self.unlock_cost
                         can_unlock = True
-                        paid_with = "Gold"
+                        paid_with = "Money"
                     elif self.total_score >= self.unlock_cost:
                         self.total_score -= self.unlock_cost
                         can_unlock = True
@@ -779,7 +856,7 @@ class TradeTycoon:
                         self.current_market.sort()
                         self.current_events.append(f"GUILD PERMIT SECURED: {new_item} (Paid with {paid_with}). The market fluctuates immediately!")
                     else:
-                        print(f"You need {self.unlock_cost:,} GP or Score to unlock a new item!")
+                        print(f"You need ${self.unlock_cost:,} or Score to unlock a new item!")
                         time.sleep(2)
                 else:
                     print("You have already unlocked all the realm's items!")
@@ -811,7 +888,7 @@ class TradeTycoon:
 
                     print(f" You have cornered the market and unlocked every good in the realm!")
                     print(f" If you Prestige, your empire will reset, but you will retain the following perks:")
-                    print(f"   - {Colors.YELLOW}Extra Starting Wealth:{Colors.RESET} +{bonus_gp:,} GP (Cube root of your {self.total_score:,} final score)")
+                    print(f"   - {Colors.YELLOW}Extra Starting Wealth:{Colors.RESET} +${bonus_gp:,} (Cube root of your {self.total_score:,} final score)")
                     print(f"   - {Colors.MAGENTA}Legendary Heirloom:{Colors.RESET} Keep your entire collected stack of 1 Artifact type (minimum 1)")
                     print("\n Are you ready to pass the torch to the next generation?")
 
@@ -840,7 +917,7 @@ class TradeTycoon:
                         self.reset_game_state(bonus_gp=bonus_gp, kept_artifact=chosen_art, kept_qty=kept_qty)
 
                         self.generate_market()
-                        self.current_events = [f"PRESTIGE SECURED! You start anew with {bonus_gp:,} extra GP and {kept_qty:,}x {chosen_art}."]
+                        self.current_events = [f"PRESTIGE SECURED! You start anew with an extra ${bonus_gp:,} and {kept_qty:,}x {chosen_art}."]
 
                     else:
                         print(" Prestige cancelled.")
@@ -850,7 +927,7 @@ class TradeTycoon:
                     time.sleep(2)
 
             elif action == 'q':
-                print(f"\nSafe travels, Merchant! Your score for this game was {self.total_score:,}\n")
+                print(f"\nSafe travels, Tycoon! Your score for this game was {self.total_score:,}\n")
                 break
 
             else:
