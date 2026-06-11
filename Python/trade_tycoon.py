@@ -27,7 +27,9 @@ class TradeTycoon:
         self.unlocked_count = 0
         self.total_score = 0
         self.current_events = []
-        self.current_page = 0 # <-- Added for Pagination
+
+        self.current_page = 0
+        self.event_scroll = 0 # <-- Added to track event log scrolling
 
         self.active_items = ["Arrows", "Beer", "Blankets", "Candles", "Cloth", "Coal", "Flour", "Glass", "Herbs", "Leather", "Mirrors", "Rations", "Sardines", "Sea Salt", "Slaves", "Stone", "Torches", "Waterskin", "Wheat", "Wood"]
 
@@ -66,6 +68,8 @@ class TradeTycoon:
                 special = msvcrt.getch()
                 if special == b'K': return 'left'
                 if special == b'M': return 'right'
+                if special == b'H': return 'up'
+                if special == b'P': return 'down'
                 return ''
             try:
                 return key.decode('utf-8').lower()
@@ -83,6 +87,8 @@ class TradeTycoon:
                     ch2 = sys.stdin.read(2)
                     if ch2 == '[D': return 'left'
                     if ch2 == '[C': return 'right'
+                    if ch2 == '[A': return 'up'
+                    if ch2 == '[B': return 'down'
                     return ''
                 if ch == '\x03': # Safely handle Ctrl+C to exit
                     raise KeyboardInterrupt
@@ -219,7 +225,7 @@ class TradeTycoon:
 
             elif roll < 79:
                 if random.randint(0, 1) == 0:
-                    found = (random.randint(100, 1500) * self.week) + (self.unlocked_count * 200)
+                    found = (random.randint(10, 1499) * self.week) + (self.unlocked_count * 200)
                     self.money += found
                     gold_msgs = [
                         f"FORTUNE! You found a discarded coin purse containing ${found:,} on the floor of your store.",
@@ -237,8 +243,8 @@ class TradeTycoon:
                     self.average_cost[f_item] = current_total_value // new_qty if new_qty > 0 else 0
                     self.inventory[f_item] = new_qty
                     item_msgs = [
-                        f"CHANCE! You discovered an overturned wagon and salvaged {f_qty} {f_item}!",
-                        f"CHANCE! You found a hidden smuggler's cache containing {f_qty} {f_item}!"
+                        f"FORTUNE! You discovered an overturned wagon and salvaged {f_qty} {f_item}!",
+                        f"FORTUNE! You found a hidden smuggler's cache containing {f_qty} {f_item}!"
                     ]
                     self.current_events.append(random.choice(item_msgs))
 
@@ -391,6 +397,7 @@ class TradeTycoon:
             self.total_score = save_data.get("total_score", self.total_score)
             self.unlocked_count = save_data.get("unlocked_count", self.unlocked_count)
             self.current_page = 0 # Reset pagination on load
+            self.event_scroll = 0 # Reset event scroll on load
 
             # 2. Preserve Randomized Unlocks & Forward Compatibility
             self.active_items = save_data.get("active_items", self.active_items)
@@ -432,8 +439,28 @@ class TradeTycoon:
             print("=" * 200)
 
             print(f"   TRADE TYCOON - Week {self.week}")
-            if self.current_events:
-                for event in self.current_events:
+
+            # --- EVENT LOG VIEWPORT MATH ---
+            MAX_EVENT_LINES = 12
+            total_events = len(self.current_events)
+
+            if total_events > 0:
+                max_scroll = max(0, total_events - MAX_EVENT_LINES)
+
+                # Clamp scrolling limits
+                if self.event_scroll > max_scroll:
+                    self.event_scroll = max_scroll
+                if self.event_scroll < 0:
+                    self.event_scroll = 0
+
+                start_idx = max(0, total_events - MAX_EVENT_LINES - self.event_scroll)
+                end_idx = start_idx + MAX_EVENT_LINES
+                visible_events = self.current_events[start_idx:end_idx]
+
+                if self.event_scroll < max_scroll:
+                    print(f"   {Colors.GRAY}--- ↑ {max_scroll - self.event_scroll} older events ↑ ---{Colors.RESET}")
+
+                for event in visible_events:
                     if event.startswith("BOUGHT") or event.startswith("SOLD"):
                         print(f"   {Colors.GREEN}( {event} ){Colors.RESET}")
                     elif event.startswith("GUILD PERMIT"):
@@ -446,6 +473,9 @@ class TradeTycoon:
                         print(f"   {Colors.MAGENTA}( *** {event} *** ){Colors.RESET}")
                     else:
                         print(f"   {Colors.YELLOW}( *** {event} *** ){Colors.RESET}")
+
+                if self.event_scroll > 0:
+                    print(f"   {Colors.GRAY}--- ↓ {self.event_scroll} newer events ↓ ---{Colors.RESET}")
 
             print("=" * 200)
 
@@ -534,9 +564,13 @@ class TradeTycoon:
 
             page_prompt = ""
             if total_pages > 1:
-                page_prompt = f"[{Colors.YELLOW}←{Colors.RESET}] Prev Page | [{Colors.YELLOW}→{Colors.RESET}] Next Page | "
+                page_prompt = f"[{Colors.YELLOW}←/→{Colors.RESET}] Prev/Next Page | "
 
-            print(f"Actions: [{Colors.YELLOW}B{Colors.RESET}]uy | [{Colors.YELLOW}S{Colors.RESET}]ell/Use | [{Colors.YELLOW}N{Colors.RESET}]ext Week | {page_prompt}{unlock_prompt} | [{Colors.YELLOW}W{Colors.RESET}]rite Save | [{Colors.YELLOW}L{Colors.RESET}]oad | [{Colors.YELLOW}Q{Colors.RESET}]uit")
+            scroll_prompt = ""
+            if total_events > MAX_EVENT_LINES:
+                scroll_prompt = f"[{Colors.YELLOW}↑/↓{Colors.RESET}] Scroll Log | "
+
+            print(f"Actions: [{Colors.YELLOW}B{Colors.RESET}]uy | [{Colors.YELLOW}S{Colors.RESET}]ell/Use | [{Colors.YELLOW}N{Colors.RESET}]ext Week | {scroll_prompt}{page_prompt}{unlock_prompt} | [{Colors.YELLOW}W{Colors.RESET}]rite Save | [{Colors.YELLOW}L{Colors.RESET}]oad | [{Colors.YELLOW}Q{Colors.RESET}]uit")
 
             # --- NEW KEYPRESS CAPTURE ---
             print("What would you like to do? ", end="", flush=True)
@@ -544,12 +578,17 @@ class TradeTycoon:
 
             # Raw input doesn't print the key you pressed, so we manually print it back
             # so the terminal looks completely normal (unless it was an arrow key)
-            if action not in ['left', 'right'] and action != '':
+            if action not in ['left', 'right', 'up', 'down', '']:
                 print(action.upper())
+                self.event_scroll = 0 # Auto-snap to bottom on new action
             else:
                 print()
 
-            if action == 'left':
+            if action == 'up':
+                self.event_scroll += 1
+            elif action == 'down':
+                self.event_scroll -= 1
+            elif action == 'left':
                 if total_pages > 1:
                     if self.current_page > 0:
                         self.current_page -= 1
