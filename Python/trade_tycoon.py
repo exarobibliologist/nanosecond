@@ -611,12 +611,13 @@ class TradeTycoon:
             end_idx = start_idx + items_per_page
             page_items = normal_display[start_idx:end_idx]
 
-            page_nav = f"   ||   [{Colors.RED}←/→{Colors.RESET}] {Colors.RED}Prev/Next Page{Colors.RESET}" if total_pages > 1 else ""
-            print(f" COMBINED DASHBOARD (Page {self.current_page + 1} of {total_pages}){page_nav}:")
 
             # Normal item index picks up exactly where the artifacts left off
             normal_start_absolute = len(artifact_display) + start_idx
             self.print_2_columns(page_items, format_combined, start_idx=normal_start_absolute)
+
+            page_nav = f" || [{Colors.RED}←{Colors.RESET}] PREV/NEXT [{Colors.RED}→{Colors.RESET}] {Colors.RED}Prev/Next Page{Colors.RESET}" if total_pages > 1 else ""
+            print(f"\n                                                                                                     (Page {self.current_page + 1} of {total_pages}){page_nav}")
 
             print("=" * 200)
 
@@ -630,7 +631,7 @@ class TradeTycoon:
                 unlock_prompt = f"{Colors.MAGENTA}*** YOU WON! Everything Is Unlocked! [{Colors.YELLOW}P{Colors.MAGENTA}]restige? ***{Colors.RESET}"
 
             # Cleaned up action menu, removing the prompts that were shifted up
-            print(f"Actions: [{Colors.YELLOW}B{Colors.RESET}]uy | [{Colors.YELLOW}S{Colors.RESET}]ell/Use | [{Colors.YELLOW}N{Colors.RESET}]ext Week | {unlock_prompt} | [{Colors.YELLOW}W{Colors.RESET}]rite Save | [{Colors.YELLOW}L{Colors.RESET}]oad | [{Colors.YELLOW}Q{Colors.RESET}]uit")
+            print(f"Actions: [{Colors.YELLOW}B{Colors.RESET}]uy | [{Colors.YELLOW}S{Colors.RESET}]ell/Use | Next [{Colors.YELLOW}W{Colors.RESET}]eek | {unlock_prompt} | [{Colors.YELLOW}F{Colors.RESET}]ile Save | File [{Colors.YELLOW}L{Colors.RESET}]oad | [{Colors.YELLOW}Q{Colors.RESET}]uit")
 
             # --- NEW KEYPRESS CAPTURE ---
             print("What would you like to do? ", end="", flush=True)
@@ -984,7 +985,7 @@ class TradeTycoon:
                     print("Invalid input! Please enter a number.")
                     time.sleep(1)
 
-            elif action == 'n':
+            elif action == 'w':
                 self.week += 1
                 self.generate_market()
                 self.trigger_event()
@@ -1047,7 +1048,7 @@ class TradeTycoon:
                     print("You have already unlocked all the realm's items!")
                     time.sleep(2)
 
-            elif action == 'w':
+            elif action == 'f':
                 self.save_game()
 
             elif action == 'l':
