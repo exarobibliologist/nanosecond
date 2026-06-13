@@ -23,7 +23,7 @@ class TradeTycoon:
 
     def reset_game_state(self, bonus_gp=0, kept_artifact=None, kept_qty=0):
         # --- Single Source of Truth for Game Variables ---
-        self.run_id = random.randint(100000, 999999)
+        self.run_id = random.randint(99999, 9999999)
         self.money = 10000 + bonus_gp
         self.week = 1
         self.unlock_cost = 500000
@@ -147,9 +147,11 @@ class TradeTycoon:
         self.current_market = []
         self.market_prices = {}
         self.artifact_stock = {}
+        total_artifacts = sum(self.inventory.get(art, 0) for art in self.artifacts)
 
-        seed_string = f"run_{self.run_id}_week_{self.week}_score_{self.total_score}_unlocked_{self.unlocked_count}"
-        seed_string_two = f"money_{self.money}_week_{self.week}_score_{self.total_score}_unlocked_{self.unlocked_count}_run_{self.run_id}"
+        seed_string = f"run_{self.run_id}_money_{self.money}_score_{self.total_score}_unlocked_{self.unlocked_count}_arts_{total_artifacts}_week_{self.week}"
+        seed_string_two = f"run_{self.run_id}_week_{self.week}_score_{self.total_score}_unlocked_{self.unlocked_count}_money_{self.money}"
+
 
         # Pass BOTH strings into the function
         market_hash = self.get_market_hash(seed_string, seed_string_two)
@@ -194,8 +196,11 @@ class TradeTycoon:
                 missing_items = [item for item in self.active_items if item not in self.current_market]
                 normal_item_count = len([m for m in self.current_market if m not in self.artifacts])
 
-                seed_string = f"run_{self.run_id}_week_{self.week}_score_{self.total_score}_unlocked_{self.unlocked_count}"
-                seed_string_two = f"money_{self.money}_week_{self.week}_score_{self.total_score}_unlocked_{self.unlocked_count}_run_{self.run_id}"
+                total_artifacts = sum(self.inventory.get(art, 0) for art in self.artifacts)
+
+                seed_string = f"run_{self.run_id}_money_{self.money}_score_{self.total_score}_unlocked_{self.unlocked_count}_arts_{total_artifacts}_week_{self.week}"
+                seed_string_two = f"run_{self.run_id}_week_{self.week}_score_{self.total_score}_unlocked_{self.unlocked_count}_money_{self.money}"
+
                 market_hash = self.get_market_hash(seed_string, seed_string_two)
 
                 self.current_hash = market_hash
@@ -339,15 +344,11 @@ class TradeTycoon:
                     self.current_events.append(random.choice(item_ambush_msgs))
                 else:
                     # Fallback to stealing money if they have no items
-                    lost = random.randint(10, 299) + 100 + (self.unlocked_count * 200)
-                    if self.money < lost:
-                        lost = self.money
-                    self.money -= lost
-                    gold_ambush_msgs = [
-                        f"AMBUSH! Bandits raided your shop in the night. You lost ${lost:,}.",
-                        f"AMBUSH! Pickpockets swarmed you in the crowded town square! You lost ${lost:,}."
+                    item_ambush_msgs = [
+                        f"LUCKY BREAK! Bandits raided your shop but couldn't find anything to steal!",
+                        f"LUCKY BREAK! Rats got into your supplies but you exterminated them before they did any damage!"
                     ]
-                    self.current_events.append(random.choice(gold_ambush_msgs))
+                    self.current_events.append(random.choice(item_ambush_msgs))
 
             elif chosen_event == 10:
                 # 10. AMBUSH (COINS)
@@ -487,7 +488,7 @@ class TradeTycoon:
             print(f"   TRADE TYCOON - Week {self.week}")
 
             # --- EVENT LOG VIEWPORT MATH ---
-            MAX_EVENT_LINES = 6
+            MAX_EVENT_LINES = 5
             total_events = len(self.current_events)
 
             if total_events > 0:
@@ -598,7 +599,7 @@ class TradeTycoon:
 
             # --- PAGINATION MATH (Only applied to normal items now) ---
             total_items = len(normal_display)
-            items_per_page = 50
+            items_per_page = 30
             total_pages = max(1, (total_items + items_per_page - 1) // items_per_page)
 
             # Safety clamp just in case the list shrinks or expands dynamically
@@ -1024,8 +1025,11 @@ class TradeTycoon:
                         self.unlock_cost = self.unlock_cost + (self.unlock_cost // 2)
                         self.current_market.append(new_item)
 
-                        seed_string = f"run_{self.run_id}_week_{self.week}_score_{self.total_score}_unlocked_{self.unlocked_count}"
-                        seed_string_two = f"money_{self.money}_week_{self.week}_score_{self.total_score}_unlocked_{self.unlocked_count}_run_{self.run_id}"
+                        total_artifacts = sum(self.inventory.get(art, 0) for art in self.artifacts)
+
+                        seed_string = f"run_{self.run_id}_money_{self.money}_score_{self.total_score}_unlocked_{self.unlocked_count}_arts_{total_artifacts}_week_{self.week}"
+                        seed_string_two = f"run_{self.run_id}_week_{self.week}_score_{self.total_score}_unlocked_{self.unlocked_count}_money_{self.money}"
+
                         market_hash = self.get_market_hash(seed_string, seed_string_two)
 
                         self.current_hash = market_hash
